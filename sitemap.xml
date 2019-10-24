@@ -8,12 +8,6 @@
   </url>
   
   <url>
-    <loc>https://leewei05.github.io/tags/demo/</loc>
-    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://leewei05.github.io/posts/</loc>
     <lastmod>2019-10-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -43,14 +37,20 @@
   </url>
   
   <url>
-    <loc>https://leewei05.github.io/tags/image/</loc>
-    <lastmod>2018-12-24T12:29:41+08:00</lastmod>
+    <loc>https://leewei05.github.io/tags/demo/</loc>
+    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://leewei05.github.io/posts/the-figure-shortcode/</loc>
     <lastmod>2018-12-24T12:29:41+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://leewei05.github.io/tags/image/</loc>
+    <lastmod>2018-12-24T12:29:41+08:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
