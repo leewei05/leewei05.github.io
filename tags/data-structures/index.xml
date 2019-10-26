@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>data structures on Sir</title>
+    <link>https://leewei05.github.io/tags/data-structures/</link>
+    <description>Recent content in data structures on Sir</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://leewei05.github.io/tags/data-structures/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Data Structures and Algorithms Introduction</title>
+      <link>https://leewei05.github.io/posts/dsa/data-structures-algorithm-introduction/</link>
+      <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://leewei05.github.io/posts/dsa/data-structures-algorithm-introduction/</guid>
+      <description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&amp;rsquo;ll take down my notes and put it here to share with you guys. Let&amp;rsquo;s begin!
+Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
+The answer is because we need to practice Leetcode questions and pass interviews to get a job.</description>
+    </item>
+    
+  </channel>
+</rss>

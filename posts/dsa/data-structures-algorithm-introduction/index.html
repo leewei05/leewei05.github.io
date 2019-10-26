@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#3d4f5d">
+	<meta name="msapplication-TileColor" content="#3d4f5d">
+<meta itemprop="name" content="Data Structures and Algorithms Introduction">
+<meta itemprop="description" content="Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&rsquo;ll take down my notes and put it here to share with you guys. Let&rsquo;s begin!
+Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
+The answer is because we need to practice Leetcode questions and pass interviews to get a job.">
+
+
+<meta itemprop="datePublished" content="2019-10-26T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-10-26T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="489">
+
+
+
+<meta itemprop="keywords" content="data structures,algorithm," />
+<meta property="og:title" content="Data Structures and Algorithms Introduction" />
+<meta property="og:description" content="Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&rsquo;ll take down my notes and put it here to share with you guys. Let&rsquo;s begin!
+Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
+The answer is because we need to practice Leetcode questions and pass interviews to get a job." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leewei05.github.io/posts/dsa/data-structures-algorithm-introduction/" />
+<meta property="article:published_time" content="2019-10-26T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-10-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Structures and Algorithms Introduction"/>
+<meta name="twitter:description" content="Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&rsquo;ll take down my notes and put it here to share with you guys. Let&rsquo;s begin!
+Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
+The answer is because we need to practice Leetcode questions and pass interviews to get a job."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Data Structures and Algorithms Introduction</title>
+	<link rel="stylesheet" href="https://leewei05.github.io/css/style.min.5ee5e7976cd09872c64e40a582206543f6aa38c69a8c43898aadc70040344b92.css" integrity="sha256-XuXnl2zQmHLGTkClgiBlQ/aqOMaajEOJiq3HAEA0S5I=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://leewei05.github.io">Sir</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://leewei05.github.io/posts/">Posts</a>
+				<a href="https://leewei05.github.io/about/">About</a>
+				<a href="https://leewei05.github.io/tags/">Tags</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://leewei05.github.io/posts/">Posts</a></li>
+			<li><a href="https://leewei05.github.io/about/">About</a></li>
+			<li><a href="https://leewei05.github.io/tags/">Tags</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Oct 26, 2019</span></div>
+				<h1>Data Structures and Algorithms Introduction</h1>
+			</header>
+			<div class="content">
+				
+
+<p>Finally got some time to do this.
+This is the first post of me learning data structures and algorithms online courses.
+I&rsquo;ll take down my notes and put it here to share with you guys. Let&rsquo;s begin!</p>
+
+<h2 id="introduction">Introduction<a href="#introduction" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Why is data structures and algorithms so important?
+Why does every student major in computer science related fields needs to take this course?</p>
+
+<p><del>The answer is because we need to practice Leetcode questions and pass interviews to get a job.</del></p>
+
+<p>Sadly, yes but also no. That is not the main purpose why developers should learn data structures
+and algorithms. The simplest answer is to let our code run faster. 😄</p>
+
+<h2 id="benefits-of-learning-data-structures-and-algorithms">Benefits of learning Data structures and Algorithms<a href="#benefits-of-learning-data-structures-and-algorithms" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>Assume that we all want our code to run faster. We can do that by avoiding nested loops and making quicker calculations.
+However, sometimes the bottleneck is not the alogrithm we use, it&rsquo;s the data structure we use.
+In other words, algorithm will boost up by choosing a proper data structure.</p>
+
+<p>For instance, <a href="https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm">Dijkstra&rsquo;s algorithm</a>(Shortest Path First algorithm) is
+an algorithm for finding the shortest path between two nodes.</p>
+
+<p>Without a proper data structure, the running time will be O(N^2), N stands for the total number of nodes. If we use a priority queue approach, we can minimize time complexity to O(N*LogN). Noice!</p>
+
+<p><img src="../img/wisely.jpg" alt="" /></p>
+
+<h2 id="data-structures-and-abstract-data-type">Data structures and Abstract data type<a href="#data-structures-and-abstract-data-type" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>After knowing the importance of data structures, let&rsquo;s dive into some basic concept of data structures and abstract data type.
+Let&rsquo;s talk about abstract data type(ADT) first.</p>
+
+<h3 id="abstract-data-type">Abstract data type<a href="#abstract-data-type" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Abstract_data_type">Abstract data type</a> is a logical description of a certain data type.
+ADT implies the basic behaviors of a data structure, it does not specify concrete implementation.</p>
+
+<p>I know. It&rsquo;s confusing. 😓</p>
+
+<p>For example, <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">Stack</a> is an abstract data type which is a last-in-first-out structure and it can be defined by three methods. <code>Push</code> inserts a data item into the stack, <code>Pop</code> removes a data item from it and <code>Peek(or top)</code> can return the data item on top of the stack without removing it.</p>
+
+<p>So basically, abstract data type defines behaviors from the view of a user. A user can execute push, pop or peek method in a stack data type.</p>
+
+<h3 id="data-structures">Data structures<a href="#data-structures" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+
+<p><a href="https://en.wikipedia.org/wiki/Data_structure">Data structures</a> is the concrete implementation and the physical form of a certain data type. Data structure is aim to make access and modification more efficiently.</p>
+
+<p>For example, <a href="https://en.wikipedia.org/wiki/Array_data_structure">Array</a> is a data structure which is a collection of many elements.
+Time complexity of indexing a data item in an array is O(1).</p>
+
+<p>Data structure is the actual implementation of a data type and is from the view of a implementer.</p>
+
+<h2 id="conclusion">Conclusion<a href="#conclusion" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+
+<p>In conclusion, we can know that abstract data type and data structures are not independent from each other.
+An abstract data type is like a specification and every abstract data type has an underlying data structure that is going to implement
+the behaviors that are defined by the abstract data type.</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://leewei05.github.io/tags/data-structures">data structures</a></span><span class="tag"><a href="https://leewei05.github.io/tags/algorithm">algorithm</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>489 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-10-26 08:00 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://leewei05.github.io/posts/creating-a-new-theme/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Creating a New Theme</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://leewei05.github.io">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://leewei05.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://leewei05.github.io/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
