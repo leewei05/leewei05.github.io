@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>algorithm on Sir</title>
-    <link>https://www.leewei.co/tags/algorithm/</link>
+    <link>https://leewei.co/tags/algorithm/</link>
     <description>Recent content in algorithm on Sir</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.leewei.co/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://leewei.co/tags/algorithm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Data Structures and Algorithms Introduction</title>
-      <link>https://www.leewei.co/posts/dsa/data-structures-algorithm-introduction/</link>
+      <link>https://leewei.co/posts/dsa/data-structures-algorithm-introduction/</link>
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://www.leewei.co/posts/dsa/data-structures-algorithm-introduction/</guid>
+      <guid>https://leewei.co/posts/dsa/data-structures-algorithm-introduction/</guid>
       <description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&amp;rsquo;ll take down my notes and put it here to share with you guys. Let&amp;rsquo;s begin!
 Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
 The answer is because we need to practice Leetcode questions and pass interviews to get a job.</description>
