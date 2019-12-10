@@ -3,20 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
+    <loc>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</loc>
+    <lastmod>2019-12-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.leewei.co/posts/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.leewei.co/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
+    <lastmod>2019-12-04T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</loc>
+    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>

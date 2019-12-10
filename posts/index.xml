@@ -6,8 +6,78 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
+		<lastBuildDate>Wed, 04 Dec 2019 00:00:00 +0000</lastBuildDate>
 		<atom:link href="https://www.leewei.co/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>How to Avoid Asking Bad Questions</title>
+			<link>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</link>
+			<pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+			
+			<guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
+			<description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&amp;rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+1. Google it before asking anyone Sometimes the answer to the question is just one click away.</description>
+			<content type="html"><![CDATA[
+
+<p>As a customer engineer, I receive all kinds of questions everyday.
+For me, I also ask a lot of questions to my colleagues.
+It is normal if we ask someone for help because we don&rsquo;t know everything.
+However, it might be frustrating to handle bad questions.
+Here are some tips on how we avoid asking bad questions:</p>
+
+<h3 id="1-google-it-before-asking-anyone">1. Google it before asking anyone</h3>
+
+<p>Sometimes the answer to the question is just one click away. People need to get used to search for answers by themselves. Why?
+First, we will have a better understanding of this issue because we need to fix it by ourselves. We gain experience from this process and we can quickly resolve similar issue in the future. Secondly, it reduces communication cost between co-workers. Why bother asking other people for help if the answer is already there? :)</p>
+
+<h3 id="2-don-t-ask-the-same-question-over-and-over-again">2. Don&rsquo;t ask the same question over and over again</h3>
+
+<p>It&rsquo;s okay to ask others for help, but keep in mind that don&rsquo;t ask the same question repeatedly.
+After we got the information we needed, it is recommended to write it down, because we might forget the solution in the future.
+It  will cost our colleagues some time to explain the answer, we sure don&rsquo;t want to waste their time explaining the same question over and over again.</p>
+
+<p>Personally, I recommend <a href="https://www.notion.so/">Notion</a>, it is a neat software to keep track of our TODOs and notes.
+Notion supports markdown and emojis, and it also has a lot of default templates to use.</p>
+
+<h3 id="3-describe-our-question-specifically-and-clearly">3. Describe our question specifically and clearly</h3>
+
+<ul>
+<li>Why is my website not working?</li>
+<li>My Nginx server stop running since 3, Dec 2019 what time, here are some logs. Why isn&rsquo;t it not working?</li>
+</ul>
+
+<p>Which question do you think is better to let people understand?</p>
+
+<p>From my experience, the following information are nice to have when we reach out for help.</p>
+
+<ol>
+<li>Specify the question
+
+<ul>
+<li>This includes providing logs and the exact time of this issue</li>
+</ul></li>
+<li>Come up with some solutions of solving it
+
+<ul>
+<li>This can help individuals practice thinking methods to solve the issue</li>
+<li>Senior engineers can get a better understanding of the issue and provide more accurate advices.</li>
+</ul></li>
+<li>Clarify some operations that we&rsquo;ve already done
+
+<ul>
+<li>For instance, we already tried to reboot the VM or restart the system</li>
+</ul></li>
+</ol>
+
+<p>Here are some tips for asking a good questions from <a href="https://stackoverflow.com/help/how-to-ask">stackoverflow</a>.</p>
+
+<h3 id="conclusion">Conclusion</h3>
+
+<p>There are answers that cannot be answered online. It&rsquo;s fine to ask our colleagues for answers, we don&rsquo;t know everything, especially for junior engineers.
+Requesting help from senior engineers can save both of our time, why is that? Experienced engineers can give advices to junior engineers, we can avoid a lot of mistakes they&rsquo;ve made before.
+At the end, if we fucked up the code base or project, it&rsquo;s still senior engineers&rsquo; responsibility to clean up the mess. 😓</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Data Structures and Algorithms Introduction</title>

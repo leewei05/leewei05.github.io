@@ -7,10 +7,20 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 26 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>How to Avoid Asking Bad Questions</title>
+      <link>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
+      <description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&amp;rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+1. Google it before asking anyone Sometimes the answer to the question is just one click away.</description>
+    </item>
     
     <item>
       <title>Data Structures and Algorithms Introduction</title>
