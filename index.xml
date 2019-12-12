@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sir</title>
@@ -18,7 +18,7 @@
       <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
-      <description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&amp;rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+      <description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&#39;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
 1. Google it before asking anyone Sometimes the answer to the question is just one click away.</description>
     </item>
     
@@ -28,7 +28,7 @@
       <pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</guid>
-      <description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&amp;rsquo;ll take down my notes and put it here to share with you guys. Let&amp;rsquo;s begin!
+      <description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&#39;ll take down my notes and put it here to share with you guys. Let&#39;s begin!
 Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
 The answer is because we need to practice Leetcode questions and pass interviews to get a job.</description>
     </item>
@@ -39,7 +39,7 @@ The answer is because we need to practice Leetcode questions and pass interviews
       <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.leewei.co/about/</guid>
-      <description>Lee is an outgoing, meticulous, curious person and a team player. After graduating from NTUST, department of Electrical Engineering, he founds himself a spot in the industry of Cloud Services. He is currently a Technical Support Engineer at iKala Interactive Media Inc., with experience of handling customer&amp;rsquo;s daily questions in Google Cloud Platform(GCP). He works on GCP, Kuberneters, Docker, Linux and Golang in his daily job.
+      <description>Lee is an outgoing, meticulous, curious person and a team player. After graduating from NTUST, department of Electrical Engineering, he founds himself a spot in the industry of Cloud Services. He is currently a Technical Support Engineer at iKala Interactive Media Inc., with experience of handling customer&#39;s daily questions in Google Cloud Platform(GCP). He works on GCP, Kuberneters, Docker, Linux and Golang in his daily job.
 Lee is also passion in software developing.</description>
     </item>
     

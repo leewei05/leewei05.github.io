@@ -15,67 +15,52 @@
 			<pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
 			
 			<guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
-			<description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&amp;rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+			<description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&#39;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
 1. Google it before asking anyone Sometimes the answer to the question is just one click away.</description>
-			<content type="html"><![CDATA[
-
-<p>As a customer engineer, I receive all kinds of questions everyday.
+			<content type="html"><![CDATA[<p>As a customer engineer, I receive all kinds of questions everyday.
 For me, I also ask a lot of questions to my colleagues.
-It is normal if we ask someone for help because we don&rsquo;t know everything.
+It is normal if we ask someone for help because we don't know everything.
 However, it might be frustrating to handle bad questions.
 Here are some tips on how we avoid asking bad questions:</p>
-
 <h3 id="1-google-it-before-asking-anyone">1. Google it before asking anyone</h3>
-
 <p>Sometimes the answer to the question is just one click away. People need to get used to search for answers by themselves. Why?
-First, we will have a better understanding of this issue because we need to fix it by ourselves. We gain experience from this process and we can quickly resolve similar issue in the future. Secondly, it reduces communication cost between co-workers. Why bother asking other people for help if the answer is already there? :)</p>
-
-<h3 id="2-don-t-ask-the-same-question-over-and-over-again">2. Don&rsquo;t ask the same question over and over again</h3>
-
-<p>It&rsquo;s okay to ask others for help, but keep in mind that don&rsquo;t ask the same question repeatedly.
+First, we will have a better understanding of this issue because we fix it by ourselves. We gain experience from this process and we can quickly resolve similar issue in the future. Secondly, it reduces communication cost between co-workers. Why bother asking other people for help if the answer is already there? :)</p>
+<h3 id="2-dont-ask-the-same-question-over-and-over-again">2. Don't ask the same question over and over again</h3>
+<p>It's okay to ask others for help, but keep in mind that don't ask the same question repeatedly.
 After we got the information we needed, it is recommended to write it down, because we might forget the solution in the future.
-It  will cost our colleagues some time to explain the answer, we sure don&rsquo;t want to waste their time explaining the same question over and over again.</p>
-
+It  will take our colleagues some time to explain the answer, we sure don't want to waste their time explaining the same question over and over again.</p>
 <p>Personally, I recommend <a href="https://www.notion.so/">Notion</a>, it is a neat software to keep track of our TODOs and notes.
 Notion supports markdown and emojis, and it also has a lot of default templates to use.</p>
-
-<h3 id="3-describe-our-question-specifically-and-clearly">3. Describe our question specifically and clearly</h3>
-
+<h3 id="3-describe-our-question-specifically">3. Describe our question specifically</h3>
 <ul>
 <li>Why is my website not working?</li>
-<li>My Nginx server stop running since 3, Dec 2019 what time, here are some logs. Why isn&rsquo;t it not working?</li>
+<li>My Nginx server stop running since 3, Dec 2019 what time, here are some logs. Why isn't it not working?</li>
 </ul>
-
 <p>Which question do you think is better to let people understand?</p>
-
 <p>From my experience, the following information are nice to have when we reach out for help.</p>
-
 <ol>
-<li>Specify the question
-
+<li>Some details to the question
 <ul>
 <li>This includes providing logs and the exact time of this issue</li>
-</ul></li>
-<li>Come up with some solutions of solving it
-
+</ul>
+</li>
+<li>Come up with solutions of solving it
 <ul>
-<li>This can help individuals practice thinking methods to solve the issue</li>
+<li>This can help us practice thinking ways to solve the issue</li>
 <li>Senior engineers can get a better understanding of the issue and provide more accurate advices.</li>
-</ul></li>
-<li>Clarify some operations that we&rsquo;ve already done
-
+</ul>
+</li>
+<li>Clarify some operations that we've already done
 <ul>
 <li>For instance, we already tried to reboot the VM or restart the system</li>
-</ul></li>
+</ul>
+</li>
 </ol>
-
 <p>Here are some tips for asking a good questions from <a href="https://stackoverflow.com/help/how-to-ask">stackoverflow</a>.</p>
-
 <h3 id="conclusion">Conclusion</h3>
-
-<p>There are answers that cannot be answered online. It&rsquo;s fine to ask our colleagues for answers, we don&rsquo;t know everything, especially for junior engineers.
-Requesting help from senior engineers can save both of our time, why is that? Experienced engineers can give advices to junior engineers, we can avoid a lot of mistakes they&rsquo;ve made before.
-At the end, if we fucked up the code base or project, it&rsquo;s still senior engineers&rsquo; responsibility to clean up the mess. 😓</p>
+<p>There are answers that cannot be answered online. It's fine to ask our colleagues for answers, we don't know everything, especially for junior engineers.
+Requesting help from senior engineers can save both of our time, why is that? Experienced engineers can give advices to junior engineers, we can avoid a lot of mistakes they've made before.
+At the end, if we fucked up the code base or project, it's still senior engineers&rsquo; responsibility to clean up the mess. 😓</p>
 ]]></content>
 		</item>
 		
@@ -85,65 +70,41 @@ At the end, if we fucked up the code base or project, it&rsquo;s still senior en
 			<pubDate>Sat, 26 Oct 2019 00:00:00 +0000</pubDate>
 			
 			<guid>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</guid>
-			<description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&amp;rsquo;ll take down my notes and put it here to share with you guys. Let&amp;rsquo;s begin!
+			<description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&#39;ll take down my notes and put it here to share with you guys. Let&#39;s begin!
 Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
 The answer is because we need to practice Leetcode questions and pass interviews to get a job.</description>
-			<content type="html"><![CDATA[
-
-<p>Finally got some time to do this.
+			<content type="html"><![CDATA[<p>Finally got some time to do this.
 This is the first post of me learning data structures and algorithms online courses.
-I&rsquo;ll take down my notes and put it here to share with you guys. Let&rsquo;s begin!</p>
-
+I'll take down my notes and put it here to share with you guys. Let's begin!</p>
 <h2 id="introduction">Introduction</h2>
-
 <p>Why is data structures and algorithms so important?
 Why does every student major in computer science related fields needs to take this course?</p>
-
 <p><del>The answer is because we need to practice Leetcode questions and pass interviews to get a job.</del></p>
-
 <p>Sadly, yes but also no. That is not the main purpose why developers should learn data structures
 and algorithms. The simplest answer is to let our code run faster. 😄</p>
-
 <h2 id="benefits-of-learning-data-structures-and-algorithms">Benefits of learning Data structures and Algorithms</h2>
-
 <p>Assume that we all want our code to run faster. We can do that by avoiding nested loops and making quicker calculations.
-However, sometimes the bottleneck is not the alogrithm we use, it&rsquo;s the data structure we use.
+However, sometimes the bottleneck is not the alogrithm we use, it's the data structure we use.
 In other words, algorithm will boost up by choosing a proper data structure.</p>
-
-<p>For instance, Dijkstra&rsquo;s algorithm(Shortest Path First algorithm) is
+<p>For instance, Dijkstra's algorithm(Shortest Path First algorithm) is
 an algorithm for finding the shortest path between two nodes.</p>
-
 <p>Without a proper data structure, the running time will be O(N^2), N stands for the total number of nodes. If we use a priority queue approach, we can minimize time complexity to O(N*LogN). Noice!</p>
-
-<p><img src="../img/wisely.jpg" alt="" /></p>
-
+<p><img src="../img/wisely.jpg" alt=""></p>
 <h2 id="data-structures-and-abstract-data-type">Data structures and Abstract data type</h2>
-
-<p>After knowing the importance of data structures, let&rsquo;s dive into some basic concept of data structures and abstract data type.
-Let&rsquo;s talk about abstract data type(ADT) first.</p>
-
+<p>After knowing the importance of data structures, let's dive into some basic concept of data structures and abstract data type.
+Let's talk about abstract data type(ADT) first.</p>
 <h3 id="abstract-data-type">Abstract data type</h3>
-
 <p><a href="https://en.wikipedia.org/wiki/Abstract_data_type">Abstract data type</a> is a logical description of a certain data type.
 ADT implies the basic behaviors of a data structure, it does not specify concrete implementation.</p>
-
-<p>I know. It&rsquo;s confusing. 😓</p>
-
+<p>I know. It's confusing. 😓</p>
 <p>For example, <a href="https://en.wikipedia.org/wiki/Stack_(abstract_data_type)">Stack</a> is an abstract data type which is a last-in-first-out structure and it can be defined by three methods. <code>Push</code> inserts a data item into the stack, <code>Pop</code> removes a data item from it and <code>Peek(or top)</code> can return the data item on top of the stack without removing it.</p>
-
 <p>So basically, abstract data type defines behaviors from the view of a user. A user can execute push, pop or peek method in a stack data type.</p>
-
 <h3 id="data-structures">Data structures</h3>
-
 <p><a href="https://en.wikipedia.org/wiki/Data_structure">Data structures</a> is the concrete implementation and the physical form of a certain data type. Data structure is aim to make access and modification more efficiently.</p>
-
 <p>For example, <a href="https://en.wikipedia.org/wiki/Array_data_structure">Array</a> is a data structure which is a collection of many elements.
 Time complexity of indexing a data item in an array is O(1).</p>
-
 <p>Data structure is the actual implementation of a data type and is from the view of a implementer.</p>
-
 <h2 id="conclusion">Conclusion</h2>
-
 <p>In conclusion, we can know that abstract data type and data structures are not independent from each other.
 An abstract data type is like a specification and every abstract data type has an underlying data structure that is going to implement
 the behaviors that are defined by the abstract data type.</p>
