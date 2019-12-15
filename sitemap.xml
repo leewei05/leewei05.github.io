@@ -3,6 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.leewei.co/tags/algorithm/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/array/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/data-structures/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/2019/ds-array-linked-list/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/linked-list/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/</loc>
+    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.leewei.co/tags/clean-architecture/</loc>
     <lastmod>2019-12-11T00:13:40+08:00</lastmod>
   </url>
@@ -23,33 +63,8 @@
   </url>
   
   <url>
-    <loc>https://www.leewei.co/posts/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</loc>
     <lastmod>2019-12-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/algorithm/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/data-structures/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>

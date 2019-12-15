@@ -6,8 +6,111 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Wed, 11 Dec 2019 00:13:40 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 11 Dec 2019 00:27:34 +0800</lastBuildDate>
 		<atom:link href="https://www.leewei.co/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Data Structures Part 1: Array &amp; Linked List</title>
+			<link>https://www.leewei.co/posts/2019/ds-array-linked-list/</link>
+			<pubDate>Wed, 11 Dec 2019 00:27:34 +0800</pubDate>
+			
+			<guid>https://www.leewei.co/posts/2019/ds-array-linked-list/</guid>
+			<description>Array Array is a data structure and it is a collection of elements or values. Each elment is identified by an array index/key.
+ Advantages  It is very easy to implement. Random access is O(1) if we know the array index or key.   Disadvantages  It is not a dynamic data structure. It would take O(N) if we want to insert or remove an element in the array.</description>
+			<content type="html"><![CDATA[<h3 id="array">Array</h3>
+<p>Array is a data structure and it is a collection of elements or values.
+Each elment is identified by an array index/key.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>It is very easy to implement.</li>
+<li>Random access is O(1) if we know the array index or key.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>It is not a dynamic data structure.</li>
+<li>It would take O(N) if we want to insert or remove an element in the array.</li>
+<li>It is not able to store different types of data in the same array. (Not you, Python! 😠)</li>
+</ul>
+</li>
+</ul>
+<h3 id="linked-list">Linked List</h3>
+<p>A linked list is composed of nodes and references/pointers pointing from one node to another node, the last node of a linked list is pointed to Null.</p>
+<p>A node contains a data object and a reference:</p>
+<ol>
+<li>Data: this data object can be any data type.</li>
+<li>Reference/Pointer: this reference is pointing to the next node and the last node of the linked list points to a Null.</li>
+</ol>
+<ul>
+<li>Advantages
+<ul>
+<li>It is a dynamic data structure.</li>
+<li>Can store different types of data in each node.</li>
+<li>It is easier to add a new node in the linked list because we only need to update the pointer of the nodes besides the new node.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>More memory usage because of references.</li>
+<li>Cannot execute random access because linked list is sequential access.</li>
+</ul>
+</li>
+</ul>
+<p>It is also quite hard for linked list to execute reverse traverse. The solution is double linked list, which means that each node will now point to the previous and the next node. However, double linked list is not so memory friendly since we'll use more memory to store more preferences.</p>
+<h3 id="array-vs-linked-list">Array vs Linked list</h3>
+<ul>
+<li>Search Operation
+<ul>
+<li>Array has a better performance in search operation if we know the index or the key of a specific item.</li>
+<li>Linked list would need to iterate every item to find the exact item.</li>
+</ul>
+</li>
+<li>Insert/Remove Operation
+<ul>
+<li>Array takes O(1) time for appending a item at the end of the array. An array takes O(N) to insert a new item from the start because we need to re-create an array, insert the new item and copy the rest of the data in the new array.</li>
+<li>Linked list takes O(1) time for adding a new node at the beginning of the list. But it takes O(N) to insert a node at the end because we need to iterate to the last node, which is pointing to Null, then we can add a new node.</li>
+</ul>
+</li>
+<li>Memory
+<ul>
+<li>Linked list uses O(N) more memory than Array because linked list needs to store preferences.</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Operation</th>
+<th align="center">Linked list</th>
+<th align="right">Array</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Search</td>
+<td align="center">O(N)</td>
+<td align="right">O(1)</td>
+</tr>
+<tr>
+<td align="left">Insert/Remove at the start</td>
+<td align="center">O(1)</td>
+<td align="right">O(N)</td>
+</tr>
+<tr>
+<td align="left">Insert/Remove at the end</td>
+<td align="center">O(N)</td>
+<td align="right">O(1)</td>
+</tr>
+<tr>
+<td align="left">Memory Usage Comparison</td>
+<td align="center">O(N)</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Dependency Inversion Principle</title>

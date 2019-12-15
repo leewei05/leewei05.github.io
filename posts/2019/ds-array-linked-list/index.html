@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#3d4f5d">
+	<meta name="msapplication-TileColor" content="#3d4f5d">
+<meta itemprop="name" content="Data Structures Part 1: Array &amp; Linked List">
+<meta itemprop="description" content="Array Array is a data structure and it is a collection of elements or values. Each elment is identified by an array index/key.
+ Advantages  It is very easy to implement. Random access is O(1) if we know the array index or key.   Disadvantages  It is not a dynamic data structure. It would take O(N) if we want to insert or remove an element in the array.">
+<meta itemprop="datePublished" content="2019-12-11T00:27:34&#43;08:00" />
+<meta itemprop="dateModified" content="2019-12-11T00:27:34&#43;08:00" />
+<meta itemprop="wordCount" content="440">
+
+
+
+<meta itemprop="keywords" content="data structures,algorithm,array,linked list," /><meta property="og:title" content="Data Structures Part 1: Array &amp; Linked List" />
+<meta property="og:description" content="Array Array is a data structure and it is a collection of elements or values. Each elment is identified by an array index/key.
+ Advantages  It is very easy to implement. Random access is O(1) if we know the array index or key.   Disadvantages  It is not a dynamic data structure. It would take O(N) if we want to insert or remove an element in the array." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/2019/ds-array-linked-list/" />
+<meta property="article:published_time" content="2019-12-11T00:27:34+08:00" />
+<meta property="article:modified_time" content="2019-12-11T00:27:34+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Data Structures Part 1: Array &amp; Linked List"/>
+<meta name="twitter:description" content="Array Array is a data structure and it is a collection of elements or values. Each elment is identified by an array index/key.
+ Advantages  It is very easy to implement. Random access is O(1) if we know the array index or key.   Disadvantages  It is not a dynamic data structure. It would take O(N) if we want to insert or remove an element in the array."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Data Structures Part 1: Array &amp; Linked List</title>
+	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.leewei.co/">Sir</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.leewei.co/posts/">Posts</a>
+				<a href="https://www.leewei.co/about/">About</a>
+				<a href="https://www.leewei.co/tags/">Tags</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
+			<li><a href="https://www.leewei.co/about/">About</a></li>
+			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Dec 11, 2019</span></div>
+				<h1>Data Structures Part 1: Array &amp; Linked List</h1>
+			</header>
+			<div class="content">
+				<h3 id="array">Array<a href="#array" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Array is a data structure and it is a collection of elements or values.
+Each elment is identified by an array index/key.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>It is very easy to implement.</li>
+<li>Random access is O(1) if we know the array index or key.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>It is not a dynamic data structure.</li>
+<li>It would take O(N) if we want to insert or remove an element in the array.</li>
+<li>It is not able to store different types of data in the same array. (Not you, Python! 😠)</li>
+</ul>
+</li>
+</ul>
+<h3 id="linked-list">Linked List<a href="#linked-list" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A linked list is composed of nodes and references/pointers pointing from one node to another node, the last node of a linked list is pointed to Null.</p>
+<p>A node contains a data object and a reference:</p>
+<ol>
+<li>Data: this data object can be any data type.</li>
+<li>Reference/Pointer: this reference is pointing to the next node and the last node of the linked list points to a Null.</li>
+</ol>
+<ul>
+<li>Advantages
+<ul>
+<li>It is a dynamic data structure.</li>
+<li>Can store different types of data in each node.</li>
+<li>It is easier to add a new node in the linked list because we only need to update the pointer of the nodes besides the new node.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>More memory usage because of references.</li>
+<li>Cannot execute random access because linked list is sequential access.</li>
+</ul>
+</li>
+</ul>
+<p>It is also quite hard for linked list to execute reverse traverse. The solution is double linked list, which means that each node will now point to the previous and the next node. However, double linked list is not so memory friendly since we'll use more memory to store more preferences.</p>
+<h3 id="array-vs-linked-list">Array vs Linked list<a href="#array-vs-linked-list" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Search Operation
+<ul>
+<li>Array has a better performance in search operation if we know the index or the key of a specific item.</li>
+<li>Linked list would need to iterate every item to find the exact item.</li>
+</ul>
+</li>
+<li>Insert/Remove Operation
+<ul>
+<li>Array takes O(1) time for appending a item at the end of the array. An array takes O(N) to insert a new item from the start because we need to re-create an array, insert the new item and copy the rest of the data in the new array.</li>
+<li>Linked list takes O(1) time for adding a new node at the beginning of the list. But it takes O(N) to insert a node at the end because we need to iterate to the last node, which is pointing to Null, then we can add a new node.</li>
+</ul>
+</li>
+<li>Memory
+<ul>
+<li>Linked list uses O(N) more memory than Array because linked list needs to store preferences.</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">Operation</th>
+<th align="center">Linked list</th>
+<th align="right">Array</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Search</td>
+<td align="center">O(N)</td>
+<td align="right">O(1)</td>
+</tr>
+<tr>
+<td align="left">Insert/Remove at the start</td>
+<td align="center">O(1)</td>
+<td align="right">O(N)</td>
+</tr>
+<tr>
+<td align="left">Insert/Remove at the end</td>
+<td align="center">O(N)</td>
+<td align="right">O(1)</td>
+</tr>
+<tr>
+<td align="left">Memory Usage Comparison</td>
+<td align="center">O(N)</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/data-structures">data structures</a></span><span class="tag"><a href="https://www.leewei.co/tags/algorithm">algorithm</a></span><span class="tag"><a href="https://www.leewei.co/tags/array">array</a></span><span class="tag"><a href="https://www.leewei.co/tags/linked-list">linked list</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>440 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2019-12-11 00:27 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.leewei.co/posts/2019/dependency-inversion-principle/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Dependency Inversion Principle</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2019 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
