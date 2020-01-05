@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>product on Sir</title>
+    <link>https://www.leewei.co/tags/product/</link>
+    <description>Recent content in product on Sir</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 22 Dec 2019 12:48:19 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.leewei.co/tags/product/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Startup Playbook: a startup framework</title>
+      <link>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</guid>
+      <description>I found an startup playbook that is created by Sam Altman, former president of Y Combinator. It&#39;s a great website if anyone wants to start their company in the future. Here is the summery of this playbook and some of my thoughts:
+The Idea This is the most important part of starting a startup. A startup needs to focus on what it is solving and who needs this product. It&#39;s not like you can think of a idea overnight, I think sometimes a good idea came from stupid, shitty topic.</description>
+    </item>
+    
+  </channel>
+</rss>

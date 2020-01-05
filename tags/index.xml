@@ -7,10 +7,55 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 11 Dec 2019 00:27:34 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 22 Dec 2019 12:48:19 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>execution</title>
+      <link>https://www.leewei.co/tags/execution/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/execution/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>idea</title>
+      <link>https://www.leewei.co/tags/idea/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/idea/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>product</title>
+      <link>https://www.leewei.co/tags/product/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/product/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>startup</title>
+      <link>https://www.leewei.co/tags/startup/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/startup/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>team</title>
+      <link>https://www.leewei.co/tags/team/</link>
+      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/team/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>algorithm</title>
@@ -54,24 +99,6 @@
       <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
       
       <guid>https://www.leewei.co/tags/clean-architecture/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>dip</title>
-      <link>https://www.leewei.co/tags/dip/</link>
-      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/dip/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>golang</title>
-      <link>https://www.leewei.co/tags/golang/</link>
-      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/golang/</guid>
       <description></description>
     </item>
     
