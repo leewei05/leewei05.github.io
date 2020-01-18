@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#3d4f5d">
+	<meta name="msapplication-TileColor" content="#3d4f5d">
+<meta itemprop="name" content="MySQL/Mariadb Best Practice">
+<meta itemprop="description" content="A note for the best practice of MySQL/MariaDB. (To be updated)
+Datatype  Use CHAR datatype if the length of the data is fixed. Instead, use VARCHAR to store variable length data. It is slightly more faster to use CHAR over VARCHAR when the data length is fixed. Avoid using BLOB datatype. Store BLOB data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob.">
+<meta itemprop="datePublished" content="2020-01-18T14:37:02&#43;08:00" />
+<meta itemprop="dateModified" content="2020-01-18T14:37:02&#43;08:00" />
+<meta itemprop="wordCount" content="187">
+
+
+
+<meta itemprop="keywords" content="MySQL,MariaDB," /><meta property="og:title" content="MySQL/Mariadb Best Practice" />
+<meta property="og:description" content="A note for the best practice of MySQL/MariaDB. (To be updated)
+Datatype  Use CHAR datatype if the length of the data is fixed. Instead, use VARCHAR to store variable length data. It is slightly more faster to use CHAR over VARCHAR when the data length is fixed. Avoid using BLOB datatype. Store BLOB data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/" />
+<meta property="article:published_time" content="2020-01-18T14:37:02+08:00" />
+<meta property="article:modified_time" content="2020-01-18T14:37:02+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MySQL/Mariadb Best Practice"/>
+<meta name="twitter:description" content="A note for the best practice of MySQL/MariaDB. (To be updated)
+Datatype  Use CHAR datatype if the length of the data is fixed. Instead, use VARCHAR to store variable length data. It is slightly more faster to use CHAR over VARCHAR when the data length is fixed. Avoid using BLOB datatype. Store BLOB data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>MySQL/Mariadb Best Practice</title>
+	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.leewei.co/">Sir</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.leewei.co/posts/">Posts</a>
+				<a href="https://www.leewei.co/about/">About</a>
+				<a href="https://www.leewei.co/tags/">Tags</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
+			<li><a href="https://www.leewei.co/about/">About</a></li>
+			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Jan 18, 2020</span></div>
+				<h1>MySQL/Mariadb Best Practice</h1>
+			</header>
+			<div class="content">
+				<p>A note for the best practice of MySQL/MariaDB. (To be updated)</p>
+<h3 id="datatype">Datatype<a href="#datatype" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ol>
+<li>Use <code>CHAR</code> datatype if the length of the data is fixed. Instead, use <code>VARCHAR</code> to store variable length data.
+It is slightly more faster to use <code>CHAR</code> over <code>VARCHAR</code> when the data length is fixed.</li>
+<li>Avoid using <code>BLOB</code> datatype. Store <code>BLOB</code> data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob.
+GCP Cloud Storage, AWS S3 are suited for this kind of data.</li>
+</ol>
+<h3 id="table">Table<a href="#table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ol>
+<li>Backup the table before altering it.</li>
+<li>Rather changing the table with real data, alter and test a duplicate table.</li>
+</ol>
+<h3 id="operation">Operation<a href="#operation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ol>
+<li>
+<p>Execute backup command in OS level, not from the mysql client. Make sure that both the users in MySQL and OS have the write permission.</p>
+<pre><code>// Backup a specific table data to the '/tmp' directory in the OS
+$ mysqldump --user='[USER]' -p \
+[DATABASE_NAME] [TABLE_NAME] &gt; /tmp/test.sql
+
+// Backup database
+$ mysqldump --user='[USER]' -p \
+[DATABASE_NAME] &gt; /tmp/test.sql
+</code></pre></li>
+<li>
+<p>Restore database backup</p>
+<pre><code>// Restore database
+$ mysql --user='[USER]' -p \
+[DATABASE_NAME] &lt; /tmp/test.sql
+</code></pre></li>
+</ol>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/mysql">MySQL</a></span><span class="tag"><a href="https://www.leewei.co/tags/mariadb">MariaDB</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>187 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-01-18 14:37 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.leewei.co/posts/2019/start-up-playbook-the-idea/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Startup Playbook: a startup framework</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
