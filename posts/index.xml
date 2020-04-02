@@ -30,6 +30,7 @@ GCP Cloud Storage, AWS S3 are suited for this kind of data.</li>
 <li>Backup the table before altering it.</li>
 <li>Rather changing the table with real data, alter and test a duplicate table.</li>
 </ol>
+<h3 id="sql-operation">SQL operation</h3>
 <h3 id="operation">Operation</h3>
 <ol>
 <li>
