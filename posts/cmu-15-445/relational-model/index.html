@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#3d4f5d">
+	<meta name="msapplication-TileColor" content="#3d4f5d">
+<meta itemprop="name" content="CMU Databases Systems: 01 Relational Model">
+<meta itemprop="description" content="I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn&#39;t do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don&#39;t I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus.">
+<meta itemprop="datePublished" content="2020-04-02T17:29:54&#43;08:00" />
+<meta itemprop="dateModified" content="2020-04-02T17:29:54&#43;08:00" />
+<meta itemprop="wordCount" content="991">
+
+
+
+<meta itemprop="keywords" content="CMU,15-445," /><meta property="og:title" content="CMU Databases Systems: 01 Relational Model" />
+<meta property="og:description" content="I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn&#39;t do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don&#39;t I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/cmu-15-445/relational-model/" />
+<meta property="article:published_time" content="2020-04-02T17:29:54+08:00" />
+<meta property="article:modified_time" content="2020-04-02T17:29:54+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CMU Databases Systems: 01 Relational Model"/>
+<meta name="twitter:description" content="I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn&#39;t do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don&#39;t I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>CMU Databases Systems: 01 Relational Model</title>
+	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.leewei.co/">Sir</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.leewei.co/posts/">Posts</a>
+				<a href="https://www.leewei.co/about/">About</a>
+				<a href="https://www.leewei.co/tags/">Tags</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
+			<li><a href="https://www.leewei.co/about/">About</a></li>
+			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Apr 2, 2020</span></div>
+				<h1>CMU Databases Systems: 01 Relational Model</h1>
+			</header>
+			<div class="content">
+				<p>I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn't do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don't I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus. I have plenty of time study this course.</p>
+<p>Here are the notes that I took in the course.</p>
+<h2 id="database--dbms">Database &amp; DBMS<a href="#database--dbms" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="what-is-database">What is Database?<a href="#what-is-database" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><strong>Database</strong> is collection of data that models some apsect of the real-world. e.g., the items in a shopping mall.</p>
+<h3 id="what-is-dbmsdatabase-management-system">What is DBMS(Database Management System)?<a href="#what-is-dbmsdatabase-management-system" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><strong>DBMS</strong> is the software that manages a database. e.g., MySQL, PostgreSQL, Oracle.</p>
+<h3 id="what-can-dbms-provide-us">What can DBMS provide us?<a href="#what-can-dbms-provide-us" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The general purpose of DBMS is to allow users to create, define, update, query and administrate the database.</p>
+<h2 id="early-dbms">Early DBMS<a href="#early-dbms" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>logical layer: the entities the database has</li>
+<li>physical layer: how the entities are being stored</li>
+</ul>
+<p>Database applications were difficult to build and maintain because there was a tight coupling between logical
+and physical layers. It simply means that we need to change the code whenver we want to change the physical layer.</p>
+<h2 id="relational-model">Relational Model<a href="#relational-model" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Tedd Codd first proposed the idea of Relational Model in 1970. This relational model has three key points:</p>
+<ul>
+<li>Store database in simple data structures (relations).</li>
+<li>Access data through high-level language.</li>
+<li>Physical storage left up to implementation.</li>
+</ul>
+<p>The relational model provides users a database abstraction.</p>
+<h3 id="what-is-data-models">What is data models?<a href="#what-is-data-models" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><strong>Data models</strong> define the logical structure of databases, how to describe data in the database. The relational model is one of the example of data models. For instance, there are other data models like, Key-value, Graph, Network model etc.</p>
+<h3 id="what-is-schema">What is schema?<a href="#what-is-schema" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A <strong>schema</strong> represents what data actually stores. For instance, the schema in a table has NAME(CHAR), representing the table can store these types of data.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>year</th>
+<th>country</th>
+</tr>
+</thead>
+</table>
+<h3 id="three-concepts-in-relational-model">Three concepts in relational model<a href="#three-concepts-in-relational-model" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Structure: The definition of relations and their contents. This is the attributes(Table, Columns) the relations have and
+the values that those attributes can hold.</li>
+<li>Integrity: Ensure the database’s contents satisfy constraints. An example constraint would be that
+any value for the year attribute(year column) has to be a number.</li>
+<li>Manipulation: How to access and modify a database’s contents</li>
+</ul>
+<h3 id="what-is-relation">What is relation?<a href="#what-is-relation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A <strong>relation(table)</strong> is an unordered set that contains the relationship of attributes that represent entities(Rows).</p>
+<p>For instance, the relation between the name, year and country(attributes) for an music artist.</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>year</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wu Tang Clan</td>
+<td>1992</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Notorious Big</td>
+<td>1992</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>Ice Cube</td>
+<td>1989</td>
+<td>USA</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-is-tuples">What is tuples?<a href="#what-is-tuples" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A <strong>tuple(row)</strong> is a set of attribute values (also known as its domain) in the relation.</p>
+<h3 id="n-ary-relation--table-with-n-columns">n-ary relation = table with n columns<a href="#n-ary-relation--table-with-n-columns" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h2 id="keys">Keys<a href="#keys" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="what-is-primary-key">What is primary key?<a href="#what-is-primary-key" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A <strong>primary key(PK)</strong> identifies a single tuple.</p>
+<h3 id="what-is-foreign-key">What is foreign key?<a href="#what-is-foreign-key" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A <strong>foreign</strong> key specifies that an attribute from one relation has to map to a tuple in another relation.</p>
+<p>Table Artist</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>year</th>
+<th>country</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>Wu Tang Clan</td>
+<td>1992</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>456</td>
+<td>Notorious Big</td>
+<td>1992</td>
+<td>USA</td>
+</tr>
+<tr>
+<td>789</td>
+<td>Ice Cube</td>
+<td>1989</td>
+<td>USA</td>
+</tr>
+</tbody>
+</table>
+<p>Table Album</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>artist</th>
+<th>year</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12</td>
+<td>Enter the Wu Tang</td>
+<td>123</td>
+<td>1993</td>
+</tr>
+<tr>
+<td>34</td>
+<td>Amerikaz most wanted</td>
+<td>999</td>
+<td>1996</td>
+</tr>
+</tbody>
+</table>
+<p>Table ArtistAlbum</p>
+<table>
+<thead>
+<tr>
+<th>artist_id</th>
+<th>album_id</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>123</td>
+<td>11</td>
+</tr>
+<tr>
+<td>123</td>
+<td>55</td>
+</tr>
+</tbody>
+</table>
+<p>Table ArtistAlbum can map the artist to the album.</p>
+<h2 id="data-manipulation-languagedml">Data Manipulation Language(DML)<a href="#data-manipulation-languagedml" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>DML</strong> is a language to store and retrieve information from a database.</p>
+<ul>
+<li>Procedural: The query specifies the (high-level) strategy the DBMS should use to find the desired result. -&gt; <strong>Relation Algebra</strong></li>
+<li>Non-Procedural: The query specifies only what data is wanted and not how to find it.</li>
+</ul>
+<h2 id="relational-algebra">Relational Algebra<a href="#relational-algebra" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>Relational Algebra</strong> is a set of fundamental operations to retrieve and manipulate tuples in a relation. Each operator takes in one or more relations as inputs, and outputs a new relation.</p>
+<h3 id="select">Select<a href="#select" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Syntax: σ predicate(R).</li>
+<li>Select is like a filter</li>
+</ul>
+<h3 id="projection">Projection<a href="#projection" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Syntax: π A1,A2,. . . ,An(R).</li>
+<li>Projection can rearrange and manipulate data</li>
+</ul>
+<h3 id="union">Union<a href="#union" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Union ouputs the combination of two relations</li>
+<li>The two input relations have to have the exact same attributes(the same schema).</li>
+<li>Syntax: (R ∪ S).</li>
+</ul>
+<h3 id="intersection">Intersection<a href="#intersection" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Intersection only outputs the same tuples in both relations</li>
+<li>The two input relations have to have the exact same attributes(the same schema).</li>
+<li>Syntax: (R ∩ S).</li>
+</ul>
+<h3 id="difference">Difference<a href="#difference" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Difference only outputs the tuples that appear in the first relation but not in the second relation</li>
+<li>The two input relations have to have the exact same attributes.</li>
+<li>Syntax: (R − S).</li>
+</ul>
+<h3 id="product">Product<a href="#product" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Product outputs a relation that contains all possible combinations for tuples from the input relations.</li>
+<li>Cross join</li>
+<li>Syntax: (R × S).</li>
+</ul>
+<h3 id="join">Join<a href="#join" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Join outputs a relation that contains all the tuples that are a combination of two tuples where for each attribute that the two relations share, the values for that attrubite of both tuples is the
+same.</li>
+<li>The difference between Join and Union is that Join doesn't need to have two exact same relations.</li>
+<li>Syntax: (R ./ S).</li>
+</ul>
+<h2 id="observation">Observation<a href="#observation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p><strong>Relational algebra</strong> is a procedural language because it defines the high level-steps of how to compute a
+query.</p>
+<p>For example, σ b_id=102(R ./ S) is saying to first do the join of R and S and then do the select,
+whereas (R ./ (σ b_id=102(S))) will do the select on S first, and then do the join.</p>
+<p>These two statements will actually produce the same answer, but if there is only 1 tuple in S with b id=102 out of a billion tuples, then
+(R ./ (σ b_id=102(S))) will be significantly faster than σ b_id=102(R ./ S).</p>
+<p>A better approach is to say the result you want, and let the DBMS decide the steps it wants to take to compute the query</p>
+<p>SQL is not the only one to express quries to a relational model, it just happens to be the most popular one.</p>
+<ul>
+<li>SQL is the de facto(in real life) standard.</li>
+<li>The relational model is independent of any query language implementation</li>
+</ul>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/cmu">CMU</a></span><span class="tag"><a href="https://www.leewei.co/tags/15-445">15-445</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>991 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-02 17:29 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>MySQL/Mariadb Best Practice</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

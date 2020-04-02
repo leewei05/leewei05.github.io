@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sat, 18 Jan 2020 14:37:02 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2020 17:29:54 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMU Databases Systems: 01 Relational Model</title>
+      <link>https://www.leewei.co/posts/cmu-15-445/relational-model/</link>
+      <pubDate>Thu, 02 Apr 2020 17:29:54 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/cmu-15-445/relational-model/</guid>
+      <description>I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn&#39;t do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &amp;ldquo;There are numerous CMU online courses, why don&#39;t I just take these courses and do the assignments?&amp;rdquo; Plus, thanks to the freaking Corona virus.</description>
+    </item>
     
     <item>
       <title>MySQL/Mariadb Best Practice</title>
