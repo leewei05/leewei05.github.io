@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.leewei.co/tags/postgresql/</loc>
+    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/2020/postgre-sql-set-up/</loc>
+    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/</loc>
+    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/</loc>
+    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/</loc>
+    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.leewei.co/tags/15-445/</loc>
     <lastmod>2020-04-02T17:29:54+08:00</lastmod>
   </url>
@@ -14,21 +39,6 @@
   
   <url>
     <loc>https://www.leewei.co/posts/cmu-15-445/relational-model/</loc>
-    <lastmod>2020-04-02T17:29:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/</loc>
-    <lastmod>2020-04-02T17:29:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/</loc>
-    <lastmod>2020-04-02T17:29:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/</loc>
     <lastmod>2020-04-02T17:29:54+08:00</lastmod>
   </url>
   

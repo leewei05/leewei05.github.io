@@ -6,8 +6,82 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Thu, 02 Apr 2020 17:29:54 +0800</lastBuildDate>
+		<lastBuildDate>Fri, 03 Apr 2020 09:57:59 +0800</lastBuildDate>
 		<atom:link href="https://www.leewei.co/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>PostgreSQL: Server setup on Ubuntu 18.04</title>
+			<link>https://www.leewei.co/posts/2020/postgre-sql-set-up/</link>
+			<pubDate>Fri, 03 Apr 2020 09:57:59 +0800</pubDate>
+			
+			<guid>https://www.leewei.co/posts/2020/postgre-sql-set-up/</guid>
+			<description>Install PostgreSQL Create a file /etc/apt/sources.list.d/pgdg.list and add the following line to that file deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main. We can get the PostgreSQL APT repository from the official website.
+$ sudo sh -c &amp;#39;echo &amp;#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&amp;#34; &amp;gt;&amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;#39; Import the repository public key
+$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
+$ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL is running as expected</description>
+			<content type="html"><![CDATA[<h2 id="install-postgresql">Install PostgreSQL</h2>
+<p>Create a file <code>/etc/apt/sources.list.d/pgdg.list</code> and add the following line to that file <code>deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main</code>. We can get the PostgreSQL APT repository from the official <a href="https://www.postgresql.org/download/linux/ubuntu/">website</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo sh -c <span class="s1">&#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
+</code></pre></div><p>Import the repository public key</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> sudo apt-key add - 
+</code></pre></div><p>Update the repository list and install PostgreSQL</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo apt-get update
+$ sudo apt-get -y install postgresql
+</code></pre></div><p>Check if PostgreSQL is running as expected</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ps -ef <span class="p">|</span> grep postgres
+postgres  <span class="m">4477</span>     <span class="m">1</span>  <span class="m">0</span> 02:59 ?        00:00:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c <span class="nv">config_file</span><span class="o">=</span>/etc/postgresql/12/main/postgresql.conf
+postgres  <span class="m">4487</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: checkpointer
+postgres  <span class="m">4488</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: background writer
+postgres  <span class="m">4489</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: walwriter
+postgres  <span class="m">4490</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: autovacuum launcher
+postgres  <span class="m">4491</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: stats collector
+postgres  <span class="m">4492</span>  <span class="m">4477</span>  <span class="m">0</span> 02:59 ?        00:00:00 postgres: 12/main: logical replication launcher
+lee       <span class="m">5976</span>  <span class="m">1521</span>  <span class="m">0</span> 03:16 pts/0    00:00:00 grep --color<span class="o">=</span>auto postgres
+</code></pre></div><p>Switch to root and a default <code>postgres</code> user that PostgreSQL created.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo su
+$ su - postgres
+$ whoami
+postgres
+</code></pre></div><p>Log into the PostgreSQL cluster</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ psql postgres
+
+psql <span class="o">(</span>12.2 <span class="o">(</span>Ubuntu 12.2-2.pgdg18.04+1<span class="o">)</span><span class="o">)</span>
+Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
+
+<span class="nv">postgres</span><span class="o">=</span><span class="c1"># \l</span>
+                              List of databases
+   Name    <span class="p">|</span>  Owner   <span class="p">|</span> Encoding <span class="p">|</span> Collate <span class="p">|</span>  Ctype  <span class="p">|</span>   Access privileges
+-----------+----------+----------+---------+---------+-----------------------
+ postgres  <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> C.UTF-8 <span class="p">|</span> C.UTF-8 <span class="p">|</span>
+ template0 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> C.UTF-8 <span class="p">|</span> C.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>         <span class="p">|</span>         <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+ template1 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> C.UTF-8 <span class="p">|</span> C.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
+           <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>         <span class="p">|</span>         <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
+<span class="o">(</span><span class="m">3</span> rows<span class="o">)</span>
+</code></pre></div><h2 id="database-cluster">Database Cluster</h2>
+<p>In order to proceed further operations, we need to initialize a database storage area on the disk. It is called a <code>database cluster</code>.
+A <code>database cluster</code> is a collection of databases that is managed by a single instance on the database server.</p>
+<p>A database cluster stores all its data in a single directory in the file system. It is called a <code>data directory</code> or <code>data area</code>. We will call it <code>data directory</code> in the following paragraph to avoid the confusion of High Availability clustering.</p>
+<p>However, normally we don't need to use <code>pg_createcluster</code>(for Ubuntu and Debian users) or <code>initd</code> to initialize a database directory, because <code>apt-get install postgresql</code> already creates a default directory.</p>
+<h3 id="how-to-find-the-location-of-where-postgresql-stores-its-data">How to find the location of where PostgreSQL stores its data?</h3>
+<p>In our case, <code>/var/lib/postgresql/12/main</code> is the directory where PostgreSQL stores its data.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ps auxw<span class="p">|</span>grep postgres<span class="p">|</span>grep -- -D  
+postgres  <span class="m">4477</span>  0.0  4.7 <span class="m">321364</span> <span class="m">27896</span> ?        Ss   02:59   0:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c <span class="nv">config_file</span><span class="o">=</span>/etc/postgresql/12/main/postgresql.conf
+postgres  <span class="m">7907</span>  0.0  0.1  <span class="m">14852</span>  <span class="m">1072</span> pts/0    S+   04:46   0:00 grep -- -D
+</code></pre></div><p>Another way to check the data directory is to see <code>postgresal.conf</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ less /etc/postgresql/12/main/postgresql.conf
+</code></pre></div><p>After using <code>less</code> command, use <code>/data_directory</code> to find the directory. In our case:</p>
+<pre><code># The default values of these variables are driven from the -D command-line
+# option or PGDATA environment variable, represented here as ConfigDir.
+
+data_directory = '/var/lib/postgresql/12/main'
+</code></pre><h3 id="access-control-for-database-directory">Access Control for database directory</h3>
+<ul>
+<li><code>pg_createcluster</code> will refuse to run if the data directory exists and already contains files. This will avoid overwriting to the exist database</li>
+<li><code>pg_createcluster</code> revokes access permissions from everyone but the PostgreSQL user, and optionally, group. Group access, when enabled, is read-only</li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>CMU Databases Systems: 01 Relational Model</title>
