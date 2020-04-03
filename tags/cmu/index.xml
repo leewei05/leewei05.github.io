@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 02 Apr 2020 17:29:54 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Apr 2020 19:51:08 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/tags/cmu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMU Databases Systems: 02 Advanced SQL</title>
+      <link>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</link>
+      <pubDate>Thu, 02 Apr 2020 19:51:08 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</guid>
+      <description>Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
+SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
+ ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.</description>
+    </item>
     
     <item>
       <title>CMU Databases Systems: 01 Relational Model</title>

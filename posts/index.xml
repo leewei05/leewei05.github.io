@@ -84,6 +84,154 @@ data_directory = '/var/lib/postgresql/12/main'
 		</item>
 		
 		<item>
+			<title>CMU Databases Systems: 02 Advanced SQL</title>
+			<link>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</link>
+			<pubDate>Thu, 02 Apr 2020 19:51:08 +0800</pubDate>
+			
+			<guid>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</guid>
+			<description>Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
+SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
+ ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.</description>
+			<content type="html"><![CDATA[<h2 id="relational-languages">Relational Languages</h2>
+<p>User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it.
+The DBMS is responsible for optimizing a query plan.</p>
+<h2 id="sql-history">SQL History</h2>
+<p><code>SQL</code>'s full name is <code>Structured Query Language</code>, IBM originally called it <code>SEQUEL</code>, but got sued by some people in the UK. So they ended up called it <code>SQL</code>.</p>
+<ul>
+<li>ANSI Standard in 1986</li>
+<li>ISO in 1987</li>
+</ul>
+<p>Most DBMSs at least supports SQL-92.</p>
+<ul>
+<li>Data Manipulation Language (DML): SELECT, INSERT, UPDATE, DELETE.</li>
+<li>Data Definition Language (DDL): Schema definition.</li>
+<li>Data Control Language (DCL): Security, access controls.</li>
+</ul>
+<p><strong>Important: SQL is based on <code>bags</code>.</strong></p>
+<ul>
+<li>lists: ordered, allow duplicates,</li>
+<li>sets: unordered, no duplicates</li>
+<li>bags: unordered, allow duplicates</li>
+</ul>
+<p>There is a reason why SQL is based on <code>bags</code>, it'll need extra work for DBMS to use <code>lists</code> or <code>sets</code>. DBMS only needs to order the output only if the user want to order the results. Therefore, using <code>bags</code> can let the database work more efficiently.</p>
+<h2 id="aggregates">Aggregates</h2>
+<p>An aggregation function takes in a bag of tuples as its input and then produces a single scalar value as its output. <code>Can only be used in SELECT output list.</code></p>
+<h3 id="group-by">GROUP BY</h3>
+<p>Output of other columns outside of an aggregate is undefined (e.cid is undefined below). The aggregation function only returns a single value, so the DBMS don't know which course id to output.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="n">This</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span><span class="p">.</span>
+
+<span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span><span class="p">;</span>
+</code></pre></div><p>Non-aggregated values in <code>SELECT</code> output clause must be used in a <code>GROUP BY</code> command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span><span class="p">;</span>
+</code></pre></div><h3 id="having">HAVING</h3>
+<p>Filters output results after aggregation. Like a <code>WHERE</code> clause for a
+<code>GROUP BY</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="n">This</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span> <span class="n">because</span> <span class="n">we</span> <span class="n">have</span> <span class="k">not</span> <span class="n">aggregated</span> <span class="n">s</span><span class="p">.</span><span class="n">gpa</span> <span class="k">in</span> <span class="n">the</span> <span class="k">WHERE</span> <span class="n">clause</span> <span class="n">yet</span><span class="p">.</span>
+<span class="o">#</span> <span class="n">So</span> <span class="n">this</span> <span class="k">SQL</span> <span class="k">statement</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span><span class="p">,</span> <span class="n">because</span> <span class="n">it</span> <span class="n">cannot</span> <span class="n">filter</span> <span class="n">avg_gpa</span> <span class="n">that</span> <span class="n">have</span> <span class="k">not</span> <span class="n">been</span> <span class="n">aggregated</span>
+
+<span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avg_gpa</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">AND</span> <span class="n">avg_gpa</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">.</span><span class="mi">9</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avg_gpa</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
+<span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">HAVING</span> <span class="n">avg_gpa</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">.</span><span class="mi">9</span><span class="p">;</span>
+</code></pre></div><h2 id="string-operations">String Operations</h2>
+<p>The SQL standard says that strings are <code>case sensitive</code> and <code>single-quotes only</code>.</p>
+<h3 id="like">LIKE</h3>
+<p>The <code>LIKE</code> keyword is used for string matching.</p>
+<ul>
+<li><code>%</code> matches any substrings (including empty)</li>
+<li><code>_</code> matches any one character</li>
+</ul>
+<h3 id="concatenate">Concatenate</h3>
+<p>Use <code>||</code> operator to concatenate two or more strings together.</p>
+<h2 id="datetime-operations">Date/Time Operations</h2>
+<p>Operations to manipulate and modify DATE/TIME attributes.
+Different DBMS supports different syntax.</p>
+<h2 id="output-redirection--control">Output Redirection &amp; Control</h2>
+<p>We can store queries to another table.</p>
+<h3 id="new-table">New Table</h3>
+<p>Store the output of the query into a new (permanent) table.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">;</span>
+</code></pre></div><h3 id="existing-table">Existing Table</h3>
+<p>Store the output of the query into a table that
+already exists in the database. The
+target table must have the same number of columns with the same types as the target table, but the
+name of the columns in the output query do not have to match.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><h3 id="order-by">ORDER BY</h3>
+<p>Since results SQL are unordered, you have to use the <code>ORDER BY</code> clause to impose a sort on tuples, here is an example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-721</span><span class="s1">&#39;</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">grade</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">sid</span> <span class="k">ASC</span><span class="p">;</span>
+</code></pre></div><h3 id="limit">LIMIT</h3>
+<p>Limit the number of tuples returned in output.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="k">OFFSET</span> <span class="n">specifies</span> <span class="n">how</span> <span class="n">many</span> <span class="n">tuples</span> <span class="k">to</span> <span class="n">skip</span> <span class="n">within</span> <span class="n">the</span> <span class="k">result</span>
+<span class="o">#</span> <span class="n">Use</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">to</span> <span class="n">guarantee</span> <span class="n">the</span> <span class="n">same</span> <span class="k">result</span> <span class="k">in</span> <span class="k">every</span> <span class="n">queries</span>
+
+<span class="k">SELECT</span> <span class="n">sid</span><span class="p">,</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span> <span class="k">WHERE</span> <span class="n">login</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%@cs</span><span class="s1">&#39;</span>
+<span class="k">LIMIT</span> <span class="mi">10</span> <span class="k">OFFSET</span> <span class="mi">20</span><span class="p">;</span>
+</code></pre></div><h2 id="nested-queries">Nested Queries</h2>
+<p>Queries containing other queries. Nested queries are often difficult to optimize.</p>
+<p><strong>Example: Get the names of students that are enrolled in ’15-445’.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span>
+<span class="k">WHERE</span> <span class="n">sid</span> <span class="k">IN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-445</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">;</span>
+
+<span class="o">|</span><span class="o">|</span> <span class="n">These</span> <span class="n">two</span> <span class="n">queries</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="k">output</span>
+
+<span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span>
+<span class="k">WHERE</span> <span class="n">sid</span> <span class="o">=</span><span class="k">ANY</span><span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-445</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><ul>
+<li>ALL: Must satisfy expression for all rows in sub-query.</li>
+<li>ANY: Must satisfy expression for at least one row in sub-query.</li>
+<li>IN: Equivalent to =ANY().</li>
+<li>EXISTS: At least one row is returned.</li>
+</ul>
+<h2 id="window-functions">Window Functions</h2>
+<p>Performs “moving” calculation across set of tuples. Like an aggregation but it still returns the original tuples.</p>
+<h3 id="functions">Functions</h3>
+<p>Functions can be any of the aggregation functions above. Can also be a special window functions:</p>
+<ul>
+<li>ROW NUMBER: The number of the current row.</li>
+<li>RANK: The order position of the current row.</li>
+</ul>
+<h3 id="grouping">Grouping</h3>
+<p>The <code>OVER</code> clause specifies how to group together tuples when computing the window function. Use <code>PARTITION BY</code> to specify group.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">cid</span><span class="p">,</span> <span class="n">sid</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
+</code></pre></div><p>We can also put an <code>ORDER BY</code> within <code>OVER</code> to ensure the ordering of results.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
+<span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
+</code></pre></div><p><strong>Important: The DBMS computes RANK after the window function sorting, whereas it computes ROW NUMBER before the sorting.</strong></p>
+<h2 id="common-table-expressions">Common Table Expressions</h2>
+<p>Common Table Expressions (CTEs) is like a temporary table for just one query.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">WITH</span> <span class="n">cteName</span> <span class="k">AS</span> <span class="p">(</span>
+<span class="k">SELECT</span> <span class="mi">1</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cteName</span><span class="p">;</span>
+</code></pre></div><p>Add <code>RECURSIVE</code> keyword after WITH allows a CTE to reference itself.</p>
+<p><strong>Example: Print the sequence of numbers from 1 to 10.</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">WITH</span> <span class="k">RECURSIVE</span> <span class="n">cteSource</span> <span class="p">(</span><span class="n">counter</span><span class="p">)</span> <span class="k">AS</span> <span class="p">(</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">UNION</span>
+<span class="p">(</span><span class="k">SELECT</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">FROM</span> <span class="n">cteSource</span>
+<span class="k">WHERE</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cteSource</span><span class="p">;</span>
+</code></pre></div><p>Sometimes <code>RECURSIVE</code> can be dangerous to use because we might have an infinite loop.</p>
+<h3 id="we-sould-always-strive-to-compute-our-answer-in-one-sql-statement">We sould always strive to compute our answer in one SQL statement.</h3>
+]]></content>
+		</item>
+		
+		<item>
 			<title>CMU Databases Systems: 01 Relational Model</title>
 			<link>https://www.leewei.co/posts/cmu-15-445/relational-model/</link>
 			<pubDate>Thu, 02 Apr 2020 17:29:54 +0800</pubDate>
