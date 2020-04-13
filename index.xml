@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 03 Apr 2020 09:57:59 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2020 20:26:07 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
+      <link>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</link>
+      <pubDate>Mon, 13 Apr 2020 20:26:07 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</guid>
+      <description>Course Outline The main purpose of this course is How to build a software of database management system.
+Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
+Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.</description>
+    </item>
     
     <item>
       <title>PostgreSQL: Server setup on Ubuntu 18.04</title>
@@ -105,16 +116,6 @@ Example 1: without DIP Let&#39;s say we have an application that has the followi
       <description>Finally got some time to do this. This is the first post of me learning data structures and algorithms online courses. I&#39;ll take down my notes and put it here to share with you guys. Let&#39;s begin!
 Introduction Why is data structures and algorithms so important? Why does every student major in computer science related fields needs to take this course?
 The answer is because we need to practice Leetcode questions and pass interviews to get a job.</description>
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://www.leewei.co/about/</link>
-      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.leewei.co/about/</guid>
-      <description>Lee is an outgoing, meticulous, curious person and a team player. After graduating from NTUST, department of Electrical Engineering, he founds himself a spot in the industry of Cloud Services. He is currently a Technical Support Engineer at iKala Interactive Media Inc., with experience of handling customer&#39;s daily questions in Google Cloud Platform(GCP). He works with GCP, Kuberneters, Docker, Linux and Golang in his daily job.
-Lee is also passionate about software developing.</description>
     </item>
     
   </channel>

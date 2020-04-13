@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 02 Apr 2020 19:51:08 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 13 Apr 2020 20:26:07 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/tags/cmu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
+      <link>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</link>
+      <pubDate>Mon, 13 Apr 2020 20:26:07 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</guid>
+      <description>Course Outline The main purpose of this course is How to build a software of database management system.
+Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
+Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.</description>
+    </item>
     
     <item>
       <title>CMU Databases Systems: 02 Advanced SQL</title>
