@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 13 Apr 2020 20:26:07 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 13 May 2020 22:26:52 +0800</lastBuildDate>
     
 	<atom:link href="https://www.leewei.co/tags/cmu/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
+      <link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
+      <pubDate>Wed, 13 May 2020 22:26:52 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
+      <description>Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &amp;ldquo;BigTable&amp;rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases.</description>
+    </item>
     
     <item>
       <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>

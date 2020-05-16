@@ -6,8 +6,144 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>en-us</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Mon, 13 Apr 2020 20:26:07 +0800</lastBuildDate>
+		<lastBuildDate>Wed, 13 May 2020 22:26:52 +0800</lastBuildDate>
 		<atom:link href="https://www.leewei.co/posts/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
+			<link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
+			<pubDate>Wed, 13 May 2020 22:26:52 +0800</pubDate>
+			
+			<guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
+			<description>Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &amp;ldquo;BigTable&amp;rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases.</description>
+			<content type="html"><![CDATA[<p>Andy(lecturer) said that in the early 2000s, Google is making tons of money.
+And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP.
+Google is absolutely good at large scale database systems, like Spanner, BigQuery etc.
+A lot of companies are trying to copy the tech stack of Google.
+Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don't have the resource like Google to develop applications using large scale databases.</p>
+<p>A stable RDBMS service is good enough for most of the users.
+For instance, Cloud SQL is a managed RDBMS service for MySQL, PostgreSQL, SQL server on GCP.
+Cloud SQL lacks tons of native support and the real pain using it is the <code>maintanence window</code>.
+GCP forces users to enable automatically update in a period of time because of security reasons.
+However, a lot of GCP users complained about this.
+Because during the maintanence window, there will be downtime to the database.
+Maybe GCP can release a feature that let the users choose whether they want to update their databases. 😜</p>
+<p>In addition, there are complaints about the failover process of Cloud SQL.
+Some said that the failover didn't work when one of their Cloud SQL master failed. 😅</p>
+<p>There are still many improvements that GCP can do with Cloud SQL.
+Including the support for MariaDB and Oracle, stable service and easier database migration tools.</p>
+<p>Just some advices, still a fan for GCP. 😂</p>
+<h2 id="data-representation">Data Representation</h2>
+<p>Tuple storage: a tuple is a sequence of bytes.
+DBMS interpret those bytes into types and values.</p>
+<ul>
+<li>Variable Precision Numbers
+<ul>
+<li>Inexact, specified by IEEE-754</li>
+<li>Faster to compute</li>
+<li>Examples: FLOAT, REAL</li>
+</ul>
+</li>
+<li>Fixed Point Precision Numbers(Fixed Point Decimal)</li>
+<li>Large Values
+<ul>
+<li>Most DBMS don't allow tuples to exceed the size of a single page</li>
+<li>Postgres: <a href="https://wiki.postgresql.org/wiki/TOAST">TOAST</a></li>
+</ul>
+</li>
+<li>External Value Storage
+<ul>
+<li>Some DBMS allows users to store very large data in an external file(BLOB type)</li>
+<li>These external files are read-only</li>
+</ul>
+</li>
+</ul>
+<pre><code>Tuple
+| Header | a | b | c(external file pointer) |
+</code></pre><h3 id="system-catalogs">System Catalogs</h3>
+<p>A DBMS stores meta-data about databases in its internal catalogs.
+Stuff like what tables, columns and data type that stored in the database.</p>
+<p>We can access to database's catalogs through INFORMATION_SCHEMA api.</p>
+<h2 id="workloads">Workloads</h2>
+<h3 id="on-line-transaction-processingoltp">On-line Transaction Processing(OLTP)</h3>
+<ul>
+<li>Fast, short running operations on small number of tuples</li>
+<li>Usually the kind of application that people build first</li>
+<li>Example: User invocations of Amazon. They can add things to their cart, they can make purchases,
+but the actions only affect their account.</li>
+</ul>
+<h3 id="on-line-analytics-processingolap">On-line Analytics Processing(OLAP)</h3>
+<ul>
+<li>Long running, more complex queries</li>
+<li>Reads large portions of the database</li>
+<li>Deriving new data from data collected on the OLTP side</li>
+<li>Example: Compute the five most bought items over a one month period for these geographical locations.</li>
+</ul>
+<h3 id="hybrid-transactionalanalytical-processinghtaphttpsenwikipediaorgwikihybrid-transactionalanalytical-processing"><a href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional/Analytical Processing(HTAP)</a></h3>
+<p>Traditional application architectures separated transactional and analytical systems.
+However, business moments are <code>transient</code> opportunities that must be exploited in real time.
+HTAP allows advanced analytics to be run in real time on &ldquo;in flight&rdquo; transaction data, providing an architecture that empowers users to respond more effectively to business moments.</p>
+<h2 id="storage-models">Storage Models</h2>
+<p>Different ways to store tuples in pages.</p>
+<h3 id="n-ary-storage-modelnsm">N-ary Storage Model(NSM)</h3>
+<p>The DBMS stores all of the attributes for a single tuple contiguously, also known as &ldquo;row storage&rdquo;.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>Fast inserts, updates, and deletes.</li>
+<li>Good for queries that need the entire tuple.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Not good for scanning large portions of the table and/or a subset of the attributes. This is because the database will fetch data that is not needed for processing the query.</li>
+</ul>
+</li>
+</ul>
+<p>There is an example below, explaining why NSM is not suitable for OLAP. We are trying to know the users amount that modify WIKI from hostname &lsquo;.gov&rsquo; in each month.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">Table</span> <span class="k">SCHEMA</span> <span class="k">in</span> <span class="n">useracct</span>
+<span class="n">userID</span>
+<span class="n">userName</span>
+<span class="n">userPass</span>
+<span class="n">hostName</span>
+<span class="n">lastlogin</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> 
+  <span class="k">COUNT</span><span class="p">(</span><span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span>
+  <span class="k">EXTRACT</span><span class="p">(</span><span class="k">month</span> <span class="k">FROM</span> <span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span> <span class="k">AS</span> <span class="k">month</span>
+<span class="k">FROM</span> 
+  <span class="n">useracct</span> <span class="k">AS</span> <span class="n">U</span>
+<span class="k">WHERE</span>
+  <span class="n">U</span><span class="p">.</span><span class="n">hostname</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%.gov</span><span class="s1">&#39;</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+  <span class="k">EXTRACT</span><span class="p">(</span><span class="k">month</span> <span class="k">FROM</span> <span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span>
+</code></pre></div><p>We only use the column <code>lastlogin</code> and <code>hostname</code> in table <code>useracct</code>. However, the buffer pool will still pull all of the data in the disk page since we stored the data in block base on the disk. This will end up wasting memory to get useless data in this query(userID, userName, userPass are not being used).</p>
+<h3 id="decomposition-storage-modeldsm">Decomposition Storage Model(DSM)</h3>
+<p>The DBMS stores a single attribute (column) for all tuples contiguously in a block of data. Also known as a
+“column store.” Ideal for OLAP workloads.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>Reduces the amount of wasted work during query execution because the DBMS only reads the data that it needs for that query.</li>
+<li>Enables better compression because all of the values for the same attribute are stored contiguously.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Slow for point queries, inserts, updates, and deletes because of tuple splitting/stitching.</li>
+</ul>
+</li>
+</ul>
+<p>To put the tuples back together when we are using a column store, we can use:</p>
+<ul>
+<li>Fixed-length offsets: the attributes are all fixed-length. Then when the system
+wants the attribute for a specific tuple, it knows how to jump to that spot in the file.</li>
+<li>Embedded Tuple Ids: For every attribute in the columns, store the tuple id with it. The system would
+also need extra information to tell it how to jump to every attribute that has that id.</li>
+</ul>
+<p><strong>Most DBMSs use fixed-length offsets.</strong></p>
+<p>Row stores are usually better for OLTP, while column stores are better for OLAP.</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>CMU Databases Systems: 03 Database Storage(pt.1)</title>

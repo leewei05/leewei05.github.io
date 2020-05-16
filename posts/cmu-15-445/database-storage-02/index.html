@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#3d4f5d">
+	<meta name="msapplication-TileColor" content="#3d4f5d">
+<meta itemprop="name" content="CMU Databases Systems: 04 Database Storage(pt.2)">
+<meta itemprop="description" content="Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases.">
+<meta itemprop="datePublished" content="2020-05-13T22:26:52&#43;08:00" />
+<meta itemprop="dateModified" content="2020-05-13T22:26:52&#43;08:00" />
+<meta itemprop="wordCount" content="886">
+
+
+
+<meta itemprop="keywords" content="CMU,15-445," /><meta property="og:title" content="CMU Databases Systems: 04 Database Storage(pt.2)" />
+<meta property="og:description" content="Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/cmu-15-445/database-storage-02/" />
+<meta property="article:published_time" content="2020-05-13T22:26:52+08:00" />
+<meta property="article:modified_time" content="2020-05-13T22:26:52+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CMU Databases Systems: 04 Database Storage(pt.2)"/>
+<meta name="twitter:description" content="Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
+	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp faster">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://www.leewei.co/">Sir</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://www.leewei.co/posts/">Posts</a>
+				<a href="https://www.leewei.co/about/">About</a>
+				<a href="https://www.leewei.co/tags/">Tags</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
+			<li><a href="https://www.leewei.co/about/">About</a></li>
+			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>May 13, 2020</span></div>
+				<h1>CMU Databases Systems: 04 Database Storage(pt.2)</h1>
+			</header>
+			<div class="content">
+				<p>Andy(lecturer) said that in the early 2000s, Google is making tons of money.
+And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP.
+Google is absolutely good at large scale database systems, like Spanner, BigQuery etc.
+A lot of companies are trying to copy the tech stack of Google.
+Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don't have the resource like Google to develop applications using large scale databases.</p>
+<p>A stable RDBMS service is good enough for most of the users.
+For instance, Cloud SQL is a managed RDBMS service for MySQL, PostgreSQL, SQL server on GCP.
+Cloud SQL lacks tons of native support and the real pain using it is the <code>maintanence window</code>.
+GCP forces users to enable automatically update in a period of time because of security reasons.
+However, a lot of GCP users complained about this.
+Because during the maintanence window, there will be downtime to the database.
+Maybe GCP can release a feature that let the users choose whether they want to update their databases. 😜</p>
+<p>In addition, there are complaints about the failover process of Cloud SQL.
+Some said that the failover didn't work when one of their Cloud SQL master failed. 😅</p>
+<p>There are still many improvements that GCP can do with Cloud SQL.
+Including the support for MariaDB and Oracle, stable service and easier database migration tools.</p>
+<p>Just some advices, still a fan for GCP. 😂</p>
+<h2 id="data-representation">Data Representation<a href="#data-representation" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Tuple storage: a tuple is a sequence of bytes.
+DBMS interpret those bytes into types and values.</p>
+<ul>
+<li>Variable Precision Numbers
+<ul>
+<li>Inexact, specified by IEEE-754</li>
+<li>Faster to compute</li>
+<li>Examples: FLOAT, REAL</li>
+</ul>
+</li>
+<li>Fixed Point Precision Numbers(Fixed Point Decimal)</li>
+<li>Large Values
+<ul>
+<li>Most DBMS don't allow tuples to exceed the size of a single page</li>
+<li>Postgres: <a href="https://wiki.postgresql.org/wiki/TOAST">TOAST</a></li>
+</ul>
+</li>
+<li>External Value Storage
+<ul>
+<li>Some DBMS allows users to store very large data in an external file(BLOB type)</li>
+<li>These external files are read-only</li>
+</ul>
+</li>
+</ul>
+<pre><code>Tuple
+| Header | a | b | c(external file pointer) |
+</code></pre><h3 id="system-catalogs">System Catalogs<a href="#system-catalogs" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>A DBMS stores meta-data about databases in its internal catalogs.
+Stuff like what tables, columns and data type that stored in the database.</p>
+<p>We can access to database's catalogs through INFORMATION_SCHEMA api.</p>
+<h2 id="workloads">Workloads<a href="#workloads" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="on-line-transaction-processingoltp">On-line Transaction Processing(OLTP)<a href="#on-line-transaction-processingoltp" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Fast, short running operations on small number of tuples</li>
+<li>Usually the kind of application that people build first</li>
+<li>Example: User invocations of Amazon. They can add things to their cart, they can make purchases,
+but the actions only affect their account.</li>
+</ul>
+<h3 id="on-line-analytics-processingolap">On-line Analytics Processing(OLAP)<a href="#on-line-analytics-processingolap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<ul>
+<li>Long running, more complex queries</li>
+<li>Reads large portions of the database</li>
+<li>Deriving new data from data collected on the OLTP side</li>
+<li>Example: Compute the five most bought items over a one month period for these geographical locations.</li>
+</ul>
+<h3 id="hybrid-transactionalanalytical-processinghtaphttpsenwikipediaorgwikihybrid-transactionalanalytical-processing"><a href="https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing">Hybrid Transactional/Analytical Processing(HTAP)</a><a href="#hybrid-transactionalanalytical-processinghtaphttpsenwikipediaorgwikihybrid-transactionalanalytical-processing" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>Traditional application architectures separated transactional and analytical systems.
+However, business moments are <code>transient</code> opportunities that must be exploited in real time.
+HTAP allows advanced analytics to be run in real time on &ldquo;in flight&rdquo; transaction data, providing an architecture that empowers users to respond more effectively to business moments.</p>
+<h2 id="storage-models">Storage Models<a href="#storage-models" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Different ways to store tuples in pages.</p>
+<h3 id="n-ary-storage-modelnsm">N-ary Storage Model(NSM)<a href="#n-ary-storage-modelnsm" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The DBMS stores all of the attributes for a single tuple contiguously, also known as &ldquo;row storage&rdquo;.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>Fast inserts, updates, and deletes.</li>
+<li>Good for queries that need the entire tuple.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Not good for scanning large portions of the table and/or a subset of the attributes. This is because the database will fetch data that is not needed for processing the query.</li>
+</ul>
+</li>
+</ul>
+<p>There is an example below, explaining why NSM is not suitable for OLAP. We are trying to know the users amount that modify WIKI from hostname &lsquo;.gov&rsquo; in each month.</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">Table</span> <span class="k">SCHEMA</span> <span class="k">in</span> <span class="n">useracct</span>
+<span class="n">userID</span>
+<span class="n">userName</span>
+<span class="n">userPass</span>
+<span class="n">hostName</span>
+<span class="n">lastlogin</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> 
+  <span class="k">COUNT</span><span class="p">(</span><span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span>
+  <span class="k">EXTRACT</span><span class="p">(</span><span class="k">month</span> <span class="k">FROM</span> <span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span> <span class="k">AS</span> <span class="k">month</span>
+<span class="k">FROM</span> 
+  <span class="n">useracct</span> <span class="k">AS</span> <span class="n">U</span>
+<span class="k">WHERE</span>
+  <span class="n">U</span><span class="p">.</span><span class="n">hostname</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%.gov</span><span class="s1">&#39;</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+  <span class="k">EXTRACT</span><span class="p">(</span><span class="k">month</span> <span class="k">FROM</span> <span class="n">U</span><span class="p">.</span><span class="n">lastlogin</span><span class="p">)</span>
+</code></pre></div><p>We only use the column <code>lastlogin</code> and <code>hostname</code> in table <code>useracct</code>. However, the buffer pool will still pull all of the data in the disk page since we stored the data in block base on the disk. This will end up wasting memory to get useless data in this query(userID, userName, userPass are not being used).</p>
+<h3 id="decomposition-storage-modeldsm">Decomposition Storage Model(DSM)<a href="#decomposition-storage-modeldsm" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p>The DBMS stores a single attribute (column) for all tuples contiguously in a block of data. Also known as a
+“column store.” Ideal for OLAP workloads.</p>
+<ul>
+<li>Advantages
+<ul>
+<li>Reduces the amount of wasted work during query execution because the DBMS only reads the data that it needs for that query.</li>
+<li>Enables better compression because all of the values for the same attribute are stored contiguously.</li>
+</ul>
+</li>
+<li>Disadvantages
+<ul>
+<li>Slow for point queries, inserts, updates, and deletes because of tuple splitting/stitching.</li>
+</ul>
+</li>
+</ul>
+<p>To put the tuples back together when we are using a column store, we can use:</p>
+<ul>
+<li>Fixed-length offsets: the attributes are all fixed-length. Then when the system
+wants the attribute for a specific tuple, it knows how to jump to that spot in the file.</li>
+<li>Embedded Tuple Ids: For every attribute in the columns, store the tuple id with it. The system would
+also need extra information to tell it how to jump to every attribute that has that id.</li>
+</ul>
+<p><strong>Most DBMSs use fixed-length offsets.</strong></p>
+<p>Row stores are usually better for OLTP, while column stores are better for OLAP.</p>
+
+			</div>
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/cmu">CMU</a></span><span class="tag"><a href="https://www.leewei.co/tags/15-445">15-445</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>886 Words</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-05-13 22:26 &#43;0800</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://www.leewei.co/posts/cmu-15-445/database-storage-01/">
+				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>CMU Databases Systems: 03 Database Storage(pt.1)</span>
+			</a>
+		</div>
+		<div id="comments" class="thin">
+</div>
+	</main>
+
+	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+		<p>
+			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+		</p>
+	</footer>
+
+
+
+	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>
