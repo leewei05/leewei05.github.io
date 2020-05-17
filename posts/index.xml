@@ -3,7 +3,14 @@
         <title>All Posts - Sir</title>
         <link>https://www.leewei.co/posts/</link>
         <description>All Posts | Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 May 2020 22:26:52 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 May 2020 11:06:48 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</link>
+    <pubDate>Sun, 17 May 2020 11:06:48 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</guid>
+    <description><![CDATA[Database Storage  Spatial Control  where to write pages on disk keep pages that are often used together physically as close as possible   Temporal Control  when to read pages into memory, when to write pages to disk minimize the number of stalls from having to read data from disk    Locks vs Latches  Locks  Protect the database logical contents (e.g., tuples, tables, databases) from other transactions Held for transaction duration Need to be able to rollback changes   Latches(It is called Mutex or Locks in the Operating System world)  Protects the critical sections of the DBMS’s internal data structures from other threads Held for operation duration Do not need to be able to rollback changes    Buffer Pool Manager Buffer pool (buffer cache) is an array of fixed-size pages.]]></description>
+</item><item>
     <title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
     <link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
     <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
@@ -79,13 +86,5 @@ The Idea This is the most important part of starting a startup. A startup needs 
 High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
 Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
 Example 1: without DIP Let's say we have an application that has the following structure:]]></description>
-</item><item>
-    <title>How to Avoid Asking Bad Questions</title>
-    <link>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</link>
-    <pubDate>Wed, 04 Dec 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
-    <description><![CDATA[As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don't know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
-1. Google it before asking anyone Sometimes the answer to the question is just one click away.]]></description>
 </item></channel>
 </rss>
