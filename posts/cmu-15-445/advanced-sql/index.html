@@ -73,12 +73,59 @@ SQL History SQL&#39;s full name is Structured Query Language, IBM originally cal
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 02 Advanced SQL</h1><div class="post-meta">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 02 Advanced SQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-02>2020-04-02</time>&nbsp;
                 <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 922 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="content" id="content"><h2 id="relational-languages">Relational Languages</h2>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#relational-languages">Relational Languages</a></li>
+    <li><a href="#sql-history">SQL History</a></li>
+    <li><a href="#aggregates">Aggregates</a>
+      <ul>
+        <li><a href="#group-by">GROUP BY</a></li>
+        <li><a href="#having">HAVING</a></li>
+      </ul>
+    </li>
+    <li><a href="#string-operations">String Operations</a>
+      <ul>
+        <li><a href="#like">LIKE</a></li>
+        <li><a href="#concatenate">Concatenate</a></li>
+      </ul>
+    </li>
+    <li><a href="#datetime-operations">Date/Time Operations</a></li>
+    <li><a href="#output-redirection--control">Output Redirection & Control</a>
+      <ul>
+        <li><a href="#new-table">New Table</a></li>
+        <li><a href="#existing-table">Existing Table</a></li>
+        <li><a href="#order-by">ORDER BY</a></li>
+        <li><a href="#limit">LIMIT</a></li>
+      </ul>
+    </li>
+    <li><a href="#nested-queries">Nested Queries</a></li>
+    <li><a href="#window-functions">Window Functions</a>
+      <ul>
+        <li><a href="#functions">Functions</a></li>
+        <li><a href="#grouping">Grouping</a></li>
+      </ul>
+    </li>
+    <li><a href="#common-table-expressions">Common Table Expressions</a>
+      <ul>
+        <li><a href="#we-sould-always-strive-to-compute-our-answer-in-one-sql-statement">We sould always strive to compute our answer in one SQL statement.</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="relational-languages">Relational Languages</h2>
 <p>User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it.
 The DBMS is responsible for optimizing a query plan.</p>
 <h2 id="sql-history">SQL History</h2>

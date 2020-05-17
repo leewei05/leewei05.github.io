@@ -69,12 +69,42 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 04 Database Storage(pt.2)</h1><div class="post-meta">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 04 Database Storage(pt.2)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-13>2020-05-13</time>&nbsp;
                 <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 886 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="content" id="content"><p>Andy(lecturer) said that in the early 2000s, Google is making tons of money.
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#data-representation">Data Representation</a>
+      <ul>
+        <li><a href="#system-catalogs">System Catalogs</a></li>
+      </ul>
+    </li>
+    <li><a href="#workloads">Workloads</a>
+      <ul>
+        <li><a href="#on-line-transaction-processingoltp">On-line Transaction Processing(OLTP)</a></li>
+        <li><a href="#on-line-analytics-processingolap">On-line Analytics Processing(OLAP)</a></li>
+        <li><a href="#hybrid-transactionalanalytical-processinghtaphttpsenwikipediaorgwikihybrid-transactionalanalytical-processing">Hybrid Transactional/Analytical Processing(HTAP)</a></li>
+      </ul>
+    </li>
+    <li><a href="#storage-models">Storage Models</a>
+      <ul>
+        <li><a href="#n-ary-storage-modelnsm">N-ary Storage Model(NSM)</a></li>
+        <li><a href="#decomposition-storage-modeldsm">Decomposition Storage Model(DSM)</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>Andy(lecturer) said that in the early 2000s, Google is making tons of money.
 And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP.
 Google is absolutely good at large scale database systems, like Spanner, BigQuery etc.
 A lot of companies are trying to copy the tech stack of Google.

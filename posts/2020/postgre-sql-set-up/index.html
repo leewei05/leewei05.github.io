@@ -75,12 +75,31 @@ $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL i
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">PostgreSQL: Server setup on Ubuntu 18.04</h1><div class="post-meta">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">PostgreSQL: Server setup on Ubuntu 18.04</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-03>2020-04-03</time>&nbsp;
                 <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 546 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 min&nbsp;</div>
-        </div><div class="content" id="content"><h2 id="install-postgresql">Install PostgreSQL</h2>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#install-postgresql">Install PostgreSQL</a></li>
+    <li><a href="#database-cluster">Database Cluster</a>
+      <ul>
+        <li><a href="#how-to-find-the-location-of-where-postgresql-stores-its-data">How to find the location of where PostgreSQL stores its data?</a></li>
+        <li><a href="#access-control-for-database-directory">Access Control for database directory</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="install-postgresql">Install PostgreSQL</h2>
 <p>Create a file <code>/etc/apt/sources.list.d/pgdg.list</code> and add the following line to that file <code>deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main</code>. We can get the PostgreSQL APT repository from the official <a href="https://www.postgresql.org/download/linux/ubuntu/" target="_blank" rel="noopener noreffer">website</a>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo sh -c <span class="s1">&#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
 </code></pre></div><p>Import the repository public key</p>

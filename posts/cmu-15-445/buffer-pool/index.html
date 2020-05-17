@@ -69,12 +69,43 @@
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</h1><div class="post-meta">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-17>2020-05-17</time>&nbsp;
                 <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 832 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 min&nbsp;</div>
-        </div><div class="content" id="content"><h2 id="database-storage">Database Storage</h2>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#database-storage">Database Storage</a></li>
+    <li><a href="#locks-vs-latches">Locks vs Latches</a></li>
+    <li><a href="#buffer-pool-manager">Buffer Pool Manager</a>
+      <ul>
+        <li><a href="#buffer-pool-metadata">Buffer Pool metadata</a></li>
+        <li><a href="#buffer-pool-optimizations">Buffer Pool Optimizations</a></li>
+        <li><a href="#buffer-pool-bypass">Buffer Pool Bypass</a></li>
+        <li><a href="#allocations-policies">Allocations Policies</a></li>
+        <li><a href="#os-page-cache">OS Page Cache</a></li>
+      </ul>
+    </li>
+    <li><a href="#buffer-pool-replacement-policies">Buffer Pool Replacement Policies</a>
+      <ul>
+        <li><a href="#least-recently-used-lru">Least Recently Used (LRU)</a></li>
+        <li><a href="#clock">CLOCK</a></li>
+        <li><a href="#problems-with-lru-and-clock">Problems with LRU and CLOCK</a></li>
+      </ul>
+    </li>
+    <li><a href="#summary">Summary</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="database-storage">Database Storage</h2>
 <ul>
 <li>Spatial Control
 <ul>

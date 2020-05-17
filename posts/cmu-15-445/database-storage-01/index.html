@@ -73,12 +73,49 @@ Disk-Oriented DBMS The data in the database files is organized into pages, and t
     <div id="search-dropdown-mobile"></div>
 </div>
 <main class="main">
-                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 03 Database Storage(pt.1)</h1><div class="post-meta">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 03 Database Storage(pt.1)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-13>2020-04-13</time>&nbsp;
                 <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 959 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="content" id="content"><h2 id="course-outline">Course Outline</h2>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#course-outline">Course Outline</a></li>
+    <li><a href="#storage">Storage</a></li>
+    <li><a href="#disk-oriented-dbms">Disk-Oriented DBMS</a></li>
+    <li><a href="#why-not-use-the-os">Why not use the OS?</a></li>
+    <li><a href="#file-storage">File Storage</a></li>
+    <li><a href="#database-pages">Database Pages</a>
+      <ul>
+        <li><a href="#three-important-concept-in-pages">Three Important concept in pages:</a></li>
+      </ul>
+    </li>
+    <li><a href="#database-heap">Database Heap</a></li>
+    <li><a href="#page-layout">Page Layout</a>
+      <ul>
+        <li><a href="#slotted-pages-page-maps-slots-to-offsets">Slotted Pages: Page maps slots to offsets.</a></li>
+        <li><a href="#log-structured-instead-of-storing-tuples-the-dbms-only-stores-log-records">Log-Structured: Instead of storing tuples, the DBMS only stores log records</a></li>
+      </ul>
+    </li>
+    <li><a href="#tuple-layout">Tuple Layout</a>
+      <ul>
+        <li><a href="#tuple-header-contains-meta-data-about-the-tuple">Tuple Header: Contains meta-data about the tuple</a></li>
+        <li><a href="#tuple-data-actual-data-for-attributes">Tuple Data: Actual data for attributes</a></li>
+        <li><a href="#unique-identifierrecord-id">Unique Identifier(Record ID)</a></li>
+        <li><a href="#denormalized-tuple-data">Denormalized Tuple Data</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="course-outline">Course Outline</h2>
 <p>The main purpose of this course is <code>How to build a software of database management system.</code></p>
 <h2 id="storage">Storage</h2>
 <ul>
