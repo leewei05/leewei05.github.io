@@ -1,106 +1,77 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tags on Sir</title>
-    <link>https://www.leewei.co/tags/</link>
-    <description>Recent content in Tags on Sir</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 13 May 2020 22:26:52 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.leewei.co/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>15-445</title>
-      <link>https://www.leewei.co/tags/15-445/</link>
-      <pubDate>Wed, 13 May 2020 22:26:52 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/15-445/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>CMU</title>
-      <link>https://www.leewei.co/tags/cmu/</link>
-      <pubDate>Wed, 13 May 2020 22:26:52 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/cmu/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>PostgreSQL</title>
-      <link>https://www.leewei.co/tags/postgresql/</link>
-      <pubDate>Fri, 03 Apr 2020 09:57:59 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/postgresql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MariaDB</title>
-      <link>https://www.leewei.co/tags/mariadb/</link>
-      <pubDate>Sat, 18 Jan 2020 14:37:02 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/mariadb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>MySQL</title>
-      <link>https://www.leewei.co/tags/mysql/</link>
-      <pubDate>Sat, 18 Jan 2020 14:37:02 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/mysql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>execution</title>
-      <link>https://www.leewei.co/tags/execution/</link>
-      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/execution/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>idea</title>
-      <link>https://www.leewei.co/tags/idea/</link>
-      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/idea/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>product</title>
-      <link>https://www.leewei.co/tags/product/</link>
-      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/product/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>startup</title>
-      <link>https://www.leewei.co/tags/startup/</link>
-      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/startup/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>team</title>
-      <link>https://www.leewei.co/tags/team/</link>
-      <pubDate>Sun, 22 Dec 2019 12:48:19 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/tags/team/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Tags - Tag - Sir</title>
+        <link>https://www.leewei.co/tags/</link>
+        <description>Tags - Tag - Sir</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 May 2020 22:26:52 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>15-445</title>
+    <link>https://www.leewei.co/tags/15-445/</link>
+    <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/15-445/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>CMU</title>
+    <link>https://www.leewei.co/tags/cmu/</link>
+    <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/cmu/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>PostgreSQL</title>
+    <link>https://www.leewei.co/tags/postgresql/</link>
+    <pubDate>Fri, 03 Apr 2020 09:57:59 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/postgresql/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>MariaDB</title>
+    <link>https://www.leewei.co/tags/mariadb/</link>
+    <pubDate>Sat, 18 Jan 2020 14:37:02 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/mariadb/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>MySQL</title>
+    <link>https://www.leewei.co/tags/mysql/</link>
+    <pubDate>Sat, 18 Jan 2020 14:37:02 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/mysql/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>execution</title>
+    <link>https://www.leewei.co/tags/execution/</link>
+    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/execution/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>idea</title>
+    <link>https://www.leewei.co/tags/idea/</link>
+    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/idea/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>product</title>
+    <link>https://www.leewei.co/tags/product/</link>
+    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/product/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>startup</title>
+    <link>https://www.leewei.co/tags/startup/</link>
+    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/startup/</guid>
+    <description><![CDATA[]]></description>
+</item><item>
+    <title>team</title>
+    <link>https://www.leewei.co/tags/team/</link>
+    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/tags/team/</guid>
+    <description><![CDATA[]]></description>
+</item></channel>
 </rss>

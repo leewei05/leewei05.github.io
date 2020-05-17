@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#3d4f5d">
-	<meta name="msapplication-TileColor" content="#3d4f5d">
-<meta itemprop="name" content="PostgreSQL: Server setup on Ubuntu 18.04">
-<meta itemprop="description" content="Install PostgreSQL Create a file /etc/apt/sources.list.d/pgdg.list and add the following line to that file deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main. We can get the PostgreSQL APT repository from the official website.
-$ sudo sh -c &#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39; Import the repository public key
-$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
-$ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL is running as expected">
-<meta itemprop="datePublished" content="2020-04-03T09:57:59&#43;08:00" />
-<meta itemprop="dateModified" content="2020-04-03T09:57:59&#43;08:00" />
-<meta itemprop="wordCount" content="546">
-
-
-
-<meta itemprop="keywords" content="PostgreSQL," /><meta property="og:title" content="PostgreSQL: Server setup on Ubuntu 18.04" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>PostgreSQL: Server setup on Ubuntu 18.04 - Sir</title><meta name="Description" content=""><meta property="og:title" content="PostgreSQL: Server setup on Ubuntu 18.04" />
 <meta property="og:description" content="Install PostgreSQL Create a file /etc/apt/sources.list.d/pgdg.list and add the following line to that file deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main. We can get the PostgreSQL APT repository from the official website.
 $ sudo sh -c &#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39; Import the repository public key
 $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
@@ -33,58 +20,68 @@ $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL i
 $ sudo sh -c &#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39; Import the repository public key
 $ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
 $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL is running as expected"/>
+<meta name="application-name" content="Sir">
+<meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/2020/postgre-sql-set-up/" /><link rel="prev" href="https://www.leewei.co/posts/cmu-15-445/advanced-sql/" /><link rel="next" href="https://www.leewei.co/posts/cmu-15-445/database-storage-01/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PostgreSQL: Server setup on Ubuntu 18.04",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-set-up\/"
+        },"genre": "posts","keywords": "PostgreSQL","wordcount":  546 ,
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-set-up\/","datePublished": "2020-04-03T09:57:59+08:00","dateModified": "2020-04-03T09:57:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+                "@type": "Person",
+                "name": "Lee Wei"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>PostgreSQL: Server setup on Ubuntu 18.04</title>
-	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
-	
-</head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://www.leewei.co/">Sir</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://www.leewei.co/posts/">Posts</a>
-				<a href="https://www.leewei.co/about/">About</a>
-				<a href="https://www.leewei.co/tags/">Tags</a>
-
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
-			<li><a href="https://www.leewei.co/about/">About</a></li>
-			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
-		</ul>
-	</div>
-
-
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 3, 2020</span></div>
-				<h1>PostgreSQL: Server setup on Ubuntu 18.04</h1>
-			</header>
-			<div class="content">
-				<h2 id="install-postgresql">Install PostgreSQL<a href="#install-postgresql" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Create a file <code>/etc/apt/sources.list.d/pgdg.list</code> and add the following line to that file <code>deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main</code>. We can get the PostgreSQL APT repository from the official <a href="https://www.postgresql.org/download/linux/ubuntu/">website</a>.</p>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sir">Sir</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sir">Sir</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">PostgreSQL: Server setup on Ubuntu 18.04</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-03>2020-04-03</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 546 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 min&nbsp;</div>
+        </div><div class="content" id="content"><h2 id="install-postgresql">Install PostgreSQL</h2>
+<p>Create a file <code>/etc/apt/sources.list.d/pgdg.list</code> and add the following line to that file <code>deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main</code>. We can get the PostgreSQL APT repository from the official <a href="https://www.postgresql.org/download/linux/ubuntu/" target="_blank" rel="noopener noreffer">website</a>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ sudo sh -c <span class="s1">&#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39;</span>
 </code></pre></div><p>Import the repository public key</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc <span class="p">|</span> sudo apt-key add - 
@@ -122,12 +119,12 @@ Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
  template1 <span class="p">|</span> postgres <span class="p">|</span> UTF8     <span class="p">|</span> C.UTF-8 <span class="p">|</span> C.UTF-8 <span class="p">|</span> <span class="o">=</span>c/postgres          +
            <span class="p">|</span>          <span class="p">|</span>          <span class="p">|</span>         <span class="p">|</span>         <span class="p">|</span> <span class="nv">postgres</span><span class="o">=</span>CTc/postgres
 <span class="o">(</span><span class="m">3</span> rows<span class="o">)</span>
-</code></pre></div><h2 id="database-cluster">Database Cluster<a href="#database-cluster" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="database-cluster">Database Cluster</h2>
 <p>In order to proceed further operations, we need to initialize a database storage area on the disk. It is called a <code>database cluster</code>.
 A <code>database cluster</code> is a collection of databases that is managed by a single instance on the database server.</p>
 <p>A database cluster stores all its data in a single directory in the file system. It is called a <code>data directory</code> or <code>data area</code>. We will call it <code>data directory</code> in the following paragraph to avoid the confusion of High Availability clustering.</p>
 <p>However, normally we don't need to use <code>pg_createcluster</code>(for Ubuntu and Debian users) or <code>initd</code> to initialize a database directory, because <code>apt-get install postgresql</code> already creates a default directory.</p>
-<h3 id="how-to-find-the-location-of-where-postgresql-stores-its-data">How to find the location of where PostgreSQL stores its data?<a href="#how-to-find-the-location-of-where-postgresql-stores-its-data" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="how-to-find-the-location-of-where-postgresql-stores-its-data">How to find the location of where PostgreSQL stores its data?</h3>
 <p>In our case, <code>/var/lib/postgresql/12/main</code> is the directory where PostgreSQL stores its data.</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ps auxw<span class="p">|</span>grep postgres<span class="p">|</span>grep -- -D  
 postgres  <span class="m">4477</span>  0.0  4.7 <span class="m">321364</span> <span class="m">27896</span> ?        Ss   02:59   0:00 /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/12/main -c <span class="nv">config_file</span><span class="o">=</span>/etc/postgresql/12/main/postgresql.conf
@@ -139,46 +136,48 @@ postgres  <span class="m">7907</span>  0.0  0.1  <span class="m">14852</span>  <
 # option or PGDATA environment variable, represented here as ConfigDir.
 
 data_directory = '/var/lib/postgresql/12/main'
-</code></pre><h3 id="access-control-for-database-directory">Access Control for database directory<a href="#access-control-for-database-directory" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre><h3 id="access-control-for-database-directory">Access Control for database directory</h3>
 <ul>
 <li><code>pg_createcluster</code> will refuse to run if the data directory exists and already contains files. This will avoid overwriting to the exist database</li>
 <li><code>pg_createcluster</code> revokes access permissions from everyone but the PostgreSQL user, and optionally, group. Group access, when enabled, is read-only</li>
 </ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2020-04-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/postgresql">PostgreSQL</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>546 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-03 09:57 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://www.leewei.co/posts/cmu-15-445/database-storage-01/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>CMU Databases Systems: 03 Database Storage(pt.1)</span>
-			</a>
-			<a class="prev-post" href="https://www.leewei.co/posts/cmu-15-445/advanced-sql/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>CMU Databases Systems: 02 Advanced SQL</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/postgresql/">PostgreSQL</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cmu-15-445/advanced-sql/" class="prev" rel="prev" title="CMU Databases Systems: 02 Advanced SQL"><i class="fas fa-angle-left fa-fw"></i>CMU Databases Systems: 02 Advanced SQL</a>
+            <a href="/posts/cmu-15-445/database-storage-01/" class="next" rel="next" title="CMU Databases Systems: 03 Database Storage(pt.1)">CMU Databases Systems: 03 Database Storage(pt.1)<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-	</main>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
-
-
-
-	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
-	
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

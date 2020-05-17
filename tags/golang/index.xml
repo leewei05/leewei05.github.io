@@ -1,28 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>golang on Sir</title>
-    <link>https://www.leewei.co/tags/golang/</link>
-    <description>Recent content in golang on Sir</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 11 Dec 2019 00:13:40 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.leewei.co/tags/golang/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Dependency Inversion Principle</title>
-      <link>https://www.leewei.co/posts/2019/dependency-inversion-principle/</link>
-      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/posts/2019/dependency-inversion-principle/</guid>
-      <description>I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>golang - Tag - Sir</title>
+        <link>https://www.leewei.co/tags/golang/</link>
+        <description>golang - Tag - Sir</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 11 Dec 2019 00:13:40 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/golang/" rel="self" type="application/rss+xml" /><item>
+    <title>Dependency Inversion Principle</title>
+    <link>https://www.leewei.co/posts/2019/dependency-inversion-principle/</link>
+    <pubDate>Wed, 11 Dec 2019 00:13:40 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2019/dependency-inversion-principle/</guid>
+    <description><![CDATA[I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
 High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
 Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
-Example 1: without DIP Let&#39;s say we have an application that has the following structure:</description>
-    </item>
-    
-  </channel>
+Example 1: without DIP Let's say we have an application that has the following structure:]]></description>
+</item></channel>
 </rss>

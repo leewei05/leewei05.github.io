@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#3d4f5d">
-	<meta name="msapplication-TileColor" content="#3d4f5d">
-<meta itemprop="name" content="CMU Databases Systems: 03 Database Storage(pt.1)">
-<meta itemprop="description" content="Course Outline The main purpose of this course is How to build a software of database management system.
-Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
-Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.">
-<meta itemprop="datePublished" content="2020-04-13T20:26:07&#43;08:00" />
-<meta itemprop="dateModified" content="2020-04-13T20:26:07&#43;08:00" />
-<meta itemprop="wordCount" content="959">
-
-
-
-<meta itemprop="keywords" content="CMU,15-445," /><meta property="og:title" content="CMU Databases Systems: 03 Database Storage(pt.1)" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CMU Databases Systems: 03 Database Storage(pt.1) - Sir</title><meta name="Description" content=""><meta property="og:title" content="CMU Databases Systems: 03 Database Storage(pt.1)" />
 <meta property="og:description" content="Course Outline The main purpose of this course is How to build a software of database management system.
 Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
 Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page." />
@@ -30,65 +18,75 @@ Disk-Oriented DBMS The data in the database files is organized into pages, and t
 <meta name="twitter:description" content="Course Outline The main purpose of this course is How to build a software of database management system.
 Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
 Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page."/>
+<meta name="application-name" content="Sir">
+<meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/cmu-15-445/database-storage-01/" /><link rel="prev" href="https://www.leewei.co/posts/2020/postgre-sql-set-up/" /><link rel="next" href="https://www.leewei.co/posts/cmu-15-445/database-storage-02/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CMU Databases Systems: 03 Database Storage(pt.1)",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/database-storage-01\/"
+        },"genre": "posts","keywords": "CMU, 15-445","wordcount":  959 ,
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/database-storage-01\/","datePublished": "2020-04-13T20:26:07+08:00","dateModified": "2020-04-13T20:26:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+                "@type": "Person",
+                "name": "Lee Wei"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
-	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
-	
-</head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://www.leewei.co/">Sir</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://www.leewei.co/posts/">Posts</a>
-				<a href="https://www.leewei.co/about/">About</a>
-				<a href="https://www.leewei.co/tags/">Tags</a>
-
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
-			<li><a href="https://www.leewei.co/about/">About</a></li>
-			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
-		</ul>
-	</div>
-
-
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 13, 2020</span></div>
-				<h1>CMU Databases Systems: 03 Database Storage(pt.1)</h1>
-			</header>
-			<div class="content">
-				<h2 id="course-outline">Course Outline<a href="#course-outline" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sir">Sir</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sir">Sir</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 03 Database Storage(pt.1)</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-13>2020-04-13</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 959 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
+        </div><div class="content" id="content"><h2 id="course-outline">Course Outline</h2>
 <p>The main purpose of this course is <code>How to build a software of database management system.</code></p>
-<h2 id="storage">Storage<a href="#storage" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="storage">Storage</h2>
 <ul>
 <li>Volatile Devices: it needs power to keep its data persistent.</li>
 <li>Non-Volatile Devices: does not need continous power for device to retain its data.</li>
 </ul>
 <p><strong>Non-Volatile Memory</strong>: a storage device that is almost as fast as DRAM but with the persistence of a disk.</p>
-<h2 id="disk-oriented-dbms">Disk-Oriented DBMS<a href="#disk-oriented-dbms" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="disk-oriented-dbms">Disk-Oriented DBMS</h2>
 <p>The data in the database files is organized into pages, and the first page is the directory page.</p>
 <pre><code>Execution Engine: execute queries
       |
@@ -100,18 +98,18 @@ execution engine is operating on that memory.
       | manages the movement back and forth between disk and memory
       |
 Disk: save database files 
-</code></pre><h2 id="why-not-use-the-os">Why not use the OS?<a href="#why-not-use-the-os" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre><h2 id="why-not-use-the-os">Why not use the OS?</h2>
 <p>The operating system doesn't know about what data the user wants to query, and how to operates the data in efficiency.</p>
 <p>This high-level design goal is like virtual memory, where there is a large address space and a place for the
 OS to bring in pages from disk.</p>
 <p><strong>Never use <code>mmap</code> in your DBMS if you need to write.</strong></p>
 <p>Having the DBMS implement these procedures itself gives it better control and performance</p>
-<h2 id="file-storage">File Storage<a href="#file-storage" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="file-storage">File Storage</h2>
 <p>DBMS stores a database as files on disk.</p>
 <p>The OS does not know anything about the contents of these files. Only the DBMS knows how to decipher
 their contents, since it is encoded in a way specific to the DBMS.</p>
 <p>The DBMS’s <code>storage manager</code>is responsible for managing a database’s files</p>
-<h2 id="database-pages">Database Pages<a href="#database-pages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="database-pages">Database Pages</h2>
 <p>The DBMS organizes the database across one or more files in fixed-size blocks of data called <code>pages</code>.</p>
 <ul>
 <li>Pages contain different type of data</li>
@@ -119,7 +117,7 @@ their contents, since it is encoded in a way specific to the DBMS.</p>
 <li>Some DBMS require self-contained pages, which means all the information needed to read the page is in the page itself</li>
 <li>Most DBMS use fixed-size pages to avoid the engineering overhead</li>
 </ul>
-<h3 id="three-important-concept-in-pages">Three Important concept in pages:<a href="#three-important-concept-in-pages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="three-important-concept-in-pages">Three Important concept in pages:</h3>
 <ol>
 <li>Hardware page (usually 4 KB).</li>
 <li>OS page (4 KB).</li>
@@ -131,7 +129,7 @@ This means that if our database page is larger than our hardware page, the DBMS 
 measures to ensure that the data gets written out safely since the program can get partway through writing a
 database page to disk when the system crashes.</p>
 <p>There are trade-offs between the size of the Hardware page and the Database page.</p>
-<h2 id="database-heap">Database Heap<a href="#database-heap" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="database-heap">Database Heap</h2>
 <p>A heap file organization is one of the ways to find the location of the page.
 A heap file is an unordered collection of pages where tuples are stored in random order.</p>
 <p>The DBMS can locate a page by using <code>Linked List</code> or <code>Page Directory</code>:</p>
@@ -142,7 +140,7 @@ finds the page it is looking for.</li>
 <li><code>Page Directory</code>: DBMS maintains special pages that track locations of data pages along with the
 amount of free space on each page.</li>
 </ul>
-<h2 id="page-layout">Page Layout<a href="#page-layout" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="page-layout">Page Layout</h2>
 <p>Every page includes a header that records meta-data about the page’s contents:</p>
 <ul>
 <li>Page size</li>
@@ -154,7 +152,7 @@ amount of free space on each page.</li>
 <p>A <code>strawman approach</code> appends a new tuple to the end. However, problems arise when it
 deletes a tuple or when the tuples have variable-length attributes.</p>
 <p>There are two main approaches to laying out data in pages:</p>
-<h3 id="slotted-pages-page-maps-slots-to-offsets">Slotted Pages: Page maps slots to offsets.<a href="#slotted-pages-page-maps-slots-to-offsets" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="slotted-pages-page-maps-slots-to-offsets">Slotted Pages: Page maps slots to offsets.</h3>
 <ul>
 <li>Most common approach used in DBMSs today</li>
 <li>Header keeps track of the number of used slots and the offset of the starting location of last used slot
@@ -163,72 +161,81 @@ and a slot array, which keeps track of the location of the start of each tuple.<
 grow from end to the beginning. The page is considered full when the slot array and the tuple data
 meet.</li>
 </ul>
-<p><img src="../img/slotted-pages.png" alt="Slotted-Pages">
-<a href="https://15445.courses.cs.cmu.edu/fall2019/slides/03-storage1.pdf">Original Slides</a></p>
-<h3 id="log-structured-instead-of-storing-tuples-the-dbms-only-stores-log-records">Log-Structured: Instead of storing tuples, the DBMS only stores log records<a href="#log-structured-instead-of-storing-tuples-the-dbms-only-stores-log-records" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<p><img
+        class="lazyload"
+        src="/svg/loading/small.min.svg"
+        data-src="/img/slotted-pages.png"
+        data-srcset="/img/slotted-pages.png, /img/slotted-pages.png 1.5x, /img/slotted-pages.png 2x"
+        data-sizes="auto"
+        alt="Slotted-Pages"
+        title="Slotted-Pages" />
+<a href="https://15445.courses.cs.cmu.edu/fall2019/slides/03-storage1.pdf" target="_blank" rel="noopener noreffer">Original Slides</a></p>
+<h3 id="log-structured-instead-of-storing-tuples-the-dbms-only-stores-log-records">Log-Structured: Instead of storing tuples, the DBMS only stores log records</h3>
 <ul>
 <li>Stores records to file of how the database was modified (insert, update, deletes)</li>
 <li>To read a record, the DBMS scans the log file backwards and “recreates” the tuple</li>
 <li>Fast writes, potentially slow reads</li>
 <li>Works well on append-only storage because the DBMS cannot go back and update the data</li>
 </ul>
-<h2 id="tuple-layout">Tuple Layout<a href="#tuple-layout" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="tuple-layout">Tuple Layout</h2>
 <p>A tuple is a sequence of bytes. It is DBMS’s job to interpret those bytes into attribute types and values.</p>
-<h3 id="tuple-header-contains-meta-data-about-the-tuple">Tuple Header: Contains meta-data about the tuple<a href="#tuple-header-contains-meta-data-about-the-tuple" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="tuple-header-contains-meta-data-about-the-tuple">Tuple Header: Contains meta-data about the tuple</h3>
 <ul>
 <li>Visibility information for the DBMS’s concurrency control protocol</li>
 <li>Bit Map for NULL values</li>
 <li>Note that the DBMS does not need to store meta-data about the schema of the database here</li>
 </ul>
-<h3 id="tuple-data-actual-data-for-attributes">Tuple Data: Actual data for attributes<a href="#tuple-data-actual-data-for-attributes" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="tuple-data-actual-data-for-attributes">Tuple Data: Actual data for attributes</h3>
 <ul>
 <li>Attributes are typically stored in the order that you specify them when you create the table</li>
 <li>Most DBMSs do not allow a tuple to exceed the size of a page</li>
 </ul>
-<h3 id="unique-identifierrecord-id">Unique Identifier(Record ID)<a href="#unique-identifierrecord-id" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="unique-identifierrecord-id">Unique Identifier(Record ID)</h3>
 <ul>
 <li>Each tuple in the database is assigned a unique identifier</li>
 <li>Most common: page id + (offset or slot)</li>
 </ul>
-<h3 id="denormalized-tuple-data">Denormalized Tuple Data<a href="#denormalized-tuple-data" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="denormalized-tuple-data">Denormalized Tuple Data</h3>
 <p>If two tables are related, the DBMS can “pre-join” them, so the tables end up
 on the same page. This makes reads faster since the DBMS only has to load in one page rather than two
 separate pages, but it makes updates more expensive since the DBMS needs more space for each tuple.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2020-04-13</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/cmu">CMU</a></span><span class="tag"><a href="https://www.leewei.co/tags/15-445">15-445</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>959 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-13 20:26 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://www.leewei.co/posts/cmu-15-445/database-storage-02/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>CMU Databases Systems: 04 Database Storage(pt.2)</span>
-			</a>
-			<a class="prev-post" href="https://www.leewei.co/posts/2020/postgre-sql-set-up/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>PostgreSQL: Server setup on Ubuntu 18.04</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2020/postgre-sql-set-up/" class="prev" rel="prev" title="PostgreSQL: Server setup on Ubuntu 18.04"><i class="fas fa-angle-left fa-fw"></i>PostgreSQL: Server setup on Ubuntu 18.04</a>
+            <a href="/posts/cmu-15-445/database-storage-02/" class="next" rel="next" title="CMU Databases Systems: 04 Database Storage(pt.2)">CMU Databases Systems: 04 Database Storage(pt.2)<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-	</main>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
-
-
-
-	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
-	
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

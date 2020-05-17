@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<meta name="theme-color" content="#3d4f5d">
-	<meta name="msapplication-TileColor" content="#3d4f5d">
-<meta itemprop="name" content="CMU Databases Systems: 02 Advanced SQL">
-<meta itemprop="description" content="Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
-SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
- ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.">
-<meta itemprop="datePublished" content="2020-04-02T19:51:08&#43;08:00" />
-<meta itemprop="dateModified" content="2020-04-02T19:51:08&#43;08:00" />
-<meta itemprop="wordCount" content="922">
-
-
-
-<meta itemprop="keywords" content="CMU,15-445," /><meta property="og:title" content="CMU Databases Systems: 02 Advanced SQL" />
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CMU Databases Systems: 02 Advanced SQL - Sir</title><meta name="Description" content=""><meta property="og:title" content="CMU Databases Systems: 02 Advanced SQL" />
 <meta property="og:description" content="Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
 SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
  ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92." />
@@ -30,60 +18,70 @@ SQL History SQL&#39;s full name is Structured Query Language, IBM originally cal
 <meta name="twitter:description" content="Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
 SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
  ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92."/>
+<meta name="application-name" content="Sir">
+<meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/cmu-15-445/advanced-sql/" /><link rel="prev" href="https://www.leewei.co/posts/cmu-15-445/relational-model/" /><link rel="next" href="https://www.leewei.co/posts/2020/postgre-sql-set-up/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CMU Databases Systems: 02 Advanced SQL",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/advanced-sql\/"
+        },"genre": "posts","keywords": "CMU, 15-445","wordcount":  922 ,
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/advanced-sql\/","datePublished": "2020-04-02T19:51:08+08:00","dateModified": "2020-04-02T19:51:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+                "@type": "Person",
+                "name": "Lee Wei"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
-	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
-	<link rel="shortcut icon" href="/favicon.ico">
-
-	<title>CMU Databases Systems: 02 Advanced SQL</title>
-	<link rel="stylesheet" href="https://www.leewei.co/css/style.min.34f71a5902ef1eb73a45de2ab9b70ba2652ccd4ff442f582f558c261f44a616b.css" integrity="sha256-NPcaWQLvHrc6Rd4qubcLomUszU/0QvWC9VjCYfRKYWs=" crossorigin="anonymous">
-	
-</head>
-
-<body id="page">
-	
-	<header id="site-header" class="animated slideInUp faster">
-		<div class="hdr-wrapper section-inner">
-			<div class="hdr-left">
-				<div class="site-branding">
-					<a href="https://www.leewei.co/">Sir</a>
-				</div>
-				<nav class="site-nav hide-in-mobile">
-					
-				<a href="https://www.leewei.co/posts/">Posts</a>
-				<a href="https://www.leewei.co/about/">About</a>
-				<a href="https://www.leewei.co/tags/">Tags</a>
-
-				</nav>
-			</div>
-			<div class="hdr-right hdr-icons">
-				<span class="hdr-social hide-in-mobile"><a href="https://twitter.com/leewei666" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="https://www.linkedin.com/in/lee-wei-02249b119/" target="_blank" rel="noopener me" title="Linkedin"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://github.com/leewei05" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
-			</div>
-		</div>
-	</header>
-	<div id="mobile-menu" class="animated fast">
-		<ul>
-			<li><a href="https://www.leewei.co/posts/">Posts</a></li>
-			<li><a href="https://www.leewei.co/about/">About</a></li>
-			<li><a href="https://www.leewei.co/tags/">Tags</a></li>
-		</ul>
-	</div>
-
-
-	<main class="site-main section-inner animated fadeIn faster">
-		<article class="thin">
-			<header class="post-header">
-				<div class="post-meta"><span>Apr 2, 2020</span></div>
-				<h1>CMU Databases Systems: 02 Advanced SQL</h1>
-			</header>
-			<div class="content">
-				<h2 id="relational-languages">Relational Languages<a href="#relational-languages" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sir">Sir</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sir">Sir</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 02 Advanced SQL</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-02>2020-04-02</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 922 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
+        </div><div class="content" id="content"><h2 id="relational-languages">Relational Languages</h2>
 <p>User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it.
 The DBMS is responsible for optimizing a query plan.</p>
-<h2 id="sql-history">SQL History<a href="#sql-history" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="sql-history">SQL History</h2>
 <p><code>SQL</code>'s full name is <code>Structured Query Language</code>, IBM originally called it <code>SEQUEL</code>, but got sued by some people in the UK. So they ended up called it <code>SQL</code>.</p>
 <ul>
 <li>ANSI Standard in 1986</li>
@@ -102,9 +100,9 @@ The DBMS is responsible for optimizing a query plan.</p>
 <li>bags: unordered, allow duplicates</li>
 </ul>
 <p>There is a reason why SQL is based on <code>bags</code>, it'll need extra work for DBMS to use <code>lists</code> or <code>sets</code>. DBMS only needs to order the output only if the user want to order the results. Therefore, using <code>bags</code> can let the database work more efficiently.</p>
-<h2 id="aggregates">Aggregates<a href="#aggregates" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="aggregates">Aggregates</h2>
 <p>An aggregation function takes in a bag of tuples as its input and then produces a single scalar value as its output. <code>Can only be used in SELECT output list.</code></p>
-<h3 id="group-by">GROUP BY<a href="#group-by" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="group-by">GROUP BY</h3>
 <p>Output of other columns outside of an aggregate is undefined (e.cid is undefined below). The aggregation function only returns a single value, so the DBMS don't know which course id to output.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="n">This</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span><span class="p">.</span>
 
@@ -116,7 +114,7 @@ The DBMS is responsible for optimizing a query plan.</p>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
 <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span><span class="p">;</span>
-</code></pre></div><h3 id="having">HAVING<a href="#having" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h3 id="having">HAVING</h3>
 <p>Filters output results after aggregation. Like a <code>WHERE</code> clause for a
 <code>GROUP BY</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="n">This</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span> <span class="n">because</span> <span class="n">we</span> <span class="n">have</span> <span class="k">not</span> <span class="n">aggregated</span> <span class="n">s</span><span class="p">.</span><span class="n">gpa</span> <span class="k">in</span> <span class="n">the</span> <span class="k">WHERE</span> <span class="n">clause</span> <span class="n">yet</span><span class="p">.</span>
@@ -132,42 +130,42 @@ The DBMS is responsible for optimizing a query plan.</p>
 <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
 <span class="k">HAVING</span> <span class="n">avg_gpa</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">.</span><span class="mi">9</span><span class="p">;</span>
-</code></pre></div><h2 id="string-operations">String Operations<a href="#string-operations" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="string-operations">String Operations</h2>
 <p>The SQL standard says that strings are <code>case sensitive</code> and <code>single-quotes only</code>.</p>
-<h3 id="like">LIKE<a href="#like" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="like">LIKE</h3>
 <p>The <code>LIKE</code> keyword is used for string matching.</p>
 <ul>
 <li><code>%</code> matches any substrings (including empty)</li>
 <li><code>_</code> matches any one character</li>
 </ul>
-<h3 id="concatenate">Concatenate<a href="#concatenate" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="concatenate">Concatenate</h3>
 <p>Use <code>||</code> operator to concatenate two or more strings together.</p>
-<h2 id="datetime-operations">Date/Time Operations<a href="#datetime-operations" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="datetime-operations">Date/Time Operations</h2>
 <p>Operations to manipulate and modify DATE/TIME attributes.
 Different DBMS supports different syntax.</p>
-<h2 id="output-redirection--control">Output Redirection &amp; Control<a href="#output-redirection--control" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="output-redirection--control">Output Redirection &amp; Control</h2>
 <p>We can store queries to another table.</p>
-<h3 id="new-table">New Table<a href="#new-table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="new-table">New Table</h3>
 <p>Store the output of the query into a new (permanent) table.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">;</span>
-</code></pre></div><h3 id="existing-table">Existing Table<a href="#existing-table" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h3 id="existing-table">Existing Table</h3>
 <p>Store the output of the query into a table that
 already exists in the database. The
 target table must have the same number of columns with the same types as the target table, but the
 name of the columns in the output query do not have to match.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">)</span><span class="p">;</span>
-</code></pre></div><h3 id="order-by">ORDER BY<a href="#order-by" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h3 id="order-by">ORDER BY</h3>
 <p>Since results SQL are unordered, you have to use the <code>ORDER BY</code> clause to impose a sort on tuples, here is an example:</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-721</span><span class="s1">&#39;</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">grade</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">sid</span> <span class="k">ASC</span><span class="p">;</span>
-</code></pre></div><h3 id="limit">LIMIT<a href="#limit" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+</code></pre></div><h3 id="limit">LIMIT</h3>
 <p>Limit the number of tuples returned in output.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="k">OFFSET</span> <span class="n">specifies</span> <span class="n">how</span> <span class="n">many</span> <span class="n">tuples</span> <span class="k">to</span> <span class="n">skip</span> <span class="n">within</span> <span class="n">the</span> <span class="k">result</span>
 <span class="o">#</span> <span class="n">Use</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">to</span> <span class="n">guarantee</span> <span class="n">the</span> <span class="n">same</span> <span class="k">result</span> <span class="k">in</span> <span class="k">every</span> <span class="n">queries</span>
 
 <span class="k">SELECT</span> <span class="n">sid</span><span class="p">,</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span> <span class="k">WHERE</span> <span class="n">login</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%@cs</span><span class="s1">&#39;</span>
 <span class="k">LIMIT</span> <span class="mi">10</span> <span class="k">OFFSET</span> <span class="mi">20</span><span class="p">;</span>
-</code></pre></div><h2 id="nested-queries">Nested Queries<a href="#nested-queries" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+</code></pre></div><h2 id="nested-queries">Nested Queries</h2>
 <p>Queries containing other queries. Nested queries are often difficult to optimize.</p>
 <p><strong>Example: Get the names of students that are enrolled in ’15-445’.</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span>
@@ -183,15 +181,15 @@ name of the columns in the output query do not have to match.</p>
 <li>IN: Equivalent to =ANY().</li>
 <li>EXISTS: At least one row is returned.</li>
 </ul>
-<h2 id="window-functions">Window Functions<a href="#window-functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="window-functions">Window Functions</h2>
 <p>Performs “moving” calculation across set of tuples. Like an aggregation but it still returns the original tuples.</p>
-<h3 id="functions">Functions<a href="#functions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="functions">Functions</h3>
 <p>Functions can be any of the aggregation functions above. Can also be a special window functions:</p>
 <ul>
 <li>ROW NUMBER: The number of the current row.</li>
 <li>RANK: The order position of the current row.</li>
 </ul>
-<h3 id="grouping">Grouping<a href="#grouping" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="grouping">Grouping</h3>
 <p>The <code>OVER</code> clause specifies how to group together tuples when computing the window function. Use <code>PARTITION BY</code> to specify group.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">cid</span><span class="p">,</span> <span class="n">sid</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
@@ -199,7 +197,7 @@ name of the columns in the output query do not have to match.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
 </code></pre></div><p><strong>Important: The DBMS computes RANK after the window function sorting, whereas it computes ROW NUMBER before the sorting.</strong></p>
-<h2 id="common-table-expressions">Common Table Expressions<a href="#common-table-expressions" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h2 id="common-table-expressions">Common Table Expressions</h2>
 <p>Common Table Expressions (CTEs) is like a temporary table for just one query.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">WITH</span> <span class="n">cteName</span> <span class="k">AS</span> <span class="p">(</span>
 <span class="k">SELECT</span> <span class="mi">1</span>
@@ -215,42 +213,44 @@ name of the columns in the output query do not have to match.</p>
 <span class="p">)</span>
 <span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">cteSource</span><span class="p">;</span>
 </code></pre></div><p>Sometimes <code>RECURSIVE</code> can be dangerous to use because we might have an infinite loop.</p>
-<h3 id="we-sould-always-strive-to-compute-our-answer-in-one-sql-statement">We sould always strive to compute our answer in one SQL statement.<a href="#we-sould-always-strive-to-compute-our-answer-in-one-sql-statement" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
+<h3 id="we-sould-always-strive-to-compute-our-answer-in-one-sql-statement">We sould always strive to compute our answer in one SQL statement.</h3>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2020-04-02</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
 
-			</div>
-			<hr class="post-end">
-			<footer class="post-info">
-				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://www.leewei.co/tags/cmu">CMU</a></span><span class="tag"><a href="https://www.leewei.co/tags/15-445">15-445</a></span>
-				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>922 Words</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2020-04-02 19:51 &#43;0800</p>
-			</footer>
-		</article>
-		<div class="post-nav thin">
-			<a class="next-post" href="https://www.leewei.co/posts/2020/postgre-sql-set-up/">
-				<span class="post-nav-label"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>&nbsp;Newer</span><br><span>PostgreSQL: Server setup on Ubuntu 18.04</span>
-			</a>
-			<a class="prev-post" href="https://www.leewei.co/posts/cmu-15-445/relational-model/">
-				<span class="post-nav-label">Older&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>CMU Databases Systems: 01 Relational Model</span>
-			</a>
-		</div>
-		<div id="comments" class="thin">
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cmu-15-445/relational-model/" class="prev" rel="prev" title="CMU Databases Systems: 01 Relational Model"><i class="fas fa-angle-left fa-fw"></i>CMU Databases Systems: 01 Relational Model</a>
+            <a href="/posts/2020/postgre-sql-set-up/" class="next" rel="next" title="PostgreSQL: Server setup on Ubuntu 18.04">PostgreSQL: Server setup on Ubuntu 18.04<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
-	</main>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
 
-	<footer id="site-footer" class="section-inner thin animated fadeIn faster">
-		<p>&copy; 2020 <a href="https://www.leewei.co/">Lee Wei</a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
-		<p>
-			Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> &#183; <a href="https://www.leewei.co/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
-		</p>
-	</footer>
-
-
-
-	<script src="https://www.leewei.co/js/bundle.min.4a9a0ac3d2217822c7865b4161e6c2a71de1d70492264337755427898dd718f6.js" integrity="sha256-SpoKw9IheCLHhltBYebCpx3h1wSSJkM3dVQniY3XGPY=" crossorigin="anonymous"></script>
-	
-
-</body>
-
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

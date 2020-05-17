@@ -1,56 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>15-445 on Sir</title>
-    <link>https://www.leewei.co/tags/15-445/</link>
-    <description>Recent content in 15-445 on Sir</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 13 May 2020 22:26:52 +0800</lastBuildDate>
-    
-	<atom:link href="https://www.leewei.co/tags/15-445/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
-      <link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
-      <pubDate>Wed, 13 May 2020 22:26:52 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
-      <description>Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &amp;ldquo;BigTable&amp;rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&#39;t have the resource like Google to develop applications using large scale databases.</description>
-    </item>
-    
-    <item>
-      <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
-      <link>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</link>
-      <pubDate>Mon, 13 Apr 2020 20:26:07 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</guid>
-      <description>Course Outline The main purpose of this course is How to build a software of database management system.
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>15-445 - Tag - Sir</title>
+        <link>https://www.leewei.co/tags/15-445/</link>
+        <description>15-445 - Tag - Sir</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 13 May 2020 22:26:52 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/15-445/" rel="self" type="application/rss+xml" /><item>
+    <title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
+    <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
+    <description><![CDATA[Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don't have the resource like Google to develop applications using large scale databases.]]></description>
+</item><item>
+    <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</link>
+    <pubDate>Mon, 13 Apr 2020 20:26:07 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</guid>
+    <description><![CDATA[Course Outline The main purpose of this course is How to build a software of database management system.
 Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
-Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.</description>
-    </item>
-    
-    <item>
-      <title>CMU Databases Systems: 02 Advanced SQL</title>
-      <link>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</link>
-      <pubDate>Thu, 02 Apr 2020 19:51:08 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</guid>
-      <description>Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
-SQL History SQL&#39;s full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
- ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.</description>
-    </item>
-    
-    <item>
-      <title>CMU Databases Systems: 01 Relational Model</title>
-      <link>https://www.leewei.co/posts/cmu-15-445/relational-model/</link>
-      <pubDate>Thu, 02 Apr 2020 17:29:54 +0800</pubDate>
-      
-      <guid>https://www.leewei.co/posts/cmu-15-445/relational-model/</guid>
-      <description>I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn&#39;t do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &amp;ldquo;There are numerous CMU online courses, why don&#39;t I just take these courses and do the assignments?&amp;rdquo; Plus, thanks to the freaking Corona virus.</description>
-    </item>
-    
-  </channel>
+Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.]]></description>
+</item><item>
+    <title>CMU Databases Systems: 02 Advanced SQL</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</link>
+    <pubDate>Thu, 02 Apr 2020 19:51:08 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</guid>
+    <description><![CDATA[Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
+SQL History SQL's full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
+ ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.]]></description>
+</item><item>
+    <title>CMU Databases Systems: 01 Relational Model</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/relational-model/</link>
+    <pubDate>Thu, 02 Apr 2020 17:29:54 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/relational-model/</guid>
+    <description><![CDATA[I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn't do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don't I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus.]]></description>
+</item></channel>
 </rss>

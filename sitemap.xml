@@ -1,165 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
-  <url>
-    <loc>https://www.leewei.co/tags/15-445/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/cmu/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/</loc>
-    <lastmod>2020-05-13T22:26:52+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</loc>
-    <lastmod>2020-04-13T20:26:07+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/postgresql/</loc>
-    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2020/postgre-sql-set-up/</loc>
-    <lastmod>2020-04-03T09:57:59+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</loc>
-    <lastmod>2020-04-02T19:51:08+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/cmu-15-445/relational-model/</loc>
-    <lastmod>2020-04-02T17:29:54+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/mariadb/</loc>
-    <lastmod>2020-01-18T14:37:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/mysql/</loc>
-    <lastmod>2020-01-18T14:37:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/</loc>
-    <lastmod>2020-01-18T14:37:02+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/execution/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/idea/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/product/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/startup/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/team/</loc>
-    <lastmod>2019-12-22T12:48:19+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/algorithm/</loc>
-    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/array/</loc>
-    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/data-structures/</loc>
-    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2019/ds-array-linked-list/</loc>
-    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/linked-list/</loc>
-    <lastmod>2019-12-11T00:27:34+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/clean-architecture/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2019/dependency-inversion-principle/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/dip/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/tags/golang/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</loc>
-    <lastmod>2019-12-04T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</loc>
-    <lastmod>2019-10-26T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.leewei.co/about/</loc>
-    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
-  </url>
-  
-</urlset>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    ><url>
+            <loc>https://www.leewei.co/tags/15-445/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/cmu/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-05-13T22:26:52&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</loc><lastmod>2020-04-13T20:26:07&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/postgresql/</loc><lastmod>2020-04-03T09:57:59&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/postgre-sql-set-up/</loc><lastmod>2020-04-03T09:57:59&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/cmu-15-445/advanced-sql/</loc><lastmod>2020-04-02T19:51:08&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/cmu-15-445/relational-model/</loc><lastmod>2020-04-02T17:29:54&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/mariadb/</loc><lastmod>2020-01-18T14:37:02&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/mysql/</loc><lastmod>2020-01-18T14:37:02&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/</loc><lastmod>2020-01-18T14:37:02&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/execution/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/idea/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/product/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/startup/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/team/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/algorithm/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/array/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/data-structures/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2019/ds-array-linked-list/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/linked-list/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/clean-architecture/</loc><lastmod>2019-12-11T00:13:40&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2019/dependency-inversion-principle/</loc><lastmod>2019-12-11T00:13:40&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/dip/</loc><lastmod>2019-12-11T00:13:40&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/golang/</loc><lastmod>2019-12-11T00:13:40&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</loc><lastmod>2019-12-04T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2019/data-structures-algorithm-introduction/</loc><lastmod>2019-10-26T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://www.leewei.co/about/</loc><lastmod>2019-10-23T00:00:00&#43;00:00</lastmod></url></urlset>
