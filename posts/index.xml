@@ -3,7 +3,16 @@
         <title>All Posts - Sir</title>
         <link>https://www.leewei.co/posts/</link>
         <description>All Posts | Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 May 2020 11:06:48 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 31 May 2020 23:58:56 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>PostgreSQL: Create Users, Databases and Tables</title>
+    <link>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</link>
+    <pubDate>Sun, 31 May 2020 23:58:56 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</guid>
+    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we're going to create users, databases and tables.
+PostgreSQL Schema Basics What is the definition of Schema in PostgreSQL Before we begin to create and set up the objects in PostgreSQL, we might need to understand the basic concept of schema in PostgreSQL. This article detailed describe the definition of Schema in PostgreSQL.
+In a broader view of RDBMS, Schema is generally refered as the definition of tables, columns and other objects that constitute the database.]]></description>
+</item><item>
     <title>CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</title>
     <link>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</link>
     <pubDate>Sun, 17 May 2020 11:06:48 &#43;0800</pubDate>
@@ -76,15 +85,5 @@ The Idea This is the most important part of starting a startup. A startup needs 
     <guid>https://www.leewei.co/posts/2019/ds-array-linked-list/</guid>
     <description><![CDATA[Array Array is a data structure and it is a collection of elements or values. Each elment is identified by an array index/key.
  Advantages  It is very easy to implement. Random access is O(1) if we know the array index or key.   Disadvantages  It is not a dynamic data structure. It would take O(N) if we want to insert or remove an element in the array.]]></description>
-</item><item>
-    <title>Dependency Inversion Principle</title>
-    <link>https://www.leewei.co/posts/2019/dependency-inversion-principle/</link>
-    <pubDate>Wed, 11 Dec 2019 00:13:40 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2019/dependency-inversion-principle/</guid>
-    <description><![CDATA[I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
-High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
-Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
-Example 1: without DIP Let's say we have an application that has the following structure:]]></description>
 </item></channel>
 </rss>
