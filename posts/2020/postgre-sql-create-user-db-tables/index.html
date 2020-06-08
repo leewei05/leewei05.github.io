@@ -232,10 +232,10 @@ Grant <code>USAGE</code> for <code>db_user</code> and <code>db_readonly</code>.<
 <span class="c1">--------+---------+-------+----------
 </span><span class="c1"></span> <span class="k">public</span> <span class="o">|</span> <span class="n">product</span> <span class="o">|</span> <span class="k">table</span> <span class="o">|</span> <span class="n">postgres</span>
 <span class="p">(</span><span class="mi">1</span> <span class="k">row</span><span class="p">)</span>
-</code></pre></div><p>Grant privilages for users.</p>
+</code></pre></div><p>Grant privileges for users.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">GRANT</span> <span class="k">SELECT</span><span class="p">,</span> <span class="k">INSERT</span><span class="p">,</span> <span class="k">UPDATE</span><span class="p">,</span> <span class="k">DELETE</span><span class="p">,</span> <span class="k">REFERENCES</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">product</span> <span class="k">to</span> <span class="n">db_user</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="k">TABLE</span> <span class="n">product</span> <span class="k">to</span> <span class="n">db_readonly</span><span class="p">;</span>
-</code></pre></div><p>Check users&rsquo; privilages</p>
+</code></pre></div><p>Check users&rsquo; privileges</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="n">postgres</span><span class="o">=</span><span class="o">#</span> <span class="k">SELECT</span> <span class="n">table_catalog</span><span class="p">,</span> <span class="n">table_schema</span><span class="p">,</span> <span class="k">table_name</span><span class="p">,</span> <span class="n">privilege_type</span>
 <span class="k">FROM</span>   <span class="n">information_schema</span><span class="p">.</span><span class="n">table_privileges</span>
 <span class="k">WHERE</span>  <span class="n">grantee</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">db_user</span><span class="s1">&#39;</span><span class="p">;</span>
