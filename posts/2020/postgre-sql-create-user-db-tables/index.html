@@ -30,7 +30,7 @@ In a broader view of RDBMS, Schema is generally refered as the definition of tab
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-create-user-db-tables\/"
-        },"genre": "posts","keywords": "PostgreSQL","wordcount":  1129 ,
+        },"genre": "posts","keywords": "PostgreSQL","wordcount":  1158 ,
         "url": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-create-user-db-tables\/","datePublished": "2020-05-31T23:58:56+08:00","dateModified": "2020-05-31T23:58:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
                 "@type": "Person",
                 "name": "Lee Wei"
@@ -79,7 +79,7 @@ In a broader view of RDBMS, Schema is generally refered as the definition of tab
         </div><article class="page single"><h1 class="single-title animated flipInX">PostgreSQL: Create Users, Databases and Tables</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-31>2020-05-31</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1129 words&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1158 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;6 min&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -163,8 +163,7 @@ where as <code>CREATE ROLE</code> <code>NOLOGIN</code> is default.</p>
 <strong>That means that even if a role does not have a certain privilege but is allowed to create other roles,
 it can easily create another role with different privileges than its own (except for creating roles with superuser privileges).</strong></p>
 <p>We will strictly set parameters when creating users.
-Create a file:</p>
-<p><code>create_db.sql</code></p>
+Create file <code>create_db.sql</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">db_admin</span> <span class="n">LOGIN</span> <span class="n">PASSWORD</span> <span class="s1">&#39;</span><span class="s1">123456</span><span class="s1">&#39;</span> <span class="n">NOSUPERUSER</span> <span class="n">INHERIT</span> <span class="k">NOCREATEDB</span> <span class="n">NOCREATEROLE</span> <span class="n">NOREPLICATION</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">db_user</span> <span class="n">LOGIN</span> <span class="n">PASSWORD</span> <span class="s1">&#39;</span><span class="s1">123456</span><span class="s1">&#39;</span> <span class="n">NOSUPERUSER</span> <span class="n">INHERIT</span> <span class="k">NOCREATEDB</span> <span class="n">NOCREATEROLE</span> <span class="n">NOREPLICATION</span><span class="p">;</span>
 <span class="k">CREATE</span> <span class="k">ROLE</span> <span class="n">db_readonly</span> <span class="n">LOGIN</span> <span class="n">PASSWORD</span> <span class="s1">&#39;</span><span class="s1">123456</span><span class="s1">&#39;</span> <span class="n">NOSUPERUSER</span> <span class="n">INHERIT</span> <span class="k">NOCREATEDB</span> <span class="n">NOCREATEROLE</span> <span class="n">NOREPLICATION</span><span class="p">;</span>
@@ -173,7 +172,7 @@ Create a file:</p>
 
 <span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">db</span> <span class="k">OWNER</span> <span class="k">TO</span> <span class="n">db_admin</span><span class="p">;</span>
 </code></pre></div><p>Run the following command</p>
-<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ psql -U <span class="o">[</span>username<span class="o">]</span> -f create_db.sql
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ psql -h localhost -U <span class="o">[</span>username<span class="o">]</span> -f create_db.sql
 </code></pre></div><p>Check if the users are created</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="n">postgres</span><span class="o">=</span><span class="o">#</span> <span class="err">\</span><span class="n">du</span>
                                     <span class="n">List</span> <span class="k">of</span> <span class="n">roles</span>
@@ -197,17 +196,16 @@ Create a file:</p>
 </code></pre></div><h2 id="set-up-privileges-for-database">Set up privileges for database</h2>
 <p>If we didn't set the timezone of the database, Postgre will try to use operating system's default timezone.
 Run the following SQL statement to configure our database's timezone, just in case.</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="n">postgres</span><span class="o">=</span><span class="o">#</span> <span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">db</span> <span class="k">SET</span> <span class="n">timezone</span> <span class="k">TO</span> <span class="s1">&#39;</span><span class="s1">UTC</span><span class="s1">&#39;</span><span class="p">;</span>
-<span class="k">ALTER</span> <span class="k">DATABASE</span>
-</code></pre></div><p>Check the timezone</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="n">postgres</span><span class="o">=</span><span class="o">#</span> <span class="k">show</span> <span class="n">timezone</span><span class="p">;</span>
- <span class="n">TimeZone</span>
-<span class="c1">----------
-</span><span class="c1"></span> <span class="n">Etc</span><span class="o">/</span><span class="n">UTC</span>
-</code></pre></div><p>Revoke access and create for everyone on schema <code>public</code>.
-Grant <code>USAGE</code> and <code>CREATE</code> for admin user <code>db_admin</code>.
-Grant <code>USAGE</code> for <code>db_user</code> and <code>db_readonly</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">REVOKE</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">FROM</span> <span class="k">PUBLIC</span><span class="p">;</span>
+<p>Create file <code>setup_db.sql</code> and execute the following</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ psql -h localhost -U <span class="o">[</span>username<span class="o">]</span> -f setup_db.sql
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">ALTER</span> <span class="k">DATABASE</span> <span class="n">db</span> <span class="k">SET</span> <span class="n">timezone</span> <span class="k">TO</span> <span class="s1">&#39;</span><span class="s1">UTC</span><span class="s1">&#39;</span><span class="p">;</span>
+
+<span class="cm">/*</span><span class="cm"> 
+</span><span class="cm">Revoke access and create for everyone on schema `public`.
+</span><span class="cm">Grant `USAGE` and `CREATE` for admin user `db_admin`.
+</span><span class="cm">Grant `USAGE` for `db_user` and `db_readonly`.
+</span><span class="cm"></span><span class="cm">*/</span>
+<span class="k">REVOKE</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">FROM</span> <span class="k">PUBLIC</span><span class="p">;</span>
 <span class="k">REVOKE</span> <span class="k">CREATE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">FROM</span> <span class="k">PUBLIC</span><span class="p">;</span>
 
 <span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">to</span> <span class="n">db_admin</span><span class="p">;</span>
@@ -215,8 +213,15 @@ Grant <code>USAGE</code> for <code>db_user</code> and <code>db_readonly</code>.<
 
 <span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">to</span> <span class="n">db_user</span><span class="p">;</span>
 <span class="k">GRANT</span> <span class="k">USAGE</span> <span class="k">ON</span> <span class="k">SCHEMA</span> <span class="k">public</span> <span class="k">to</span> <span class="n">db_readonly</span><span class="p">;</span>
+</code></pre></div><p>Check the timezone</p>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="n">postgres</span><span class="o">=</span><span class="o">#</span> <span class="k">show</span> <span class="n">timezone</span><span class="p">;</span>
+ <span class="n">TimeZone</span>
+<span class="c1">----------
+</span><span class="c1"></span> <span class="n">Etc</span><span class="o">/</span><span class="n">UTC</span>
 </code></pre></div><h2 id="create-table-and-set-up-table-privilages">Create Table and set up Table privilages</h2>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">product</span><span class="p">(</span>
+<p>Create file <code>create_table.sql</code> and execute the following</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ psql -h localhost -U <span class="o">[</span>username<span class="o">]</span> -f create_table.sql
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">product</span><span class="p">(</span>
 	<span class="n">id</span> <span class="n">uuid</span><span class="p">,</span>
 	<span class="n">name</span> <span class="nb">character</span> <span class="nb">varying</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
 	<span class="k">type</span> <span class="nb">character</span> <span class="nb">varying</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span> <span class="k">not</span> <span class="k">null</span><span class="p">,</span>
