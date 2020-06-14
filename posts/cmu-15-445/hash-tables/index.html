@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>CMU Databases Systems: 06 Hash Tables - Sir</title><meta name="Description" content=""><meta property="og:title" content="CMU Databases Systems: 06 Hash Tables" />
+<meta property="og:description" content="Hash Tables A hash table is an abstract data type that implements arbitrary array that maps keys to values.
+ Space complexity: O(N) Operation complexity: Average is O(1), worst case is O(N).  Hash Function A hash function is how to map a large key space into a smaller domain. Need to consider the trade-off between fast execution vs. collision rate.
+The fastest hash function is with a constant key, it will always return the same index." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/cmu-15-445/hash-tables/" />
+<meta property="article:published_time" content="2020-06-14T12:24:08+08:00" />
+<meta property="article:modified_time" content="2020-06-14T12:24:08+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CMU Databases Systems: 06 Hash Tables"/>
+<meta name="twitter:description" content="Hash Tables A hash table is an abstract data type that implements arbitrary array that maps keys to values.
+ Space complexity: O(N) Operation complexity: Average is O(1), worst case is O(N).  Hash Function A hash function is how to map a large key space into a smaller domain. Need to consider the trade-off between fast execution vs. collision rate.
+The fastest hash function is with a constant key, it will always return the same index."/>
+<meta name="application-name" content="Sir">
+<meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/cmu-15-445/hash-tables/" /><link rel="prev" href="https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "CMU Databases Systems: 06 Hash Tables",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/hash-tables\/"
+        },"genre": "posts","keywords": "CMU, 15-445","wordcount":  1026 ,
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/hash-tables\/","datePublished": "2020-06-14T12:24:08+08:00","dateModified": "2020-06-14T12:24:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+                "@type": "Person",
+                "name": "Lee Wei"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sir">Sir</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sir">Sir</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 06 Hash Tables</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-14>2020-06-14</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1026 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hash-tables">Hash Tables</a></li>
+    <li><a href="#hash-function">Hash Function</a>
+      <ul>
+        <li><a href="#hash-function-in-rdbms">Hash Function in RDBMS</a></li>
+      </ul>
+    </li>
+    <li><a href="#hash-scheme">Hash Scheme</a></li>
+    <li><a href="#static-hashing-schemes">Static Hashing Schemes</a>
+      <ul>
+        <li><a href="#linear-probe-hashing">Linear Probe Hashing</a></li>
+        <li><a href="#robin-hood-hashing">Robin Hood Hashing</a></li>
+        <li><a href="#cuckoo-hashing">Cuckoo Hashing</a></li>
+      </ul>
+    </li>
+    <li><a href="#dynamic-hashing-schemes">Dynamic Hashing Schemes</a>
+      <ul>
+        <li><a href="#chained-hashing">Chained Hashing</a></li>
+        <li><a href="#extendible-hashing">Extendible Hashing</a></li>
+        <li><a href="#linear-hashing">Linear Hashing</a></li>
+      </ul>
+    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="hash-tables">Hash Tables</h2>
+<p>A hash table is an abstract data type that implements arbitrary array that maps keys to values.</p>
+<ul>
+<li>Space complexity: O(N)</li>
+<li>Operation complexity: Average is O(1), worst case is O(N).</li>
+</ul>
+<h2 id="hash-function">Hash Function</h2>
+<p>A hash function is <code>how to map a large key space into a smaller domain.</code>
+Need to consider the trade-off between fast execution vs. collision rate.</p>
+<p>The fastest hash function is with a constant key, it will always return the same index.
+However, the collision rate will be 100%.
+We need to find a median that is reasonable for its execution time and collision rate.</p>
+<p>The function should always generate the same hash output.</p>
+<h3 id="hash-function-in-rdbms">Hash Function in RDBMS</h3>
+<p>The DBMS does not want to use a cryptography hash function (e.g., SHA-256) because we do not need
+to worry about protecting the contents of keys. These hash functions are primarily used internally by the
+DBMS and thus information is not leaked outside of the system.</p>
+<p>We want a hash function that is fast and has a low collision rate.</p>
+<h2 id="hash-scheme">Hash Scheme</h2>
+<p>A hash scheme is <code>how to handle key collisions after hashing.</code>
+Need to consider the trade-off between the need to allocate a large hash table to reduce collisions vs. executing additional instructions to
+find/insert keys.</p>
+<p>We need to find a median that is in between the allocated memory and the extra operations when we have a collision.</p>
+<h2 id="static-hashing-schemes">Static Hashing Schemes</h2>
+<h3 id="linear-probe-hashing">Linear Probe Hashing</h3>
+<p>It is typically the fastest. It uses a single table of slots. The hash
+function allows the DBMS to quickly jump to slots and look for the desired key.</p>
+<p>After deleting one of the slot, it may cause some searching problems if the slot is empty.
+There are two ways to executes delete in Linear Probe Hasing:</p>
+<ol>
+<li>Tombstone: set up a tombstone after deleting a slot.
+Next time, the hash function search on the tombstone slot will skip to the next slot.
+This is the easiest way to do this. However, it will waste memory spaces.</li>
+<li>Movement: move the other slots to fill the deleted slots.
+Yet there might be some searching errors for this approach.</li>
+</ol>
+<h3 id="robin-hood-hashing">Robin Hood Hashing</h3>
+<p>This is an extension of linear probe hashing that seeks to reduce the maximum distance of each key from
+their optimal position in the hash table. Allows threads to steal slots from “rich” keys and give them to “poor” keys.</p>
+<ul>
+<li>Each key tracks the number of positions they are from where its optimal position in the table.</li>
+<li>On insert, a key takes the slot of another key if the first key is farther away from its optimal position
+than the second key. The removed key then has to be re-inserted back into the table in the next slot.</li>
+</ul>
+<p>The greater the number far from the slot's optimal position, the poorer the key is.
+i.e. A[4] is poorer than B[2]</p>
+<p>Robin Hood Hashing will guarantee every slots have an average distance from their optimal position.</p>
+<h3 id="cuckoo-hashing">Cuckoo Hashing</h3>
+<p>Instead of using a single hash table, this approach maintains multiple hash tables with different hash functions.
+The hash function are the same algorithm (e.g., XXHash, CityHash); they generate different hashes for the
+same key by using different seed values.</p>
+<ul>
+<li>On insert, check every table and pick anyone that has a free slot. Flip a coin to choose if there are multiple tables available.</li>
+<li>If no table has free slot, evict element from one of them, and rehash it to find a new location.</li>
+<li>If we are stuck in a infinity loop, then we can rebuild all of the hash tables with new hash function seeds (less
+common) or rebuild the hash tables using larger tables (more common).</li>
+</ul>
+<h2 id="dynamic-hashing-schemes">Dynamic Hashing Schemes</h2>
+<p>Dynamic hashing schemes are able to resize the hash table on demand without needing to rebuild the entire table.</p>
+<h3 id="chained-hashing">Chained Hashing</h3>
+<p>The most common dynamic hashing scheme. The DBMS maintains a linked list of buckets for each slot in the hash table.</p>
+<ul>
+<li>Resolves collisions by placing elements with same hash key into the same bucket.</li>
+<li>If the bucket is full, add another bucket to that chain. The hash table can grow infinitely.</li>
+</ul>
+<h3 id="extendible-hashing">Extendible Hashing</h3>
+<p>Extendible Hashing splits buckets instead of letting chains to grow forever. This
+approach allows multiple slot locations in the hash table to point to the same bucket chain.</p>
+<p>The core idea behind re-balancing the hash table is to to move bucket entries on split and increase the number
+of bits to examine to find entries in the hash table. This means that the DBMS only has to move data within
+the buckets of the split chain; all other buckets are left untouched.</p>
+<ul>
+<li>The DBMS maintains a global and local depth bit counts that determine the number bits needed to
+find buckets in the slot array. i.e. global is 2. A new hash is 10100, the hash scheme will look up the bucket(10) to insert the hash.</li>
+<li>When a bucket is full, the DBMS splits the bucket and reshuffle its elements. If the local depth of
+the split bucket is less than the global depth, then the new bucket is just added to the existing slot
+array. Otherwise, the DBMS doubles the size of the slot array to accommodate the new bucket and
+increments the global depth counter.</li>
+</ul>
+<p>The operation of extend slot array is much cheaper than moving data pages.</p>
+<h3 id="linear-hashing">Linear Hashing</h3>
+<p>Instead of immediately splitting a bucket when it overflows, this scheme maintains a split pointer that keeps track of the next bucket to split. No matter whether this pointer is pointing to the bucket that overflowed, the DBMS always splits.</p>
+<ul>
+<li>When any bucket overflows, split the bucket at the pointer location by adding a new slot entry, and create a new hash function.</li>
+<li>If hash function maps to slot that has previously been pointed to by pointer, apply the new hash function.</li>
+<li>When pointer reaches last slot, delete original hash function and replace it with new hash function</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<ul>
+<li>Fast data structures that support O(1) look-ups that are all used throughtout the DBMS internally.</li>
+<li>Hash tables are usually not we want to use for table index. Because Hash tables can only do exact look-up, cannot do partial look-up.</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>The article was updated on 2020-06-14</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2020/postgre-sql-create-user-db-tables/" class="prev" rel="prev" title="PostgreSQL: Create Users, Databases and Tables"><i class="fas fa-angle-left fa-fw"></i>PostgreSQL: Create Users, Databases and Tables</a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

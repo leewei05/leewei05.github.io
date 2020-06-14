@@ -3,7 +3,16 @@
         <title>15-445 - Tag - Sir</title>
         <link>https://www.leewei.co/tags/15-445/</link>
         <description>15-445 - Tag - Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 17 May 2020 11:06:48 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/15-445/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 14 Jun 2020 12:24:08 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/15-445/" rel="self" type="application/rss+xml" /><item>
+    <title>CMU Databases Systems: 06 Hash Tables</title>
+    <link>https://www.leewei.co/posts/cmu-15-445/hash-tables/</link>
+    <pubDate>Sun, 14 Jun 2020 12:24:08 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/cmu-15-445/hash-tables/</guid>
+    <description><![CDATA[Hash Tables A hash table is an abstract data type that implements arbitrary array that maps keys to values.
+ Space complexity: O(N) Operation complexity: Average is O(1), worst case is O(N).  Hash Function A hash function is how to map a large key space into a smaller domain. Need to consider the trade-off between fast execution vs. collision rate.
+The fastest hash function is with a constant key, it will always return the same index.]]></description>
+</item><item>
     <title>CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</title>
     <link>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</link>
     <pubDate>Sun, 17 May 2020 11:06:48 &#43;0800</pubDate>
