@@ -3,7 +3,15 @@
         <title>Sir</title>
         <link>https://www.leewei.co/</link>
         <description>Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 14 Jun 2020 12:24:08 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 17 Jun 2020 16:37:39 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+    <title>Go RESTful API from scratch pt.1</title>
+    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</link>
+    <pubDate>Wed, 17 Jun 2020 16:37:39 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</guid>
+    <description><![CDATA[This part 1 of building a Go RESTful API. Our final goal is to build up a CI/CD pipeline using the following tech stack. Wish me luck, nothing is easy in the beginning. 😆
+* Go * GitLab -&gt; Repository * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE * Jenkins -&gt; CI/CD job In this part, we're going to set up a simple HTTP server and local PostgreSQL.]]></description>
+</item><item>
     <title>CMU Databases Systems: 06 Hash Tables</title>
     <link>https://www.leewei.co/posts/cmu-15-445/hash-tables/</link>
     <pubDate>Sun, 14 Jun 2020 12:24:08 &#43;0800</pubDate>
@@ -78,13 +86,5 @@ SQL History SQL's full name is Structured Query Language, IBM originally called 
     <guid>https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/</guid>
     <description><![CDATA[A note for the best practice of MySQL/MariaDB. (To be updated)
 Datatype  Use CHAR datatype if the length of the data is fixed. Instead, use VARCHAR to store variable length data. It is slightly more faster to use CHAR over VARCHAR when the data length is fixed. Avoid using BLOB datatype. Store BLOB data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob.]]></description>
-</item><item>
-    <title>Startup Playbook: a startup framework</title>
-    <link>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</link>
-    <pubDate>Sun, 22 Dec 2019 12:48:19 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</guid>
-    <description><![CDATA[I found an startup playbook that is created by Sam Altman, former president of Y Combinator. It's a great website if anyone wants to start their company in the future. Here is the summery of this playbook and some of my thoughts:
-The Idea This is the most important part of starting a startup. A startup needs to focus on what it is solving and who needs this product. It's not like you can think of a idea overnight, I think sometimes a good idea came from stupid, shitty topic.]]></description>
 </item></channel>
 </rss>

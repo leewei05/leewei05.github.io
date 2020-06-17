@@ -2,12 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://www.leewei.co/tags/app/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/restful/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-06-17T16:37:39&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/15-445/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/cmu/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/cmu-15-445/hash-tables/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-06-14T12:24:08&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/postgresql/</loc><lastmod>2020-05-31T23:58:56&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</loc><lastmod>2020-05-31T23:58:56&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</loc><lastmod>2020-05-17T11:06:48&#43;08:00</lastmod></url><url>
