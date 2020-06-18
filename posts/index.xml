@@ -3,7 +3,16 @@
         <title>All Posts - Sir</title>
         <link>https://www.leewei.co/posts/</link>
         <description>All Posts | Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 17 Jun 2020 16:37:39 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Jun 2020 10:41:42 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>DNS(Domain Name System) Overview</title>
+    <link>https://www.leewei.co/posts/2020/dns-brief-records/</link>
+    <pubDate>Thu, 18 Jun 2020 10:41:42 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/dns-brief-records/</guid>
+    <description><![CDATA[This is a summary of DNS related topics that we met in our daily life. Recommend anyone who wants to dive deep in DNS to read the article written by Cloudflare
+What is DNS? The Domain Name System(DNS) is a service that translate domain names to IP addresses. So that, we can load resources from web server to our local browser.
+How does DNS work? The process of DNS resolution is the following:]]></description>
+</item><item>
     <title>Go RESTful API from scratch pt.1</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</link>
     <pubDate>Wed, 17 Jun 2020 16:37:39 &#43;0800</pubDate>
@@ -78,13 +87,5 @@ SQL History SQL's full name is Structured Query Language, IBM originally called 
     <author>Author</author>
     <guid>https://www.leewei.co/posts/cmu-15-445/relational-model/</guid>
     <description><![CDATA[I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn't do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don't I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus.]]></description>
-</item><item>
-    <title>MySQL/Mariadb Best Practice</title>
-    <link>https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/</link>
-    <pubDate>Sat, 18 Jan 2020 14:37:02 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/mysql-mariadb-best-practice/</guid>
-    <description><![CDATA[A note for the best practice of MySQL/MariaDB. (To be updated)
-Datatype  Use CHAR datatype if the length of the data is fixed. Instead, use VARCHAR to store variable length data. It is slightly more faster to use CHAR over VARCHAR when the data length is fixed. Avoid using BLOB datatype. Store BLOB data might boost up the total size of the database. We can consifer storing these blob data into other servers, and we store the URL link to these blob.]]></description>
 </item></channel>
 </rss>
