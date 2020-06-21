@@ -3,10 +3,10 @@
         <title>Go - Tag - Sir</title>
         <link>https://www.leewei.co/tags/go/</link>
         <description>Go - Tag - Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 19 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/go/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/go/" rel="self" type="application/rss+xml" /><item>
     <title>Go RESTful API from scratch pt.2</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</link>
-    <pubDate>Fri, 19 Jun 2020 08:32:11 &#43;0800</pubDate>
+    <pubDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</guid>
     <description><![CDATA[In this part, we will build a RESTful API server and wrap it in Docker. After that, we'll deploy it on GKE and start build our CI/CD pipeline for the whole project.
