@@ -3,7 +3,17 @@
         <title>Sir</title>
         <link>https://www.leewei.co/</link>
         <description>Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 18 Jun 2020 10:41:42 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 19 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+    <title>Go RESTful API from scratch pt.2</title>
+    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</link>
+    <pubDate>Fri, 19 Jun 2020 08:32:11 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</guid>
+    <description><![CDATA[In this part, we will build a RESTful API server and wrap it in Docker. After that, we'll deploy it on GKE and start build our CI/CD pipeline for the whole project.
+Import Environment Variables Using environment variables to define our database parameters is a better way. There are several reasons that we should not hard code our parameters:
+Security
+I have seen a lot of cases that people upload their credentials or their database information to Github.]]></description>
+</item><item>
     <title>DNS(Domain Name System) Overview</title>
     <link>https://www.leewei.co/posts/2020/dns-brief-records/</link>
     <pubDate>Thu, 18 Jun 2020 10:41:42 &#43;0800</pubDate>
@@ -80,12 +90,5 @@ $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL i
     <description><![CDATA[Relational Languages User only needs to specify the data they want using declaritive language(e.g. SQL), not how to compute it. The DBMS is responsible for optimizing a query plan.
 SQL History SQL's full name is Structured Query Language, IBM originally called it SEQUEL, but got sued by some people in the UK. So they ended up called it SQL.
  ANSI Standard in 1986 ISO in 1987  Most DBMSs at least supports SQL-92.]]></description>
-</item><item>
-    <title>CMU Databases Systems: 01 Relational Model</title>
-    <link>https://www.leewei.co/posts/cmu-15-445/relational-model/</link>
-    <pubDate>Thu, 02 Apr 2020 17:29:54 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/cmu-15-445/relational-model/</guid>
-    <description><![CDATA[I got rejected by CMU last week. Not surprised by the result, because I prepared the application in a short amount of time. Also, I didn't do well on the online coding test. Although the outcome is quite depressing, I still managed to look on the bright side. &ldquo;There are numerous CMU online courses, why don't I just take these courses and do the assignments?&rdquo; Plus, thanks to the freaking Corona virus.]]></description>
 </item></channel>
 </rss>
