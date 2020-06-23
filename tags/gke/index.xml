@@ -3,14 +3,14 @@
         <title>GKE - Tag - Sir</title>
         <link>https://www.leewei.co/tags/gke/</link>
         <description>GKE - Tag - Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/gke/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/gke/" rel="self" type="application/rss+xml" /><item>
     <title>Go RESTful API from scratch pt.3</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</link>
-    <pubDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</pubDate>
+    <pubDate>Tue, 23 Jun 2020 08:32:11 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</guid>
-    <description><![CDATA[On the previous post, we have already build our Docker image and succefully run it on our local computer. Right now, we are going to know some basic knowledge of Google Kubernetes Engine and how to deploy our service to it.
-Kubernetes Kubernetes(k8s) is an open source system for users to manage their containerized application.
+    <description><![CDATA[On the previous post, we have already build our Docker image and succefully run it on our local computer. Right now, we are going to learn some basic knowledge of Google Kubernetes Engine and how to deploy our service to it.
+Kubernetes Kubernetes(k8s) is an open source system for users to manage their containerized applications.
 Why do we need Kubernetes? Kubernetes is a system that makes sure our containers are running as we expected.]]></description>
 </item></channel>
 </rss>
