@@ -32,7 +32,7 @@ Example 1: without DIP Let&#39;s say we have an application that has the followi
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2019\/dependency-inversion-principle\/"
-        },"genre": "posts","keywords": "golang, clean architecture, dip","wordcount":  502 ,
+        },"genre": "posts","keywords": "golang, clean architecture, dip","wordcount":  505 ,
         "url": "https:\/\/www.leewei.co\/posts\/2019\/dependency-inversion-principle\/","datePublished": "2019-12-11T00:13:40+08:00","dateModified": "2019-12-11T00:13:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
                 "@type": "Person",
                 "name": "Lee Wei"
@@ -81,7 +81,7 @@ Example 1: without DIP Let&#39;s say we have an application that has the followi
         </div><article class="page single"><h1 class="single-title animated flipInX">Dependency Inversion Principle</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-12-11>2019-12-11</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 502 words&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 505 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;3 min&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -147,14 +147,16 @@ Later on, SQLite might not be able to handle large concurrent users.
 So the team want to switch to PostgreSQL database for a better performace handling.</p>
 <p><strong>Since business layer(core package) is depend on the abstraction(interface),
 the team just needs to change some configurations in the dao package and doesn't have to change any code in the business layer!</strong></p>
-<p><img
-        class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-src="/img/noice.gif"
-        data-srcset="/img/noice.gif, /img/noice.gif 1.5x, /img/noice.gif 2x"
-        data-sizes="auto"
-        alt="Noice"
-        title="Noice" /></p>
+<p><figure><a class="lightgallery" href="/noice.gif" title="Noice" data-thumbnail="/noice.gif" data-sub-html="<h2>Noice</h2><p>Noice</p>">
+        <img
+            class="lazyload"
+            src="/svg/loading/normal.min.svg"
+            data-src="/noice.gif"
+            data-srcset="/noice.gif, /noice.gif 1.5x, /noice.gif 2x"
+            data-sizes="auto"
+            alt="Noice" />
+    </a><figcaption class="image-caption">Noice</figcaption>
+    </figure></p>
 <ol start="3">
 <li>Maintainable</li>
 </ol>
