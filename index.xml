@@ -3,7 +3,14 @@
         <title>Sir</title>
         <link>https://www.leewei.co/</link>
         <description>Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Jun 2020 08:32:11 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Jun 2020 22:32:19 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+    <title>Go RESTful API pt.4 - GitLab Respository</title>
+    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</link>
+    <pubDate>Tue, 23 Jun 2020 22:32:19 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</guid>
+    <description><![CDATA[In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don't we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.]]></description>
+</item><item>
     <title>Go RESTful API pt.3 - Running on GKE</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</link>
     <pubDate>Tue, 23 Jun 2020 08:32:11 &#43;0800</pubDate>
@@ -80,15 +87,5 @@ In a broader view of RDBMS, Schema is generally refered as the definition of tab
     <description><![CDATA[Course Outline The main purpose of this course is How to build a software of database management system.
 Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
 Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.]]></description>
-</item><item>
-    <title>PostgreSQL: Server setup on Ubuntu 18.04</title>
-    <link>https://www.leewei.co/posts/2020/postgre-sql-set-up/</link>
-    <pubDate>Fri, 03 Apr 2020 09:57:59 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/postgre-sql-set-up/</guid>
-    <description><![CDATA[Install PostgreSQL Create a file /etc/apt/sources.list.d/pgdg.list and add the following line to that file deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main. We can get the PostgreSQL APT repository from the official website.
-$ sudo sh -c &#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39; Import the repository public key
-$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
-$ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL is running as expected]]></description>
 </item></channel>
 </rss>

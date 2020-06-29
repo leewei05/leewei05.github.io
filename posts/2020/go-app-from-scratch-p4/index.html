@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/"
-        },"genre": "posts","keywords": "Go, App, RESTful, GitLab, GCE","wordcount":  712 ,
+        },"genre": "posts","keywords": "Go, App, RESTful, GitLab, GCE","wordcount":  729 ,
         "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/","datePublished": "2020-06-23T22:32:19+08:00","dateModified": "2020-06-23T22:32:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
                 "@type": "Person",
                 "name": "Lee Wei"
@@ -75,7 +75,7 @@
         </div><article class="page single"><h1 class="single-title animated flipInX">Go RESTful API pt.4 - GitLab Respository</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-23>2020-06-23</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 712 words&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 729 words&nbsp;
                 <i class="far fa-clock fa-fw"></i>&nbsp;4 min&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
@@ -95,6 +95,7 @@
       </ul>
     </li>
     <li><a href="#set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</a></li>
+    <li><a href="#enable-https-for-gitlab">Enable HTTPS for GitLab</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>In this post, we are going to set up a GitLab server on GCP.
@@ -125,14 +126,14 @@ gitlab-subnet  us-west1                 gitlab-network  10.0.8.0/24
 Create a GCE instance on us-west1 region:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gcloud compute instances create gitlab-server <span class="se">\
 </span><span class="se"></span>    --zone us-west1-a <span class="se">\
-</span><span class="se"></span>    --machine-type n1-standard-1 <span class="se">\
+</span><span class="se"></span>    --machine-type n1-standard-2 <span class="se">\
 </span><span class="se"></span>    --network gitlab-network <span class="se">\
 </span><span class="se"></span>    --subnet gitlab-subnet <span class="se">\
 </span><span class="se"></span>    --image<span class="o">=</span>ubuntu-1804-bionic-v20200610 <span class="se">\
 </span><span class="se"></span>    --image-project<span class="o">=</span>ubuntu-os-cloud
 Created <span class="o">[</span>https://www.googleapis.com/compute/v1/projects/<span class="o">[</span>PROJECT_ID<span class="o">]</span>/zones/us-west1-a/instances/gitlab-server<span class="o">]</span>.
 NAME           ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP   STATUS
-gitlab-server  us-west1-a  n1-standard-1               10.0.8.2     <span class="o">[</span>EXTERNAL_IP<span class="o">]</span> RUNNING
+gitlab-server  us-west1-a  n1-standard-2               10.0.8.2     <span class="o">[</span>EXTERNAL_IP<span class="o">]</span> RUNNING
 </code></pre></div><h2 id="assign-a-static-external-ip-for-gce">Assign a Static external IP for GCE</h2>
 <p>By default, GCP assign a ephemeral IP address for our GCE instance.
 We need to promote our current IP address to Static if we want to set up a domain for our server.</p>
@@ -204,23 +205,21 @@ lee@gitlab-server:~$
 </code></pre></div><h3 id="install-gitlab-on-gce-1">Install GitLab on GCE</h3>
 <p>Follow the steps on this <a href="https://about.gitlab.com/install/#ubuntu" target="_blank" rel="noopener noreffer">document</a> to install GitLab.
 It might take some time to run through the installation, you should be fine. 😏</p>
-<p>Make sure you use <code>http://gitlab.example.com</code> for external url, we'll set up SSL later.</p>
+<p>Make sure you use <code>http://gitlab.example.com</code> for <code>external_url</code> in <code>/etc/gitlab/gitlab.rb</code>, we'll set up SSL later.</p>
 <p>After the installation is finished, we can access our GitLab with the external IP of the GCE.
 Open your browser with <code>http://[EXTERNAL_IP]</code>, and we will see our GitLab login page.</p>
-<p><figure><a class="lightgallery" href="/static/gitlab.png" title="GitLab Login" data-thumbnail="/static/gitlab.png" data-sub-html="<h2>GitLab Login</h2><p>GitLab Login</p>">
-        <img
-            class="lazyload"
-            src="/svg/loading/normal.min.svg"
-            data-src="/static/gitlab.png"
-            data-srcset="/static/gitlab.png, /static/gitlab.png 1.5x, /static/gitlab.png 2x"
-            data-sizes="auto"
-            alt="GitLab Login" />
-    </a><figcaption class="image-caption">GitLab Login</figcaption>
-    </figure></p>
+<figure>
+    <img src="../img/gitlab.png"/> <figcaption>
+            <h4>GitLab Login page</h4>
+        </figcaption>
+</figure>
+
 <h2 id="set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</h2>
-<p>We need to buy a domain for our GitLab server, or else we will access it with the external IP of the GCE instance.</p>
+<p>We need to buy a domain for our GitLab server, or else we will access it using external IP of the GCE instance.</p>
 <p>I bought my domain on GoDaddy, let's assume your domain is <code>example.com</code>.
 Set up a sub-domain <code>gitlab.example.com</code> to direct to <code>[EXTERNAL_IP]</code> that we reserved above.</p>
+<p>After setting up our sub-domain, we can access to our GitLab page using the domain <code>gitlab.example.com</code>.</p>
+<h2 id="enable-https-for-gitlab">Enable HTTPS for GitLab</h2>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

@@ -2,16 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://www.leewei.co/tags/app/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/app/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/gce/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/gitlab/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/restful/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-06-23T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/docker/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gke/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/kubernetes/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/restful/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</loc><lastmod>2020-06-21T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/dns/</loc><lastmod>2020-06-18T10:41:42&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/dns-brief-records/</loc><lastmod>2020-06-18T10:41:42&#43;08:00</lastmod></url><url>
