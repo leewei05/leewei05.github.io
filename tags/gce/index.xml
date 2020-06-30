@@ -3,10 +3,10 @@
         <title>GCE - Tag - Sir</title>
         <link>https://www.leewei.co/tags/gce/</link>
         <description>GCE - Tag - Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 23 Jun 2020 22:32:19 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/gce/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 25 Jun 2020 22:32:19 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/gce/" rel="self" type="application/rss+xml" /><item>
     <title>Go RESTful API pt.4 - GitLab Respository</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</link>
-    <pubDate>Tue, 23 Jun 2020 22:32:19 &#43;0800</pubDate>
+    <pubDate>Thu, 25 Jun 2020 22:32:19 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</guid>
     <description><![CDATA[In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don't we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.]]></description>
