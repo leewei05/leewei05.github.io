@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/"
-        },"genre": "posts","keywords": "Go, App, RESTful, GitLab, GCE","wordcount":  729 ,
+        },"genre": "posts","keywords": "Go, App, RESTful, GitLab, GCE","wordcount":  1008 ,
         "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/","datePublished": "2020-06-23T22:32:19+08:00","dateModified": "2020-06-23T22:32:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
                 "@type": "Person",
                 "name": "Lee Wei"
@@ -75,8 +75,8 @@
         </div><article class="page single"><h1 class="single-title animated flipInX">Go RESTful API pt.4 - GitLab Respository</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
             <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-23>2020-06-23</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 729 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;4 min&nbsp;</div>
+                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1008 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
         </div><div class="details toc" id="toc-static">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -91,11 +91,13 @@
     <li><a href="#install-gitlab-on-gce">Install GitLab on GCE</a>
       <ul>
         <li><a href="#ssh-login-to-gce">SSH login to GCE</a></li>
-        <li><a href="#install-gitlab-on-gce-1">Install GitLab on GCE</a></li>
+        <li><a href="#set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</a></li>
+        <li><a href="#install-gitlab-server">Install GitLab server</a></li>
       </ul>
     </li>
-    <li><a href="#set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</a></li>
+    <li><a href="#login-to-gitlab">Login to GitLab</a></li>
     <li><a href="#enable-https-for-gitlab">Enable HTTPS for GitLab</a></li>
+    <li><a href="#what-we-have-accomplished">What we have accomplished!</a></li>
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>In this post, we are going to set up a GitLab server on GCP.
@@ -202,7 +204,20 @@ Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 applicable law.
 
 lee@gitlab-server:~$
-</code></pre></div><h3 id="install-gitlab-on-gce-1">Install GitLab on GCE</h3>
+</code></pre></div><h3 id="set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</h3>
+<p>We need to buy a domain for our GitLab server, or else we will access it using external IP of the GCE instance.</p>
+<p>I bought my domain on GoDaddy, let's assume your domain is <code>example.com</code>.
+Set up a sub-domain <code>gitlab.example.com</code> to direct to <code>[EXTERNAL_IP]</code> that we reserved above.</p>
+<p>After setting up our sub-domain, we can access to our GitLab page using the domain <code>gitlab.example.com</code>.</p>
+<div class="details admonition danger open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-skull-crossbones fa-fw"></i>Not so fast<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content">We haven't install our GitLab server yet. 😏</div>
+        </div>
+    </div>
+<h3 id="install-gitlab-server">Install GitLab server</h3>
 <p>Follow the steps on this <a href="https://about.gitlab.com/install/#ubuntu" target="_blank" rel="noopener noreffer">document</a> to install GitLab.
 It might take some time to run through the installation, you should be fine. 😏</p>
 <p>Make sure you use <code>http://gitlab.example.com</code> for <code>external_url</code> in <code>/etc/gitlab/gitlab.rb</code>, we'll set up SSL later.</p>
@@ -214,12 +229,75 @@ Open your browser with <code>http://[EXTERNAL_IP]</code>, and we will see our Gi
         </figcaption>
 </figure>
 
-<h2 id="set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</h2>
-<p>We need to buy a domain for our GitLab server, or else we will access it using external IP of the GCE instance.</p>
-<p>I bought my domain on GoDaddy, let's assume your domain is <code>example.com</code>.
-Set up a sub-domain <code>gitlab.example.com</code> to direct to <code>[EXTERNAL_IP]</code> that we reserved above.</p>
-<p>After setting up our sub-domain, we can access to our GitLab page using the domain <code>gitlab.example.com</code>.</p>
+<h2 id="login-to-gitlab">Login to GitLab</h2>
+<p>We can use account <code>root</code> to login to GitLab.
+Need to <a href="https://docs.gitlab.com/ee/security/reset_root_password.html" target="_blank" rel="noopener noreffer">reset root password</a> before login.</p>
+<p>Initial Ruby on Rails console to configure <code>root</code> password.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ sudo gitlab-rails console -e production
+--------------------------------------------------------------------------------
+ GitLab:       13.1.0-ee <span class="o">(</span>1fa237df2f4<span class="o">)</span> EE
+ GitLab Shell: 13.3.0
+ PostgreSQL:   11.7
+--------------------------------------------------------------------------------
+Loading production environment <span class="o">(</span>Rails 6.0.3.1<span class="o">)</span>
+irb<span class="o">(</span>main<span class="o">)</span>:001:0&gt; <span class="nv">user</span> <span class="o">=</span> User.find_by<span class="o">(</span>email: <span class="s1">&#39;admin@example.com&#39;</span><span class="o">)</span>
+<span class="o">=</span>&gt; <span class="c1">#&lt;User id:1 @root&gt;</span>
+irb<span class="o">(</span>main<span class="o">)</span>:005:0&gt; user.password <span class="o">=</span> <span class="s1">&#39;12345678&#39;</span>
+<span class="o">=</span>&gt; <span class="s2">&#34;12345678&#34;</span>
+irb<span class="o">(</span>main<span class="o">)</span>:006:0&gt; user.password_confirmation <span class="o">=</span> <span class="s1">&#39;12345678&#39;</span>
+<span class="o">=</span>&gt; <span class="s2">&#34;12345678&#34;</span>
+irb<span class="o">(</span>main<span class="o">)</span>:007:0&gt; user.save!
+Enqueued ActionMailer::DeliveryJob <span class="o">(</span>Job ID: 4673c2cb-543b-449d-bfa2-16fa5583b192<span class="o">)</span> to Sidekiq<span class="o">(</span>mailers<span class="o">)</span> with arguments: <span class="s2">&#34;DeviseMailer&#34;</span>, <span class="s2">&#34;password_change&#34;</span>, <span class="s2">&#34;deliver_now&#34;</span>, <span class="c1">#&lt;GlobalID:0x00007f4af5babcf0 @uri=#&lt;URI::GID gid://gitlab/User/1&gt;&gt;</span>
+<span class="o">=</span>&gt; <span class="nb">true</span>
+</code></pre></div><p>After executing <code>user.save!</code>, we can login with the password we just configured.</p>
+<figure>
+    <img src="../img/gitlab_login.png"/> <figcaption>
+            <h4>GitLab Welcome page</h4>
+        </figcaption>
+</figure>
+
 <h2 id="enable-https-for-gitlab">Enable HTTPS for GitLab</h2>
+<div class="details admonition tip open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-lightbulb fa-fw"></i>Tip<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>Make sure to create an <code>A record</code> for your gitlab domain.</li>
+<li>Make sure your 80 port is <a href="https://letsencrypt.org/docs/allow-port-80/" target="_blank" rel="noopener noreffer">open</a> through all of the firewall, including GCPs and OS level firewalls.</li>
+<li>Use <code>https://letsdebug.net/</code> to troubleshoot Let's Encrypt <a href="https://letsencrypt.org/docs/challenge-types/" target="_blank" rel="noopener noreffer">HTTP-01 Challenge</a>.</li>
+</ol></div>
+        </div>
+    </div>
+<p>Since version 10.7, GitLab provided native Let's Encrypt intergration.
+We only need to add the following configuration in <code>/etc/gitlab/gitlab.rb</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">external_url</span> <span class="s1">&#39;https://[GITLAB_DOMAIN]&#39;</span>
+<span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;enable&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_hour&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="o"></span><span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_minute&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="o"></span><span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_day_of_month&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="s2">*/4</span><span class="s2">&#34;</span>
+<span class="n">nginx</span><span class="o">[</span><span class="s1">&#39;redirect_http_to_https&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+<span class="n">nginx</span><span class="o">[</span><span class="s1">&#39;redirect_http_to_https_port&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="o"></span></code></pre></div><p>After saving the file, execute the following command to re-configure GitLab:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gitlab-ctl reconfigure
+</code></pre></div><p>Finising the re-configuration, we can browse to our GitLab page with https!
+And also we enabled http to https redirect, whenever there is a http access, it'll be redirect to https.</p>
+<figure>
+    <img src="../img/gitlab_https.png"/> <figcaption>
+            <h4>GitLab HTTPS page</h4>
+        </figcaption>
+</figure>
+
+<h2 id="what-we-have-accomplished">What we have accomplished!</h2>
+<ul>
+<li>Create VPC network for our GCE</li>
+<li>Create GCE instance</li>
+<li>Reserve a static IP for GCE instance</li>
+<li>Create firewall rules to allow SSH, HTTP, HTTPS traffic</li>
+<li>Install GitLab server</li>
+<li>Enable HTTPS for GitLab</li>
+</ul>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">

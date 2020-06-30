@@ -10,7 +10,7 @@
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.leewei.co/" />
-<meta property="og:updated_time" content="2020-06-23T08:32:11+08:00" />
+<meta property="og:updated_time" content="2020-06-23T22:32:19+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sir"/>
 <meta name="twitter:description" content=""/>
@@ -72,6 +72,14 @@
         data-sizes="auto"
         alt="Posts"
         title="Posts" /></a></div><h2 class="home-subtitle">Doing is always better than just thinking.</h2><div class="links"><a href="https://github.com/leewei05" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href="https://linkedin.com/in/lee-wei-02249b119/" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href="https://twitter.com/leewei666" title="Twitter" target="_blank" rel="noopener noreffer me"><i class="fab fa-twitter fa-fw"></i></a></div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/2020/go-app-from-scratch-p4/">Go RESTful API pt.4 - GitLab Respository</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">
+            published on&nbsp;<time datetime=2020-06-23>2020-06-23</time>
+        </span></div><div class="content">In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don't we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.</div><div class="post-footer">
+        <a href="/posts/2020/go-app-from-scratch-p4/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/app/">App</a>,&nbsp;<a href="/tags/restful/">RESTful</a>,&nbsp;<a href="/tags/gitlab/">GitLab</a>,&nbsp;<a href="/tags/gce/">GCE</a></div></div>
+</article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/2020/go-app-from-scratch-p3/">Go RESTful API pt.3 - Running on GKE</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">
@@ -157,17 +165,6 @@ Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volat
 Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.</div><div class="post-footer">
         <a href="/posts/cmu-15-445/database-storage-01/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></div></div>
-</article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/postgre-sql-set-up/">PostgreSQL: Server setup on Ubuntu 18.04</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">
-            published on&nbsp;<time datetime=2020-04-03>2020-04-03</time>
-        </span></div><div class="content">Install PostgreSQL Create a file /etc/apt/sources.list.d/pgdg.list and add the following line to that file deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main. We can get the PostgreSQL APT repository from the official website.
-$ sudo sh -c &#39;echo &#34;deb http://apt.postgresql.org/pub/repos/apt/ bionic-pgdg main&#34; &gt;&gt; /etc/apt/sources.list.d/pgdg.list&#39; Import the repository public key
-$ wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add - Update the repository list and install PostgreSQL
-$ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL is running as expected</div><div class="post-footer">
-        <a href="/posts/2020/postgre-sql-set-up/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/postgresql/">PostgreSQL</a></div></div>
 </article>
 <ul class="pagination"><li class="page-item active">
                     <span class="page-link">
