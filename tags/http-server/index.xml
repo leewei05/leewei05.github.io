@@ -10,6 +10,6 @@
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</guid>
     <description><![CDATA[This part 1 of building a Go RESTful API. Our final goal is to build up a CI/CD pipeline using the following tech stack. Wish me luck, nothing is easy in the beginning. 😆
-* Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we're going to set up a simple HTTP server and local PostgreSQL.]]></description>
+* Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we&rsquo;re going to set up a simple HTTP server and local PostgreSQL.]]></description>
 </item></channel>
 </rss>

@@ -31,7 +31,9 @@ SQL History SQL&#39;s full name is Structured Query Language, IBM originally cal
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/advanced-sql\/"
         },"genre": "posts","keywords": "CMU, 15-445","wordcount":  922 ,
-        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/advanced-sql\/","datePublished": "2020-04-02T19:51:08+08:00","dateModified": "2020-04-02T19:51:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/advanced-sql\/","datePublished": "2020-04-02T19:51:08+08:00","dateModified": "2020-04-02T19:51:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -78,10 +80,9 @@ SQL History SQL&#39;s full name is Structured Query Language, IBM originally cal
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 02 Advanced SQL</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-02>2020-04-02</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 922 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-02">2020-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;922 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -103,7 +104,7 @@ SQL History SQL&#39;s full name is Structured Query Language, IBM originally cal
       </ul>
     </li>
     <li><a href="#datetime-operations">Date/Time Operations</a></li>
-    <li><a href="#output-redirection--control">Output Redirection & Control</a>
+    <li><a href="#output-redirection--control">Output Redirection &amp; Control</a>
       <ul>
         <li><a href="#new-table">New Table</a></li>
         <li><a href="#existing-table">Existing Table</a></li>
@@ -146,18 +147,18 @@ The DBMS is responsible for optimizing a query plan.</p>
 <li>sets: unordered, no duplicates</li>
 <li>bags: unordered, allow duplicates</li>
 </ul>
-<p>There is a reason why SQL is based on <code>bags</code>, it'll need extra work for DBMS to use <code>lists</code> or <code>sets</code>. DBMS only needs to order the output only if the user want to order the results. Therefore, using <code>bags</code> can let the database work more efficiently.</p>
+<p>There is a reason why SQL is based on <code>bags</code>, it&rsquo;ll need extra work for DBMS to use <code>lists</code> or <code>sets</code>. DBMS only needs to order the output only if the user want to order the results. Therefore, using <code>bags</code> can let the database work more efficiently.</p>
 <h2 id="aggregates">Aggregates</h2>
 <p>An aggregation function takes in a bag of tuples as its input and then produces a single scalar value as its output. <code>Can only be used in SELECT output list.</code></p>
 <h3 id="group-by">GROUP BY</h3>
-<p>Output of other columns outside of an aggregate is undefined (e.cid is undefined below). The aggregation function only returns a single value, so the DBMS don't know which course id to output.</p>
+<p>Output of other columns outside of an aggregate is undefined (e.cid is undefined below). The aggregation function only returns a single value, so the DBMS don&rsquo;t know which course id to output.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="n">This</span> <span class="n">will</span> <span class="k">not</span> <span class="k">work</span><span class="p">.</span>
 
-<span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">),</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
 <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span><span class="p">;</span>
 </code></pre></div><p>Non-aggregated values in <code>SELECT</code> output clause must be used in a <code>GROUP BY</code> command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">)</span><span class="p">,</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="k">AVG</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">gpa</span><span class="p">),</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">AS</span> <span class="n">e</span><span class="p">,</span> <span class="n">student</span> <span class="k">AS</span> <span class="n">s</span>
 <span class="k">WHERE</span> <span class="n">e</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">sid</span>
 <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">e</span><span class="p">.</span><span class="n">cid</span><span class="p">;</span>
@@ -200,28 +201,28 @@ Different DBMS supports different syntax.</p>
 already exists in the database. The
 target table must have the same number of columns with the same types as the target table, but the
 name of the columns in the output query do not have to match.</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">)</span><span class="p">;</span>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">CourseIds</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">DISTINCT</span> <span class="n">cid</span> <span class="k">FROM</span> <span class="n">enrolled</span><span class="p">);</span>
 </code></pre></div><h3 id="order-by">ORDER BY</h3>
 <p>Since results SQL are unordered, you have to use the <code>ORDER BY</code> clause to impose a sort on tuples, here is an example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-721</span><span class="s1">&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;15-721&#39;</span>
 <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">grade</span> <span class="k">DESC</span><span class="p">,</span> <span class="n">sid</span> <span class="k">ASC</span><span class="p">;</span>
 </code></pre></div><h3 id="limit">LIMIT</h3>
 <p>Limit the number of tuples returned in output.</p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="o">#</span> <span class="k">OFFSET</span> <span class="n">specifies</span> <span class="n">how</span> <span class="n">many</span> <span class="n">tuples</span> <span class="k">to</span> <span class="n">skip</span> <span class="n">within</span> <span class="n">the</span> <span class="k">result</span>
 <span class="o">#</span> <span class="n">Use</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="k">to</span> <span class="n">guarantee</span> <span class="n">the</span> <span class="n">same</span> <span class="k">result</span> <span class="k">in</span> <span class="k">every</span> <span class="n">queries</span>
 
-<span class="k">SELECT</span> <span class="n">sid</span><span class="p">,</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span> <span class="k">WHERE</span> <span class="n">login</span> <span class="k">LIKE</span> <span class="s1">&#39;</span><span class="s1">%@cs</span><span class="s1">&#39;</span>
+<span class="k">SELECT</span> <span class="n">sid</span><span class="p">,</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span> <span class="k">WHERE</span> <span class="n">login</span> <span class="k">LIKE</span> <span class="s1">&#39;%@cs&#39;</span>
 <span class="k">LIMIT</span> <span class="mi">10</span> <span class="k">OFFSET</span> <span class="mi">20</span><span class="p">;</span>
 </code></pre></div><h2 id="nested-queries">Nested Queries</h2>
 <p>Queries containing other queries. Nested queries are often difficult to optimize.</p>
 <p><strong>Example: Get the names of students that are enrolled in ’15-445’.</strong></p>
 <div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span>
-<span class="k">WHERE</span> <span class="n">sid</span> <span class="k">IN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-445</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="k">WHERE</span> <span class="n">sid</span> <span class="k">IN</span> <span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;15-445&#39;</span><span class="p">);</span>
 
-<span class="o">|</span><span class="o">|</span> <span class="n">These</span> <span class="n">two</span> <span class="n">queries</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="k">output</span>
+<span class="o">||</span> <span class="n">These</span> <span class="n">two</span> <span class="n">queries</span> <span class="n">have</span> <span class="n">the</span> <span class="n">same</span> <span class="k">output</span>
 
 <span class="k">SELECT</span> <span class="n">name</span> <span class="k">FROM</span> <span class="n">student</span>
-<span class="k">WHERE</span> <span class="n">sid</span> <span class="o">=</span><span class="k">ANY</span><span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="s1">15-445</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="k">WHERE</span> <span class="n">sid</span> <span class="o">=</span><span class="k">ANY</span><span class="p">(</span> <span class="k">SELECT</span> <span class="n">sid</span> <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">WHERE</span> <span class="n">cid</span> <span class="o">=</span> <span class="s1">&#39;15-445&#39;</span><span class="p">);</span>
 </code></pre></div><ul>
 <li>ALL: Must satisfy expression for all rows in sub-query.</li>
 <li>ANY: Must satisfy expression for at least one row in sub-query.</li>
@@ -238,10 +239,10 @@ name of the columns in the output query do not have to match.</p>
 </ul>
 <h3 id="grouping">Grouping</h3>
 <p>The <code>OVER</code> clause specifies how to group together tuples when computing the window function. Use <code>PARTITION BY</code> to specify group.</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">cid</span><span class="p">,</span> <span class="n">sid</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="n">cid</span><span class="p">,</span> <span class="n">sid</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="n">PARTITION</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
 </code></pre></div><p>We can also put an <code>ORDER BY</code> within <code>OVER</code> to ensure the ordering of results.</p>
-<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">(</span><span class="p">)</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-SQL" data-lang="SQL"><span class="k">SELECT</span> <span class="o">*</span><span class="p">,</span> <span class="n">ROW_NUMBER</span><span class="p">()</span> <span class="n">OVER</span> <span class="p">(</span><span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">)</span>
 <span class="k">FROM</span> <span class="n">enrolled</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="n">cid</span><span class="p">;</span>
 </code></pre></div><p><strong>Important: The DBMS computes RANK after the window function sorting, whereas it computes ROW NUMBER before the sorting.</strong></p>
 <h2 id="common-table-expressions">Common Table Expressions</h2>
@@ -265,7 +266,7 @@ name of the columns in the output query do not have to match.</p>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-04-02</span>
+                <span>Updated on 2020-04-02</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -291,7 +292,7 @@ name of the columns in the output query do not have to match.</p>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

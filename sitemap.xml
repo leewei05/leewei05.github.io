@@ -2,15 +2,19 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://www.leewei.co/tags/algorithm/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/bit/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/leetcode/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/app/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gce/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gitlab/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/restful/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/docker/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gke/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</loc><lastmod>2020-06-23T08:32:11&#43;08:00</lastmod></url><url>
@@ -40,7 +44,6 @@
             <loc>https://www.leewei.co/tags/startup/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2019/start-up-playbook-the-idea/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/team/</loc><lastmod>2019-12-22T12:48:19&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/algorithm/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/array/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/data-structures/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2019/ds-array-linked-list/</loc><lastmod>2019-12-11T00:27:34&#43;08:00</lastmod></url><url>

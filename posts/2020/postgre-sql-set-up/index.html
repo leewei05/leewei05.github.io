@@ -33,7 +33,9 @@ $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL i
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-set-up\/"
         },"genre": "posts","keywords": "PostgreSQL","wordcount":  546 ,
-        "url": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-set-up\/","datePublished": "2020-04-03T09:57:59+08:00","dateModified": "2020-04-03T09:57:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/postgre-sql-set-up\/","datePublished": "2020-04-03T09:57:59+08:00","dateModified": "2020-04-03T09:57:59+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -80,10 +82,9 @@ $ sudo apt-get update $ sudo apt-get -y install postgresql Check if PostgreSQL i
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">PostgreSQL: Server setup on Ubuntu 18.04</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-03>2020-04-03</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 546 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;3 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-03">2020-04-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;546 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -125,7 +126,7 @@ postgres
 </code></pre></div><p>Log into the PostgreSQL cluster</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ psql postgres
 
-psql <span class="o">(</span>12.2 <span class="o">(</span>Ubuntu 12.2-2.pgdg18.04+1<span class="o">)</span><span class="o">)</span>
+psql <span class="o">(</span>12.2 <span class="o">(</span>Ubuntu 12.2-2.pgdg18.04+1<span class="o">))</span>
 Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
 
 <span class="nv">postgres</span><span class="o">=</span><span class="c1"># \l</span>
@@ -142,7 +143,7 @@ Type <span class="s2">&#34;help&#34;</span> <span class="k">for</span> help.
 <p>In order to proceed further operations, we need to initialize a database storage area on the disk. It is called a <code>database cluster</code>.
 A <code>database cluster</code> is a collection of databases that is managed by a single instance on the database server.</p>
 <p>A database cluster stores all its data in a single directory in the file system. It is called a <code>data directory</code> or <code>data area</code>. We will call it <code>data directory</code> in the following paragraph to avoid the confusion of High Availability clustering.</p>
-<p>However, normally we don't need to use <code>pg_createcluster</code>(for Ubuntu and Debian users) or <code>initd</code> to initialize a database directory, because <code>apt-get install postgresql</code> already creates a default directory.</p>
+<p>However, normally we don&rsquo;t need to use <code>pg_createcluster</code>(for Ubuntu and Debian users) or <code>initd</code> to initialize a database directory, because <code>apt-get install postgresql</code> already creates a default directory.</p>
 <h3 id="how-to-find-the-location-of-where-postgresql-stores-its-data">How to find the location of where PostgreSQL stores its data?</h3>
 <p>In our case, <code>/var/lib/postgresql/12/main</code> is the directory where PostgreSQL stores its data.</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ ps auxw<span class="p">|</span>grep postgres<span class="p">|</span>grep -- -D  
@@ -164,7 +165,7 @@ data_directory = '/var/lib/postgresql/12/main'
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-04-03</span>
+                <span>Updated on 2020-04-03</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -190,7 +191,7 @@ data_directory = '/var/lib/postgresql/12/main'
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

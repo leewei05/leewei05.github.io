@@ -6,7 +6,7 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Go RESTful API pt.2 - API Server &amp; Docker Image - Sir</title><meta name="Description" content=""><meta property="og:title" content="Go RESTful API pt.2 - API Server &amp; Docker Image" />
-<meta property="og:description" content="In this part, we will build a RESTful API server and wrap it in Docker. After that, we&#39;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
+<meta property="og:description" content="In this part, we will build a RESTful API server and wrap it in Docker. After that, we&rsquo;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
 Import Environment Variables Using environment variables to define our database parameters is a better way. There are several reasons that we should not hard code our parameters:
 Security
 I have seen a lot of cases that people upload their credentials or their database information to Github." />
@@ -16,7 +16,7 @@ I have seen a lot of cases that people upload their credentials or their databas
 <meta property="article:modified_time" content="2020-06-21T08:32:11+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go RESTful API pt.2 - API Server &amp; Docker Image"/>
-<meta name="twitter:description" content="In this part, we will build a RESTful API server and wrap it in Docker. After that, we&#39;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
+<meta name="twitter:description" content="In this part, we will build a RESTful API server and wrap it in Docker. After that, we&rsquo;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
 Import Environment Variables Using environment variables to define our database parameters is a better way. There are several reasons that we should not hard code our parameters:
 Security
 I have seen a lot of cases that people upload their credentials or their database information to Github."/>
@@ -33,7 +33,9 @@ I have seen a lot of cases that people upload their credentials or their databas
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p2\/"
         },"genre": "posts","keywords": "Go, App, RESTful, Docker","wordcount":  935 ,
-        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p2\/","datePublished": "2020-06-21T08:32:11+08:00","dateModified": "2020-06-21T08:32:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p2\/","datePublished": "2020-06-21T08:32:11+08:00","dateModified": "2020-06-21T08:32:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -80,10 +82,9 @@ I have seen a lot of cases that people upload their credentials or their databas
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Go RESTful API pt.2 - API Server &amp; Docker Image</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-21>2020-06-21</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 935 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-21">2020-06-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;935 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -104,15 +105,15 @@ I have seen a lot of cases that people upload their credentials or their databas
   </ul>
 </nav></div>
             </div><div class="content" id="content"><p>In this part, we will build a RESTful API server and wrap it in Docker.
-After that, we'll deploy it on GKE and start build our CI/CD pipeline for the whole project.</p>
+After that, we&rsquo;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.</p>
 <h2 id="import-environment-variables">Import Environment Variables</h2>
 <p>Using environment variables to define our database parameters is a better way.
 There are several reasons that we should not hard code our parameters:</p>
 <p><strong>Security</strong></p>
-<p>I have seen a lot of cases that people upload their credentials or their database information to Github. The result can be a disaster. Trust me, I've been there. lol</p>
+<p>I have seen a lot of cases that people upload their credentials or their database information to Github. The result can be a disaster. Trust me, I&rsquo;ve been there. lol</p>
 <p>By using environment variables, user can create a env file when deploying their services.
 After successfully deployed their services, user can remove the env file.</p>
-<p>!Please don't upload your credentials, password, database configurations on Github!</p>
+<p>!Please don&rsquo;t upload your credentials, password, database configurations on Github!</p>
 <p><strong>Flexibility</strong></p>
 <p>We might face a time when we need to migrate our database or change the password.
 Hard coded parameters are hard to find and change.
@@ -129,7 +130,7 @@ PG_DB:&quot;db&quot;
 	<span class="nx">db</span> <span class="o">*</span><span class="nx">sql</span><span class="p">.</span><span class="nx">DB</span>
 <span class="p">)</span>
 
-<span class="kd">func</span> <span class="nf">initDB</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="nf">initDB</span><span class="p">()</span> <span class="p">{</span>
 	<span class="nx">_</span> <span class="p">=</span> <span class="nx">godotenv</span><span class="p">.</span><span class="nf">Load</span><span class="p">(</span><span class="s">&#34;config.env&#34;</span><span class="p">)</span>
 
 	<span class="nx">dbHost</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Getenv</span><span class="p">(</span><span class="s">&#34;PG_HOST&#34;</span><span class="p">)</span>
@@ -142,17 +143,17 @@ PG_DB:&quot;db&quot;
 </code></pre></div><h2 id="create-a-http-handler">Create a HTTP handler</h2>
 <p>Add a new hellowWorld function for responding our request to the api.
 Add a new handler function for a specfic path <code>/v1/api/</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
-	<span class="nf">initDB</span><span class="p">(</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nf">initDB</span><span class="p">()</span>
 	
-	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">`</span><span class="s">/v1/api/</span><span class="s">`</span><span class="p">,</span> <span class="nx">helloWorld</span><span class="p">)</span>
+	<span class="nx">http</span><span class="p">.</span><span class="nf">HandleFunc</span><span class="p">(</span><span class="s">`/v1/api/`</span><span class="p">,</span> <span class="nx">helloWorld</span><span class="p">)</span>
 	<span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">helloWorld</span><span class="p">(</span><span class="nx">w</span> <span class="nx">http</span><span class="p">.</span><span class="nx">ResponseWriter</span><span class="p">,</span> <span class="nx">r</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Request</span><span class="p">)</span> <span class="p">{</span>
 	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Fprintf</span><span class="p">(</span><span class="nx">w</span><span class="p">,</span> <span class="s">&#34;Hello Go api&#34;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><p>Test our application by run <code>go run main.go</code>, we'll see our http server run on port 8080.
+</code></pre></div><p>Test our application by run <code>go run main.go</code>, we&rsquo;ll see our http server run on port 8080.
 The port number match the one we configure in <code>config.env</code> file.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ go run main.go
 2020/06/21 16:01:57 HTTP server running on port :8080
@@ -184,7 +185,7 @@ $ vim Dockerfile
 </span><span class="err"></span><span class="c"># golang:1.13 is 803MB</span><span class="err">
 </span><span class="err"></span><span class="c"># Of course we will choose golang:alpine, we want our Docker image to be as small as possible</span><span class="err">
 </span><span class="err"></span><span class="k">FROM</span><span class="s"> golang:alpine AS builder</span><span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Set necessary environmet variables needed for our image</span><span class="err">
 </span><span class="err"></span><span class="k">ENV</span> <span class="nv">GO111MODULE</span><span class="o">=</span>on <span class="se">\
 </span><span class="se"></span>    <span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span> <span class="se">\
@@ -193,27 +194,27 @@ $ vim Dockerfile
 
 <span class="c"># Set our building directory</span><span class="err">
 </span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /build</span><span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Copy and download dependency using go mod</span><span class="err">
 </span><span class="err"></span><span class="k">COPY</span> . . <span class="err">
 </span><span class="err"></span><span class="k">RUN</span> go mod download<span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Build our go code into binary</span><span class="err">
 </span><span class="err"></span><span class="k">RUN</span> go build -o main .<span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Build our final image using an explicitly empty image, scratch</span><span class="err">
 </span><span class="err"></span><span class="c"># Our final Docker image will be extremely small because of using this.</span><span class="err">
 </span><span class="err"></span><span class="c"># However, if we need to debug our running docker image, I recommend using the alpine image.</span><span class="err">
 </span><span class="err"></span><span class="k">FROM</span><span class="s"> scratch </span><span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Set our execution directory and copy our binary, config.env</span><span class="err">
 </span><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
 </span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder /build/main /app/main<span class="err">
 </span><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder /build/config.env /app/config.env<span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Expose our HTTP server to port 8080</span><span class="err">
 </span><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8080</span><span class="err">
-</span><span class="err"></span><span class="err">
+</span><span class="err">
 </span><span class="err"></span><span class="c"># Command to run when starting the container</span><span class="err">
 </span><span class="err"></span><span class="k">CMD</span> <span class="p">[</span><span class="s2">&#34;/app/main&#34;</span><span class="p">]</span><span class="err">
 </span></code></pre></div><p>Build our Docker image</p>
@@ -282,7 +283,7 @@ Hello Go api
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-06-21</span>
+                <span>Updated on 2020-06-21</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -308,7 +309,7 @@ Hello Go api
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

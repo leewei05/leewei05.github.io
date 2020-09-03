@@ -9,7 +9,7 @@
     <pubDate>Sun, 31 May 2020 23:58:56 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</guid>
-    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we're going to create users, databases and tables.
+    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we&rsquo;re going to create users, databases and tables.
 PostgreSQL Schema Basics What is the definition of Schema in PostgreSQL Before we begin to create and set up the objects in PostgreSQL, we might need to understand the basic concept of schema in PostgreSQL. This article detailed describe the definition of Schema in PostgreSQL.
 In a broader view of RDBMS, Schema is generally refered as the definition of tables, columns and other objects that constitute the database.]]></description>
 </item><item>

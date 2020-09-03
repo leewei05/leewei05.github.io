@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Leetcode 338: Counting Bits - Sir</title><meta name="Description" content=""><meta property="og:title" content="Leetcode 338: Counting Bits" />
+<meta property="og:description" content="This question is interesting. I want to write down my solutions and help me review it in the future. The statement of the question is the following:
+Question statement  Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&rsquo;s in their binary representation and return them as an array.
+Input: 2 Output: [0,1,1]
+Input: 5 Output: [0,1,1,2,1,2]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.leewei.co/posts/2020/leetcode-338-counting-bits/" />
+<meta property="article:published_time" content="2020-09-03T20:07:34+08:00" />
+<meta property="article:modified_time" content="2020-09-03T20:07:34+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Leetcode 338: Counting Bits"/>
+<meta name="twitter:description" content="This question is interesting. I want to write down my solutions and help me review it in the future. The statement of the question is the following:
+Question statement  Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&rsquo;s in their binary representation and return them as an array.
+Input: 2 Output: [0,1,1]
+Input: 5 Output: [0,1,1,2,1,2]"/>
+<meta name="application-name" content="Sir">
+<meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/2020/leetcode-338-counting-bits/" /><link rel="prev" href="https://www.leewei.co/posts/2020/go-app-from-scratch-p4/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Leetcode 338: Counting Bits",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/www.leewei.co\/posts\/2020\/leetcode-338-counting-bits\/"
+        },"genre": "posts","keywords": "Go, leetcode, algorithm, bit","wordcount":  586 ,
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/leetcode-338-counting-bits\/","datePublished": "2020-09-03T20:07:34+08:00","dateModified": "2020-09-03T20:07:34+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
+                "@type": "Person",
+                "name": "Lee Wei"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="" header-mobile=""><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Sir">Sir</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="/tags/"> Tags </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Sir">Sir</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="/tags/" title="">Tags</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Leetcode 338: Counting Bits</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-09-03">2020-09-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;586 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#solution-1-built-in-function">Solution 1: built-in function</a></li>
+        <li><a href="#solution-2-not-using-built-in-function">Solution 2: Not using built-in function</a></li>
+        <li><a href="#solution-3-make-use-of-what-we-have-d">Solution 3: Make use of what we have :D</a></li>
+        <li><a href="#solution-4-brian-kernighans-algorithm">Solution 4: Brian Kernighan&rsquo;s Algorithm</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>This question is interesting. I want to write down my solutions and help me review it in the future.
+The statement of the question is the following:</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Question statement<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><p>Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&rsquo;s in their binary representation and return them as an array.</p>
+<p>Input: 2
+Output: [0,1,1]</p>
+<p>Input: 5
+Output: [0,1,1,2,1,2]</p>
+</div>
+        </div>
+    </div>
+<h3 id="solution-1-built-in-function">Solution 1: built-in function</h3>
+<p>I am using Go to solve this question. The first solution I came up is using the built-in function. Easy peezy.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="c1">// Time O(n) + 
+</span><span class="c1">// Space O(n)
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">countBits</span><span class="p">(</span><span class="nx">num</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+  <span class="nx">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">num</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+    <span class="nx">count</span> <span class="o">:=</span> <span class="nx">bits</span><span class="p">.</span><span class="nf">OnesCount</span><span class="p">(</span><span class="nb">uint</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+    <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">count</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></div><p>It worked! Could it be that easy? Since this is a medium level problem.
+Yeah.. There are some follow ups that we need to consider:</p>
+<div class="details admonition note open">
+        <div class="details-summary admonition-title">
+            <i class="icon fas fa-pencil-alt fa-fw"></i>Follow up<i class="details-icon fas fa-angle-right fa-fw"></i>
+        </div>
+        <div class="details-content">
+            <div class="admonition-content"><ol>
+<li>It is very easy to come up with a solution with run time O(n*sizeof(integer)). But can you do it in linear time O(n) /possibly in a single pass?</li>
+<li>Space complexity should be O(n).</li>
+<li>Can you do it like a boss? Do it without using any builtin function like __builtin_popcount in c++ or in any other language.</li>
+</ol>
+</div>
+        </div>
+    </div>
+<h3 id="solution-2-not-using-built-in-function">Solution 2: Not using built-in function</h3>
+<p>In this solution, we didn&rsquo;t use the built-in function.
+Instead, I used a basic bit operation to count the total 1&rsquo;s in each number.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="c1">// Time O(n*sizeof(integer))
+</span><span class="c1">// Space O(n)
+</span><span class="c1"></span><span class="kd">func</span> <span class="nf">countBits</span><span class="p">(</span><span class="nx">num</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+  <span class="nx">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">num</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+    <span class="nx">count</span><span class="o">:=</span> <span class="nf">binaryCount</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+    <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">count</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">binaryCount</span><span class="p">(</span><span class="nx">num</span> <span class="kt">int</span><span class="p">)</span><span class="kt">int</span><span class="p">{</span>
+  <span class="nx">count</span> <span class="o">:=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="nx">num</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span> 
+    <span class="nx">count</span> <span class="o">+=</span> <span class="nx">num</span> <span class="o">&amp;</span> <span class="mi">1</span>
+    <span class="nx">num</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">count</span>
+<span class="p">}</span>
+</code></pre></div><p>For instance, 5 is 101 in binary, by using <code>&amp;</code> with 1, we can get the 1&rsquo;s in each bit.
+After <code>count += num &amp;1</code>, we use the <code>&gt;&gt;</code> operator to shift right one bit, so we got <code>10</code> for our <code>num</code> variable.
+By repeating this operation, we can get the total 1&rsquo;s in each number.</p>
+<p>However, this solution is conflict with follow up one and two. Damn! Try harder!</p>
+<h3 id="solution-3-make-use-of-what-we-have-d">Solution 3: Make use of what we have :D</h3>
+<p>This method is actually posted by someone else, pretty impressive.
+The first part, try to find a pattern in the following number:</p>
+<pre><code>2,4,8,16
+</code></pre><p>No clue? How about now?</p>
+<pre><code>10000
+01000
+00100
+00010
+</code></pre><p>We can see that even numbers don&rsquo;t have 1 in the first bit.
+Therefore, we can skip the first bit for even numbers.
+Let&rsquo;s take 6 for example, 6&rsquo;s binary is 110.
+6 and 3(11) has the same amount of 1&rsquo;s.
+So, we have the conclusion for even numbers: <code>res[6]=res[3] (6 &gt;&gt; 1 = 3)</code></p>
+<p>As for odd numbers, it is pretty straght forward.
+Odd numbers will always have 1 in the first bit.
+And we can get the total amount of 1&rsquo;s based on the previous number.</p>
+<p>For instance, 5 is 101, 4 is 100.
+5 is 100+1, we can get the conclusion for odd numbers: <code>res[5]=res[4]+1</code>
+By turning the actual numbers into variable i, we can get the following solution.</p>
+<div class="highlight"><pre class="chroma"><code class="language-Go" data-lang="Go"><span class="kd">func</span> <span class="nf">countBits</span><span class="p">(</span><span class="nx">num</span> <span class="kt">int</span><span class="p">)</span> <span class="p">[]</span><span class="kt">int</span> <span class="p">{</span>
+  <span class="nx">res</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">([]</span><span class="kt">int</span><span class="p">,</span><span class="nx">num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+  <span class="k">for</span> <span class="nx">i</span><span class="o">:=</span><span class="mi">0</span><span class="p">;</span><span class="nx">i</span><span class="o">&lt;=</span><span class="nx">num</span><span class="p">;</span><span class="nx">i</span><span class="o">++</span><span class="p">{</span>
+    <span class="k">if</span> <span class="nx">i</span><span class="o">&amp;</span><span class="mi">1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">{</span>
+      <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]=</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+      <span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="p">]=</span><span class="nx">res</span><span class="p">[</span><span class="nx">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="k">return</span> <span class="nx">res</span>
+<span class="p">}</span>
+</code></pre></div><p>We didn&rsquo;t use built-in function. Our time and space complexity are O(n).
+Nicely done!</p>
+<h3 id="solution-4-brian-kernighans-algorithm">Solution 4: Brian Kernighan&rsquo;s Algorithm</h3>
+<p>This solution is a bit hard to understand.
+Maybe I&rsquo;ll understand it one day, lol.</p>
+<p>O(n) time complexity is fine by me, check it out on the <a href="https://stackoverflow.com/questions/12380478/bits-counting-algorithm-brian-kernighan-in-an-integer-time-complexity" target="_blank" rel="noopener noreffer">internet</a>.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-09-03</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/leetcode/">leetcode</a>,&nbsp;<a href="/tags/algorithm/">algorithm</a>,&nbsp;<a href="/tags/bit/">bit</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/2020/go-app-from-scratch-p4/" class="prev" rel="prev" title="Go RESTful API pt.4 - GitLab Respository"><i class="fas fa-angle-left fa-fw"></i>Go RESTful API pt.4 - GitLab Respository</a></div>
+</div>
+<div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><script type="text/javascript" src="https://https-www-leewei-co.disqus.com/embed.js" defer></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -31,7 +31,9 @@ How does DNS work? The process of DNS resolution is the following:"/>
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/dns-brief-records\/"
         },"genre": "posts","keywords": "DNS","wordcount":  994 ,
-        "url": "https:\/\/www.leewei.co\/posts\/2020\/dns-brief-records\/","datePublished": "2020-06-18T10:41:42+08:00","dateModified": "2020-06-18T10:41:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/dns-brief-records\/","datePublished": "2020-06-18T10:41:42+08:00","dateModified": "2020-06-18T10:41:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -78,10 +80,9 @@ How does DNS work? The process of DNS resolution is the following:"/>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">DNS(Domain Name System) Overview</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-18>2020-06-18</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 994 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-18">2020-06-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;994 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -144,7 +145,7 @@ and show them on the browser.
 <h2 id="what-is-dns-caching">What is DNS caching?</h2>
 <p>The purpose of DNS caching is to improve loading performance and reduce resource(bandwidth/CPU) consumption.
 Right after the user made a request to an URL(example.com), the browser cache is the first location to search,
-then the OS level DNS cache. If we didn't find our DNS record in the cache, the DNS client in our OS will
+then the OS level DNS cache. If we didn&rsquo;t find our DNS record in the cache, the DNS client in our OS will
 send DNS query to a DNS resolver outside our network.</p>
 <p>How long will the DNS cache exists? It depends on the configuration of time-to-live(TTL).</p>
 <h2 id="time-to-livettl">Time-To-Live(TTL)</h2>
@@ -152,7 +153,7 @@ send DNS query to a DNS resolver outside our network.</p>
 <h3 id="ttl-in-networking">TTL in Networking</h3>
 <p>TTL in networking is also called hop-limit. Whenever a packet of information is sent out to the internet,
 there might be chances that packet got lost and stuck in a infinity loop.
-Everytime a router receives a packet, it'll substract the TTL count by one in the packet and send it to the next router.
+Everytime a router receives a packet, it&rsquo;ll substract the TTL count by one in the packet and send it to the next router.
 The packet with 0 count of TTL will be dropped.</p>
 <h3 id="ttl-in-cdn">TTL in CDN</h3>
 <p>TTL in CDN is how long the cache content that will be stored in the CDN edge server.
@@ -184,20 +185,20 @@ There are often multiple name servers for primary and backup for domain.</li>
 <p>We can see the result of A record 172.217.160.110 and the name servers for domain <code>google.com</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ dig google.com
 <span class="p">;</span> &lt;&lt;&gt;&gt; DiG 9.10.6 &lt;&lt;&gt;&gt; google.com
-<span class="p">;</span><span class="p">;</span> global options: +cmd
-<span class="p">;</span><span class="p">;</span> Got answer:
-<span class="p">;</span><span class="p">;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">53287</span>
-<span class="p">;</span><span class="p">;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 13, ADDITIONAL: <span class="m">1</span>
+<span class="p">;;</span> global options: +cmd
+<span class="p">;;</span> Got answer:
+<span class="p">;;</span> -&gt;&gt;HEADER<span class="s">&lt;&lt;- opco</span>de: QUERY, status: NOERROR, id: <span class="m">53287</span>
+<span class="p">;;</span> flags: qr rd ra<span class="p">;</span> QUERY: 1, ANSWER: 1, AUTHORITY: 13, ADDITIONAL: <span class="m">1</span>
 
-<span class="p">;</span><span class="p">;</span> OPT PSEUDOSECTION:
+<span class="p">;;</span> OPT PSEUDOSECTION:
 <span class="p">;</span> EDNS: version: 0, flags:<span class="p">;</span> udp: <span class="m">4096</span>
-<span class="p">;</span><span class="p">;</span> QUESTION SECTION:
+<span class="p">;;</span> QUESTION SECTION:
 <span class="p">;</span>google.com.			IN	A
 
-<span class="p">;</span><span class="p">;</span> ANSWER SECTION:
+<span class="p">;;</span> ANSWER SECTION:
 google.com.		51	IN	A	172.217.160.110
 
-<span class="p">;</span><span class="p">;</span> AUTHORITY SECTION:
+<span class="p">;;</span> AUTHORITY SECTION:
 .			86494	IN	NS	m.root-servers.net.
 .			86494	IN	NS	f.root-servers.net.
 .			86494	IN	NS	d.root-servers.net.
@@ -212,14 +213,14 @@ google.com.		51	IN	A	172.217.160.110
 .			86494	IN	NS	k.root-servers.net.
 .			86494	IN	NS	h.root-servers.net.
 
-<span class="p">;</span><span class="p">;</span> Query time: <span class="m">7</span> msec
-<span class="p">;</span><span class="p">;</span> SERVER: 192.168.0.11#53<span class="o">(</span>192.168.0.11<span class="o">)</span>
-<span class="p">;</span><span class="p">;</span> WHEN: Thu Jun <span class="m">18</span> 16:37:34 CST <span class="m">2020</span>
-<span class="p">;</span><span class="p">;</span> MSG SIZE  rcvd: <span class="m">266</span>
+<span class="p">;;</span> Query time: <span class="m">7</span> msec
+<span class="p">;;</span> SERVER: 192.168.0.11#53<span class="o">(</span>192.168.0.11<span class="o">)</span>
+<span class="p">;;</span> WHEN: Thu Jun <span class="m">18</span> 16:37:34 CST <span class="m">2020</span>
+<span class="p">;;</span> MSG SIZE  rcvd: <span class="m">266</span>
 </code></pre></div><ul>
 <li>nslookup: query Internet name servers interactively</li>
 </ul>
-<p>The result may be more straight forward, it'll return the IP address for google.com.</p>
+<p>The result may be more straight forward, it&rsquo;ll return the IP address for google.com.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ nslookup google.com
 Server:		192.168.0.11
 Address:	192.168.0.11#53
@@ -235,8 +236,8 @@ Address: 172.217.160.110
 <p>Before I wrote this blog post, everytime I have an internet issue,
 My classmates in college would tell me to ping <code>8.8.8.8</code>.
 I was like &ldquo;WHY??!!&rdquo; at that time.</p>
-<p><code>8.8.8.8</code> and <code>8.8.4.4</code> are Google's public DNS resolver.
-Since it's Google's DNS resolver, we can assume that resolver is almost always running. lol
+<p><code>8.8.8.8</code> and <code>8.8.4.4</code> are Google&rsquo;s public DNS resolver.
+Since it&rsquo;s Google&rsquo;s DNS resolver, we can assume that resolver is almost always running. lol
 Like it says on the webpage:</p>
 <div class="details admonition info open">
         <div class="details-summary admonition-title">
@@ -252,12 +253,12 @@ They claim that <code>1.1.1.1</code> is faster than other third-party DNS resolv
 <p>DNS is quite an interesting topic to study.
 We can pick up DNS knowledge by buying domains from GoDaddy or Gandi.
 After owning a few domains, we can set up our own DNS server.
-I'll write another post for setting up domain in the future. 😌</p>
+I&rsquo;ll write another post for setting up domain in the future. 😌</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-06-18</span>
+                <span>Updated on 2020-06-18</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -283,7 +284,7 @@ I'll write another post for setting up domain in the future. 😌</p>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

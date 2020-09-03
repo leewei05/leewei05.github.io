@@ -3,13 +3,25 @@
         <title>Sir</title>
         <link>https://www.leewei.co/</link>
         <description>Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 25 Jun 2020 22:32:19 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Sep 2020 20:07:34 &#43;0800</lastBuildDate>
+            <atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Leetcode 338: Counting Bits</title>
+    <link>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</link>
+    <pubDate>Thu, 03 Sep 2020 20:07:34 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</guid>
+    <description><![CDATA[This question is interesting. I want to write down my solutions and help me review it in the future. The statement of the question is the following:
+Question statement  Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&rsquo;s in their binary representation and return them as an array.
+Input: 2 Output: [0,1,1]
+Input: 5 Output: [0,1,1,2,1,2]]]></description>
+</item><item>
     <title>Go RESTful API pt.4 - GitLab Respository</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</link>
     <pubDate>Thu, 25 Jun 2020 22:32:19 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</guid>
-    <description><![CDATA[In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don't we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.]]></description>
+    <description><![CDATA[In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&rsquo;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.]]></description>
 </item><item>
     <title>Go RESTful API pt.3 - Running App on GKE</title>
     <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</link>
@@ -25,7 +37,7 @@ Why do we need Kubernetes? Kubernetes is a system that makes sure our containers
     <pubDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</guid>
-    <description><![CDATA[In this part, we will build a RESTful API server and wrap it in Docker. After that, we'll deploy it on GKE and start build our CI/CD pipeline for the whole project.
+    <description><![CDATA[In this part, we will build a RESTful API server and wrap it in Docker. After that, we&rsquo;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
 Import Environment Variables Using environment variables to define our database parameters is a better way. There are several reasons that we should not hard code our parameters:
 Security
 I have seen a lot of cases that people upload their credentials or their database information to Github.]]></description>
@@ -45,7 +57,7 @@ How does DNS work? The process of DNS resolution is the following:]]></descripti
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</guid>
     <description><![CDATA[This part 1 of building a Go RESTful API. Our final goal is to build up a CI/CD pipeline using the following tech stack. Wish me luck, nothing is easy in the beginning. 😆
-* Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we're going to set up a simple HTTP server and local PostgreSQL.]]></description>
+* Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we&rsquo;re going to set up a simple HTTP server and local PostgreSQL.]]></description>
 </item><item>
     <title>CMU Databases Systems: 06 Hash Tables</title>
     <link>https://www.leewei.co/posts/cmu-15-445/hash-tables/</link>
@@ -61,7 +73,7 @@ The fastest hash function is with a constant key, it will always return the same
     <pubDate>Sun, 31 May 2020 23:58:56 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</guid>
-    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we're going to create users, databases and tables.
+    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we&rsquo;re going to create users, databases and tables.
 PostgreSQL Schema Basics What is the definition of Schema in PostgreSQL Before we begin to create and set up the objects in PostgreSQL, we might need to understand the basic concept of schema in PostgreSQL. This article detailed describe the definition of Schema in PostgreSQL.
 In a broader view of RDBMS, Schema is generally refered as the definition of tables, columns and other objects that constitute the database.]]></description>
 </item><item>
@@ -77,15 +89,6 @@ In a broader view of RDBMS, Schema is generally refered as the definition of tab
     <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
     <author>Author</author>
     <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
-    <description><![CDATA[Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don't have the resource like Google to develop applications using large scale databases.]]></description>
-</item><item>
-    <title>CMU Databases Systems: 03 Database Storage(pt.1)</title>
-    <link>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</link>
-    <pubDate>Mon, 13 Apr 2020 20:26:07 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-01/</guid>
-    <description><![CDATA[Course Outline The main purpose of this course is How to build a software of database management system.
-Storage  Volatile Devices: it needs power to keep its data persistent. Non-Volatile Devices: does not need continous power for device to retain its data.  Non-Volatile Memory: a storage device that is almost as fast as DRAM but with the persistence of a disk.
-Disk-Oriented DBMS The data in the database files is organized into pages, and the first page is the directory page.]]></description>
+    <description><![CDATA[Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&rsquo;t have the resource like Google to develop applications using large scale databases.]]></description>
 </item></channel>
 </rss>

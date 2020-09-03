@@ -31,7 +31,9 @@ Disk-Oriented DBMS The data in the database files is organized into pages, and t
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/database-storage-01\/"
         },"genre": "posts","keywords": "CMU, 15-445","wordcount":  959 ,
-        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/database-storage-01\/","datePublished": "2020-04-13T20:26:07+08:00","dateModified": "2020-04-13T20:26:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/database-storage-01\/","datePublished": "2020-04-13T20:26:07+08:00","dateModified": "2020-04-13T20:26:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -78,10 +80,9 @@ Disk-Oriented DBMS The data in the database files is organized into pages, and t
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 03 Database Storage(pt.1)</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-04-13>2020-04-13</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 959 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-04-13">2020-04-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;959 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -136,7 +137,7 @@ execution engine is operating on that memory.
       |
 Disk: save database files 
 </code></pre><h2 id="why-not-use-the-os">Why not use the OS?</h2>
-<p>The operating system doesn't know about what data the user wants to query, and how to operates the data in efficiency.</p>
+<p>The operating system doesn&rsquo;t know about what data the user wants to query, and how to operates the data in efficiency.</p>
 <p>This high-level design goal is like virtual memory, where there is a large address space and a place for the
 OS to bring in pages from disk.</p>
 <p><strong>Never use <code>mmap</code> in your DBMS if you need to write.</strong></p>
@@ -150,7 +151,7 @@ their contents, since it is encoded in a way specific to the DBMS.</p>
 <p>The DBMS organizes the database across one or more files in fixed-size blocks of data called <code>pages</code>.</p>
 <ul>
 <li>Pages contain different type of data</li>
-<li>Most DBMS don't mix up types in one page</li>
+<li>Most DBMS don&rsquo;t mix up types in one page</li>
 <li>Some DBMS require self-contained pages, which means all the information needed to read the page is in the page itself</li>
 <li>Most DBMS use fixed-size pages to avoid the engineering overhead</li>
 </ul>
@@ -200,11 +201,11 @@ meet.</li>
 </ul>
 <p><img
         class="lazyload"
-        src="/svg/loading/small.min.svg"
-        data-src="/img/slotted-pages.png"
-        data-srcset="/img/slotted-pages.png, /img/slotted-pages.png 1.5x, /img/slotted-pages.png 2x"
+        src="/svg/loading.min.svg"
+        data-src="../img/slotted-pages.png"
+        data-srcset="../img/slotted-pages.png, ../img/slotted-pages.png 1.5x, ../img/slotted-pages.png 2x"
         data-sizes="auto"
-        alt="Slotted-Pages"
+        alt="../img/slotted-pages.png"
         title="Slotted-Pages" />
 <a href="https://15445.courses.cs.cmu.edu/fall2019/slides/03-storage1.pdf" target="_blank" rel="noopener noreffer">Original Slides</a></p>
 <h3 id="log-structured-instead-of-storing-tuples-the-dbms-only-stores-log-records">Log-Structured: Instead of storing tuples, the DBMS only stores log records</h3>
@@ -240,7 +241,7 @@ separate pages, but it makes updates more expensive since the DBMS needs more sp
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-04-13</span>
+                <span>Updated on 2020-04-13</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -266,7 +267,7 @@ separate pages, but it makes updates more expensive since the DBMS needs more sp
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -31,7 +31,9 @@ The fastest hash function is with a constant key, it will always return the same
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/hash-tables\/"
         },"genre": "posts","keywords": "CMU, 15-445","wordcount":  1026 ,
-        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/hash-tables\/","datePublished": "2020-06-14T12:24:08+08:00","dateModified": "2020-06-14T12:24:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/cmu-15-445\/hash-tables\/","datePublished": "2020-06-14T12:24:08+08:00","dateModified": "2020-06-14T12:24:08+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -78,10 +80,9 @@ The fastest hash function is with a constant key, it will always return the same
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">CMU Databases Systems: 06 Hash Tables</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-14>2020-06-14</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1026 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-14">2020-06-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1026 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -156,7 +157,7 @@ their optimal position in the hash table. Allows threads to steal slots from “
 <li>On insert, a key takes the slot of another key if the first key is farther away from its optimal position
 than the second key. The removed key then has to be re-inserted back into the table in the next slot.</li>
 </ul>
-<p>The greater the number far from the slot's optimal position, the poorer the key is.
+<p>The greater the number far from the slot&rsquo;s optimal position, the poorer the key is.
 i.e. A[4] is poorer than B[2]</p>
 <p>Robin Hood Hashing will guarantee every slots have an average distance from their optimal position.</p>
 <h3 id="cuckoo-hashing">Cuckoo Hashing</h3>
@@ -208,7 +209,7 @@ increments the global depth counter.</li>
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-06-14</span>
+                <span>Updated on 2020-06-14</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -234,7 +235,7 @@ increments the global depth counter.</li>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

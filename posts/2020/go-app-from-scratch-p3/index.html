@@ -30,8 +30,10 @@ Why do we need Kubernetes? Kubernetes is a system that makes sure our containers
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p3\/"
-        },"genre": "posts","keywords": "Go, App, RESTful, Docker, Kubernetes, GKE","wordcount":  1027 ,
-        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p3\/","datePublished": "2020-06-23T08:32:11+08:00","dateModified": "2020-06-23T08:32:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        },"genre": "posts","keywords": "Go, App, RESTful, Docker, Kubernetes, GKE","wordcount":  1030 ,
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p3\/","datePublished": "2020-06-23T08:32:11+08:00","dateModified": "2020-06-23T08:32:11+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -78,10 +80,9 @@ Why do we need Kubernetes? Kubernetes is a system that makes sure our containers
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Go RESTful API pt.3 - Running App on GKE</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-23>2020-06-23</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1027 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-23">2020-06-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1030 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -94,12 +95,12 @@ Why do we need Kubernetes? Kubernetes is a system that makes sure our containers
         <li><a href="#what-does-google-kubernetes-engine-do">What does Google Kubernetes Engine do?</a></li>
       </ul>
     </li>
-    <li><a href="#install-gcloud-sdk--kubectl-command-line-tool">Install gcloud SDK & kubectl command line tool</a></li>
+    <li><a href="#install-gcloud-sdk--kubectl-command-line-tool">Install gcloud SDK &amp; kubectl command line tool</a></li>
     <li><a href="#prerequisites-before-creating-our-gke-cluster">Prerequisites before creating our GKE cluster</a>
       <ul>
         <li><a href="#cloud-iam">Cloud IAM</a></li>
-        <li><a href="#virtual-private-cloudvpc-network--subnetwork">Virtual Private Cloud(VPC) Network & Subnetwork</a></li>
-        <li><a href="#create-a-custom-vpc-network--subnetwork">Create a custom VPC network & Subnetwork</a></li>
+        <li><a href="#virtual-private-cloudvpc-network--subnetwork">Virtual Private Cloud(VPC) Network &amp; Subnetwork</a></li>
+        <li><a href="#create-a-custom-vpc-network--subnetwork">Create a custom VPC network &amp; Subnetwork</a></li>
       </ul>
     </li>
     <li><a href="#create-a-gke-cluster-on-our-custom-vpc-network">Create a GKE cluster on our custom VPC network</a></li>
@@ -133,7 +134,7 @@ Right now, we are going to learn some basic knowledge of Google Kubernetes Engin
 <a href="https://kubernetes.io/docs/concepts/#overview" target="_blank" rel="noopener noreffer">2</a>
 But with GKE, we can run our workloads easily. And get benefit from other services in GCP like load balancing, auto scaling, auto upgrades etc.</p>
 <h2 id="install-gcloud-sdk--kubectl-command-line-tool">Install gcloud SDK &amp; kubectl command line tool</h2>
-<p>We need to install <code>gcloud</code> and <code>kubectl</code> first, in order to interact with GCP's service and our Kubernetes clusters.
+<p>We need to install <code>gcloud</code> and <code>kubectl</code> first, in order to interact with GCP&rsquo;s service and our Kubernetes clusters.
 <a href="https://cloud.google.com/sdk/install" target="_blank" rel="noopener noreffer">3</a>
 <a href="https://cloud.google.com/kubernetes-engine/docs/quickstart#choosing_a_shell" target="_blank" rel="noopener noreffer">4</a></p>
 <p>Check if they are installed in your local shell:</p>
@@ -155,7 +156,7 @@ Updated property <span class="o">[</span>core/project<span class="o">]</span>.
 </code></pre></div><h2 id="prerequisites-before-creating-our-gke-cluster">Prerequisites before creating our GKE cluster</h2>
 <h3 id="cloud-iam">Cloud IAM</h3>
 <p>Make sure you have <a href="https://cloud.google.com/iam/docs/understanding-roles" target="_blank" rel="noopener noreffer">IAM roles</a> that can create VPC network, GKE cluster.
-I'll be using <code>project owner</code>, we'll talk about more detailed IAM policies in the future.</p>
+I&rsquo;ll be using <code>project owner</code>, we&rsquo;ll talk about more detailed IAM policies in the future.</p>
 <h3 id="virtual-private-cloudvpc-network--subnetwork">Virtual Private Cloud(VPC) Network &amp; Subnetwork</h3>
 <p>VPC Network is a virtual version of a physical network.
 Each VPC Network in the project consists of serveral subnets.
@@ -177,7 +178,7 @@ us-west1  us-west1  k8s-network  10.0.10.0/24
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gcloud compute networks subnets list <span class="p">|</span> grep k8s-network
 us-west1    us-west1                 k8s-network  10.0.10.0/24
 </code></pre></div><h2 id="create-a-gke-cluster-on-our-custom-vpc-network">Create a GKE cluster on our custom VPC network</h2>
-<p>We'll create a single-zone GKE cluster with one n1-standard-1(1vCPU, 3.75GB RAM) in us-west1:</p>
+<p>We&rsquo;ll create a single-zone GKE cluster with one n1-standard-1(1vCPU, 3.75GB RAM) in us-west1:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gcloud container clusters create lee-cluster <span class="se">\
 </span><span class="se"></span>  --zone us-west1-a <span class="se">\
 </span><span class="se"></span>  --machine-type n1-standard-1 <span class="se">\
@@ -198,7 +199,7 @@ NAME                                         STATUS   ROLES    AGE   VERSION
 gke-lee-cluster-default-pool-a6753d6c-th44   Ready    &lt;none&gt;   10m   v1.14.10-gke.36
 </code></pre></div><h2 id="push-our-local-docker-image-to-google-container-registrygcr">Push our local Docker image to Google Container Registry(GCR)</h2>
 <p>By default, if our container registry is in the same project with the GKE cluster,
-we don't need to configure extra authentication.</p>
+we don&rsquo;t need to configure extra authentication.</p>
 <p>Use <code>gcloud</code> as a credential helper:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gcloud auth configure-docker
 </code></pre></div><p>Tag our local Docker image:</p>
@@ -215,27 +216,27 @@ gcr.io/<span class="o">[</span>PROJECT_ID<span class="o">]</span>/go-api
 <p>Deployment fulfills the desired state that we declared.
 In other words, Deployment guarantees our workloads will have the exact number, resources, labels etc. in the yaml file.</p>
 <p>Create <code>api.yaml</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Deployment<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>go-api-deployment<span class="w">
-</span><span class="w">  </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">    </span>app<span class="p">:</span><span class="w"> </span>go-api<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>replicas<span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
-</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
-</span><span class="w">    </span>matchLabels<span class="p">:</span><span class="w">
-</span><span class="w">      </span>app<span class="p">:</span><span class="w"> </span>go-api<span class="w">
-</span><span class="w">  </span>template<span class="p">:</span><span class="w">
-</span><span class="w">    </span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">      </span>labels<span class="p">:</span><span class="w">
-</span><span class="w">        </span>app<span class="p">:</span><span class="w"> </span>go-api<span class="w">
-</span><span class="w">    </span>spec<span class="p">:</span><span class="w">
-</span><span class="w">      </span>containers<span class="p">:</span><span class="w">
-</span><span class="w">      </span>-<span class="w"> </span>name<span class="p">:</span><span class="w"> </span>go-api<span class="w">
-</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>gcr.io/<span class="p">[</span>PROJECT_ID<span class="p">]</span>/go-api<span class="p">:</span>latest<span class="w">
-</span><span class="w">        </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">        </span>-<span class="w"> </span>containerPort<span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>apps/v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Deployment<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>go-api-deployment<span class="w">
+</span><span class="w">  </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>go-api<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">replicas</span><span class="p">:</span><span class="w"> </span><span class="m">2</span><span class="w">
+</span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">matchLabels</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>go-api<span class="w">
+</span><span class="w">  </span><span class="k">template</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>go-api<span class="w">
+</span><span class="w">    </span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>go-api<span class="w">
+</span><span class="w">        </span><span class="k">image</span><span class="p">:</span><span class="w"> </span>gcr.io/<span class="p">[</span>PROJECT_ID<span class="p">]</span>/go-api<span class="p">:</span>latest<span class="w">
+</span><span class="w">        </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="k">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
 </span></code></pre></div><p>Deploy our Deployment to GKE:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ kubectl apply -f api.yaml
 deployment.apps/go-api-deployment created
@@ -257,22 +258,22 @@ The answer is to use <code>Service</code> to expose our Deployment to public.</p
 After setting up a LoadBalancer type Service, we will have an external IP address for the Service.
 We can make a request to the IP address, and the request is routed to one of the Pods in the Deployment.</p>
 <h3 id="why-do-we-need-service">Why do we need Service?</h3>
-<p>Because Pods in the Deployment come and go, it doesn't make sense to connect Pods with their internal IPs.
+<p>Because Pods in the Deployment come and go, it doesn&rsquo;t make sense to connect Pods with their internal IPs.
 Service is a stable way for clients to direct their requests to the Pods.</p>
 <h3 id="create-a-service">Create a Service</h3>
 <p>Create a file <code>service.yaml</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">apiVersion<span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span>kind<span class="p">:</span><span class="w"> </span>Service<span class="w">
-</span><span class="w"></span>metadata<span class="p">:</span><span class="w">
-</span><span class="w">  </span>name<span class="p">:</span><span class="w"> </span>go-api-service<span class="w">
-</span><span class="w"></span>spec<span class="p">:</span><span class="w">
-</span><span class="w">  </span>selector<span class="p">:</span><span class="w">
-</span><span class="w">    </span>app<span class="p">:</span><span class="w"> </span>go-api<span class="w">
-</span><span class="w">  </span>type<span class="p">:</span><span class="w"> </span>LoadBalancer<span class="w"> 
-</span><span class="w">  </span>ports<span class="p">:</span><span class="w">
-</span><span class="w">  </span>-<span class="w"> </span>protocol<span class="p">:</span><span class="w"> </span>TCP<span class="w">
-</span><span class="w">    </span>port<span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span><span class="w">    </span>targetPort<span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Service<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>go-api-service<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">selector</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">app</span><span class="p">:</span><span class="w"> </span>go-api<span class="w">
+</span><span class="w">  </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>LoadBalancer<span class="w"> 
+</span><span class="w">  </span><span class="k">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">protocol</span><span class="p">:</span><span class="w"> </span>TCP<span class="w">
+</span><span class="w">    </span><span class="k">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span><span class="w">    </span><span class="k">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
 </span></code></pre></div><p>This service will create a network load balancer(pass through).
 It will listen requests on port 80 and redirect requests to port 8080 in the Pod.</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ kubectl apply -f service.yaml
@@ -304,7 +305,7 @@ Hello Go api
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-06-23</span>
+                <span>Updated on 2020-06-23</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -330,7 +331,7 @@ Hello Go api
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>

@@ -6,18 +6,18 @@
         <meta name="robots" content="noodp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
         <title>Go RESTful API pt.4 - GitLab Respository - Sir</title><meta name="Description" content=""><meta property="og:title" content="Go RESTful API pt.4 - GitLab Respository" />
-<meta property="og:description" content="In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&#39;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that." />
+<meta property="og:description" content="In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&rsquo;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.leewei.co/posts/2020/go-app-from-scratch-p4/" />
 <meta property="article:published_time" content="2020-06-25T22:32:19+08:00" />
 <meta property="article:modified_time" content="2020-06-25T22:32:19+08:00" />
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Go RESTful API pt.4 - GitLab Respository"/>
-<meta name="twitter:description" content="In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&#39;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that."/>
+<meta name="twitter:description" content="In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&rsquo;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that."/>
 <meta name="application-name" content="Sir">
 <meta name="apple-mobile-web-app-title" content="Sir"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/2020/go-app-from-scratch-p4/" /><link rel="prev" href="https://www.leewei.co/posts/2020/go-app-from-scratch-p3/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://www.leewei.co/posts/2020/go-app-from-scratch-p4/" /><link rel="prev" href="https://www.leewei.co/posts/2020/go-app-from-scratch-p3/" /><link rel="next" href="https://www.leewei.co/posts/2020/leetcode-338-counting-bits/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -27,7 +27,9 @@
             "@type": "WebPage",
             "@id": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/"
         },"genre": "posts","keywords": "Go, App, RESTful, GitLab, GCE","wordcount":  1008 ,
-        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/","datePublished": "2020-06-25T22:32:19+08:00","dateModified": "2020-06-25T22:32:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","author": {
+        "url": "https:\/\/www.leewei.co\/posts\/2020\/go-app-from-scratch-p4\/","datePublished": "2020-06-25T22:32:19+08:00","dateModified": "2020-06-25T22:32:19+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "Lee Wei"},"author": {
                 "@type": "Person",
                 "name": "Lee Wei"
             },"description": ""
@@ -74,10 +76,9 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animated flipInX">Go RESTful API pt.4 - GitLab Respository</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-25>2020-06-25</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>&nbsp;about 1008 words&nbsp;
-                <i class="far fa-clock fa-fw"></i>&nbsp;5 min&nbsp;</div>
-        </div><div class="details toc" id="toc-static">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-06-25">2020-06-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1008 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right"></i></span>
@@ -102,7 +103,7 @@
 </nav></div>
             </div><div class="content" id="content"><p>In this post, we are going to set up a GitLab server on GCP.
 We need a git repository for our CI/CD pipeline.
-You might ask, there is a native GCP service called, Cloud Source Repository, why don't we just use that.
+You might ask, there is a native GCP service called, Cloud Source Repository, why don&rsquo;t we just use that.
 Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc.
 In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that. 😏</p>
 <h2 id="create-a-custom-vpc-network">Create a custom VPC network</h2>
@@ -206,7 +207,7 @@ applicable law.
 lee@gitlab-server:~$
 </code></pre></div><h3 id="set-up-a-sub-domain-for-gitlab">Set up a sub-domain for GitLab</h3>
 <p>We need to buy a domain for our GitLab server, or else we will access it using external IP of the GCE instance.</p>
-<p>I bought my domain on GoDaddy, let's assume your domain is <code>example.com</code>.
+<p>I bought my domain on GoDaddy, let&rsquo;s assume your domain is <code>example.com</code>.
 Set up a sub-domain <code>gitlab.example.com</code> to direct to <code>[EXTERNAL_IP]</code> that we reserved above.</p>
 <p>After setting up our sub-domain, we can access to our GitLab page using the domain <code>gitlab.example.com</code>.</p>
 <div class="details admonition danger open">
@@ -214,13 +215,13 @@ Set up a sub-domain <code>gitlab.example.com</code> to direct to <code>[EXTERNAL
             <i class="icon fas fa-skull-crossbones fa-fw"></i>Not so fast<i class="details-icon fas fa-angle-right fa-fw"></i>
         </div>
         <div class="details-content">
-            <div class="admonition-content">We haven't install our GitLab server yet. 😏</div>
+            <div class="admonition-content">We haven&rsquo;t install our GitLab server yet. 😏</div>
         </div>
     </div>
 <h3 id="install-gitlab-server">Install GitLab server</h3>
 <p>Follow the steps on this <a href="https://about.gitlab.com/install/#ubuntu" target="_blank" rel="noopener noreffer">document</a> to install GitLab.
 It might take some time to run through the installation, you should be fine. 😏</p>
-<p>Make sure you use <code>http://gitlab.example.com</code> for <code>external_url</code> in <code>/etc/gitlab/gitlab.rb</code>, we'll set up SSL later.</p>
+<p>Make sure you use <code>http://gitlab.example.com</code> for <code>external_url</code> in <code>/etc/gitlab/gitlab.rb</code>, we&rsquo;ll set up SSL later.</p>
 <p>After the installation is finished, we can access our GitLab with the external IP of the GCE.
 Open your browser with <code>http://[EXTERNAL_IP]</code>, and we will see our GitLab login page.</p>
 <figure>
@@ -265,24 +266,25 @@ Enqueued ActionMailer::DeliveryJob <span class="o">(</span>Job ID: 4673c2cb-543b
             <div class="admonition-content"><ol>
 <li>Make sure to create an <code>A record</code> for your gitlab domain.</li>
 <li>Make sure your 80 port is <a href="https://letsencrypt.org/docs/allow-port-80/" target="_blank" rel="noopener noreffer">open</a> through all of the firewall, including GCPs and OS level firewalls.</li>
-<li>Use <code>https://letsdebug.net/</code> to troubleshoot Let's Encrypt <a href="https://letsencrypt.org/docs/challenge-types/" target="_blank" rel="noopener noreffer">HTTP-01 Challenge</a>.</li>
-</ol></div>
+<li>Use <code>https://letsdebug.net/</code> to troubleshoot Let&rsquo;s Encrypt <a href="https://letsencrypt.org/docs/challenge-types/" target="_blank" rel="noopener noreffer">HTTP-01 Challenge</a>.</li>
+</ol>
+</div>
         </div>
     </div>
-<p>Since version 10.7, GitLab provided native Let's Encrypt intergration.
+<p>Since version 10.7, GitLab provided native Let&rsquo;s Encrypt intergration.
 We only need to add the following configuration in <code>/etc/gitlab/gitlab.rb</code></p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">external_url</span> <span class="s1">&#39;https://[GITLAB_DOMAIN]&#39;</span>
 <span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;enable&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_hour&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="o"></span><span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_minute&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">30</span>
-<span class="o"></span><span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_day_of_month&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="s2">*/4</span><span class="s2">&#34;</span>
+<span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_minute&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">letsencrypt</span><span class="o">[</span><span class="s1">&#39;auto_renew_day_of_month&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="s2">&#34;*/4&#34;</span>
 <span class="n">nginx</span><span class="o">[</span><span class="s1">&#39;redirect_http_to_https&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
 <span class="n">nginx</span><span class="o">[</span><span class="s1">&#39;redirect_http_to_https_port&#39;</span><span class="o">]</span> <span class="o">=</span> <span class="mi">80</span>
-<span class="o"></span></code></pre></div><p>After saving the file, execute the following command to re-configure GitLab:</p>
+</code></pre></div><p>After saving the file, execute the following command to re-configure GitLab:</p>
 <div class="highlight"><pre class="chroma"><code class="language-Shell" data-lang="Shell">$ gitlab-ctl reconfigure
 </code></pre></div><p>Finising the re-configuration, we can browse to our GitLab page with https!
-And also we enabled http to https redirect, whenever there is a http access, it'll be redirect to https.</p>
+And also we enabled http to https redirect, whenever there is a http access, it&rsquo;ll be redirect to https.</p>
 <figure>
     <img src="../img/gitlab_https.png"/> <figcaption>
             <h4>GitLab HTTPS page</h4>
@@ -302,7 +304,7 @@ And also we enabled http to https redirect, whenever there is a http access, it'
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>The article was updated on 2020-06-25</span>
+                <span>Updated on 2020-06-25</span>
             </div>
             <div class="post-info-license"></div>
         </div>
@@ -321,13 +323,14 @@ And also we enabled http to https redirect, whenever there is a http access, it'
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/2020/go-app-from-scratch-p3/" class="prev" rel="prev" title="Go RESTful API pt.3 - Running App on GKE"><i class="fas fa-angle-left fa-fw"></i>Go RESTful API pt.3 - Running App on GKE</a></div>
+    <div class="post-nav"><a href="/posts/2020/go-app-from-scratch-p3/" class="prev" rel="prev" title="Go RESTful API pt.3 - Running App on GKE"><i class="fas fa-angle-left fa-fw"></i>Go RESTful API pt.3 - Running App on GKE</a>
+            <a href="/posts/2020/leetcode-338-counting-bits/" class="next" rel="next" title="Leetcode 338: Counting Bits">Leetcode 338: Counting Bits<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id="comments"><div id="disqus_thread" class="comment"></div><noscript>
                 Please enable JavaScript to view the comments powered by <a href="https://disqus.com/?ref_noscript">Disqus</a>.
             </noscript></div></article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.62.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.8"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
                 </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
