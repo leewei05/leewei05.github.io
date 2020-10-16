@@ -2,14 +2,16 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
+            <loc>https://www.leewei.co/tags/job/</loc><lastmod>2020-10-16T09:33:54&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-10-16T09:33:54&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/</loc><lastmod>2020-10-16T09:33:54&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-10-16T09:33:54&#43;08:00</lastmod></url><url>
+            <loc>https://www.leewei.co/posts/2020/summary-of-first-job/</loc><lastmod>2020-10-16T09:33:54&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/algorithm/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/bit/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/go/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/leetcode/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/posts/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
-            <loc>https://www.leewei.co/tags/</loc><lastmod>2020-09-03T20:07:34&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/app/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gce/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>
             <loc>https://www.leewei.co/tags/gitlab/</loc><lastmod>2020-06-25T22:32:19&#43;08:00</lastmod></url><url>

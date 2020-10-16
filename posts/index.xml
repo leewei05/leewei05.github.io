@@ -3,7 +3,15 @@
         <title>All Posts - Sir</title>
         <link>https://www.leewei.co/posts/</link>
         <description>All Posts | Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 03 Sep 2020 20:07:34 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>What I learned from my first job</title>
+    <link>https://www.leewei.co/posts/2020/summary-of-first-job/</link>
+    <pubDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</pubDate>
+    <author>Author</author>
+    <guid>https://www.leewei.co/posts/2020/summary-of-first-job/</guid>
+    <description><![CDATA[Time flies! It&rsquo;s already been two and a half years since I joined my first company. I remembered the time when a kid interviewed in Customer Engineer, a new graduate who was participating his first interview of his life. He got lucky and entered the world of Cloud.
+This post is a summary of the skills and mindset that I learned. First, let me quickly describe what I do in my daily routine.]]></description>
+</item><item>
     <title>Leetcode 338: Counting Bits</title>
     <link>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</link>
     <pubDate>Thu, 03 Sep 2020 20:07:34 &#43;0800</pubDate>
@@ -81,12 +89,5 @@ In a broader view of RDBMS, Schema is generally refered as the definition of tab
     <author>Author</author>
     <guid>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</guid>
     <description><![CDATA[Database Storage  Spatial Control  where to write pages on disk keep pages that are often used together physically as close as possible   Temporal Control  when to read pages into memory, when to write pages to disk minimize the number of stalls from having to read data from disk    Locks vs Latches  Locks  Protect the database logical contents (e.g., tuples, tables, databases) from other transactions Held for transaction duration Need to be able to rollback changes   Latches(It is called Mutex or Locks in the Operating System world)  Protects the critical sections of the DBMS’s internal data structures from other threads Held for operation duration Do not need to be able to rollback changes    Buffer Pool Manager Buffer pool (buffer cache) is an array of fixed-size pages.]]></description>
-</item><item>
-    <title>CMU Databases Systems: 04 Database Storage(pt.2)</title>
-    <link>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</link>
-    <pubDate>Wed, 13 May 2020 22:26:52 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/cmu-15-445/database-storage-02/</guid>
-    <description><![CDATA[Andy(lecturer) said that in the early 2000s, Google is making tons of money. And one of the reason Google is expanding and scaling so fast is because they are using HBase, which is called &ldquo;BigTable&rdquo; on GCP. Google is absolutely good at large scale database systems, like Spanner, BigQuery etc. A lot of companies are trying to copy the tech stack of Google. Nevertheless, not all the companies that uses Google Cloud Platform are enterprise level companies, most of them don&rsquo;t have the resource like Google to develop applications using large scale databases.]]></description>
 </item></channel>
 </rss>
