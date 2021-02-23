@@ -120,40 +120,22 @@ How does DNS work? The process of DNS resolution is the following:</div><div cla
         <a href="/posts/2020/go-app-from-scratch-p1/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go/">Go</a>,&nbsp;<a href="/tags/app/">App</a>,&nbsp;<a href="/tags/restful/">RESTful</a>,&nbsp;<a href="/tags/http-server/">HTTP Server</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cmu-15-445/hash-tables/">CMU Databases Systems: 06 Hash Tables</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-06-14">2020-06-14</time></span></div><div class="content">Hash Tables A hash table is an abstract data type that implements arbitrary array that maps keys to values.
- Space complexity: O(N) Operation complexity: Average is O(1), worst case is O(N).  Hash Function A hash function is how to map a large key space into a smaller domain. Need to consider the trade-off between fast execution vs. collision rate.
-The fastest hash function is with a constant key, it will always return the same index.</div><div class="post-footer">
-        <a href="/posts/cmu-15-445/hash-tables/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></div></div>
+        <a href="/posts/2019/dependency-inversion-principle/">Dependency Inversion Principle</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">published on <time datetime="2019-12-11">2019-12-11</time></span></div><div class="content">I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
+High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
+Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
+Example 1: without DIP Let&rsquo;s say we have an application that has the following structure:</div><div class="post-footer">
+        <a href="/posts/2019/dependency-inversion-principle/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/golang/">golang</a>,&nbsp;<a href="/tags/clean-architecture/">clean architecture</a>,&nbsp;<a href="/tags/dip/">dip</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/2020/postgre-sql-create-user-db-tables/">PostgreSQL: Create Users, Databases and Tables</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-05-31">2020-05-31</time></span></div><div class="content">In the last post, we set up our PostgreSQL server. Now, we&rsquo;re going to create users, databases and tables.
-PostgreSQL Schema Basics What is the definition of Schema in PostgreSQL Before we begin to create and set up the objects in PostgreSQL, we might need to understand the basic concept of schema in PostgreSQL. This article detailed describe the definition of Schema in PostgreSQL.
-In a broader view of RDBMS, Schema is generally refered as the definition of tables, columns and other objects that constitute the database.</div><div class="post-footer">
-        <a href="/posts/2020/postgre-sql-create-user-db-tables/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/postgresql/">PostgreSQL</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cmu-15-445/buffer-pool/">CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">published on <time datetime="2020-05-17">2020-05-17</time></span></div><div class="content">Database Storage  Spatial Control  where to write pages on disk keep pages that are often used together physically as close as possible   Temporal Control  when to read pages into memory, when to write pages to disk minimize the number of stalls from having to read data from disk    Locks vs Latches  Locks  Protect the database logical contents (e.g., tuples, tables, databases) from other transactions Held for transaction duration Need to be able to rollback changes   Latches(It is called Mutex or Locks in the Operating System world)  Protects the critical sections of the DBMS’s internal data structures from other threads Held for operation duration Do not need to be able to rollback changes    Buffer Pool Manager Buffer pool (buffer cache) is an array of fixed-size pages.</div><div class="post-footer">
-        <a href="/posts/cmu-15-445/buffer-pool/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/cmu/">CMU</a>,&nbsp;<a href="/tags/15-445/">15-445</a></div></div>
-</article><ul class="pagination"><li class="page-item active">
-                    <span class="page-link">
-                        <a href="/">1</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/2/">2</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/3/">3</a>
-                    </span>
-                </li></ul></div></div>
+        <a href="/posts/2019/how-to-avoid-asking-bad-questions/">How to Avoid Asking Bad Questions</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Lee Wei</a></span>&nbsp;<span class="post-publish">published on <time datetime="2019-12-04">2019-12-04</time></span></div><div class="content">As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+1. Google it before asking anyone Sometimes the answer to the question is just one click away.</div><div class="post-footer">
+        <a href="/posts/2019/how-to-avoid-asking-bad-questions/">Read More</a></div>
+</article></div></div>
             </main><footer class="footer">
         <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.74.2">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Lee Wei</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
         </div>
     </footer></div>
 

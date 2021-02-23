@@ -65,29 +65,22 @@ How does DNS work? The process of DNS resolution is the following:]]></descripti
     <description><![CDATA[This part 1 of building a Go RESTful API. Our final goal is to build up a CI/CD pipeline using the following tech stack. Wish me luck, nothing is easy in the beginning. 😆
 * Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we&rsquo;re going to set up a simple HTTP server and local PostgreSQL.]]></description>
 </item><item>
-    <title>CMU Databases Systems: 06 Hash Tables</title>
-    <link>https://www.leewei.co/posts/cmu-15-445/hash-tables/</link>
-    <pubDate>Sun, 14 Jun 2020 12:24:08 &#43;0800</pubDate>
+    <title>Dependency Inversion Principle</title>
+    <link>https://www.leewei.co/posts/2019/dependency-inversion-principle/</link>
+    <pubDate>Wed, 11 Dec 2019 00:13:40 &#43;0800</pubDate>
     <author>Author</author>
-    <guid>https://www.leewei.co/posts/cmu-15-445/hash-tables/</guid>
-    <description><![CDATA[Hash Tables A hash table is an abstract data type that implements arbitrary array that maps keys to values.
- Space complexity: O(N) Operation complexity: Average is O(1), worst case is O(N).  Hash Function A hash function is how to map a large key space into a smaller domain. Need to consider the trade-off between fast execution vs. collision rate.
-The fastest hash function is with a constant key, it will always return the same index.]]></description>
+    <guid>https://www.leewei.co/posts/2019/dependency-inversion-principle/</guid>
+    <description><![CDATA[I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
+High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
+Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
+Example 1: without DIP Let&rsquo;s say we have an application that has the following structure:]]></description>
 </item><item>
-    <title>PostgreSQL: Create Users, Databases and Tables</title>
-    <link>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</link>
-    <pubDate>Sun, 31 May 2020 23:58:56 &#43;0800</pubDate>
+    <title>How to Avoid Asking Bad Questions</title>
+    <link>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</link>
+    <pubDate>Wed, 04 Dec 2019 00:00:00 &#43;0000</pubDate>
     <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/postgre-sql-create-user-db-tables/</guid>
-    <description><![CDATA[In the last post, we set up our PostgreSQL server. Now, we&rsquo;re going to create users, databases and tables.
-PostgreSQL Schema Basics What is the definition of Schema in PostgreSQL Before we begin to create and set up the objects in PostgreSQL, we might need to understand the basic concept of schema in PostgreSQL. This article detailed describe the definition of Schema in PostgreSQL.
-In a broader view of RDBMS, Schema is generally refered as the definition of tables, columns and other objects that constitute the database.]]></description>
-</item><item>
-    <title>CMU Databases Systems: 05 Buffer Pool &amp; Memory Management</title>
-    <link>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</link>
-    <pubDate>Sun, 17 May 2020 11:06:48 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/cmu-15-445/buffer-pool/</guid>
-    <description><![CDATA[Database Storage  Spatial Control  where to write pages on disk keep pages that are often used together physically as close as possible   Temporal Control  when to read pages into memory, when to write pages to disk minimize the number of stalls from having to read data from disk    Locks vs Latches  Locks  Protect the database logical contents (e.g., tuples, tables, databases) from other transactions Held for transaction duration Need to be able to rollback changes   Latches(It is called Mutex or Locks in the Operating System world)  Protects the critical sections of the DBMS’s internal data structures from other threads Held for operation duration Do not need to be able to rollback changes    Buffer Pool Manager Buffer pool (buffer cache) is an array of fixed-size pages.]]></description>
+    <guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
+    <description><![CDATA[As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+1. Google it before asking anyone Sometimes the answer to the question is just one click away.]]></description>
 </item></channel>
 </rss>
