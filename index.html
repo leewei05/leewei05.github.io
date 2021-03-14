@@ -34,11 +34,11 @@
 <script>
   var darkTheme = document.getElementById('dark-mode-theme')
   var storedTheme = localStorage.getItem('dark-mode-storage')
-  
+  if (storedTheme === 'dark') {
     darkTheme.disabled = false
-  
-  
-  
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
 </script>
 
 <script src="https://www.leewei.co/js/bundle.js"></script>
@@ -216,6 +216,8 @@ Example 1: without DIP Let&rsquo;s say we have an application that has the follo
         &nbsp;/&nbsp;
         <a href="https://www.leewei.co/">What does the fox say?</a>
       
+      &nbsp;&ndash;&nbsp;
+      <em class="fas fa-moon" id="dark-mode-toggle"></em>
     </p>
 
     <p class="credits theme-by">

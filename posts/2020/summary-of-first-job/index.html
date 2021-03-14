@@ -35,11 +35,11 @@ This post is a summary of the skills and mindset that I learned. First, let me q
 <script>
   var darkTheme = document.getElementById('dark-mode-theme')
   var storedTheme = localStorage.getItem('dark-mode-storage')
-  
+  if (storedTheme === 'dark') {
     darkTheme.disabled = false
-  
-  
-  
+  } else if (storedTheme === 'light') {
+    darkTheme.disabled = true
+  }
 </script>
 
 <script src="https://www.leewei.co/js/bundle.js"></script>
@@ -248,6 +248,8 @@ They can also answer your question and extend it with other knowledge. Greatful 
         &nbsp;/&nbsp;
         <a href="https://www.leewei.co/">What does the fox say?</a>
       
+      &nbsp;&ndash;&nbsp;
+      <em class="fas fa-moon" id="dark-mode-toggle"></em>
     </p>
 
     <p class="credits theme-by">
