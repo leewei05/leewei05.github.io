@@ -1,0 +1,15 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Categories on What does the fox say?</title>
+		<link>https://www.leewei.co/categories/</link>
+		<description>Recent content in Categories </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>en</language>
+		
+		<managingEditor>Page(/categories) (Lee Wei)</managingEditor>
+    	
+		<atom:link href="/categories/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>

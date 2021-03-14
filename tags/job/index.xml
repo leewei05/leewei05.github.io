@@ -1,15 +1,17 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>job - Tag - Sir</title>
-        <link>https://www.leewei.co/tags/job/</link>
-        <description>job - Tag - Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/job/" rel="self" type="application/rss+xml" /><item>
-    <title>What I learned from my first job</title>
-    <link>https://www.leewei.co/posts/2020/summary-of-first-job/</link>
-    <pubDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/summary-of-first-job/</guid>
-    <description><![CDATA[Time flies! It&rsquo;s already been two and a half years since I joined my first company. I remembered the time when a boy was interviewed in Customer Engineer, a new graduate who was participating his first interview of his life. He got lucky and entered the world of Cloud.
-This post is a summary of the skills and mindset that I learned. First, let me quickly describe what I do in my daily routine.]]></description>
-</item></channel>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>job on What does the fox say?</title>
+		<link>https://www.leewei.co/tags/job/</link>
+		<description>Recent content in job </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>en</language>
+		
+		<managingEditor>Page(/tags/job) (Lee Wei)</managingEditor>
+    	
+  		<lastBuildDate>Fri, 16 Oct 2020 09:33:54 +0800</lastBuildDate>
+		
+		<atom:link href="/tags/job/" rel="self" type="application/rss+xml" />
+		
+	</channel>
 </rss>
