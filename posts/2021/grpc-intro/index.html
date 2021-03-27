@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-<title>Sir</title>
+<title>Introduction of RPC</title>
 
 
   
@@ -18,8 +18,9 @@
   title="Sir"
 />
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Sir"/>
-<meta name="twitter:description" content=""/>
+<meta name="twitter:title" content="Introduction of RPC"/>
+<meta name="twitter:description" content="RPC(Remote Procedure Call) What is RPC? RPC is a network protocol that can call a remote system process like a local system.
+ Client-Server model Procedure call is also known as function call or subrountine call RPC can be implemented throughout HTTP to TCP layers  How does RPC work?  A Client starts a client stub process Client stub marshels parameters and sends to local RPC runtime RPC runtime sends to remote RPC runtime Server side will handle the function call and return the message to client RPC runtime Client stub unmarshels the return message and returns to the caller   A stub is a piece of code that converts parameters passed between client and server during a remote procedure call."/>
 
 
 
@@ -50,9 +51,7 @@
   <body>
     
   
-    
-  
-  
+
 
 
 
@@ -94,10 +93,10 @@
 
     <div class="intro-header">
       <div class="container">
-        <div class="page-heading">
+        <div class="posts-heading">
           
             <h1>
-              Sir
+              Introduction of RPC
             </h1>
           
           
@@ -109,51 +108,72 @@
 
     
   <div class="container" role="main">
-    <div class="posts-list">
+    <article class="article" class="blog-post">
       
-        
-        
+  <h2 id="rpcremote-procedure-call">RPC(Remote Procedure Call)</h2>
+<h3 id="what-is-rpc">What is RPC?</h3>
+<p>RPC is a network protocol that can call a remote system process like a local system.</p>
+<ul>
+<li>Client-Server model</li>
+<li>Procedure call is also known as function call or subrountine call</li>
+<li>RPC can be implemented throughout HTTP to TCP layers</li>
+</ul>
+<h3 id="how-does-rpc-work">How does RPC work?</h3>
+<ol>
+<li>A Client starts a client stub process</li>
+<li>Client stub marshels parameters and sends to local RPC runtime</li>
+<li>RPC runtime sends to remote RPC runtime</li>
+<li>Server side will handle the function call and return the message to client RPC runtime</li>
+<li>Client stub unmarshels the return message and returns to the caller</li>
+</ol>
+<blockquote>
+<p>A stub is a piece of code that converts parameters passed between client and server during a remote procedure call.</p>
+</blockquote>
 
-      
-        <article class="post-preview">
-  <a href="https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/">
-    <h2 class="post-title">How to Avoid Asking Bad Questions</h2>
-  </a>
-  <div class="post-entry">
-    
-      <p>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
-1. Google it before asking anyone Sometimes the answer to the question is just one click away.</p>
-      <a href="https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/" class="post-read-more"
-        >Read More</a
-      >
-    
-  </div>
 
-  <div class="postmeta">
-    <span class="meta-post">
-  <em class="fa fa-calendar-alt"></em
-  >&nbsp;Dec 4, 2019
-  
-</span>
 
-  </div>
-</article>
 
       
-    </div>
+        <div class="blog-tags">
+          
+            <a href="https://www.leewei.co/tags/rpc/">rpc</a
+            >&nbsp;
+          
+            <a href="https://www.leewei.co/tags/micro-blog/">micro-blog</a
+            >&nbsp;
+          
+        </div>
+      
+    </article>
     
-      <ul class="pager">
-        
-          <li class="previous">
+    
+      
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+        (function() {
             
-            <a href="https://www.leewei.co/page/1/"
-              >&larr; Newer</a
-            >
             
-          </li>
-        
-        
-      </ul>
+            if (window.location.hostname == "localhost") return;
+
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            var disqus_shortname = 'https-www-leewei-co';
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+  <noscript
+    >Please enable JavaScript to view the
+    <a href="https://disqus.com/?ref_noscript"
+      >comments powered by Disqus.</a
+    ></noscript
+  >
+  <a href="https://disqus.com/" class="dsq-brlink"
+    >comments powered by <span class="logo-disqus">Disqus</span></a
+  >
+
+
     
   </div>
 

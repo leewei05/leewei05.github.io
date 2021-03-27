@@ -1,0 +1,17 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>micro-blog on Sir</title>
+		<link>https://www.leewei.co/tags/micro-blog/</link>
+		<description>Recent content in micro-blog </description>
+		<generator>Hugo -- gohugo.io</generator>
+		
+  		<language>en</language>
+		
+		<managingEditor>Page(/tags/micro-blog) (Lee Wei)</managingEditor>
+    	
+  		<lastBuildDate>Sat, 27 Mar 2021 15:55:58 +0800</lastBuildDate>
+		
+		<atom:link href="/tags/micro-blog/" rel="self" type="application/rss+xml" />
+		
+	</channel>
+</rss>
