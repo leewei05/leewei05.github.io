@@ -6,3 +6,19 @@ html {
   font-size: 30px !important;
 }
 
+.post-entry p {
+  display: none !important;
+}
+
+.post-read-more {
+  display: none !important;
+}
+
+.post-title h2 {
+  width: 50% !important;
+}
+
+.postmeta div {
+  margin: 10px 0;
+  width: 50% !important;
+}
