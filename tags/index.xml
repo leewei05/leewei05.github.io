@@ -1,17 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>Tags on Sir</title>
-		<link>https://www.leewei.co/tags/</link>
-		<description>Recent content in Tags </description>
-		<generator>Hugo -- gohugo.io</generator>
-		
-  		<language>en</language>
-		
-		<managingEditor>Page(/tags) (Lee Wei)</managingEditor>
-    	
-  		<lastBuildDate>Sat, 27 Mar 2021 15:55:58 +0800</lastBuildDate>
-		
-		<atom:link href="/tags/" rel="self" type="application/rss+xml" />
-		
-	</channel>
+  <channel>
+    <title>Tags on Lee Wei</title>
+    <link>https://www.leewei.co/tags/</link>
+    <description>Recent content in Tags on Lee Wei</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 27 Mar 2021 15:55:58 +0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>micro-blog</title>
+      <link>https://www.leewei.co/tags/micro-blog/</link>
+      <pubDate>Sat, 27 Mar 2021 15:55:58 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/micro-blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rpc</title>
+      <link>https://www.leewei.co/tags/rpc/</link>
+      <pubDate>Sat, 27 Mar 2021 15:55:58 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/rpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>job</title>
+      <link>https://www.leewei.co/tags/job/</link>
+      <pubDate>Fri, 16 Oct 2020 09:33:54 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/job/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>clean architecture</title>
+      <link>https://www.leewei.co/tags/clean-architecture/</link>
+      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/clean-architecture/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>dip</title>
+      <link>https://www.leewei.co/tags/dip/</link>
+      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/dip/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://www.leewei.co/tags/golang/</link>
+      <pubDate>Wed, 11 Dec 2019 00:13:40 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
 </rss>

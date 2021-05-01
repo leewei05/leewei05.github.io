@@ -1,17 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>rpc on Sir</title>
-		<link>https://www.leewei.co/tags/rpc/</link>
-		<description>Recent content in rpc </description>
-		<generator>Hugo -- gohugo.io</generator>
-		
-  		<language>en</language>
-		
-		<managingEditor>Page(/tags/rpc) (Lee Wei)</managingEditor>
-    	
-  		<lastBuildDate>Sat, 27 Mar 2021 15:55:58 +0800</lastBuildDate>
-		
-		<atom:link href="/tags/rpc/" rel="self" type="application/rss+xml" />
-		
-	</channel>
+  <channel>
+    <title>rpc on Lee Wei</title>
+    <link>https://www.leewei.co/tags/rpc/</link>
+    <description>Recent content in rpc on Lee Wei</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sat, 27 Mar 2021 15:55:58 +0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/rpc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>🌐 Introduction of RPC</title>
+      <link>https://www.leewei.co/posts/2021/grpc-intro/</link>
+      <pubDate>Sat, 27 Mar 2021 15:55:58 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/2021/grpc-intro/</guid>
+      <description>RPC(Remote Procedure Call) What is RPC? RPC is a network protocol that can call a remote system process like a local system.
+ Client-Server model Procedure call is also known as function call or subrountine call RPC can be implemented throughout HTTP to TCP layers  How does RPC work?  A Client starts a client stub process Client stub marshels parameters and sends to local RPC runtime RPC runtime sends to remote RPC runtime Server side will handle the function call and return the message to client RPC runtime Client stub unmarshels the return message and returns to the caller   A stub is a piece of code that converts parameters passed between client and server during a remote procedure call.</description>
+    </item>
+    
+  </channel>
 </rss>

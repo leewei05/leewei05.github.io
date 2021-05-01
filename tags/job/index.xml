@@ -1,17 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-	<channel>
-		<title>job on Sir</title>
-		<link>https://www.leewei.co/tags/job/</link>
-		<description>Recent content in job </description>
-		<generator>Hugo -- gohugo.io</generator>
-		
-  		<language>en</language>
-		
-		<managingEditor>Page(/tags/job) (Lee Wei)</managingEditor>
-    	
-  		<lastBuildDate>Fri, 16 Oct 2020 09:33:54 +0800</lastBuildDate>
-		
-		<atom:link href="/tags/job/" rel="self" type="application/rss+xml" />
-		
-	</channel>
+  <channel>
+    <title>job on Lee Wei</title>
+    <link>https://www.leewei.co/tags/job/</link>
+    <description>Recent content in job on Lee Wei</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 16 Oct 2020 09:33:54 +0800</lastBuildDate><atom:link href="https://www.leewei.co/tags/job/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>👨🏻‍💻 What I learned from my first job</title>
+      <link>https://www.leewei.co/posts/2020/summary-of-first-job/</link>
+      <pubDate>Fri, 16 Oct 2020 09:33:54 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/2020/summary-of-first-job/</guid>
+      <description>Time flies! It&amp;rsquo;s already been two and a half years since I joined my first company. I remembered the time when a boy was interviewed in Customer Engineer, a new graduate who was participating his first interview of his life. He got lucky and entered the world of Cloud.
+This post is a summary of the skills and mindset that I learned. First, let me quickly describe what I do in my daily routine.</description>
+    </item>
+    
+  </channel>
 </rss>
