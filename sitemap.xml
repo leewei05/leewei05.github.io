@@ -1,40 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
   <url>
-    <loc>https://www.leewei.co/tags/job/</loc>
-    <lastmod>2020-10-16T09:33:54+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/posts/</loc>
-    <lastmod>2020-10-16T09:33:54+08:00</lastmod>
-  </url><url>
     <loc>https://www.leewei.co/</loc>
     <lastmod>2020-10-16T09:33:54+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/</loc>
     <lastmod>2020-10-16T09:33:54+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/posts/2020/summary-of-first-job/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/summary-of-first-job/</loc>
     <lastmod>2020-10-16T09:33:54+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/tags/clean-architecture/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/posts/2019/dependency-inversion-principle/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/tags/dip/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/tags/golang/</loc>
-    <lastmod>2019-12-11T00:13:40+08:00</lastmod>
-  </url><url>
-    <loc>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.leewei.co/posts/how-to-avoid-asking-bad-questions/</loc>
     <lastmod>2019-12-04T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.leewei.co/about/</loc>
     <lastmod>2019-10-23T00:00:00+00:00</lastmod>
-  </url><url>
+  </url>
+  
+  <url>
     <loc>https://www.leewei.co/categories/</loc>
   </url>
+  
+  <url>
+    <loc>https://www.leewei.co/tags/</loc>
+  </url>
+  
 </urlset>

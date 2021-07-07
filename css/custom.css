@@ -1,8 +1,22 @@
 html {
-    background-color: #FFFFEE !important;
+    background-color: #221f29 !important;
 }
 
-.intro-header [class$="-heading"] h1 {
-  font-size: 30px !important;
+:root {
+    --bgcolor: #221f29;
+		--fontcolor: #c9cacc;
+		--visitedcolor: #2bbc8a;
+		--linkcolor: #2bbc8a;
 }
 
+body {
+    font-family: "Menlo", "Meslo LG", monospace;
+}
+
+a:-webkit-any-link {
+    text-decoration: none;
+}
+
+h1 {
+   --linkcolor: #2bbc8a;
+}

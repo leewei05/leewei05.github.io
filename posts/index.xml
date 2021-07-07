@@ -1,86 +1,35 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>All Posts - Sir</title>
-        <link>https://www.leewei.co/posts/</link>
-        <description>All Posts | Sir</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</lastBuildDate><atom:link href="https://www.leewei.co/posts/" rel="self" type="application/rss+xml" /><item>
-    <title>What I learned from my first job</title>
-    <link>https://www.leewei.co/posts/2020/summary-of-first-job/</link>
-    <pubDate>Fri, 16 Oct 2020 09:33:54 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/summary-of-first-job/</guid>
-    <description><![CDATA[Time flies! It&rsquo;s already been two and a half years since I joined my first company. I remembered the time when a boy was interviewed in Customer Engineer, a new graduate who was participating his first interview of his life. He got lucky and entered the world of Cloud.
-This post is a summary of the skills and mindset that I learned. First, let me quickly describe what I do in my daily routine.]]></description>
-</item><item>
-    <title>Leetcode 338: Counting Bits</title>
-    <link>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</link>
-    <pubDate>Thu, 03 Sep 2020 20:07:34 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/leetcode-338-counting-bits/</guid>
-    <description><![CDATA[This question is interesting. I want to write down my solutions and help me review it in the future. The statement of the question is the following:
-Question statement  Given a non negative integer number num. For every numbers i in the range 0 ≤ i ≤ num calculate the number of 1&rsquo;s in their binary representation and return them as an array.
-Input: 2 Output: [0,1,1]
-Input: 5 Output: [0,1,1,2,1,2]]]></description>
-</item><item>
-    <title>Go RESTful API pt.4 - GitLab Respository</title>
-    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</link>
-    <pubDate>Thu, 25 Jun 2020 22:32:19 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p4/</guid>
-    <description><![CDATA[In this post, we are going to set up a GitLab server on GCP. We need a git repository for our CI/CD pipeline. You might ask, there is a native GCP service called, Cloud Source Repository, why don&rsquo;t we just use that. Of course we can use that, but Source Repository lacks a lot of features like merge request, UI for code reviewing etc. In addition, we can learn how to set up our own GitLab Server and configure its domain and SSL, how cool is that.]]></description>
-</item><item>
-    <title>Go RESTful API pt.3 - Running App on GKE</title>
-    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</link>
-    <pubDate>Tue, 23 Jun 2020 08:32:11 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p3/</guid>
-    <description><![CDATA[On the previous post, we have already build our Docker image and succefully run it on our local computer. Right now, we are going to learn some basic knowledge of Google Kubernetes Engine and how to deploy our service to it.
-Kubernetes Kubernetes(k8s) is an open source system for users to manage their containerized applications.
-Why do we need Kubernetes? Kubernetes is a system that makes sure our containers are running as we expected.]]></description>
-</item><item>
-    <title>Go RESTful API pt.2 - API Server &amp; Docker Image</title>
-    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</link>
-    <pubDate>Sun, 21 Jun 2020 08:32:11 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p2/</guid>
-    <description><![CDATA[In this part, we will build a RESTful API server and wrap it in Docker. After that, we&rsquo;ll deploy it on GKE and start build our CI/CD pipeline for the whole project.
-Import Environment Variables Using environment variables to define our database parameters is a better way. There are several reasons that we should not hard code our parameters:
-Security
-I have seen a lot of cases that people upload their credentials or their database information to Github.]]></description>
-</item><item>
-    <title>DNS(Domain Name System) Overview</title>
-    <link>https://www.leewei.co/posts/2020/dns-brief-records/</link>
-    <pubDate>Thu, 18 Jun 2020 10:41:42 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/dns-brief-records/</guid>
-    <description><![CDATA[This is a summary of DNS related topics that we met in our daily life. Recommend anyone who wants to dive deep in DNS to read the article written by Cloudflare
-What is DNS? The Domain Name System(DNS) is a service that translate domain names to IP addresses. So that, we can load resources from web server to our local browser.
-How does DNS work? The process of DNS resolution is the following:]]></description>
-</item><item>
-    <title>Go RESTful API pt.1 - Simple HTTP Server</title>
-    <link>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</link>
-    <pubDate>Wed, 17 Jun 2020 16:37:39 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2020/go-app-from-scratch-p1/</guid>
-    <description><![CDATA[This part 1 of building a Go RESTful API. Our final goal is to build up a CI/CD pipeline using the following tech stack. Wish me luck, nothing is easy in the beginning. 😆
-* Go * GitLab -&gt; Repository * GitLab -&gt; CI/CD * PostgreSQL -&gt; Cloud SQL * Docker * Kubernetes -&gt; GKE In this part, we&rsquo;re going to set up a simple HTTP server and local PostgreSQL.]]></description>
-</item><item>
-    <title>Dependency Inversion Principle</title>
-    <link>https://www.leewei.co/posts/2019/dependency-inversion-principle/</link>
-    <pubDate>Wed, 11 Dec 2019 00:13:40 &#43;0800</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2019/dependency-inversion-principle/</guid>
-    <description><![CDATA[I accidently knew the concept of Dependency Inversion Principle(DIP) when I was developing a project. Its definition:
-High level modules should not depend on low level modules; both should depend on abstractions. Abstractions should not depend on details. Details should depend on abstractions.
-Confusing, right? The first time I heard of this principle, I thought it was about the organization of directories. 😆
-Example 1: without DIP Let&rsquo;s say we have an application that has the following structure:]]></description>
-</item><item>
-    <title>How to Avoid Asking Bad Questions</title>
-    <link>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</link>
-    <pubDate>Wed, 04 Dec 2019 00:00:00 &#43;0000</pubDate>
-    <author>Author</author>
-    <guid>https://www.leewei.co/posts/2019/how-to-avoid-asking-bad-questions/</guid>
-    <description><![CDATA[As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
-1. Google it before asking anyone Sometimes the answer to the question is just one click away.]]></description>
-</item></channel>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Lee Wei</title>
+    <link>https://www.leewei.co/posts/</link>
+    <description>Recent content in Posts on Lee Wei</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <copyright>Lee Wei</copyright>
+    <lastBuildDate>Fri, 16 Oct 2020 09:33:54 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.leewei.co/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>What I learned from my first job</title>
+      <link>https://www.leewei.co/posts/summary-of-first-job/</link>
+      <pubDate>Fri, 16 Oct 2020 09:33:54 +0800</pubDate>
+      
+      <guid>https://www.leewei.co/posts/summary-of-first-job/</guid>
+      <description>Time flies! It&amp;rsquo;s already been two and a half years since I joined my first company. I remembered the time when a boy was interviewed in Customer Engineer, a new graduate who was participating his first interview of his life. He got lucky and entered the world of Cloud.
+This post is a summary of the skills and mindset that I learned. First, let me quickly describe what I do in my daily routine.</description>
+    </item>
+    
+    <item>
+      <title>How to Avoid Asking Bad Questions</title>
+      <link>https://www.leewei.co/posts/how-to-avoid-asking-bad-questions/</link>
+      <pubDate>Wed, 04 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.leewei.co/posts/how-to-avoid-asking-bad-questions/</guid>
+      <description>As a customer engineer, I receive all kinds of questions everyday. For me, I also ask a lot of questions to my colleagues. It is normal if we ask someone for help because we don&amp;rsquo;t know everything. However, it might be frustrating to handle bad questions. Here are some tips on how we avoid asking bad questions:
+1. Google it before asking anyone Sometimes the answer to the question is just one click away.</description>
+    </item>
+    
+  </channel>
 </rss>
