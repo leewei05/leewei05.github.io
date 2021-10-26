@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Lee&#39;s Blog</title>
+    <title>Database Geek</title>
     <link>https://www.leewei.co/</link>
-    <description>Recent content on Lee&#39;s Blog</description>
+    <description>Recent content on Database Geek</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Lee Wei</copyright>
     <lastBuildDate>Fri, 16 Oct 2020 09:33:54 +0800</lastBuildDate>
