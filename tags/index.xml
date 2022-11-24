@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Database Geek</title>
+    <title>Tags on Hehe</title>
     <link>https://www.leewei.co/tags/</link>
-    <description>Recent content in Tags on Database Geek</description>
+    <description>Recent content in Tags on Hehe</description>
     <generator>Hugo -- gohugo.io</generator>
-    <copyright>Lee Wei</copyright>
-    
-	<atom:link href="https://www.leewei.co/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <copyright>Lee Wei</copyright><atom:link href="https://www.leewei.co/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

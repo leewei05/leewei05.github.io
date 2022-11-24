@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hehe</title>
-    <link>https://www.leewei.co/</link>
-    <description>Recent content on Hehe</description>
+    <title>Posts on Hehe</title>
+    <link>https://www.leewei.co/post/</link>
+    <description>Recent content in Posts on Hehe</description>
     <generator>Hugo -- gohugo.io</generator>
     <copyright>Lee Wei</copyright>
-    <lastBuildDate>Wed, 04 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 04 Dec 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://www.leewei.co/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How to Avoid Asking Bad Questions</title>
       <link>https://www.leewei.co/post/how-to-avoid-asking-bad-questions/</link>
@@ -58,18 +58,6 @@ Notion supports markdown and emojis, and it also has a lot of default templates 
 &lt;p&gt;There are answers that cannot be answered online. It&amp;rsquo;s fine to ask our colleagues for answers, we don&amp;rsquo;t know everything, especially for junior engineers.
 Requesting help from senior engineers can save both of our time, why is that? Experienced engineers can give advices to junior engineers, we can avoid a lot of mistakes they&amp;rsquo;ve made before.
 At the end, if we fucked up the code base or project, it&amp;rsquo;s still senior engineers&amp;rsquo; responsibility to clean up the mess. :sweat:&lt;/p&gt;
-</description>
-      
-    </item>
-    
-    <item>
-      <title>About Me</title>
-      <link>https://www.leewei.co/about/</link>
-      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.leewei.co/about/</guid>
-      
-      <description>&lt;p&gt;This is about me.&lt;/p&gt;
 </description>
       
     </item>
