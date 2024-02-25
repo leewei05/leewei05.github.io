@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Yee</title>
-    <link>https://www.leewei.co/</link>
-    <description>Recent content on Yee</description>
+    <title>||</title>
+    <link>https://leewei.co/</link>
+    <description>Recent content in About Me on ||</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <copyright>Lee Wei</copyright><atom:link href="https://www.leewei.co/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About Me</title>
-      <link>https://www.leewei.co/</link>
-      <pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.leewei.co/</guid>
-      
-      <description>&lt;p&gt;This is about me.&lt;/p&gt;
-</description>
-      
-    </item>
-    
+    <copyright>Lee Wei</copyright>
+    <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

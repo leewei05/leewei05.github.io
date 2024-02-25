@@ -2,13 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://www.leewei.co/</loc>
-    <lastmod>2019-10-23T00:00:00+00:00</lastmod>
+    <loc>https://leewei.co/</loc>
   </url><url>
-    <loc>https://www.leewei.co/categories/</loc>
-  </url><url>
-    <loc>https://www.leewei.co/tags/</loc>
-  </url><url>
-    <loc>https://www.leewei.co/</loc>
+    <loc>https://leewei.co/blog/</loc>
   </url>
 </urlset>
