@@ -1,0 +1,43 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    
+    <title>Sir</title>
+    <description>A minimal hugo theme focus on content</description>
+    <link>https://leewei.co</link>
+    
+    <language>en</language>
+    <copyright>Copyright 2024, Calvin Tran</copyright>
+    <lastBuildDate>Sat, 21 Sep 2024 00:20:31 -0600</lastBuildDate>
+    <generator>Hugo - gohugo.io</generator>
+    <docs>http://cyber.harvard.edu/rss/rss.html</docs>
+    <atom:link href="https://leewei.co/atom.xml" rel="self" type="application/atom+xml"/>
+    
+    
+    <item>
+      <title>Deep Learning</title>
+      <link>https://leewei.co/posts/deep-learning/</link>
+      <description>&lt;h3 id=&#34;day-1&#34;&gt;Day 1&lt;/h3&gt;
+&lt;p&gt;What is Neural Network?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Neuron: holds a number between 0 and 1. The number is also called &amp;ldquo;Activation&amp;rdquo;.&lt;/li&gt;
+&lt;li&gt;Network: multiple layers of neurons connected together.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;A layer is a series of neurons. Each layer&amp;rsquo;s output affect the neurons of the next layer.&lt;/p&gt;
+&lt;p&gt;Why the layers?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Each layer construct some parts of information for the next layer until the output layer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Each neuron in a layer has a weight that connects to the next layer&amp;rsquo;s neuron.
+This weight can be seen as a parameter that help detect a certain pattern of our input.&lt;/p&gt;
+&lt;p&gt;A weighted sum could be any number, but we want this sum value to fit between 0 and 1.
+We can utilize a Sigmoid function(old school) or Rectified linear unit.&lt;/p&gt;
+&lt;p&gt;Bias for inactivity, which can be subtracted to the weighted sum before inputing to Sigmoid or ReLU.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Learning: finding the right weights and biases.&lt;/strong&gt;&lt;/p&gt;
+</description>
+      <author>Calvin Tran</author>
+      <guid>https://leewei.co/posts/deep-learning/</guid>
+      <pubDate>Sat, 21 Sep 2024 00:20:31 -0600</pubDate>
+    </item>
+    
+  </channel>
+</rss>
