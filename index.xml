@@ -9,6 +9,42 @@
     <managingEditor>lee10202013@gmail.com (Lee Wei)</managingEditor>
     <webMaster>lee10202013@gmail.com (Lee Wei)</webMaster>
     <copyright>© 2024 Lee Wei</copyright>
+    <lastBuildDate>Sat, 21 Sep 2024 00:20:31 -0600</lastBuildDate>
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Deep Learning</title>
+      <link>https://leewei.co/dl/</link>
+      <pubDate>Sat, 21 Sep 2024 00:20:31 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/dl/</guid>
+      <description>Day 1 What is Neural Network?
+Neuron: holds a number between 0 and 1. The number is also called &amp;ldquo;Activation&amp;rdquo;. Network: multiple layers of neurons connected together. A layer is a series of neurons. Each layer&amp;rsquo;s output affect the neurons of the next layer.
+Why the layers?
+Each layer construct some parts of information for the next layer until the output layer. Each neuron in a layer has a weight that connects to the next layer&amp;rsquo;s neuron.</description>
+      <content:encoded><![CDATA[<h3 id="day-1">Day 1</h3>
+<p>What is Neural Network?</p>
+<ul>
+<li>Neuron: holds a number between 0 and 1. The number is also called &ldquo;Activation&rdquo;.</li>
+<li>Network: multiple layers of neurons connected together.</li>
+</ul>
+<p>A layer is a series of neurons. Each layer&rsquo;s output affect the neurons of the next layer.</p>
+<p>Why the layers?</p>
+<ul>
+<li>Each layer construct some parts of information for the next layer until the output layer.</li>
+</ul>
+<p>Each neuron in a layer has a weight that connects to the next layer&rsquo;s neuron.
+This weight can be seen as a parameter that help detect a certain pattern of our input.</p>
+<p>A weighted sum could be any number, but we want this sum value to fit between 0 and 1.
+We can utilize a Sigmoid function(old school),</p>
+<p>$$
+\sigma(z) = \frac{1} {1 + e^{-z}}
+$$</p>
+<p>or Rectified linear unit.</p>
+<p>$$
+Relu(z) = max(0, z)
+$$</p>
+<p>Bias for inactivity, which can be subtracted to the weighted sum before inputing to Sigmoid or ReLU.</p>
+<p><strong>Learning: finding the right weights and biases.</strong></p>
+]]></content:encoded>
+    </item>
   </channel>
 </rss>
