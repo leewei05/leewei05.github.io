@@ -28,6 +28,21 @@
         "name": "Calvin Tran",
         "url": "https://leewei.co"
       }
+    },
+    
+    {
+      "id": "3dbe7ff8b8231738eaf789c9cfbcffe4463d1cf1",
+      "title": "Emoji Support",
+      "summary": "Guide to emoji usage in Hugo",
+      "content_text": "Emoji can be enabled in a Hugo project in a number of ways.\nThe emojify function can be called directly in templates or Inline Shortcodes.\nTo enable emoji globally, set enableEmoji to true in your site\u0026rsquo;s configuration and then you can type emoji shorthand codes directly in content files; e.g.\n🙈 :see_no_evil: 🙉 :hear_no_evil: 🙊 :speak_no_evil:\nThe Emoji cheat sheet is a useful reference for emoji shorthand codes.\nN.B. The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.\n.emoji { font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols; }",
+      "content_html": "\u003cp\u003eEmoji can be enabled in a Hugo project in a number of ways.\u003c/p\u003e\n\u003cp\u003eThe \u003ca href=\"https://gohugo.io/functions/emojify/\"\u003e\u003ccode\u003eemojify\u003c/code\u003e\u003c/a\u003e function can be called directly in templates or \u003ca href=\"https://gohugo.io/templates/shortcode-templates/#inline-shortcodes\"\u003eInline Shortcodes\u003c/a\u003e.\u003c/p\u003e\n\u003cp\u003eTo enable emoji globally, set \u003ccode\u003eenableEmoji\u003c/code\u003e to \u003ccode\u003etrue\u003c/code\u003e in your site\u0026rsquo;s \u003ca href=\"https://gohugo.io/getting-started/configuration/\"\u003econfiguration\u003c/a\u003e and then you can type emoji shorthand codes directly in content files; e.g.\u003c/p\u003e\n\u003cp\u003e\u003cspan class=\"nowrap\"\u003e\u003cspan class=\"emojify\"\u003e🙈\u003c/span\u003e \u003ccode\u003e:see_no_evil:\u003c/code\u003e\u003c/span\u003e  \u003cspan class=\"nowrap\"\u003e\u003cspan class=\"emojify\"\u003e🙉\u003c/span\u003e \u003ccode\u003e:hear_no_evil:\u003c/code\u003e\u003c/span\u003e  \u003cspan class=\"nowrap\"\u003e\u003cspan class=\"emojify\"\u003e🙊\u003c/span\u003e \u003ccode\u003e:speak_no_evil:\u003c/code\u003e\u003c/span\u003e\u003c/p\u003e\n\u003cbr\u003e\n\u003cp\u003eThe \u003ca href=\"http://www.emoji-cheat-sheet.com/\"\u003eEmoji cheat sheet\u003c/a\u003e is a useful reference for emoji shorthand codes.\u003c/p\u003e\n\u003chr\u003e\n\u003cp\u003e\u003cstrong\u003eN.B.\u003c/strong\u003e The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.\u003c/p\u003e\n\u003cdiv class=\"highlight\"\u003e\u003cpre tabindex=\"0\" style=\"color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4;\"\u003e\u003ccode class=\"language-html\" data-lang=\"html\"\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003e.emoji {\n\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003e  font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;\n\u003c/span\u003e\u003c/span\u003e\u003cspan style=\"display:flex;\"\u003e\u003cspan\u003e}\u003c/span\u003e\u003c/span\u003e\u003c/code\u003e\u003c/pre\u003e\u003c/div\u003e",
+      "url": "https://leewei.co/posts/emoji-support/",
+      "date_published": "5036-05-09T30:55:00+00:00",
+      "date_modified": "5036-05-09T30:55:00+00:00",
+      "author": {
+        "name": "Calvin Tran",
+        "url": "https://leewei.co"
+      }
     }
     
   ]
