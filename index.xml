@@ -13,9 +13,9 @@
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Deep Learning</title>
-      <link>https://leewei.co/dl/</link>
+      <link>https://leewei.co/deep-learning/</link>
       <pubDate>Sat, 21 Sep 2024 00:20:31 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/dl/</guid>
+      <guid>https://leewei.co/deep-learning/</guid>
       <description>Day 1 What is Neural Network?
 Neuron: holds a number between 0 and 1. The number is also called &amp;ldquo;Activation&amp;rdquo;. Network: multiple layers of neurons connected together. A layer is a series of neurons. Each layer&amp;rsquo;s output affect the neurons of the next layer.
 Why the layers?
@@ -34,106 +34,9 @@ Each layer construct some parts of information for the next layer until the outp
 <p>Each neuron in a layer has a weight that connects to the next layer&rsquo;s neuron.
 This weight can be seen as a parameter that help detect a certain pattern of our input.</p>
 <p>A weighted sum could be any number, but we want this sum value to fit between 0 and 1.
-We can utilize a Sigmoid function(old school),</p>
-<p>$$
-\sigma(z) = \frac{1} {1 + e^{-z}}
-$$</p>
-<p>or Rectified linear unit.</p>
-<p>$$
-Relu(z) = max(0, z)
-$$</p>
+We can utilize a Sigmoid function(old school) or Rectified linear unit.</p>
 <p>Bias for inactivity, which can be subtracted to the weighted sum before inputing to Sigmoid or ReLU.</p>
 <p><strong>Learning: finding the right weights and biases.</strong></p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>2024 Fall CS 研究所轉領域申請</title>
-      <link>https://leewei.co/ms2024/</link>
-      <pubDate>Thu, 21 Mar 2024 18:34:44 +0800</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/ms2024/</guid>
-      <description>申請結果 Admission
-Virginia Tech MS CS (2/20) Pennsylvania State University MS CSE (3/20) University of Utah MS CS (3/26) Rejection
-Indiana University Bloomington MS CS (2/23) University of Illinois Urbana-Champaign MCS (4/1) University of Michigan MS CSE (4/4) University of Wisconsin-Madison PMP CS (4/6) Decision
-🤔 背景 Education
-NTUST Electronic and Computer Engineering (2013 - 2017) GPA: 3.02/4.0 🫢 NTUST + NTUT 隨班附讀 3 學期 (2022/09 - 2024/01) GAP: 4.0/4.0 (21 credits) CS related courses: 資料結構、離散數學、計算機網路概論、演算法、編譯器設計、作業系統、計算機結構 Test Scores</description>
-      <content:encoded><![CDATA[<h4 id="申請結果">申請結果</h4>
-<p><strong>Admission</strong></p>
-<ul>
-<li>Virginia Tech MS CS (2/20)</li>
-<li>Pennsylvania State University MS CSE (3/20)</li>
-<li>University of Utah MS CS (3/26)</li>
-</ul>
-<p><strong>Rejection</strong></p>
-<ul>
-<li>Indiana University Bloomington MS CS (2/23)</li>
-<li>University of Illinois Urbana-Champaign MCS (4/1)</li>
-<li>University of Michigan MS CSE (4/4)</li>
-<li>University of Wisconsin-Madison PMP CS (4/6)</li>
-</ul>
-<p><strong>Decision</strong></p>
-<ul>
-<li>🤔</li>
-</ul>
-<h4 id="背景">背景</h4>
-<p><strong>Education</strong></p>
-<ul>
-<li>NTUST Electronic and Computer Engineering (2013 - 2017)</li>
-<li>GPA: 3.02/4.0 🫢</li>
-<li>NTUST + NTUT 隨班附讀 3 學期 (2022/09 - 2024/01)</li>
-<li>GAP: 4.0/4.0 (21 credits)</li>
-<li>CS related courses: 資料結構、離散數學、計算機網路概論、演算法、編譯器設計、作業系統、計算機結構</li>
-</ul>
-<p><strong>Test Scores</strong></p>
-<ul>
-<li>GRE: 320 (V: 152, Q: 168, AWA: 3.5) (2019/10)</li>
-<li>TOEFL 107 (R: 29, L: 30, S: 24, W: 24) (2023/06)</li>
-</ul>
-<p><strong>Award</strong></p>
-<ul>
-<li>N/A</li>
-</ul>
-<p><strong>Research Experience</strong></p>
-<ul>
-<li>N/A</li>
-</ul>
-<p><strong>Work Experience</strong></p>
-<ul>
-<li>Opennet, DevOps Engineer (2021/07 - 2022/08)</li>
-<li>17 Live, Site Reliability Engineer (2020/10 - 2021/07)</li>
-<li>iKala, Senior Customer Engineer (2018/03 - 2020/10)</li>
-</ul>
-<p><strong>Recommendation Letter</strong></p>
-<ul>
-<li>NTUST 隨班附讀 教授 * 3</li>
-<li>工作前主管 * 1</li>
-</ul>
-<h4 id="申請經驗">申請經驗</h4>
-<p><strong>推薦信</strong></p>
-<p><strong>TOEFL &amp; GRE</strong></p>
-<p>以上略，可以參考我大學長的<a href="https://medium.com/@tau_chang/2022-fall-%E5%9C%8B%E5%A4%96-cs-%E7%A0%94%E7%A9%B6%E6%89%80%E8%BD%89%E9%A0%98%E5%9F%9F%E7%94%B3%E8%AB%8B-a6cae9c8df0e">申請心得</a> 😎。</p>
-<p><strong>CV &amp; SoP</strong></p>
-<p>之前有上過創勝文教 Alex 開的學術寫作跟口說課程，個人覺得上課體驗很棒，也學到很多！所以後來 Statement of Purpose 我寫了一個初版之後有找創勝文教幫忙潤稿。個人覺得蠻不錯的，因為在幫忙潤稿之前，還有跟 Alex 一次線上 30 分鐘的討論。有一點我覺得特別重要：『 Statement of Purpose 是用來告訴對方為什麼這個 program 可以幫你補足你的 knowledge gap，並且幫助你達成你的未來目標。而非用來訴說你的成就的，那是 CV 的用途。』</p>
-<p><strong>申請學校選擇</strong></p>
-<p>雖然是工作一段時間之後才出來讀書，但還是想要在碩士階段接觸學術研究。聽人家都說寫論文、做研究很痛苦，不試試看怎麼會知道。所以我選的大部分 program 都是有論文選項的，少部分是不用寫論文的。</p>
-<p>對於學校 program 的優先順序：</p>
-<p>總花費便宜 or 有 TA/RA 機會(可以減免學費) &gt; 有 systems 領域的教授以及課程 &gt; 地點、天氣 &gt; 校名</p>
-<p>除非研究機會多 + systems 領域教授多 + 校名都非常好，才會不考慮花費，所以才有投 UMich (但也沒上 😂)。因為我很明確是想要跟著厲害的教授做研究的，所以我覺得是否有教授專精於 systems 領域大於學校的校名。我自知無法跟申請 top 50 學校的申請者競爭，畢竟我不是資工系畢業，經歷也不是特別漂亮，所以選校比較保守一些。但最後還是有選一些比較前面的學校，想說碰碰運氣。</p>
-<h4 id="轉領域心路歷程">轉領域心路歷程</h4>
-<p>其實 2019 年前我也有申請過國外研究所，但當時比較像是跟風。看到網路上一些留學分享，還有大神同事分享過一些留學經歷加上有些同事離職去留學，就萌生了出國唸書的想法。匆匆忙忙地考了 GRE, TOEFL，隨意準備申請文件還有推薦信。回頭看，當時沒有被任何一間學校錄取算是當頭棒喝。隨便的準備當然是會換來隨便的結果。後來 covid 也爆發了，或許沒有去留學也是個 silver lining。經過這次申請失敗的經驗，我開始更積極地對待我的專業、更努力學習。</p>
-<p>2020 年換去 17 工作，希望能累積更多實務上的經驗。2021 年剛好又有一個機會換去了另一間跨國公司。在這兩間公司累積了許多專業知識，但也讓我認知到我還有很多不足的地方。例如，資料庫、作業系統的底層架構。這些自我認知促使我開始尋找線上的學習資源，無意間發掘了 jserv 的 Linux 核心實作課程。2020 年春季有試著下班後跟著上了 8 週，但因為我計算機的基礎知識不足，所以學起來非常痛苦，後來就放棄了。一句話，我真的爛 😢。經過再一次的挫折，我告訴自己慢慢來比較快。2022 年 8 月存到一些錢讓我有勇氣裸辭提早準備申請，並且回到台科大跟大學生一起上課，以補足缺少的基礎知識。</p>
-<p>2022 年 9 月，畢業五年之後回歸校園。以前大學我都是坐在最後一排滑手機或是睡覺，但重回校園後，我都坐在前三排。一部分是真的想要認真學習，一部分也是想要讓教授多認識我，之後詢問推薦信才比較順利。2023 年 2 月，剛過完年，開始準備 TOEFL 考試。這次也沒有補習，但是比較認真的去練習閱讀、口說和寫作的技巧。考試當天，按下送出看到閱讀 29 聽力 30，想說應該穩了，說不定可以破 110。因為我口說自覺講得很順，寫作我之前認真跟 Amazing Talker 的老師認真檢討，而且練習時有寫過類似的題目。誰知道結果出來不如自己預期，但也夠應付申請了，就不再考了 🥴。</p>
-<p>考完 TOEFL 之後的暑假 7, 8 月開始著手 SoP 初版、選校選 program，還有詢問推薦信。這過程中我也開始回想並整理，我究竟喜歡 Computer Science 的什麼？為什麼想讀研究所？可能因為沒有工作，所以有特別多的時間可以胡思亂想。也因為有時間想，所以明確知道自己是喜歡研究底層系統知識的，尤其是編譯器、作業系統、計算機結構，主要是因為三個原因。第一，能夠了解很多以前用的應用程式的底層邏輯，對我來說是非常開心的。第二，因為覺得現在很多免費線上課程，很多人都可以自學網頁前後端，所以競爭激烈。往底層系統走，或許可以跟大多數人做出差異性。目前是還很少聽到有人轉領域是會直接轉來寫系統軟體的。第三，未來幾年或許 AI 還是會很夯，發展 AI 會有很多硬體 + 軟體的硬需求。大公司都會需要有編譯器、作業系統、計算機結構相關專業知識的人才來研發自家的 AI 平台、硬體、軟體等等。最後，假設學了這些東西還是找不到工作，還是有機會回來轉寫網頁前後端的，算是有留個備案。由下而上易，由上而下難 🧐。</p>
-<p>2023 年 12 月我就已經送出所有學校的申請，因為當時還有修兩門課，所以期末想要留更多時間認真讀書。回頭看這過程，我曾經也有想過如果我留在上一間公司，說不定我可以存到很多錢，買車買房之類的。但這樣的人生多無趣，錢再賺就行，夠用就好。這次準備過程看了很多 PTT, Dcard, Reddit, 一畝三分地心得文章。很常見看到有人說：『 CS 末班車開走了，工作不好找了。現在來 CP 值不高了。』雖然的確看起來就業市場不好，但沒試過怎麼知道？套一句我老爸常講的：Just try your best! 還有我老媽常說的：「一切都是最好的安排。」</p>
-<h4 id="感謝">感謝</h4>
-<p>感謝三位教授 Prof. C, Prof. Y, Prog. F 願意當我的推薦人。送推薦信也非常迅速，一下就送出了。也謝謝當初三位教授當時願意同意讓我隨班附讀。</p>
-<p>感謝前主管 Ted 願意當我的推薦人，一開始詢問的時候，很爽快就答應了，還說要多少封都沒問題！</p>
-<p>感謝申請時間被我詢問過的同學還有學長姐們！</p>
-<p>感謝朋友們的支持！聽到你們說支持我出國讀書，還願意之後來找我玩，真的超開心的！哭了！</p>
-<p>感謝創勝文教的 Alex，在我上課期間給了很多經驗分享，還有後來 SoP 的潤稿服務。</p>
-<p>感謝子濤大學長，我身邊幾乎很少有人有出國留學的經驗，感謝你願意給我很多建議還有經驗分享。祝大學長讀 PhD 順利！也感謝學長 Medium 的心得分享，我直接抄了學長的模板來改 😂。</p>
-<p>感謝家人一直以來的支持！</p>
-<p>感謝女友</p>
-<p>感謝自己</p>
 ]]></content:encoded>
     </item>
   </channel>
