@@ -9,31 +9,59 @@
     <managingEditor>lee10202013@gmail.com (Lee Wei)</managingEditor>
     <webMaster>lee10202013@gmail.com (Lee Wei)</webMaster>
     <copyright>© 2024 Lee Wei</copyright>
-    <lastBuildDate>Tue, 05 Mar 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 21 Sep 2024 00:20:31 -0600</lastBuildDate>
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Emoji Support</title>
-      <link>https://leewei.co/emoji-support/</link>
-      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/emoji-support/</guid>
-      <description>&lt;p&gt;Emoji can be enabled in a Hugo project in a number of ways.&lt;/p&gt;</description>
-      <content:encoded><![CDATA[<p>Emoji can be enabled in a Hugo project in a number of ways.</p>
-<p>The <a href="https://gohugo.io/functions/emojify/"><code>emojify</code></a> function can be called directly in templates or <a href="https://gohugo.io/templates/shortcode-templates/#inline-shortcodes">Inline Shortcodes</a>.</p>
-<p>To enable emoji globally, set <code>enableEmoji</code> to <code>true</code> in your site&rsquo;s <a href="https://gohugo.io/getting-started/configuration/">configuration</a> and then you can type emoji shorthand codes directly in content files; e.g.</p>
-<p><span class="nowrap"><span class="emojify">🙈</span> <code>🙈</code></span>  <span class="nowrap"><span class="emojify">🙉</span> <code>🙉</code></span>  <span class="nowrap"><span class="emojify">🙊</span> <code>🙊</code></span></p>
-<br>
-<p>The <a href="http://www.emoji-cheat-sheet.com/">Emoji cheat sheet</a> is a useful reference for emoji shorthand codes.</p>
-<hr>
-<p><strong>N.B.</strong> The above steps enable Unicode Standard emoji characters and sequences in Hugo, however the rendering of these glyphs depends on the browser and the platform. To style the emoji you can either use a third party emoji font or a font stack; e.g.</p>
-
-
-
-
-
-
-  <div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>.emoji {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>  font-family: Apple Color Emoji, Segoe UI Emoji, NotoColorEmoji, Segoe UI Symbol, Android Emoji, EmojiSymbols;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>}</span></span></code></pre></div>]]></content:encoded>
+      <title>Deep Learning</title>
+      <link>https://leewei.co/deep-learning/</link>
+      <pubDate>Sat, 21 Sep 2024 00:20:31 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/deep-learning/</guid>
+      <description>Day 1 What is Neural Network?
+Neuron: holds a number between 0 and 1. The number is also called &amp;ldquo;Activation&amp;rdquo;. Network: multiple layers of neurons connected together. A layer is a series of neurons. Each layer&amp;rsquo;s output affect the neurons of the next layer.
+Why the layers?
+Each layer construct some parts of information for the next layer until the output layer. Each layer can be represented as a vector. Each neuron in a layer has a weight that connects to the next layer&amp;rsquo;s neuron.</description>
+      <content:encoded><![CDATA[<h3 id="day-1">Day 1</h3>
+<p>What is Neural Network?</p>
+<ul>
+<li>Neuron: holds a number between 0 and 1. The number is also called &ldquo;Activation&rdquo;.</li>
+<li>Network: multiple layers of neurons connected together.</li>
+</ul>
+<p>A layer is a series of neurons. Each layer&rsquo;s output affect the neurons of the next layer.</p>
+<p>Why the layers?</p>
+<ul>
+<li>Each layer construct some parts of information for the next layer until the output layer.</li>
+<li>Each layer can be represented as a vector.</li>
+</ul>
+<p>Each neuron in a layer has a weight that connects to the next layer&rsquo;s neuron.
+This weight can be seen as a parameter that help detect a certain pattern of our input.</p>
+<p>A weighted sum could be any number, but we want this sum value to fit between 0 and 1.
+We can utilize a Sigmoid function(old school) or Rectified linear unit.</p>
+<p>Bias for inactivity, which can be subtracted to the weighted sum before inputing to Sigmoid or ReLU.</p>
+<p><strong>Learning: finding the right weights and biases.</strong></p>
+<h3 id="day-2">Day 2</h3>
+<p>What is Gradient descent?</p>
+<ul>
+<li>Finding a minimum of a certain function.</li>
+</ul>
+<p>Cost function</p>
+<ul>
+<li>Find the difference between output and the desired result.</li>
+<li>If cost is small, then the model produces result that is closed to the desired result.</li>
+<li>Input: weights and biases, Output: 1 number(the cost).</li>
+</ul>
+<p>Gradient, the direction of steepest increase. The opposite of Gradient is the steepest decrease.
+The learning process is to adjust the weights to get the minimum cost.</p>
+<p>Local minimum is relatively easier to find than Global minimum.</p>
+<p><strong>Network Learning: minimizing the cost function.</strong></p>
+<h3 id="day-3">Day 3</h3>
+<p>What is backpropagation?
+An algorithm for determining a single training example for changing the weights in the previous layers.
+Which weight changes can rapidly decrease the cost? Some weight changes have bigger affect on the desired output.</p>
+<p>A true gradient descent will involve calculating all the data set, which may take long to compute.
+Solution: Mini-batches can divide data set into multiple batches and calculate each batch&rsquo;s gradient descent step.
+After recursively applying each gradient descent step, we will eventually get the local minimum of our data set.</p>
+<p><strong>Backpropagation: tune weights to lean towards the desired output.</strong></p>
+]]></content:encoded>
     </item>
   </channel>
 </rss>
