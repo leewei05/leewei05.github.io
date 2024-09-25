@@ -57,7 +57,7 @@ Neuron: holds a number between 0 and 1. The number is also called &ldquo;Activat
 Why the layers?
 Each layer construct some parts of information for the next layer until the output layer. Each layer can be represented as a vector. Each neuron in a layer has a weight that connects to the next layer&rsquo;s neuron."><meta itemprop="datePublished" content="2024-09-21T00:20:31-06:00" />
 <meta itemprop="dateModified" content="2024-09-21T00:20:31-06:00" />
-<meta itemprop="wordCount" content="346">
+<meta itemprop="wordCount" content="682">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -154,13 +154,38 @@ The learning process is to adjust the weights to get the minimum cost.</p>
 <p>Local minimum is relatively easier to find than Global minimum.</p>
 <p><strong>Network Learning: minimizing the cost function.</strong></p>
 <h3 id="day-3">Day 3</h3>
-<p>What is backpropagation?
-An algorithm for determining a single training example for changing the weights in the previous layers.
-Which weight changes can rapidly decrease the cost? Some weight changes have bigger affect on the desired output.</p>
-<p>A true gradient descent will involve calculating all the data set, which may take long to compute.
-Solution: Mini-batches can divide data set into multiple batches and calculate each batch&rsquo;s gradient descent step.
-After recursively applying each gradient descent step, we will eventually get the local minimum of our data set.</p>
+<p>What is backpropagation?</p>
+<ul>
+<li>An algorithm for determining a single training example for changing the weights in the previous layers.</li>
+</ul>
+<p>Which weight changes can rapidly decrease the cost? Some weight changes have bigger affect on the desired output.</p>
+<p>A true gradient descent will involve calculating all the data set, which may take long to compute.</p>
+<ul>
+<li>Solution: Mini-batches can divide data set into multiple batches and calculate each batch&rsquo;s gradient descent step. After recursively applying each gradient descent step, we will eventually get the local minimum of our data set.</li>
+</ul>
 <p><strong>Backpropagation: tune weights to lean towards the desired output.</strong></p>
+<h3 id="day-4">Day 4</h3>
+<p>What is GPT(Generative Pre-trained Transformer)?</p>
+<ul>
+<li>Transformer basically takes an input and generate a output. For instance, text-to-speech, text-to-image, Google translate are different kinds of transformers.</li>
+</ul>
+<p>How does a Transformer work?</p>
+<ul>
+<li>A sentence is fed into a transformer. Transformer splits a sentence into multiple <strong>tokens</strong> as a word or a part of a word. Each token is represented as a vector. Then, this sequence of vectors are passed to an <strong>Attention block</strong> for vectors to communicate and pass values with each other. After Attention block, these vectors are passed to MLP(Multilayer Perceptron). MLP consists of many matrix multiplication. The process of Attention and MLP are repeated multiple times until the last vectors have a vector of probability of outcome.</li>
+</ul>
+<h3 id="day-5">Day 5</h3>
+<p>In the last example, a sentence is spilt into multiple tokens. Each token is represented as a vector to embedd its meaning in a multi-dimension space(GPT has 12***).</p>
+<p>An Embedded matrix is a matrix that represent the meaning of each token using vector. In the Attention block, this matrix is changed as it is learning context from these tokens.</p>
+<p>Unembedding a matrix is a step where we get the last vector and multiply with a weight to get a vector which includes each token in the vocabulary. Then we feed this vector(Logits) to a function called <strong>softmax</strong>(sometimes with T(temperature), the higher the T is, the less it&rsquo;s going to resemble the input distribution) to normalize the vector into a probability distribution.</p>
+<h3 id="day-6">Day 6</h3>
+<p>What is Attention supposed to do?</p>
+<ul>
+<li>Refine the meaning of a token, which is to understand the context.</li>
+</ul>
+<p>Query is represented as a vector(weighted sum), which is kind of like asking questions to a token.
+Key is also represented as a vector, which is kind of like answering queries with dot product of query.
+Also, we don&rsquo;t want later tokens affected the toke appeared before them in an attention matrix. This process is called masking.</p>
+<p>Value is associated with keys, and we applied changes of weighted sum to refine our embeddings.</p>
 
   </content>
   <p>
