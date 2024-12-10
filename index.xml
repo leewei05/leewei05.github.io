@@ -266,7 +266,6 @@ Exclusive cache</li>
 <li>Virtually Indexed, physically tagged: L1 cache indexed virtual address, tags can be checked after translation.</li>
 <li>Physically Indexed, virtually tagged: not practical.</li>
 </ul>
-<p>L11- p21</p>
 <p>Does physically indexed, physically tagged mean TLB and cache have to be accessed sequentially? Not if PageSize &gt; #Sets * BlockSize</p>
 <h3 id="week-12">Week 12</h3>
 <p>Motivation for multicores</p>
