@@ -164,7 +164,7 @@ Exclusive cache</li>
 </ul>
 </li>
 </ul>
-<p>Average Memory Access Time(AMAT) = Hit time + Miss rate * Miss penalty = Hit rate * Hit time + Miss rate * Miss timeß</p>
+<p>Average Memory Access Time(AMAT) = Hit time + Miss rate * Miss penalty = Hit rate * Hit time + Miss rate * Miss time</p>
 <ul>
 <li>Hit time is always there because whether the block we&rsquo;re trying to access is in the cache, we will need to check the cache.</li>
 </ul>
@@ -836,7 +836,7 @@ Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s L
 </ul>
 <p>Readings:</p>
 <ul>
-<li><a href="https://www.amazon.com/Move-Semantics-Complete-Guide-First/dp/3967309002/">C++ Moove</a></li>
+<li><a href="https://www.amazon.com/Move-Semantics-Complete-Guide-First/dp/3967309002/">C++ Move</a></li>
 <li><a href="https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/Support/KnownBits.h">LLVM KnownBits</a></li>
 </ul>
 <h3 id="week-12">Week 12</h3>
@@ -858,7 +858,7 @@ Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s L
 <ul>
 <li>Undefined Behavior is also in the hardware chips.</li>
 <li>Register pair for multiplication.</li>
-<li><code>undef</code> brokes SSA.</li>
+<li><code>undef</code> breaks SSA.</li>
 <li>Trusting trust really worths reading it!</li>
 <li>Java type concurrency</li>
 <li>Type system is trying to help you not break the program.</li>
@@ -866,7 +866,7 @@ Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s L
 <li>HCI for expressing types</li>
 <li>bitblit</li>
 </ul>
-<p>How to make fast inverse square root on GCC and Clang:</p>
+<p>How to implement fast inverse square root on GCC and Clang:</p>
 <ul>
 <li>union</li>
 <li>memcpy fast</li>
@@ -927,6 +927,7 @@ Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s L
 <li>Go&rsquo;s generic rules compares with LLVM&rsquo;s large C++ code base.</li>
 <li>Go&rsquo;s generic rules should be checked by something like Z3.</li>
 <li>e-graph is good but it is probably not practical to adopt to existing compilers like LLVM or GCC. Applying rewrites might blow up memory usage.</li>
+<li>Quine is fun.</li>
 </ul>
 <p>Readings:</p>
 <ul>
