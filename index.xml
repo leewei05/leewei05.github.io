@@ -9,8 +9,66 @@
     <managingEditor>lee10202013@gmail.com (Lee Wei)</managingEditor>
     <webMaster>lee10202013@gmail.com (Lee Wei)</webMaster>
     <copyright>© 2024 Lee Wei</copyright>
-    <lastBuildDate>Thu, 05 Dec 2024 20:47:54 -0600</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jan 2025 16:38:37 -0700</lastBuildDate>
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Course Review: ECE 6545 Deep Learning with Image Analysis</title>
+      <link>https://leewei.co/cs6525/</link>
+      <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/cs6525/</guid>
+      <description>Week 1 Object detection: boundary of the object, what is the object, where is the object. Semantic Segmentation: labels different sections. Linear Classifier: draw a line in a space to classify different types of data. Overfitting: the model matches the training set too closely, resulting in the model failing to predict correctly on new data. Image Classification challenges: resolution of image variables It is common to have more training data than testing data.</description>
+      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
+<ul>
+<li>Object detection: boundary of the object, what is the object, where is the object.</li>
+<li>Semantic Segmentation: labels different sections.</li>
+<li>Linear Classifier: draw a line in a space to classify different types of data.</li>
+<li>Overfitting: the model matches the training set too closely, resulting in the model failing to predict correctly on new data.</li>
+<li>Image Classification challenges:
+<ul>
+<li>resolution of image</li>
+<li>variables</li>
+</ul>
+</li>
+<li>It is common to have more training data than testing data.</li>
+<li>Class Imbalance: certain class only has limited amount of data.</li>
+<li>K nearest neighbor classifier: find closest resemblance.
+<ul>
+<li>It is never used due to <em>slowness</em>, <em>overfitting</em></li>
+</ul>
+</li>
+<li>Hyperparameter: parameters that are fixed during training.
+<ul>
+<li><code>k</code> in K nearest neighbor classifier is a hyperparameter.</li>
+<li>k is usually a odd number to avoid ties when it comes to voting.</li>
+</ul>
+</li>
+<li>Linear Decision boundary: a straight line, plane, or hyperplane that separates different classes in a feature space.</li>
+</ul>
+<h3 id="week-2">Week 2</h3>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Course Review: CS 6460 Operating Systems</title>
+      <link>https://leewei.co/cs6460/</link>
+      <pubDate>Mon, 16 Dec 2024 10:52:59 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/cs6460/</guid>
+      <description>Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&amp;rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 </description>
+      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
+<ul>
+<li>Time sharing: a policy for processes to take turn to use the CPU.</li>
+<li>Scheduling: choose process to run.</li>
+<li>Isolation: avoid process access other processes&rsquo; data.</li>
+<li>File descriptor: an integer that maps to a file.
+<ul>
+<li>Unix philosophy: <em>everything is a file</em>.</li>
+<li>Kernel maintains a file descriptor table.</li>
+<li><code>0: stdin, 1: stdout, 2: stderr</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="week-2">Week 2</h3>
+]]></content:encoded>
+    </item>
     <item>
       <title>Course Review: CS 6810 Computer Architecture</title>
       <link>https://leewei.co/cs6810/</link>
