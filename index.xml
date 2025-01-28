@@ -12,10 +12,64 @@
     <lastBuildDate>Tue, 07 Jan 2025 16:38:37 -0700</lastBuildDate>
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Course Review: ECE 6545 Deep Learning with Image Analysis</title>
-      <link>https://leewei.co/cs6525/</link>
+      <title>Course Review: CS 6460 Operating Systems</title>
+      <link>https://leewei.co/cs6460/</link>
       <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6525/</guid>
+      <guid>https://leewei.co/cs6460/</guid>
+      <description>Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&amp;rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process. exec(): replace memory of the current process. It doesn&amp;rsquo;t clear file descriptor.</description>
+      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
+<ul>
+<li>Time sharing: a policy for processes to take turn to use the CPU.</li>
+<li>Scheduling: choose process to run.</li>
+<li>Isolation: avoid process access other processes&rsquo; data.</li>
+<li>File descriptor: an integer that maps to a file.
+<ul>
+<li>Unix philosophy: <em>everything is a file</em>.</li>
+<li>Kernel maintains a file descriptor table.</li>
+<li><code>0: stdin, 1: stdout, 2: stderr</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="week-2">Week 2</h3>
+<ul>
+<li><code>fork()</code>: create a new process.</li>
+<li><code>exec()</code>: replace memory of the current process.
+<ul>
+<li>It doesn&rsquo;t clear file descriptor.</li>
+</ul>
+</li>
+<li>Pipe: redirect one process&rsquo; output into another process input.
+<ul>
+<li>parent: write to <code>p[1]</code>, close <code>p[0], p[1]</code></li>
+<li>child: close stdin, duplicate <code>p[0]</code> close <code>p[0], p[1]</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="week-3">Week 3</h3>
+<ul>
+<li><code>leave</code>: special instruction in x86, which return the old <code>ebp</code>.</li>
+<li>Why do we need stack frames? They are not strictly required, but it is good to have them.
+<ul>
+<li>Stack contains return addresses of caller function.</li>
+</ul>
+</li>
+<li><code>eax, edx</code>: the return value.</li>
+<li><code>ebp</code>(frame pointer): points to the base of the frame.</li>
+<li>variables:
+<ul>
+<li>Global variables: initialized(data section), uninitialized(BSS).</li>
+<li>Dynamic variables: allocated on Heap memory.</li>
+<li>Local variables: stack.</li>
+</ul>
+</li>
+</ul>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Course Review: ECE 6545 Deep Learning with Image Analysis</title>
+      <link>https://leewei.co/ece6545/</link>
+      <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/ece6545/</guid>
       <description>Week 1 Object detection: boundary of the object, what is the object, where is the object. Semantic Segmentation: labels different sections. Linear Classifier: draw a line in a space to classify different types of data. Overfitting: the model matches the training set too closely, resulting in the model failing to predict correctly on new data. Image Classification challenges: resolution of image variables It is common to have more training data than testing data.</description>
       <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
 <ul>
@@ -33,7 +87,7 @@
 <li>Class Imbalance: certain class only has limited amount of data.</li>
 <li>K nearest neighbor classifier: find closest resemblance.
 <ul>
-<li>It is never used due to <em>slowness</em>, <em>overfitting</em></li>
+<li>It is never used due to <strong>slowness</strong>, <strong>overfitting</strong></li>
 </ul>
 </li>
 <li>Hyperparameter: parameters that are fixed during training.
@@ -45,28 +99,66 @@
 <li>Linear Decision boundary: a straight line, plane, or hyperplane that separates different classes in a feature space.</li>
 </ul>
 <h3 id="week-2">Week 2</h3>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Course Review: CS 6460 Operating Systems</title>
-      <link>https://leewei.co/cs6460/</link>
-      <pubDate>Mon, 16 Dec 2024 10:52:59 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6460/</guid>
-      <description>Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&amp;rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 </description>
-      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
 <ul>
-<li>Time sharing: a policy for processes to take turn to use the CPU.</li>
-<li>Scheduling: choose process to run.</li>
-<li>Isolation: avoid process access other processes&rsquo; data.</li>
-<li>File descriptor: an integer that maps to a file.
+<li>Linear Regression: a line that separates different types of data.</li>
+<li>Mean Squared Error (MSE): Average of the squared differences between observed and predicted values.
 <ul>
-<li>Unix philosophy: <em>everything is a file</em>.</li>
-<li>Kernel maintains a file descriptor table.</li>
-<li><code>0: stdin, 1: stdout, 2: stderr</code></li>
+<li>Good for linear regression.</li>
 </ul>
 </li>
+<li>Supervised Learning: train model with training set and maps input to output while minimizing errors.</li>
+<li>How to find the minimum with reference to <code>w</code>?
+<ul>
+<li>Differential MSE with w = 0</li>
 </ul>
-<h3 id="week-2">Week 2</h3>
+</li>
+<li>Polynomial Regression: a curve line that separates different data.</li>
+<li>Machine Learn Assumption: training set is drawn from the same probability distribution as test data.
+<ul>
+<li>Example: train a model based on the heights of 6 - 12 years olds, but the test data are the heights of 18 - 24 years olds. The model will not generalize well.</li>
+<li><strong>Ultimate Goal:</strong>: has as small errors as possible.</li>
+</ul>
+</li>
+<li>Regularization is a technique used in machine learning to prevent overfitting by introducing additional constraints or penalties to the model&rsquo;s loss function.</li>
+<li>Maximum Likelihood Estimation: find the parameter that maximizes the likelihood of the observed data under a given probabilistic model.
+<ul>
+<li>MLE estimates often converge to the expected value of the true parameter.</li>
+<li>MLE is found by taking the derivative of the log-likelihood and solving for zero.</li>
+<li>MLE is asymptotically unbiased but may be biased in small samples.</li>
+<li>MLE has the lowest variance possible asymptotically (efficient estimator).</li>
+<li>MLE is equivalent to minimizing KL divergence(minimize between 2 distributions).</li>
+</ul>
+</li>
+<li>Binary Classification: predicting between two classes.</li>
+<li>Cross-Entropy Loss: Measures the difference between predicted and actual labels. It ensures that high-confidence incorrect predictions get large gradients (forcing corrections).</li>
+<li>Squash Function (Sigmoid): Converts raw scores to probabilities (0 to 1).</li>
+</ul>
+<h3 id="week-3">Week 3</h3>
+<ul>
+<li>SoftMax: transforms outputs into probabilities, ensures probabilities sum is 1.</li>
+<li>ReLU(Rectified Linear Unit): ReLU(x) = max(x, 0). It removes any negative values and keep positive values.</li>
+<li>Goal: use neurual network to linear separate samples.
+<ul>
+<li>The more hidden layers you have, a much larger set of problems you can approximate.</li>
+<li>Don&rsquo;t put sigmoid functions in the middent of the hidden layers, but it can be used on output layers.</li>
+</ul>
+</li>
+<li>Loss functions:
+<ul>
+<li>MSE: regression</li>
+<li>BCE(Binary Cross Entropy): binary classification</li>
+<li>Cross Entropy: multi-class labels</li>
+</ul>
+</li>
+<li>Several approach for training neurual networks:
+<ul>
+<li>Batch Descent</li>
+<li>Stochastic gradient descent: one sample at a time(epoch one iteration), converge faster.</li>
+<li>Mini Batch: each epoch is limited to B samples.</li>
+</ul>
+</li>
+<li>Computational Graph</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
