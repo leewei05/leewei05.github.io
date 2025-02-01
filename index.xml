@@ -63,6 +63,35 @@
 </ul>
 </li>
 </ul>
+<h3 id="week-4">Week 4</h3>
+<ul>
+<li>Linking: combines multiple object files into an executable or a library.
+<ul>
+<li>Pros</li>
+<li>We can write our programs in modules.</li>
+<li>Faster code compilation, since we only need to re-compile changed source files and link them to the final target.</li>
+<li>Space efficient, since we can share common code.</li>
+</ul>
+</li>
+<li>Loading: load executable into memory.</li>
+<li>Relocation: merge sections of each object files into multiple sections in the final executable. Resolve any unknown memory addresses.</li>
+<li>ELF format
+<ul>
+<li>Program header table: used by loader to load each segments into memory.</li>
+<li>Section header table: used by linker to link code and data sections together.</li>
+</ul>
+</li>
+<li>Statically linked: library is linked into the executable, which makes the size of the file larger.</li>
+<li>Dynamically linked: library is loaded at runtime, which makes the size of the file smaller.</li>
+<li>Position independent code(PIC): generate code in such a way that it can work no
+matter where it is located in the address space.
+<ul>
+<li>Add additional layer of indirection for all references to global data, imported functions.</li>
+<li>Global Offset Table(GOT): a table, which maintains by the linker, that stores the addresses of variables.</li>
+</ul>
+</li>
+</ul>
+<h3 id="week-5">Week 5</h3>
 ]]></content:encoded>
     </item>
     <item>
@@ -100,7 +129,11 @@
 </ul>
 <h3 id="week-2">Week 2</h3>
 <ul>
-<li>Linear Regression: a line that separates different types of data.</li>
+<li>Linear Regression: a line that separates different types of data.
+<ul>
+<li>Under mild condition, linear regression has an optimal solution.</li>
+</ul>
+</li>
 <li>Mean Squared Error (MSE): Average of the squared differences between observed and predicted values.
 <ul>
 <li>Good for linear regression.</li>
@@ -116,7 +149,7 @@
 <li>Machine Learn Assumption: training set is drawn from the same probability distribution as test data.
 <ul>
 <li>Example: train a model based on the heights of 6 - 12 years olds, but the test data are the heights of 18 - 24 years olds. The model will not generalize well.</li>
-<li><strong>Ultimate Goal:</strong>: has as small errors as possible.</li>
+<li><strong>Ultimate Goal:</strong> has as small errors as possible.</li>
 </ul>
 </li>
 <li>Regularization is a technique used in machine learning to prevent overfitting by introducing additional constraints or penalties to the model&rsquo;s loss function.</li>
@@ -131,7 +164,11 @@
 </li>
 <li>Binary Classification: predicting between two classes.</li>
 <li>Cross-Entropy Loss: Measures the difference between predicted and actual labels. It ensures that high-confidence incorrect predictions get large gradients (forcing corrections).</li>
-<li>Squash Function (Sigmoid): Converts raw scores to probabilities (0 to 1).</li>
+<li>Squash Function (Sigmoid): Converts raw scores to probabilities (0 to 1).
+<ul>
+<li>Divide each output by the sum of all outputs. What happens if the sum is negative? Exponential.</li>
+</ul>
+</li>
 </ul>
 <h3 id="week-3">Week 3</h3>
 <ul>
@@ -158,6 +195,14 @@
 </ul>
 </li>
 <li>Computational Graph</li>
+</ul>
+<h3 id="week-4">Week 4</h3>
+<ul>
+<li>Forward Pass: input data moves through data in a neurual network.</li>
+<li>Backward Pass (Backpropagation): computing gradients using the chain rule.</li>
+<li>Weight Updates: adjusting weights based on the gradients using optimization techniques like Stochastic Gradient Descent (SGD).</li>
+<li>Activation Functions: Non-linearity in hidden layers (e.g., ReLU, sigmoid).</li>
+<li>Batch Processing: concepts of minibatch to speed up the process.</li>
 </ul>
 ]]></content:encoded>
     </item>

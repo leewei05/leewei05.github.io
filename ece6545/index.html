@@ -45,7 +45,7 @@
 <meta itemprop="name" content="Course Review: ECE 6545 Deep Learning with Image Analysis">
 <meta itemprop="description" content="Week 1 Object detection: boundary of the object, what is the object, where is the object. Semantic Segmentation: labels different sections. Linear Classifier: draw a line in a space to classify different types of data. Overfitting: the model matches the training set too closely, resulting in the model failing to predict correctly on new data. Image Classification challenges: resolution of image variables It is common to have more training data than testing data."><meta itemprop="datePublished" content="2025-01-07T16:38:37-07:00" />
 <meta itemprop="dateModified" content="2025-01-07T16:38:37-07:00" />
-<meta itemprop="wordCount" content="519">
+<meta itemprop="wordCount" content="602">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -137,7 +137,11 @@
 </ul>
 <h3 id="week-2">Week 2</h3>
 <ul>
-<li>Linear Regression: a line that separates different types of data.</li>
+<li>Linear Regression: a line that separates different types of data.
+<ul>
+<li>Under mild condition, linear regression has an optimal solution.</li>
+</ul>
+</li>
 <li>Mean Squared Error (MSE): Average of the squared differences between observed and predicted values.
 <ul>
 <li>Good for linear regression.</li>
@@ -153,7 +157,7 @@
 <li>Machine Learn Assumption: training set is drawn from the same probability distribution as test data.
 <ul>
 <li>Example: train a model based on the heights of 6 - 12 years olds, but the test data are the heights of 18 - 24 years olds. The model will not generalize well.</li>
-<li><strong>Ultimate Goal:</strong>: has as small errors as possible.</li>
+<li><strong>Ultimate Goal:</strong> has as small errors as possible.</li>
 </ul>
 </li>
 <li>Regularization is a technique used in machine learning to prevent overfitting by introducing additional constraints or penalties to the model&rsquo;s loss function.</li>
@@ -168,7 +172,11 @@
 </li>
 <li>Binary Classification: predicting between two classes.</li>
 <li>Cross-Entropy Loss: Measures the difference between predicted and actual labels. It ensures that high-confidence incorrect predictions get large gradients (forcing corrections).</li>
-<li>Squash Function (Sigmoid): Converts raw scores to probabilities (0 to 1).</li>
+<li>Squash Function (Sigmoid): Converts raw scores to probabilities (0 to 1).
+<ul>
+<li>Divide each output by the sum of all outputs. What happens if the sum is negative? Exponential.</li>
+</ul>
+</li>
 </ul>
 <h3 id="week-3">Week 3</h3>
 <ul>
@@ -195,6 +203,14 @@
 </ul>
 </li>
 <li>Computational Graph</li>
+</ul>
+<h3 id="week-4">Week 4</h3>
+<ul>
+<li>Forward Pass: input data moves through data in a neurual network.</li>
+<li>Backward Pass (Backpropagation): computing gradients using the chain rule.</li>
+<li>Weight Updates: adjusting weights based on the gradients using optimization techniques like Stochastic Gradient Descent (SGD).</li>
+<li>Activation Functions: Non-linearity in hidden layers (e.g., ReLU, sigmoid).</li>
+<li>Batch Processing: concepts of minibatch to speed up the process.</li>
 </ul>
 
   </content>

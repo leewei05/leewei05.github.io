@@ -45,7 +45,7 @@
 <meta itemprop="name" content="Course Review: CS 6460 Operating Systems">
 <meta itemprop="description" content="Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process. exec(): replace memory of the current process. It doesn&rsquo;t clear file descriptor."><meta itemprop="datePublished" content="2025-01-07T16:38:37-07:00" />
 <meta itemprop="dateModified" content="2025-01-07T16:38:37-07:00" />
-<meta itemprop="wordCount" content="163">
+<meta itemprop="wordCount" content="347">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -154,6 +154,35 @@
 </ul>
 </li>
 </ul>
+<h3 id="week-4">Week 4</h3>
+<ul>
+<li>Linking: combines multiple object files into an executable or a library.
+<ul>
+<li>Pros</li>
+<li>We can write our programs in modules.</li>
+<li>Faster code compilation, since we only need to re-compile changed source files and link them to the final target.</li>
+<li>Space efficient, since we can share common code.</li>
+</ul>
+</li>
+<li>Loading: load executable into memory.</li>
+<li>Relocation: merge sections of each object files into multiple sections in the final executable. Resolve any unknown memory addresses.</li>
+<li>ELF format
+<ul>
+<li>Program header table: used by loader to load each segments into memory.</li>
+<li>Section header table: used by linker to link code and data sections together.</li>
+</ul>
+</li>
+<li>Statically linked: library is linked into the executable, which makes the size of the file larger.</li>
+<li>Dynamically linked: library is loaded at runtime, which makes the size of the file smaller.</li>
+<li>Position independent code(PIC): generate code in such a way that it can work no
+matter where it is located in the address space.
+<ul>
+<li>Add additional layer of indirection for all references to global data, imported functions.</li>
+<li>Global Offset Table(GOT): a table, which maintains by the linker, that stores the addresses of variables.</li>
+</ul>
+</li>
+</ul>
+<h3 id="week-5">Week 5</h3>
 
   </content>
   <p>
