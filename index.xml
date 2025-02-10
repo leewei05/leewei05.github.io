@@ -12,7 +12,7 @@
     <lastBuildDate>Tue, 07 Jan 2025 16:38:37 -0700</lastBuildDate>
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Course Review: CS 6460 Operating Systems</title>
+      <title>Spring 2025: CS 6460 Operating Systems</title>
       <link>https://leewei.co/cs6460/</link>
       <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
       <guid>https://leewei.co/cs6460/</guid>
@@ -92,10 +92,48 @@ matter where it is located in the address space.
 </li>
 </ul>
 <h3 id="week-5">Week 5</h3>
+<ul>
+<li>How to share one memory across multiple processes?
+<ul>
+<li>Relocation: process 1 starts from 0x00, process 2 starts from 0x1100.</li>
+<li>This works but it lacks isolation. One process can easily access other processes&rsquo; memory.</li>
+</ul>
+</li>
+<li>How can we enforce isolation?
+<ul>
+<li>Software: SFI(Software Fault Isolation) works, but it has performance overhead.</li>
+<li>Hardware: segmentations add base addresses, which are maintained by the hardware, for each process. Hardware has a special register to keep an index into the table.
+<ul>
+<li>Global Descriptor Table: an array of segments(base and size) and access control flags.</li>
+<li>GDT register points to the address of GDT in physical address.</li>
+<li>Linear address(named by Intel): physical address = base(logical address) + offset(effective address)</li>
+<li>Each process has a private GDT.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What if one process needs more memory and the increased memory section overlaps with another process?
+<ul>
+<li>Move the other process to another memory address, or swap it to disk. Both solutions are inefficient.</li>
+</ul>
+</li>
+<li>Paging is an alternative solution for segmentation.
+<ul>
+<li>Instead of seeing memory as a contiguous area, OS treats them as multiple pages that map to frames on physical memory.</li>
+<li>Each process has its own page table(page table directory and page tables).</li>
+</ul>
+</li>
+<li>Implementation for Paging
+<ul>
+<li>Array</li>
+<li>Array of arrays(Page table)</li>
+</ul>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Course Review: ECE 6545 Deep Learning with Image Analysis</title>
+      <title>Spring 2025: ECE 6545 Deep Learning with Image Analysis</title>
       <link>https://leewei.co/ece6545/</link>
       <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
       <guid>https://leewei.co/ece6545/</guid>
@@ -204,10 +242,15 @@ matter where it is located in the address space.
 <li>Activation Functions: Non-linearity in hidden layers (e.g., ReLU, sigmoid).</li>
 <li>Batch Processing: concepts of minibatch to speed up the process.</li>
 </ul>
+<h3 id="week-5">Week 5</h3>
+<ul>
+<li>CNN</li>
+<li>Cross-correlation v.s Convolution</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Course Review: CS 6810 Computer Architecture</title>
+      <title>Fall 2024: CS 6810 Computer Architecture</title>
       <link>https://leewei.co/cs6810/</link>
       <pubDate>Thu, 05 Dec 2024 20:47:54 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
       <guid>https://leewei.co/cs6810/</guid>
@@ -701,7 +744,7 @@ other processors will receive NACK from the processor that has exclusive access.
 ]]></content:encoded>
     </item>
     <item>
-      <title>Course Review: CS 6520 Programming Languages</title>
+      <title>Fall 2024: CS 6520 Programming Languages</title>
       <link>https://leewei.co/cs6520/</link>
       <pubDate>Thu, 05 Dec 2024 20:47:48 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
       <guid>https://leewei.co/cs6520/</guid>
@@ -807,7 +850,7 @@ Programming Language research</p>
 ]]></content:encoded>
     </item>
     <item>
-      <title>Course Review: CS 6475 Advanced Compilers</title>
+      <title>Fall 2024: CS 6475 Advanced Compilers</title>
       <link>https://leewei.co/cs6475/</link>
       <pubDate>Thu, 05 Dec 2024 20:03:46 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
       <guid>https://leewei.co/cs6475/</guid>

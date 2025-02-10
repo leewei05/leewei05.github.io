@@ -6,10 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="shortcut icon" href="/images/favicon.png" />
 
-<title>Course Review: CS 6460 Operating Systems&nbsp;|&nbsp; :)</title>
+<title>Spring 2025: CS 6460 Operating Systems&nbsp;|&nbsp; :)</title>
 <meta
   name="title"
-  content="Course Review: CS 6460 Operating Systems"
+  content="Spring 2025: CS 6460 Operating Systems"
 />
 <meta
   name="description"
@@ -25,7 +25,7 @@
 
 
 
-<meta property="og:title" content="Course Review: CS 6460 Operating Systems" />
+<meta property="og:title" content="Spring 2025: CS 6460 Operating Systems" />
 <meta property="og:description" content="Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process. exec(): replace memory of the current process. It doesn&rsquo;t clear file descriptor." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://leewei.co/cs6460/" /><meta property="article:section" content="blog" />
@@ -36,16 +36,16 @@
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Course Review: CS 6460 Operating Systems"/>
+<meta name="twitter:title" content="Spring 2025: CS 6460 Operating Systems"/>
 <meta name="twitter:description" content="Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process. exec(): replace memory of the current process. It doesn&rsquo;t clear file descriptor."/>
 
 
 
 
-<meta itemprop="name" content="Course Review: CS 6460 Operating Systems">
+<meta itemprop="name" content="Spring 2025: CS 6460 Operating Systems">
 <meta itemprop="description" content="Week 1 Time sharing: a policy for processes to take turn to use the CPU. Scheduling: choose process to run. Isolation: avoid process access other processes&rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process. exec(): replace memory of the current process. It doesn&rsquo;t clear file descriptor."><meta itemprop="datePublished" content="2025-01-07T16:38:37-07:00" />
 <meta itemprop="dateModified" content="2025-01-07T16:38:37-07:00" />
-<meta itemprop="wordCount" content="347">
+<meta itemprop="wordCount" content="544">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -88,7 +88,7 @@
 
 </nav>
 
-<h1>Course Review: CS 6460 Operating Systems</h1>
+<h1>Spring 2025: CS 6460 Operating Systems</h1>
 
 
     </header>
@@ -183,6 +183,44 @@ matter where it is located in the address space.
 </li>
 </ul>
 <h3 id="week-5">Week 5</h3>
+<ul>
+<li>How to share one memory across multiple processes?
+<ul>
+<li>Relocation: process 1 starts from 0x00, process 2 starts from 0x1100.</li>
+<li>This works but it lacks isolation. One process can easily access other processes&rsquo; memory.</li>
+</ul>
+</li>
+<li>How can we enforce isolation?
+<ul>
+<li>Software: SFI(Software Fault Isolation) works, but it has performance overhead.</li>
+<li>Hardware: segmentations add base addresses, which are maintained by the hardware, for each process. Hardware has a special register to keep an index into the table.
+<ul>
+<li>Global Descriptor Table: an array of segments(base and size) and access control flags.</li>
+<li>GDT register points to the address of GDT in physical address.</li>
+<li>Linear address(named by Intel): physical address = base(logical address) + offset(effective address)</li>
+<li>Each process has a private GDT.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What if one process needs more memory and the increased memory section overlaps with another process?
+<ul>
+<li>Move the other process to another memory address, or swap it to disk. Both solutions are inefficient.</li>
+</ul>
+</li>
+<li>Paging is an alternative solution for segmentation.
+<ul>
+<li>Instead of seeing memory as a contiguous area, OS treats them as multiple pages that map to frames on physical memory.</li>
+<li>Each process has its own page table(page table directory and page tables).</li>
+</ul>
+</li>
+<li>Implementation for Paging
+<ul>
+<li>Array</li>
+<li>Array of arrays(Page table)</li>
+</ul>
+</li>
+</ul>
 
   </content>
   <p>
