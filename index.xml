@@ -130,6 +130,22 @@ matter where it is located in the address space.
 </ul>
 </li>
 </ul>
+<h3 id="week-6">Week 6</h3>
+<ul>
+<li>copy-on-write: OS only copies page tables only when one of parent, child writes.</li>
+<li>What kind of services might disable page table?
+<ul>
+<li>Databases</li>
+<li>In-memory key-value stores</li>
+</ul>
+</li>
+<li>Does OS flush TLB after context-switching?
+<ul>
+<li>A tagged TLB can tag process id to avoid flushing TLB. Greater performance.</li>
+</ul>
+</li>
+<li>System boot</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
@@ -246,6 +262,20 @@ matter where it is located in the address space.
 <ul>
 <li>CNN</li>
 <li>Cross-correlation v.s Convolution</li>
+</ul>
+<h3 id="week-6">Week 6</h3>
+<ul>
+<li>Max pooling</li>
+<li>Stride</li>
+<li>Conv -&gt; ReLU -&gt; Pooling</li>
+<li>Regularization: L2 penalty</li>
+<li>Global average pooling can replace flattening.</li>
+<li>Backprop for CNNs
+<ul>
+<li>Local derivative for max pooling.</li>
+<li>Local derivative for convolution layer. Similiar front convolutional operation, compute the downstream gradient and apply the filter downstream.</li>
+</ul>
+</li>
 </ul>
 ]]></content:encoded>
     </item>
