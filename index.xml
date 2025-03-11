@@ -13,9 +13,9 @@
     <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Spring 2025: CS 6460 Operating Systems</title>
-      <link>https://leewei.co/blog/cs6460/</link>
+      <link>https://leewei.co/cs6460/</link>
       <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/cs6460/</guid>
+      <guid>https://leewei.co/cs6460/</guid>
       <description>Week 1 Time sharing: a policy for processes to take turn to use the CPU. Hardware has a timer to send interrupts to the OS. Scheduling: choose process to run. Isolation: avoid process access other processes&amp;rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process.</description>
       <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
 <ul>
@@ -246,9 +246,9 @@ matter where it is located in the address space.
     </item>
     <item>
       <title>Spring 2025: ECE 6545 Deep Learning with Image Analysis</title>
-      <link>https://leewei.co/blog/ece6545/</link>
+      <link>https://leewei.co/ece6545/</link>
       <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/ece6545/</guid>
+      <guid>https://leewei.co/ece6545/</guid>
       <description>Week 1 Object detection: boundary of the object, what is the object, where is the object. Semantic Segmentation: labels different sections. Linear Classifier: draw a line in a space to classify different types of data. Overfitting: the model matches the training set too closely, resulting in the model failing to predict correctly on new data. Image Classification challenges: resolution of image variables It is common to have more training data than testing data.</description>
       <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
 <ul>
@@ -436,9 +436,9 @@ matter where it is located in the address space.
     </item>
     <item>
       <title>Fall 2024: CS 6810 Computer Architecture</title>
-      <link>https://leewei.co/blog/cs6810/</link>
+      <link>https://leewei.co/cs6810/</link>
       <pubDate>Thu, 05 Dec 2024 20:47:54 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/cs6810/</guid>
+      <guid>https://leewei.co/cs6810/</guid>
       <description>Week 1 Introduction and metrics
 Week 2 Metrics and ISA
 Week 3 To improve the performance of a processor, we introduce a technique called Pipelining. Pipelining splits instructions into multiple stages. Ideally, Throughput increases by a factor of # of the stages.
@@ -930,9 +930,9 @@ other processors will receive NACK from the processor that has exclusive access.
     </item>
     <item>
       <title>Fall 2024: CS 6520 Programming Languages</title>
-      <link>https://leewei.co/blog/cs6520/</link>
+      <link>https://leewei.co/cs6520/</link>
       <pubDate>Thu, 05 Dec 2024 20:47:48 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/cs6520/</guid>
+      <guid>https://leewei.co/cs6520/</guid>
       <description>Week 1 Overview of this course. Shplait programming language basic overview.
 Development template
 Types: data representation Tests: write function signature and tests Template: write the layout of the function body Body: finish function body case-by-case Homework: Familiar with Shplait.
@@ -1036,9 +1036,9 @@ Programming Language research</p>
     </item>
     <item>
       <title>Fall 2024: CS 6475 Advanced Compilers</title>
-      <link>https://leewei.co/blog/cs6475/</link>
+      <link>https://leewei.co/cs6475/</link>
       <pubDate>Thu, 05 Dec 2024 20:03:46 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/cs6475/</guid>
+      <guid>https://leewei.co/cs6475/</guid>
       <description>Week 1 Overview of this course.
 Readings:
 The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
@@ -1361,9 +1361,9 @@ Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s L
     </item>
     <item>
       <title>2024 Fall CS 研究所轉領域申請</title>
-      <link>https://leewei.co/blog/mscs-2024/</link>
+      <link>https://leewei.co/mscs-2024/</link>
       <pubDate>Thu, 21 Mar 2024 18:34:44 +0800</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/blog/mscs-2024/</guid>
+      <guid>https://leewei.co/mscs-2024/</guid>
       <description>申請結果 Admission
 Virginia Tech MS CS (2/20) Pennsylvania State University MS CSE (3/20) The University of Utah MS CS (3/26) Rejection
 Indiana University Bloomington MS CS (2/23) University of Illinois Urbana-Champaign MCS (4/1) University of Michigan MS CSE (4/4) University of Wisconsin-Madison PMP CS (4/6) Decision
