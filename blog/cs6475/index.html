@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="../../images/favicon.png" />
+
+<title>Fall 2024: CS 6475 Advanced Compilers&nbsp;|&nbsp; :)</title>
+<meta
+  name="title"
+  content="Fall 2024: CS 6475 Advanced Compilers"
+/>
+<meta
+  name="description"
+  content="Week 1 Overview of this course.
+Readings:
+The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
+Find a missing optimization in LLVM using this. Prove it with Alive2. Week 2 Discussions:
+Is it really the dealth of optimizing compilers? No. On Proebsting&rsquo;s Law. Probably cannot use -O0 as a 18 years old compiler. Impact of Economics on Compiler Optimization."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Lee Wei" />
+
+
+
+
+<meta property="og:title" content="Fall 2024: CS 6475 Advanced Compilers" />
+<meta property="og:description" content="Week 1 Overview of this course.
+Readings:
+The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
+Find a missing optimization in LLVM using this. Prove it with Alive2. Week 2 Discussions:
+Is it really the dealth of optimizing compilers? No. On Proebsting&rsquo;s Law. Probably cannot use -O0 as a 18 years old compiler. Impact of Economics on Compiler Optimization." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leewei.co/blog/cs6475/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-12-05T20:03:46-06:00" />
+<meta property="article:modified_time" content="2024-12-05T20:03:46-06:00" />
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Fall 2024: CS 6475 Advanced Compilers"/>
+<meta name="twitter:description" content="Week 1 Overview of this course.
+Readings:
+The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
+Find a missing optimization in LLVM using this. Prove it with Alive2. Week 2 Discussions:
+Is it really the dealth of optimizing compilers? No. On Proebsting&rsquo;s Law. Probably cannot use -O0 as a 18 years old compiler. Impact of Economics on Compiler Optimization."/>
+
+
+
+
+<meta itemprop="name" content="Fall 2024: CS 6475 Advanced Compilers">
+<meta itemprop="description" content="Week 1 Overview of this course.
+Readings:
+The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
+Find a missing optimization in LLVM using this. Prove it with Alive2. Week 2 Discussions:
+Is it really the dealth of optimizing compilers? No. On Proebsting&rsquo;s Law. Probably cannot use -O0 as a 18 years old compiler. Impact of Economics on Compiler Optimization."><meta itemprop="datePublished" content="2024-12-05T20:03:46-06:00" />
+<meta itemprop="dateModified" content="2024-12-05T20:03:46-06:00" />
+<meta itemprop="wordCount" content="1169">
+<meta itemprop="keywords" content="" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="../../simple.min.css" rel="stylesheet" />
+
+    
+    <link href="../../style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="../../"
+    
+    >Home</a
+  >
+
+  <a
+    href="../../blog/"
+    
+    >Blog</a
+  >
+
+
+  <a href="../../index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>Fall 2024: CS 6475 Advanced Compilers</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2024-12-05" pubdate>
+            2024-12-05
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h3 id="week-1">Week 1</h3>
+<p>Overview of this course.</p>
+<p>Readings:</p>
+<ul>
+<li><a href="https://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf">The death of optimizing compilers</a></li>
+<li><a href="https://gwern.net/doc/cs/algorithm/2001-scott.pdf">On Proebsting’s Law</a></li>
+<li><a href="https://dl.acm.org/doi/pdf/10.1145/376656.376751">Impact of Economics on Compiler Optimization</a></li>
+<li><a href="https://blog.regehr.org/archives/2485">Why Do Peephole Optimizations Work?</a></li>
+<li><a href="https://www.clear.rice.edu/comp512/Lectures/Papers/1971-allen-catalog.pdf">(option) Compiler Optimization Catalog</a></li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Find a missing optimization in LLVM using <a href="https://gcc.godbolt.org/">this</a>.</li>
+<li>Prove it with <a href="https://alive2.llvm.org/ce/">Alive2</a>.</li>
+</ul>
+<h3 id="week-2">Week 2</h3>
+<p>Discussions:</p>
+<ul>
+<li>Is it really the dealth of optimizing compilers? No.</li>
+<li>On Proebsting&rsquo;s Law. Probably cannot use <code>-O0</code> as a 18 years old compiler.</li>
+<li>Impact of Economics on Compiler Optimization. Look for where the money goes.</li>
+<li>Refinement is very important!</li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Pick a missing optimization in LLVM to implement.</li>
+<li>Build LLVM and Alive2 locally.</li>
+</ul>
+<h3 id="week-3">Week 3</h3>
+<p>Discussions:</p>
+<ul>
+<li>How LLVM is tested?
+<ul>
+<li>unittest: LLVM API tests</li>
+<li>tests: regression tests</li>
+<li>llvm-test-suite: benchmark tests</li>
+<li>libFuzzer</li>
+<li>test by users</li>
+</ul>
+</li>
+<li>AVX512 ternary logic. It&rsquo;s difficult to decode due to its required bit space.</li>
+<li>Superoptimization: To generate optimized code, superoptimizer searches for certain pattern, does refinement check and assess with its cost model.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></li>
+<li><a href="https://www.cs.cmu.edu/~rjsimmon/15411-f15/lec/10-ssa.pdf">Lecture Notes on Static Single Assignment Form</a></li>
+<li><a href="https://lowlevelbits.org/system-under-test-llvm/">System Under Test: LLVM</a></li>
+<li><a href="https://blog.regehr.org/archives/1450">Testing LLVM</a></li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Implement a missing optimization in LLVM and add tests to it. <a href="https://github.com/regehr/llvm-project/pull/60">Github PR</a></li>
+</ul>
+<h3 id="week-4">Week 4</h3>
+<p>Discussions:</p>
+<ul>
+<li>Compiler without SSA gets harder to get in right, and it messes up the code base.</li>
+<li>Brainfuck language
+<ul>
+<li>Game of Life in BF</li>
+</ul>
+</li>
+<li>Speedup interpreter with <a href="https://eli.thegreenplace.net/2012/07/12/computed-goto-for-efficient-dispatch-tables">computed goto</a>.</li>
+<li>Need to be cautious when using <code>APInt</code>. There are use cases in LLVM that use 80, 320 bits.</li>
+<li>Intro for <a href="https://en.wikipedia.org/wiki/Partial_evaluation">Partial Evaluation</a> and its relation to staged computation.
+<ul>
+<li>Abstract interpreter, approximate computations, Halting problem, Tainted cell.</li>
+</ul>
+</li>
+<li>General optimization approach for BF.
+<ul>
+<li>Creating virtual instructions for BF is similar with x86-64 processors having virtual instructions that are not exposed to developers.</li>
+</ul>
+</li>
+<li>It&rsquo;s hard to pass alias information to compilers, like using <code>restrict</code> correctly in C.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://c9x.me/compile/bib/braun13cc.pdf">Simple and Efficient Construction of Static Single Assignment Form</a>: Great paper that solves real problems!</li>
+<li><a href="https://arxiv.org/pdf/2305.13241">Whose baseline is it anyway?</a></li>
+<li><a href="https://www.npopov.com/2023/10/22/How-to-reduce-LLVM-crashes.html">llvm-reduce</a></li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Implement a <a href="https://github.com/leewei05/bf">BF interpreter</a>.</li>
+</ul>
+<h3 id="week-5">Week 5</h3>
+<p>Discussions:</p>
+<ul>
+<li>Always optimize with a profiler (data). Recursive to a close form.</li>
+<li>C++ downcast optimization probably couldn&rsquo;t catch by the profiler.</li>
+<li>ABI doc tells developer how procedures communicate. Which register to store argument.</li>
+<li>If a compiler doesn&rsquo;t know a fact, sometimes we can rewrite code to teach compiler to optimize.</li>
+<li>How does compiler recognize certain pattern, such as popcount, to optimize? Hardcode and do some canonicalization before finding certain patterns.</li>
+<li>Approximate: tracking info accurately is hard. Instead, tools try to shrink the area of approximation.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://cs.au.dk/~amoeller/spa/spa.pdf">Static Program Analysis: Ch 1</a></li>
+<li><a href="https://www.agner.org/optimize/">Agner Fog</a></li>
+<li><a href="https://www.corsix.org/content/whirlwind-tour-aarch64-vector-instructions">ARM SIMD</a></li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Implement a profiler on top of the <a href="https://github.com/leewei05/bf">BF interpreter</a>.
+<ul>
+<li>Simple loops: no i/o, no pointer changes, either +1, -1</li>
+</ul>
+</li>
+<li>Implement a <a href="(https://github.com/leewei05/bf)">compiler</a> for BF that emits x86-64 assembly.</li>
+</ul>
+<h3 id="week-6">Week 6</h3>
+<p>Discussions:</p>
+<ul>
+<li>Is it okay to remove infinite loop?</li>
+<li>Debugging: Optimization fuel decrement one until fuel run out, binary search the commit.</li>
+<li>Scan memory tricks</li>
+<li>Fast program tries to handle aligned memory.</li>
+<li>Lattice and semilattice are abstract values that live in the compiler.
+<ul>
+<li>Design goal tight enough to not run forever. In other words, having enough information for the compiler to run fast.</li>
+</ul>
+</li>
+<li>Dataflow Analysis
+<ul>
+<li>Top is universal set(imprecise info). Start from the top, we will reach a point that has enough information.</li>
+<li>Bottom is empty set(precise info). Start from the bottom, we will reach a fixed point.</li>
+<li>Least fixed point is the point we get the most information.</li>
+</ul>
+</li>
+</ul>
+<p>Examples:</p>
+<p>Dead Code Elimination(Lattice with a height of 2):</p>
+<ul>
+<li>Top is maybe reachable.</li>
+<li>Bottom is provably unreachable.</li>
+</ul>
+<p>Constant Propagation(Lattice with a height of 3):</p>
+<ul>
+<li>Top is probably not constant.</li>
+<li>Integers</li>
+<li>Bottom is unreachable.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://cs.au.dk/~amoeller/spa/spa.pdf">Static Program Analysis: Ch 4</a></li>
+<li><a href="https://docs.oracle.com/javase/specs/jls/se23/html/jls-17.html#jls-17.4.9">Infinite Loop in Java</a></li>
+<li><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1528.htm">Undefined Bahvior for infinite loops</a></li>
+</ul>
+<p>Assignment:</p>
+<ul>
+<li>Optimize simple and non-simple loops in BF, fast vector implementation.
+<ul>
+<li>Starts with simple cases: make a tape with bunch of 1s with a 0 in it, and print the pointer of the 0.</li>
+<li>Write a tiny BF program</li>
+</ul>
+</li>
+</ul>
+<h3 id="week-7">Week 7</h3>
+<p>Discussions:</p>
+<ul>
+<li>GCC IR gimple</li>
+<li>LLVM IR flat</li>
+<li>In practice, we use worklist algorithm a lot. Which node inside a worklist to choose first? A node that is SCC since it can affect other nodes.</li>
+<li>Transfer function table SPA</li>
+<li>How can we run better benchmarks?</li>
+<li>Setting up the conditions for the compilers to know more details.</li>
+<li>Be a better programmer by moving redundant and loop invariant operations outside of loop.</li>
+<li>Math is good for low-level programming.</li>
+</ul>
+<p>References for writing x86-64 vector instructions:</p>
+<ul>
+<li><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#ig_expand=5738,440,778,5762,5872,4606,5744,5762,5872,4606">Intel Official Intrinsic manual</a></li>
+<li><a href="https://stackoverflow.com/questions/40032906/is-there-an-efficient-way-to-get-the-first-non-zero-element-in-an-simd-register">Peter Cordes on Stackoverflow</a></li>
+<li><a href="https://www.felixcloutier.com/x86/">Felix Cloutier&rsquo;s x86-64 manual</a></li>
+<li><a href="https://gcc.godbolt.org/z/vqd9K4rqT">One of my working examples</a></li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://gcc.gnu.org/onlinedocs/gccint/GIMPLE.html">GIMPLE</a></li>
+<li><a href="https://www.cse.wustl.edu/~jain/iucee/index.html">Computer Systems Performance Analysis</a></li>
+<li><a href="https://emeryberger.com/research/stabilizer/">Sabilizer</a></li>
+</ul>
+<p>Videos:</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=vrkR7jKcFpw">Alive2 like tool for GCC</a></li>
+</ul>
+<h3 id="week-9">Week 9</h3>
+<p>Discussions:</p>
+<ul>
+<li>JIT compiler, how to encode instructions to JIT.</li>
+<li>Partial evaluation</li>
+<li>Dead store elimination</li>
+<li>calloc</li>
+<li>global, stack, heap(sticking point, people uninitialized on purpose)</li>
+<li>Common subexpression elimination -&gt; Available</li>
+<li>Rematerialzation</li>
+<li>Very busy -&gt; LICM</li>
+<li>Autotuning try a lot of things, PGO run a once and tell the compiler some information next the build.</li>
+</ul>
+<h3 id="week-11">Week 11</h3>
+<p>Discussions:</p>
+<ul>
+<li>Linker script: tells the linker where memory section maps on a dev board.</li>
+<li>Demanded Bits: you cannot prove that bits are not necessary.</li>
+<li>LLVM Known bits.</li>
+<li>Trace based JIT</li>
+<li>Precompiled headers</li>
+<li>Timeout is a real problem, AWS IAM Z3 solver.</li>
+<li>Flaky tests: sometimes fail and success.</li>
+<li>LLVM IR verifier</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://www.amazon.com/Move-Semantics-Complete-Guide-First/dp/3967309002/">C++ Move</a></li>
+<li><a href="https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/Support/KnownBits.h">LLVM KnownBits</a></li>
+</ul>
+<h3 id="week-12">Week 12</h3>
+<p>Discussions:</p>
+<ul>
+<li>Bugpoint was used in LLVM for reducing tests. It defaults use some instructions result in Undefined Behavior.</li>
+<li>Trusting trust attacks.</li>
+<li>Diverse Double compiling</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://users.cs.utah.edu/~regehr/papers/undef-pldi17.pdf">Taming Undefined Behavior in LLVM</a></li>
+<li><a href="https://dwheeler.com/trusting-trust/">Diverse Double compiling</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Reproducible_builds">Reproducible builds</a></li>
+<li><a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">Trusting trust</a></li>
+</ul>
+<h3 id="week-13">Week 13</h3>
+<p>Discussions:</p>
+<ul>
+<li>Undefined Behavior is also in the hardware chips.</li>
+<li>Register pair for multiplication.</li>
+<li><code>undef</code> breaks SSA.</li>
+<li>Trusting trust really worths reading it!</li>
+<li>Java type concurrency</li>
+<li>Type system is trying to help you not break the program.</li>
+<li>Union find</li>
+<li>HCI for expressing types</li>
+<li>bitblit</li>
+</ul>
+<p>How to implement fast inverse square root on GCC and Clang:</p>
+<ul>
+<li>union</li>
+<li>memcpy fast</li>
+<li>char *</li>
+<li>(C++)reinterpret cast</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="http://lucacardelli.name/papers/typesystems.pdf">Type Systems</a></li>
+<li><a href="http://mazsola.iit.uni-miskolc.hu/~drdani/docs_arm/36_Elsevier-ARM_Sy.pdf">ARM System</a></li>
+<li><a href="https://arxiv.org/pdf/2305.13241">Whose Baseline is it anyway?</a></li>
+<li><a href="https://devblogs.microsoft.com/oldnewthing/20180209-00/?p=97995">BitBlip</a></li>
+<li><a href="https://pdos.csail.mit.edu/~rsc/pike84bitblt.pdf">BitMap</a></li>
+</ul>
+<h3 id="week-14">Week 14</h3>
+<p>Discussions:</p>
+<ul>
+<li>SMT solvers: provide them constraints to solve. If there are solutions, it will return one solution(model).
+<ul>
+<li>Practice: z3 sudoku solver(Int, BitVector).</li>
+</ul>
+</li>
+<li>Use a solver for unbounded Loop is hard because we cannot unroll it.</li>
+<li>People compile language to Javascript -&gt; asm.js -&gt; WebAssembly(Stack machine)</li>
+<li>Baseline compiler</li>
+<li>Everyone needs to know at least one language in System Programming, Scripting, Parallel Programming, Math.</li>
+<li>Autovectorization for large legacy can improve significant performance.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://webkit.org/blog/3362/introducing-the-webkit-ftl-jit/">Webkit JIT</a></li>
+<li><a href="https://ericpony.github.io/z3py-tutorial/guide-examples.htm">Z3 Python tutorial</a></li>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S1877050912003304">CUDA: Compiling and optimizing for a GPU platform</a></li>
+</ul>
+<h3 id="week-15">Week 15</h3>
+<p>Discussions:</p>
+<ul>
+<li>GPU compilers</li>
+<li>What CPU compilers optimizations don&rsquo;t work on GPU compilers? (GPU has limited registers for each thread)
+<ul>
+<li>Inline</li>
+<li>Loop unrolling</li>
+<li>LICM</li>
+<li>InstCombine</li>
+</ul>
+</li>
+<li>Divergence problem is critical. Divergence &gt; Latency</li>
+<li>Rematerialization</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://dl.acm.org/doi/epdf/10.1145/3528416.3530249">Compilation On The GPU? A Feasibility Study</a></li>
+</ul>
+<h3 id="week-16">Week 16</h3>
+<p>Discussions:</p>
+<ul>
+<li>Compilation on the GPU</li>
+<li>Go&rsquo;s generic rules compares with LLVM&rsquo;s large C++ code base.</li>
+<li>Go&rsquo;s generic rules should be checked by something like Z3.</li>
+<li>e-graph is good but it is probably not practical to adopt to existing compilers like LLVM or GCC. Applying rewrites might blow up memory usage.</li>
+<li>Quine is fun.</li>
+</ul>
+<p>Readings:</p>
+<ul>
+<li><a href="https://go.dev/src/cmd/compile/internal/ssa/_gen/generic.rules">Go generic rules</a></li>
+<li><a href="https://dl.acm.org/doi/epdf/10.1145/3434304">egg: Fast and Extensible Equality Saturation</a></li>
+</ul>
+
+  </content>
+  <p>
+    
+  </p>
+
+    </main>
+    <footer>
+      
+  <span>© 2024 Lee Wei</span>
+
+
+  <span>
+    |
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
+
+
+    </footer>
+
+    
+</body>
+</html>
