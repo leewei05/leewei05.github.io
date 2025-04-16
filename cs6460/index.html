@@ -45,7 +45,7 @@
 <meta itemprop="name" content="Spring 2025: CS 6460 Operating Systems">
 <meta itemprop="description" content="Week 1 Time sharing: a policy for processes to take turn to use the CPU. Hardware has a timer to send interrupts to the OS. Scheduling: choose process to run. Isolation: avoid process access other processes&rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process."><meta itemprop="datePublished" content="2025-01-07T16:38:37-07:00" />
 <meta itemprop="dateModified" content="2025-01-07T16:38:37-07:00" />
-<meta itemprop="wordCount" content="978">
+<meta itemprop="wordCount" content="1257">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -312,6 +312,33 @@ matter where it is located in the address space.
 <li>EIP</li>
 </ul>
 </li>
+<li>How do we handle interrupt?
+<ul>
+<li>Change the EIP to point to IDT(instruction descriptor table), which stores interrupt handlers.</li>
+<li>Create an exception stack(new ESP) to save the states of the current running process.</li>
+</ul>
+</li>
+<li>Interrupt requires no change of privilege level
+<ul>
+<li>run on kernel code(level 0)</li>
+<li>kernel access unmapped page</li>
+</ul>
+</li>
+<li>Interrupt requires change of privilege level
+<ul>
+<li>run on user code(level 3)</li>
+</ul>
+</li>
+<li>How to return from an interrupt? <code>iret</code></li>
+<li>CPL can only access less privileged level. DPL(Descriptor privileged level)
+<ul>
+<li>1: can access 1, 2, 3</li>
+<li>3: can access 3</li>
+</ul>
+</li>
+<li>Each page entry has a user bit. If it is set, only code with privilege level 3 can access. If not, then only level 0 can access.</li>
+<li>Interrupt is allowed only if CPL is less than equal to DPL.</li>
+<li>TSS(Task State Segment): SS, ESP0.</li>
 </ul>
 <h3 id="week-9">Week 9</h3>
 <ul>
@@ -333,6 +360,28 @@ matter where it is located in the address space.
 <li>Page Tables</li>
 </ul>
 <h3 id="week-11">Week 11</h3>
+<ul>
+<li>Each CPU has its own GDT, which is pointed by GDTR. One entry of GDT points to TSS, where it points to the kernel stack.</li>
+<li>Segmentation in x86 doesn&rsquo;t protect kernel memory from user processes. Modern operating systems use page tables for isolation.</li>
+<li>Maskable interrupt(external interrupt)</li>
+<li>Syscall is a trap</li>
+<li>Interrupt handler should save the current CPU state, so that it can resume after handling the interrupt.</li>
+<li><code>iret</code> returns from interrupt and restore these five values <code>SS, ESP, EFLAGS, CS, EIP</code>.</li>
+<li>Software interrupts can be used to implement system call.</li>
+<li>xv6 passes system call number with EAX.</li>
+</ul>
+<h3 id="week-12">Week 12</h3>
+<ul>
+<li>How <code>exec()</code> works? It does not change the file descriptor.</li>
+<li>Can the guard page catch every overflow?
+<ul>
+<li>Guard page is partially safe. It can help developers catch overflow allocation(e.g. a very large array).</li>
+</ul>
+</li>
+<li>Why does a program pass itself(executable) as <code>argv[0]</code>?</li>
+<li>Kernel page table</li>
+<li>How to create the first process?</li>
+</ul>
 
   </content>
   <p>
