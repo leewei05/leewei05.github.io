@@ -1,24 +1,118 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title> :)</title>
-    <link>https://leewei.co/</link>
-    <description>Recent content on  :)</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <managingEditor>lee10202013@gmail.com (Lee Wei)</managingEditor>
-    <webMaster>lee10202013@gmail.com (Lee Wei)</webMaster>
-    <copyright>© 2024 Lee Wei</copyright>
-    <lastBuildDate>Mon, 14 Apr 2025 13:21:15 -0700</lastBuildDate>
-    <atom:link href="https://leewei.co/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>LLVM: Constraint Elimination Pass</title>
-      <link>https://leewei.co/llvm-constraint/</link>
-      <pubDate>Mon, 14 Apr 2025 13:21:15 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/llvm-constraint/</guid>
-      <description>Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
-1int foo(int x, int y) { 2 if (x &amp;gt; y) { // x &amp;gt; y is a known fact in this block 3 if (x &amp;lt;= y) { // replace x &amp;lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &amp;gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System.</description>
-      <content:encoded><![CDATA[<h3 id="introduction">Introduction</h3>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="/images/favicon.png" />
+
+<title>LLVM: Constraint Elimination Pass&nbsp;|&nbsp; :)</title>
+<meta
+  name="title"
+  content="LLVM: Constraint Elimination Pass"
+/>
+<meta
+  name="description"
+  content="Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
+1int foo(int x, int y) { 2 if (x &gt; y) { // x &gt; y is a known fact in this block 3 if (x &lt;= y) { // replace x &lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+
+  <meta name="author" content="Lee Wei" />
+
+
+
+
+<meta property="og:title" content="LLVM: Constraint Elimination Pass" />
+<meta property="og:description" content="Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
+1int foo(int x, int y) { 2 if (x &gt; y) { // x &gt; y is a known fact in this block 3 if (x &lt;= y) { // replace x &lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leewei.co/llvm-constraint/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2025-04-14T13:21:15-07:00" />
+<meta property="article:modified_time" content="2025-04-14T13:21:15-07:00" />
+
+
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="LLVM: Constraint Elimination Pass"/>
+<meta name="twitter:description" content="Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
+1int foo(int x, int y) { 2 if (x &gt; y) { // x &gt; y is a known fact in this block 3 if (x &lt;= y) { // replace x &lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System."/>
+
+
+
+
+<meta itemprop="name" content="LLVM: Constraint Elimination Pass">
+<meta itemprop="description" content="Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
+1int foo(int x, int y) { 2 if (x &gt; y) { // x &gt; y is a known fact in this block 3 if (x &lt;= y) { // replace x &lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System."><meta itemprop="datePublished" content="2025-04-14T13:21:15-07:00" />
+<meta itemprop="dateModified" content="2025-04-14T13:21:15-07:00" />
+<meta itemprop="wordCount" content="2014">
+<meta itemprop="keywords" content="" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+
+    
+    <link href="/simple.min.css" rel="stylesheet" />
+
+    
+    <link href="/style.min.css" rel="stylesheet" />
+
+    
+
+    
+</head>
+
+  <body>
+    <header>
+      <nav>
+  <a
+    href="/"
+    
+    >Home</a
+  >
+
+  <a
+    href="/blog/"
+    
+    >Blog</a
+  >
+
+
+  <a href="/index.xml">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 448 512">
+      
+      <path
+        d="M0 64C0 46.3 14.3 32 32 32c229.8 0 416 186.2 416 416c0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96C14.3 96 0 81.7 0 64zM0 416a64 64 0 1 1 128 0A64 64 0 1 1 0 416zM32 160c159.1 0 288 128.9 288 288c0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224c-17.7 0-32-14.3-32-32s14.3-32 32-32z"
+      />
+    </svg>
+    RSS
+  </a>
+
+</nav>
+
+<h1>LLVM: Constraint Elimination Pass</h1>
+
+
+    </header>
+    <main>
+      
+  
+    
+      
+      <p>
+        <i>
+          <time datetime="2025-04-14" pubdate>
+            2025-04-14
+          </time>
+        </i>
+      </p>
+    
+  
+  
+  <content>
+    <h3 id="introduction">Introduction</h3>
 <p>Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.</p>
 
 
@@ -350,1304 +444,27 @@
 <p>Currently, <code>ne</code> constraints are not supported in the constraint system. The reason is that <code>a != b</code> cannot be directly encoded as a single linear constraint — it represents a disjunction: <code>a &lt; b || a &gt; b</code>. However, the constraint system models all facts as conjunctions (logical ANDs) of linear inequalities. Without support for logical OR, it is not possible to store <code>ne</code> facts within the system. In contrast, <code>eq</code> facts like <code>a == b</code> can be represented as two inequalities: <code>a &lt;= b &amp;&amp; a &gt;= b</code>, both of which are individually expressible.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>I only worked on a certain part of the Constraint Elimination pass. There is still more to discover inside this pass, such as, adding facts for loop induction variables. Lastly, I want to express my gratitude to Dr. John Regehr for his valuable advice on this project. Thanks, John!</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Spring 2025: CS 6460 Operating Systems</title>
-      <link>https://leewei.co/cs6460/</link>
-      <pubDate>Tue, 07 Jan 2025 16:38:37 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6460/</guid>
-      <description>Week 1 Time sharing: a policy for processes to take turn to use the CPU. Hardware has a timer to send interrupts to the OS. Scheduling: choose process to run. Isolation: avoid process access other processes&amp;rsquo; data. File descriptor: an integer that maps to a file. Unix philosophy: everything is a file. Kernel maintains a file descriptor table. 0: stdin, 1: stdout, 2: stderr Week 2 fork(): create a new process.</description>
-      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
-<ul>
-<li>Time sharing: a policy for processes to take turn to use the CPU.
-<ul>
-<li>Hardware has a timer to send interrupts to the OS.</li>
-</ul>
-</li>
-<li>Scheduling: choose process to run.</li>
-<li>Isolation: avoid process access other processes&rsquo; data.</li>
-<li>File descriptor: an integer that maps to a file.
-<ul>
-<li>Unix philosophy: <em>everything is a file</em>.</li>
-<li>Kernel maintains a file descriptor table.</li>
-<li><code>0: stdin, 1: stdout, 2: stderr</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="week-2">Week 2</h3>
-<ul>
-<li><code>fork()</code>: create a new process.</li>
-<li><code>exec()</code>: replace memory of the current process.
-<ul>
-<li>It doesn&rsquo;t clear file descriptor.</li>
-</ul>
-</li>
-<li>Pipe: redirect one process&rsquo; output into another process input.
-<ul>
-<li>parent: write to <code>p[1]</code>, close <code>p[0], p[1]</code></li>
-<li>child: close stdin, duplicate <code>p[0]</code> close <code>p[0], p[1]</code></li>
-</ul>
-</li>
-</ul>
-<h3 id="week-3">Week 3</h3>
-<ul>
-<li><code>leave</code>: special instruction in x86, which return the old <code>ebp</code>.</li>
-<li>Why do we need stack frames? They are not strictly required, but it is good to have them.
-<ul>
-<li>Stack contains return addresses of caller function.</li>
-</ul>
-</li>
-<li><code>eax, edx</code>: the return value.</li>
-<li><code>ebp</code>(frame pointer): points to the base of the frame.</li>
-<li>variables:
-<ul>
-<li>Global variables: initialized(data section), uninitialized(BSS).</li>
-<li>Dynamic variables: allocated on Heap memory.</li>
-<li>Local variables: stack.</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-4">Week 4</h3>
-<ul>
-<li>Linking: combines multiple object files into an executable or a library.
-<ul>
-<li>Pros</li>
-<li>We can write our programs in modules.</li>
-<li>Faster code compilation, since we only need to re-compile changed source files and link them to the final target.</li>
-<li>Space efficient, since we can share common code.</li>
-</ul>
-</li>
-<li>Loading: load executable into memory.</li>
-<li>Relocation: merge sections of each object files into multiple sections in the final executable. Resolve any unknown memory addresses.</li>
-<li>ELF format
-<ul>
-<li>Program header table: used by loader to load each segments into memory.</li>
-<li>Section header table: used by linker to link code and data sections together.</li>
-</ul>
-</li>
-<li>Statically linked: library is linked into the executable, which makes the size of the file larger.</li>
-<li>Dynamically linked: library is loaded at runtime, which makes the size of the file smaller.</li>
-<li>Position independent code(PIC): generate code in such a way that it can work no
-matter where it is located in the address space.
-<ul>
-<li>Add additional layer of indirection for all references to global data, imported functions.</li>
-<li>Global Offset Table(GOT): a table, which maintains by the linker, that stores the addresses of variables.</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-5">Week 5</h3>
-<ul>
-<li>How to share one memory across multiple processes?
-<ul>
-<li>Relocation: process 1 starts from 0x00, process 2 starts from 0x1100.</li>
-<li>This works but it lacks isolation. One process can easily access other processes&rsquo; memory.</li>
-</ul>
-</li>
-<li>How can we enforce isolation?
-<ul>
-<li>Software: SFI(Software Fault Isolation) works, but it has performance overhead.</li>
-<li>Hardware: segmentations add base addresses, which are maintained by the hardware, for each process. Hardware has a special register to keep an index into the table.
-<ul>
-<li>Global Descriptor Table: an array of segments(base and size) and access control flags.</li>
-<li>GDT register points to the address of GDT in physical address.</li>
-<li>Linear address(named by Intel): physical address = base(logical address) + offset(effective address)</li>
-<li>Each process has a private GDT.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>What if one process needs more memory and the increased memory section overlaps with another process?
-<ul>
-<li>Move the other process to another memory address, or swap it to disk. Both solutions are inefficient.</li>
-</ul>
-</li>
-<li>Paging is an alternative solution for segmentation.
-<ul>
-<li>Instead of seeing memory as a contiguous area, OS treats them as multiple pages that map to frames on physical memory.</li>
-<li>Each process has its own page table(page table directory and page tables).</li>
-</ul>
-</li>
-<li>Implementation for Paging
-<ul>
-<li>Array</li>
-<li>Array of arrays(Page table)</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-6">Week 6</h3>
-<ul>
-<li>copy-on-write: OS only copies page tables only when one of parent, child writes.</li>
-<li>What kind of services might disable page table?
-<ul>
-<li>Databases</li>
-<li>In-memory key-value stores</li>
-</ul>
-</li>
-<li>Does OS flush TLB after context-switching?
-<ul>
-<li>A tagged TLB can tag process id to avoid flushing TLB. Greater performance.</li>
-</ul>
-</li>
-<li>System boot</li>
-</ul>
-<h3 id="week-7">Week 7</h3>
-<ul>
-<li>System boot
-<ul>
-<li>Intel ME powers first and reads initialization code from BIOS chip.</li>
-<li>One of the logical processor is chosen as Bootstrap processor(BSP). Others will become application processors.</li>
-<li>BSP starts reading instructions in the BIOS chip.</li>
-<li>BSP starts without DRAM. Custom assembly code that uses no stack.</li>
-</ul>
-</li>
-<li>System Management Mode: OS cannot access this region of memory. No way to disable this.</li>
-<li>BIOS ends by loading a boot loader.</li>
-<li>(xv6) BIOS starts executing instructions at address <code>0x7c00</code>.</li>
-<li>Outline of the boot sequence:
-<ul>
-<li>Setup segmentation(data and code)</li>
-<li>Switch to protection mode(16 to 32 bits)</li>
-<li>Load GDT(global descriptor table)</li>
-<li>Setup stack(part of C runtime)</li>
-<li>Load kernel from disk(ELF)</li>
-<li>Jump to kernel entry(set page as 4KB and setup page directory)</li>
-<li>Setup page table</li>
-<li>Setup high address stack <code>0x7c00</code> grows towards <code>0x0000</code></li>
-<li>Jump to main</li>
-</ul>
-</li>
-<li>Page table has two entries to map to the kernl
-<ul>
-<li>#1: 0x0:0x4MB</li>
-<li>#2: 0x80000000:0x8040000</li>
-</ul>
-</li>
-<li>Hardware wants the page table directory in register cr3.</li>
-</ul>
-<h3 id="week-8">Week 8</h3>
-<ul>
-<li>Why do we need the first page table entry? 0x0:0x4MB
-<ul>
-<li>After enabling page table, the kernel will continue executing on virtual address.</li>
-<li>If we don&rsquo;t map the first page table, it will crash after enabling paging.</li>
-</ul>
-</li>
-<li>Linker script specifies the memory address of each section.</li>
-<li>Enforce isolation so that user processes cannot access each other and the kernel.</li>
-<li>(xv6) Each process will have a 2GB user memory and 2GB kernel memory.</li>
-<li>How to implement a memory allocator?
-<ul>
-<li>A bitmap that refers to pages. 0: available page, 1: not available page.</li>
-<li>Maintain a free page lists.</li>
-</ul>
-</li>
-<li>(xv6) There is an area of free memory after the kernel end where we can use to allocate kernel page table.</li>
-<li>Map a region of virtual memory into page tables.
-<ul>
-<li>Start at 2GB, iterate memory by page, allocate page directory and pages, map pte with repected physcial address.</li>
-</ul>
-</li>
-<li>Lowest 12 bits of the page table entry are used as modes.</li>
-<li>Why do we need interrupt?
-<ul>
-<li>Timer</li>
-<li>Hardware notification</li>
-</ul>
-</li>
-<li>What do we save before handling interrupts?
-<ul>
-<li>CS(code segment registers)</li>
-<li>EFLAG</li>
-<li>EIP</li>
-</ul>
-</li>
-<li>How do we handle interrupt?
-<ul>
-<li>Change the EIP to point to IDT(instruction descriptor table), which stores interrupt handlers.</li>
-<li>Create an exception stack(new ESP) to save the states of the current running process.</li>
-</ul>
-</li>
-<li>Interrupt requires no change of privilege level
-<ul>
-<li>run on kernel code(level 0)</li>
-<li>kernel access unmapped page</li>
-</ul>
-</li>
-<li>Interrupt requires change of privilege level
-<ul>
-<li>run on user code(level 3)</li>
-</ul>
-</li>
-<li>How to return from an interrupt? <code>iret</code></li>
-<li>CPL can only access less privileged level. DPL(Descriptor privileged level)
-<ul>
-<li>1: can access 1, 2, 3</li>
-<li>3: can access 3</li>
-</ul>
-</li>
-<li>Each page entry has a user bit. If it is set, only code with privilege level 3 can access. If not, then only level 0 can access.</li>
-<li>Interrupt is allowed only if CPL is less than equal to DPL.</li>
-<li>TSS(Task State Segment): SS, ESP0.</li>
-</ul>
-<h3 id="week-9">Week 9</h3>
-<ul>
-<li>Midterm recap
-<ul>
-<li>No: AI, Google Search</li>
-<li>Yes: homework, quiz, compiler explorer</li>
-<li>Lecture 1 - 7</li>
-</ul>
-</li>
-<li>Be familiar with Unix system calls
-<ul>
-<li>read, write, open, dup, close</li>
-</ul>
-</li>
-<li>Be familiar with x86 calling convention</li>
-<li>Stack, BSS, data, heap</li>
-<li>Relocation</li>
-<li>Page Tables</li>
-</ul>
-<h3 id="week-11">Week 11</h3>
-<ul>
-<li>Each CPU has its own GDT, which is pointed by GDTR. One entry of GDT points to TSS, where it points to the kernel stack.</li>
-<li>Segmentation in x86 doesn&rsquo;t protect kernel memory from user processes. Modern operating systems use page tables for isolation.</li>
-<li>Maskable interrupt(external interrupt)</li>
-<li>Syscall is a trap</li>
-<li>Interrupt handler should save the current CPU state, so that it can resume after handling the interrupt.</li>
-<li><code>iret</code> returns from interrupt and restore these five values <code>SS, ESP, EFLAGS, CS, EIP</code>.</li>
-<li>Software interrupts can be used to implement system call.</li>
-<li>xv6 passes system call number with EAX.</li>
-</ul>
-<h3 id="week-12">Week 12</h3>
-<ul>
-<li>How <code>exec()</code> works? It does not change the file descriptor.</li>
-<li>Can the guard page catch every overflow?
-<ul>
-<li>Guard page is partially safe. It can help developers catch overflow allocation(e.g. a very large array).</li>
-</ul>
-</li>
-<li>Why does a program pass itself(executable) as <code>argv[0]</code>?</li>
-<li>Kernel page table</li>
-<li>How to create the first process?</li>
-</ul>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Fall 2024: CS 6810 Computer Architecture</title>
-      <link>https://leewei.co/cs6810/</link>
-      <pubDate>Thu, 05 Dec 2024 20:47:54 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6810/</guid>
-      <description>Week 1 Introduction and metrics
-Week 2 Metrics and ISA
-Week 3 To improve the performance of a processor, we introduce a technique called Pipelining. Pipelining splits instructions into multiple stages. Ideally, Throughput increases by a factor of # of the stages.
-Pipeling are usually 5 stages: IF, ID, EXE, MEM, WB.
-Instruction Fetch(IF): fetch instruction from memory and PC = PC + 4. Instruction Decode(ID): read registers from register file and sign extension for immediate value.</description>
-      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
-<p>Introduction and metrics</p>
-<h3 id="week-2">Week 2</h3>
-<p>Metrics and ISA</p>
-<h3 id="week-3">Week 3</h3>
-<p>To improve the performance of a processor, we introduce a technique called <code>Pipelining</code>.
-<code>Pipelining</code> splits instructions into multiple stages. Ideally, Throughput increases by a factor of # of the stages.</p>
-<p>Pipeling are usually 5 stages: IF, ID, EXE, MEM, WB.</p>
-<ol>
-<li>Instruction Fetch(IF): fetch instruction from memory and PC = PC + 4.</li>
-<li>Instruction Decode(ID): read registers from register file and sign extension for immediate value.</li>
-<li>Execution(EXE): execute the instruction with one input register 0 and either register 1 or immediate value. Computing branch can also be in this stage.</li>
-<li>Access Memory(MEM): execute load or store instruction.</li>
-<li>Write Back(WB): write value back to register file.</li>
-</ol>
-<p>Each stage has a buffer that passes information to the next stage. These buffers are controlled by controlling signals.</p>
-<p>One problem for pipelining is to balance the clock period of each stage since the lowest circuit delay determines the clock cycle.</p>
-<h3 id="week-4">Week 4</h3>
-<p>Pipeline Hazards are events that restrict the pipeline flow.</p>
-<ol>
-<li>Structural Hazard: resource conflicts. For instance, processor with one memory unit could have structural hazard when fetching instruction and executing memory instruction at the same time.</li>
-<li>Data Hazard:</li>
-<li>Control Hazard:</li>
-</ol>
-<p>Static branch predictor: fixed prediction.</p>
-<h3 id="week-5">Week 5</h3>
-<p>Scoreboarding is a technique for allowing instructions to execute out of order when there are sufficient resources and no data dependences. It utilizes in-order issues.</p>
-<p>Scoreboarding limitation</p>
-<ul>
-<li>Structural hazard: functional units are busy for the current instruction.</li>
-<li>Resolving WAW, RAW, WAR with stalls.</li>
-<li>Registers are only read when they are both available.</li>
-</ul>
-<p>Main idea:</p>
-<ul>
-<li>Split ID into two stages:
-<ul>
-<li>Issue: decode instruction, check for structural hazard and WAW.</li>
-<li>Read operands: wait until no RAW hazard, read data from registers.</li>
-</ul>
-</li>
-<li>Execution</li>
-<li>Write Back: check for WAR</li>
-</ul>
-<h3 id="week-6">Week 6</h3>
-<p>Tomasulo&rsquo;s Algorithm</p>
-<ul>
-<li>Reservation stations: a buffer infront of every function unit, so that processor doesn&rsquo;t stall when there&rsquo;s structural hazard.</li>
-<li>Register renaming: read value for operands without reading from register file. These renaming data are stored in the rename table.</li>
-<li>A common data bus(CDB) connects every reservation station.</li>
-</ul>
-<p>Tomasulo limitation</p>
-<ul>
-<li>Branch stall execution. Tomasulo doesn&rsquo;t allow branch prediction. It waits until branch is resolved.</li>
-<li>Loads and stores are performed in order.</li>
-</ul>
-<p>How can we support branch prediction - speculation execution</p>
-<p>Multi-issue processors</p>
-<ul>
-<li>Superscalar: instructions are chosen dynamically by the hardware.</li>
-<li>VLIW: instructions are chosen statically by the compiler. Intel Itanium</li>
-</ul>
-<p>For Tomasulo algorithm, we cannot tell which instructions are after branch instruction due to out-of-order execution.</p>
-<ol>
-<li>Identify instructions after the branch.</li>
-<li>Exception in specualtive code should be buffered before actually raising the exception.</li>
-<li>Precise exception: when a exception is raised, all instructions after the exception are squashed.</li>
-</ol>
-<p>Add a reorder buffer to keep track the original order when issuing instructions.</p>
-<p>Issue inorder -&gt; Execute out-of-order -&gt; Commit inorder</p>
-<h3 id="week-7">Week 7</h3>
-<p>Instruction can only be fetched when a branch is resolved.</p>
-<p>Why do we need reservation station when we have reorder buffer?</p>
-<p>reorder buffer holds output
-reservation station buffers input</p>
-<p>Tomasulo with Hardware Speculation</p>
-<p>Issue -&gt; Execute -&gt; Write Result(ROB) -&gt; Commit</p>
-<p>Trace cache</p>
-<p>Midterm review: all until superscalars</p>
-<p>Macro-op fusion: Fuses simple instruction combinations to reduce instruction count, kind of like Peephole optimization.</p>
-<p>Practical limitations to ILP: programs can only have a certain level of concurrency</p>
-<h3 id="week-9">Week 9</h3>
-<p>Midterm review + Midterm</p>
-<h3 id="week-10">Week 10</h3>
-<p>Temporal Locality: recent memory access will have higher chances to be accessed again.
-Spatial Locality: locations near the cenet memory access will have higher chances to be accessed.</p>
-<p>SRAM: cache
-DRAM: Memory</p>
-<p>Cache Block placement</p>
-<ul>
-<li>Fully Associative(one set): block can go any where.
-<ul>
-<li>Have lower miss rate.</li>
-<li>Must search the whole cache to find the block.</li>
-</ul>
-</li>
-<li>Direct Mapped: block can only go to location <code>mod blocksize</code>.
-<ul>
-<li>Simplest approach.</li>
-<li>Blocks map to the same location, resulting in higher miss rate.</li>
-<li>Only have one replacement policy.</li>
-</ul>
-</li>
-<li>Set Associative: n-way Associative, each set can have at most n blocks.
-<ul>
-<li>Higher level caches: 2- or 4-way common (faster search).</li>
-<li>Lower level caches: 8- to 32-way common.</li>
-</ul>
-</li>
-</ul>
-<p>Cache Block Identification: Tag - Index - Block Offset</p>
-<ul>
-<li>Example: Cache 32 KBytes, 2-way, 64 Bytes per line, Address 32 bits
-<ul>
-<li>0x000249F0 = (0000 0000 0000 0010 0100 1001 1111 0000)_2</li>
-<li>Block offset = log_2 64 = 6 bits</li>
-<li>Index = log_2(32K / 64 / 2 (2-way)) = 15 - 6 - 1 = 8 bits</li>
-<li>Tag = 32 - 8 - 6 = 18 bits</li>
-</ul>
-</li>
-</ul>
-<p>Eviction Methods: which cache block to evict?</p>
-<ul>
-<li>Random</li>
-<li>Least-recently-used(LRU)</li>
-<li>Not-recently-used(NRU): any cache block other than most-recently-used.</li>
-</ul>
-<p>Inclusive cache</p>
-<ul>
-<li>lower level cache has a copy of every block in higher-level caches.
-<ul>
-<li>pros: in parallel systems, if lower-level cache is not presented, system doesn&rsquo;t need to search higher level cache.</li>
-<li>cons: need to evict each level&rsquo;s cache block if a cache block is evicted.
-Exclusive cache</li>
-</ul>
-</li>
-<li>each level has dintict cache blocks.
-<ul>
-<li>pros: efficient use of space since there is no duplicate cache block.</li>
-<li>cons: cache coherence across different processors.</li>
-</ul>
-</li>
-</ul>
-<p>Average Memory Access Time(AMAT) = Hit time + Miss rate * Miss penalty = Hit rate * Hit time + Miss rate * Miss time</p>
-<ul>
-<li>Hit time is always there because whether the block we&rsquo;re trying to access is in the cache, we will need to check the cache.</li>
-</ul>
-<p>Techniques for reducing hit time</p>
-<ul>
-<li>Victim Cache: stores blocks that are evicted from L1. (Also reduces Miss rate or Miss penalty)</li>
-</ul>
-<p>Techniques for reducing miss penalty</p>
-<ul>
-<li>Early restart: request words in normal orde and send requested word to processor as soon as it arrives, not wait until cache line is filled.</li>
-<li>Critical word first: request the exact word from memory and sends requested word to processor as soon as it arrives.</li>
-<li>Merging write buffer: CPU only stalls on write when write buffer full. (Write may overtake early write)</li>
-</ul>
-<p>Cache Miss Types</p>
-<ul>
-<li>Compulsory(Cold) miss: when a block is accessed for the first time.</li>
-<li>Capacity miss: cache was evicted due to capacity.</li>
-<li>Conflict miss: cache was evicted due to capacity of set. (Fully associative does not have this miss type)</li>
-</ul>
-<p>Reducing Cold Miss Rates</p>
-<ul>
-<li>Large block size</li>
-<li>Prefetch: speculate future instr/data accesses and fetch them into cache. Prefetch should not be late or too early.
-<ul>
-<li>Hardware prefetch: sequential and strided prefetching. Stream buffer(works well for instruction caches) to prevent cache pollution.</li>
-<li>Software prefetch: explicit prefetch instructions. Software prefetch with loop unrolling or software pipeline.
-<ul>
-<li>Restricted to loops with array accesses and it&rsquo;s hard to get right.</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>High associativity caches</li>
-</ul>
-<p>Basic Cache Optimization(+ improvement, - worse)</p>
-<ul>
-<li>Larger block size: + Miss rate, - Miss penalty. Doesn&rsquo;t affect Hit time and power consumption.</li>
-<li>Bigger cache: + Miss rate(improves capacity misses), - Hit time, - Power.</li>
-<li>High associativity: + Miss rate(improves conflict misses), - Hit time, - Power.</li>
-<li>Multilevel caches: + Miss penalty(data might be found in L2 cache).</li>
-<li>Give priority to read misses: read misses and there are write misses in the write buffer, read misses are handled first. + Miss penalty.</li>
-<li>Avoid virtual to physical address translation lookup: + Hit time.</li>
-</ul>
-<p>Compiler Optimizations:</p>
-<ul>
-<li>Instruction reordering: reduce conflict misses</li>
-<li>Data reordering: 2 arrays v.s. struct, loop interchange(swap nested loops to access memory in sequential ), loop fusion, blocking(access blocks of data)</li>
-</ul>
-<h3 id="week-11">Week 11</h3>
-<p>Virtual Memory</p>
-<ul>
-<li>Programs are too large to fit in physical memory. A method to share physical memory for a large amount of processes.</li>
-<li>Each process has its own, full, address space.
-<ul>
-<li>Virtual Memory: pages</li>
-<li>Physical Memory: frames</li>
-</ul>
-</li>
-<li>Recently not used pages may be swapped to disk. (Swap disk)</li>
-<li>Virtual Memory miss: page fault. Page not in memory, so OS needs to retrieve pages from disk(very slow).</li>
-</ul>
-<p>Page Table</p>
-<ul>
-<li>OS maintains a table that maps all virtual pages to physical page frames.</li>
-<li>One PT per process(page table register points to the Page table of the current process) and one for the OS.</li>
-<li>Memory is fully associative.</li>
-<li>OS maintains a list of free frames.</li>
-</ul>
-<p>Page Table stores info for translating virtual page number to physical page number.</p>
-<p>Methods to make Page Tables space-efficient</p>
-<ul>
-<li>Inverted page table: a hash table that maps physical and virtual pages.</li>
-<li>Hierarchical page table: n-level page table. Only the N-th level page table has the value of physical frames.</li>
-</ul>
-<p>Paging means that every memory access involves 2 memory accesses: 1. get physical address 2. get data from physical address.</p>
-<p>What can we do to make paging faster?</p>
-<p>Translation Lookaside Buffer</p>
-<ul>
-<li>A full-associative(Content Addressable Memory, CAM) cache of Page Table entries. Parallel lookup.</li>
-<li>Every entry has many bits(Valid, R/W, User/Supervisor, Dirty, Access), a tag, a data(physcial page number).</li>
-</ul>
-<p>Virtually tagged problems</p>
-<ul>
-<li>Synonyms(alias problem): different virtual addresses points to the same physical address.
-<ul>
-<li>Write to copy 1 would not be reflected in copy 2.</li>
-</ul>
-</li>
-<li>Homonyms: same virtual addresses different physical address due to process switching.
-<ul>
-<li>Possible solution: 1. flush cache on context switch(increase miss rate) 2. add PID to cache tag.</li>
-</ul>
-</li>
-</ul>
-<p>Methods to address a cache in a virtual-memory system</p>
-<ul>
-<li>Physically Indexed, physically tagged: translation first, increasing L1 hit time.</li>
-<li>Virtually Indexed, virtually tagged: cannot distinguish synonyms/homonyms in cache.</li>
-<li>Virtually Indexed, physically tagged: L1 cache indexed virtual address, tags can be checked after translation.</li>
-<li>Physically Indexed, virtually tagged: not practical.</li>
-</ul>
-<p>Does physically indexed, physically tagged mean TLB and cache have to be accessed sequentially? Not if PageSize &gt; #Sets * BlockSize</p>
-<h3 id="week-12">Week 12</h3>
-<p>Motivation for multicores</p>
-<ul>
-<li>Power wall, ILP wall</li>
-</ul>
-<p>Parallel architecture = computing model + communication model</p>
-<ul>
-<li>Computing model: organization of cores and how data is processed</li>
-<li>Communication model: how cores communication?
-<ul>
-<li>Shared memory: explicit synchronization(via loads and stores)</li>
-<li>Message passing: implicit synchronization(via messages)</li>
-</ul>
-</li>
-</ul>
-<p>Multicore processors</p>
-<ul>
-<li>Uniform memory access (UMA): physically centralized memory -&gt; Symmetric Multiprocessor(SMP)</li>
-<li>Non-Uniform memory access (NUMA): physically distributed memory -&gt; Distributed Shared-Memory</li>
-</ul>
-<p>Communication Model</p>
-<ul>
-<li>Threads communication is done through shared memory variables</li>
-<li>Explicit data synchronization, done by the developers</li>
-</ul>
-<p>The main goal for Cache Coherence is to make caches invisible.</p>
-<p>Single Write Multiple Reader</p>
-<ul>
-<li>Write Propagation: writes are eventually visible in all processors.</li>
-<li>Write Serialization: writes are in the same order in all processors.</li>
-</ul>
-<p>Cache Coherence Protocol: keep track of what processors have copies of what data.</p>
-<ul>
-<li>Invalidate protocols: get rid of data with old values, usually used with write-back caches.
-<ul>
-<li>+: multiple writes to the cache block only require one invalidation.</li>
-<li>+: less bandwidth since it doesn&rsquo;t need to send new value of the data.</li>
-<li>-: write-back data to memory when evicting a modified block.</li>
-</ul>
-</li>
-<li>Update protocols: update every caches&rsquo; copy of data, usually used with write-through caches.
-<ul>
-<li>+: new value can be re-used without the need to ask for it again.</li>
-<li>+: data can always be read from memory.</li>
-<li>-: possible multiple useless updates.</li>
-</ul>
-</li>
-</ul>
-<p>How can cache coherence protocols be implemented?</p>
-<ul>
-<li>Software coherence: programmer or compiler-controlled</li>
-<li>Hardware coherence: add state bits to cache lines to track state of the line.
-<ul>
-<li>Exclusive state: block is cached only in this cache, has not been modified, but can be modified without permission. Freely modify and upgrade modified state.</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-13">Week 13</h3>
-<p>Cache Coherence Protocol Implementations</p>
-<ul>
-<li>Snooping: all cache controllers monitor all other caches&rsquo; activites and maintain the state of their lines.
-<ul>
-<li>Information is shared in a common bus. Bus does not scale well.</li>
-<li>Each cache has a bus-side controller that monitors all transactions.</li>
-<li>Two types of snooping: 1. write invalidation 2. write update</li>
-</ul>
-</li>
-<li>Directory: a central control device directly handles all cache activies.
-<ul>
-<li>Directory acts as a serialization to provide ordering.</li>
-</ul>
-</li>
-</ul>
-<p>MSI Protocol</p>
-<ul>
-<li>Invalid: block is not present. Need to fetch it from memory or other cache.</li>
-<li>Shared: in &gt; 1 caches.</li>
-<li>Modified: in 1 cache. Processor can read/write directly.</li>
-</ul>
-<p>MESI Protocol has one more Exclusive state.</p>
-<p>Coherence misses: when a block is not in the cache because it was invalidated by a write from another processor.</p>
-<ul>
-<li>Hard to reduce due to communication and sharing of data in parallel application.</li>
-<li>False sharing: processor modify different words of the cache block but end up invalidating the complete block.
-<ul>
-<li>False sharing coherence misses increase with larger cache line size.</li>
-</ul>
-</li>
-</ul>
-<p>Problems for snooping on a common shared bus</p>
-<ul>
-<li>When should memory provide data?</li>
-<li>What if we need to Write-back?</li>
-<li>Conflict when processor and bus-side controller check the cache</li>
-<li>State transitions may require several steps</li>
-<li>What to do if there are conflicting requests(race conditions) on the bus?
-<ul>
-<li>Transient states</li>
-</ul>
-</li>
-</ul>
-<p>Problems for snooping with multi-level hierarchies</p>
-<ul>
-<li>Processor interacts with L1 while bus-side controller interacts with L2.
-<ul>
-<li>Inclusive cache and M state caches in L1 must also be in L2</li>
-<li>Propagate all transactions to L1</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-14">Week 14</h3>
-<p>Snooping implementation has bottleneck at the common data bus. Thus we introduce snooping with split-transaction buses.</p>
-<ul>
-<li>Create buffer for each cache to hold pending transactions.</li>
-<li>Send <code>negative acknowledgement (NACK)</code> when buffers are full.</li>
-<li>Snooping with Ring can enforce write serialization with home node. If there are multiple racing writes, ties are broken via the home node.</li>
-</ul>
-<p>Directory contains a line state and sharing bit-vector.</p>
-<ul>
-<li>Line state: invalid(00), shared(01), modified(10)</li>
-<li>Sharing vector: not cached(00), shared(01)</li>
-</ul>
-<p>Directory operation</p>
-<ul>
-<li>It is necessary to collect all acknowledgements(ACK) with write that has multiple sharers.</li>
-<li>Complex state changes, directory must also receive ACK.</li>
-</ul>
-<p>Implementation difficulties for direcotry operation</p>
-<ul>
-<li>Operations have to be serialized locally.</li>
-<li>Operations have to be serialized at directory.</li>
-</ul>
-<p>Directory Overhead grows with number of cores.</p>
-<ul>
-<li>Baseline overhead: (number of cores + 1 dirty bit / cache block size * 8 bits)</li>
-<li>Cached Directories</li>
-<li>Limited Pointer Directories</li>
-</ul>
-<p>Distributed Directories</p>
-<ul>
-<li>Local, Home, Remote nodes.</li>
-</ul>
-<p>Memory Consistency is a specification, which specifies the order of loads and stores.</p>
-<ul>
-<li>Memory Consistency model is governed by 1. Core pipeline(memory reorder) 2. Coherence Protocol</li>
-</ul>
-<p>Sequential Consistency(SC): 1. Result should be the same in a time-shared multiprocessor 2. Relative order should be maintained in one thread</p>
-<ul>
-<li>Sequential Consistency is what should load really happens.
-<ol>
-<li>Threads issue memory operations in program order</li>
-<li>Before issuing next memory operation threads wait until last issued memory operation completes (i.e., performs w.r.t. all other processors)</li>
-<li>A read is allowed to complete only if the matching write (i.e., the one whose value is returned to the read) also completes</li>
-</ol>
-</li>
-</ul>
-<p>Issue: memory operation leaves the processor and becomes visible to the memory subsystem.
-Performed: memory operation appears to have taken place.</p>
-<ul>
-<li>Performed with reference to processor X: performed to processor X.</li>
-<li>Globally performed or complete: performed to all processors.</li>
-</ul>
-<p>Merging write buffer executes memory operations in the following sequence:</p>
-<ul>
-<li>write foo(200)</li>
-<li>write A(400)</li>
-<li>write flag(204)</li>
-<li>write bar(404)</li>
-</ul>
-<p>foo and flag will be written to memory before A and bar.</p>
-<p>Write-serialization: per variable. Write to same location by different processors are seen in same order by all processors.
-Write-atomicity: across threads</p>
-<p>In-window Speculation:</p>
-<ul>
-<li>Speculation: read from cache before commiting. If no change, then commit; If there&rsquo;s a change, then squash and replay.</li>
-<li>Write-prefetcing: obtain read-exclusive out-of-order or in parallel. However, the write should be in program.</li>
-</ul>
-<h3 id="week-15">Week 15</h3>
-<p>Relaxed Memory Consistency Models:</p>
-<ul>
-<li>Total Store Ordering (TSO): relaxes W -&gt; R. Not guarantee because there could be a store buffer.</li>
-<li>Partial Store Ordering (PSO): relaxes W -&gt; R and W -&gt; W.</li>
-<li>Relaxes Memory Ordering (RMO): relaxes all four memory orders.</li>
-<li>Release Consistency (RC): relaxes all four memory orders but provides release store and acquire load.
-<ul>
-<li>Reads and writes are allowed to bypass both reads and writes.</li>
-<li>Previous reads and writes must complete before release completes.</li>
-<li>No reads and writes can complete before acquire completes.</li>
-</ul>
-</li>
-<li>IBM Power: relaxes all four memory orders and write atomicity. Provides 2 types of barriers.</li>
-</ul>
-<p>Every relaxed consistency model ensures single thread dependencies.</p>
-<p>Release Consistency:</p>
-<ul>
-<li>Writer-initiated invalidation</li>
-<li>Without Writer-initiated invalidation</li>
-</ul>
-<p>Out-of-thin-air problem</p>
-<p>Progress Axiom: a store should be eventually visible for all processors.</p>
-<p>Synchronization is necessary to ensure that operations in a parallel program happen in the correct order.</p>
-<ul>
-<li>Conditional Variable: signal</li>
-<li>Mutual exclusion</li>
-</ul>
-<p>Without memory consistency model, we cannot implement different types of synchronization.</p>
-<p>Can Sequential Consistency implement mutually exclusion?</p>
-<ul>
-<li>Yes. Peterson algorithm, but it is not practical for multiple processors.</li>
-<li>For Relaxes models need to use fences.</li>
-</ul>
-<p>Building blocks for synchronization. Special instructions(RMW atomic) of the hardware to implement locks.</p>
-<ul>
-<li>Test &amp; set: reads a memory location and sets it to value 1.</li>
-<li>Compare &amp; swap: it is used more frequently. Check the value and swap if the value is equal.</li>
-<li>Fetch &amp; add: fetch value from memory location and atomically increment it.</li>
-<li>Load Link(or Load Locked)/Store Conditional(LL/SC): don&rsquo;t need to retain exclusive state.</li>
-</ul>
-<h3 id="week-16">Week 16</h3>
-<p>Implementation of Read Modified Write(RMW) instructions:</p>
-<ul>
-<li>Lock the bus: disallows other threads</li>
-<li>Cache line blocking: to obtain read-exclusive state, invalidates other processors&rsquo; cache. Once a processor gains exclusive state,
-other processors will receive NACK from the processor that has exclusive access.</li>
-</ul>
-<p>Exclusive Access</p>
-<ul>
-<li>Directory retries when receives NACK</li>
-<li>With Snooping, processors retires when receives NACK</li>
-</ul>
-<p>RMW acts like a memory fence(flush write buffer before RMW).</p>
-<p>Techniques for reducing test and set traffic:</p>
-<ul>
-<li>Test and test-&amp;-set relies on cache coherece. It grabs a lock one time.</li>
-<li>Test and set with exponential back-off, retry test and set after pause.</li>
-</ul>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Fall 2024: CS 6520 Programming Languages</title>
-      <link>https://leewei.co/cs6520/</link>
-      <pubDate>Thu, 05 Dec 2024 20:47:48 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6520/</guid>
-      <description>Week 1 Overview of this course. Shplait programming language basic overview.
-Development template
-Types: data representation Tests: write function signature and tests Template: write the layout of the function body Body: finish function body case-by-case Homework: Familiar with Shplait.
-Week 2 Introduction of Shplait lists.
-Homework: Natural recursion implementation with template.
-Week 3 Binding and environment
-Binding: bind an expression to an variable. Environment: store the bindings. Homework: Write a interpreter for Moe programming language using Shplait.</description>
-      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
-<p>Overview of this course. <strong>Shplait</strong> programming language basic overview.</p>
-<p>Development template</p>
-<ol>
-<li>Types: data representation</li>
-<li>Tests: write function signature and tests</li>
-<li>Template: write the layout of the function body</li>
-<li>Body: finish function body case-by-case</li>
-</ol>
-<p>Homework: Familiar with <strong>Shplait</strong>.</p>
-<h3 id="week-2">Week 2</h3>
-<p>Introduction of <strong>Shplait</strong> lists.</p>
-<p>Homework: Natural recursion implementation with template.</p>
-<h3 id="week-3">Week 3</h3>
-<p>Binding and environment</p>
-<ul>
-<li>Binding: bind an expression to an variable.</li>
-<li>Environment: store the bindings.</li>
-</ul>
-<p>Homework: Write a interpreter for <strong>Moe</strong> programming language using <strong>Shplait</strong>.</p>
-<ul>
-<li>Parse: parse <strong>Moe</strong> to <strong>Shplait</strong> data representation (expression).</li>
-<li>Subst: substitude identifiers with expressions.</li>
-<li>Interp: interpret expressions to integer.</li>
-</ul>
-<h3 id="week-4">Week 4</h3>
-<p>Lambda: function as values. We can also bind anonymous function to variable.
-Mutable states and stores.</p>
-<ul>
-<li>Box: store location of the value.</li>
-<li>Unbox: get the value of a given location.</li>
-<li>Setbox: update the value of a given location.</li>
-</ul>
-<p>Homework: Implement <strong>Moe</strong> conditions and boolean. Also, implement thunks and force.</p>
-<ul>
-<li>Thunk: delay a computation, until it is called by force.</li>
-<li>Force: evaluate a thunk expression.</li>
-</ul>
-<h3 id="week-5">Week 5</h3>
-<p>Record: similar to <strong>C</strong>&rsquo;s struct. A record can have a list of fields and values.
-Variable: mutable variable.
-Fluid let: syntax sugar. Instead of changing the interpreter, we can change the parser to genereate a let form that is matching fluid let.</p>
-<p>Homework: Implement <strong>Moe</strong> begin and record initialization, access and mutation.</p>
-<ul>
-<li>Record: implement with <strong>Moe</strong>&rsquo;s box expression.</li>
-</ul>
-<h3 id="week-6">Week 6</h3>
-<p>Syntax sugar and encoding
-Currying: a function takes an argument that returns another function takes another argument.
-Midterm: The concept of box is important! Think of box as a pointer, then everything is clear.</p>
+
+  </content>
+  <p>
+    
+  </p>
+
+    </main>
+    <footer>
+      
+  <span>© 2024 Lee Wei</span>
 
 
+  <span>
+    |
+    Made with
+    <a href="https://github.com/maolonglong/hugo-simple/">Hugo ʕ•ᴥ•ʔ Simple</a>
+  </span>
 
 
+    </footer>
 
-
-<pre tabindex="0"><code>#true = fun(x) : fun(y) : x
-#false = fun(x) : fun(y) : y</code></pre>
-<h3 id="week-7">Week 7</h3>
-<p><code>letrec</code>, <code>mk_rec</code> for encoding recursion. However, the problem with <code>mk_rec</code> is that we assuem the right hand side as a procedure.
-Use <code>fun (): ...</code> as a delay for implementing recursion.
-<code>Optionof</code> has two variants: <code>none</code> and <code>some</code>.</p>
-<p>Homework: Implement syntax sugar for recursive bindings, recursive function and two arguments function.</p>
-<h3 id="week-9">Week 9</h3>
-<p>Lazy evaluation
-Continuation</p>
-<h3 id="week-10">Week 10</h3>
-<p>Trace continuation
-Garbage Collection
-Compiler</p>
-<p>Homework: Implement <code>neg</code>, <code>avg</code> and support zero or multiple arguments for function call with continuation.</p>
-<h3 id="week-11">Week 11</h3>
-<p>Compiler
-Midterm</p>
-<p>Homework: Implement a compiler that translate Moe with garbage collection.</p>
-<h3 id="week-12">Week 12</h3>
-<p>Class
-Inheritance</p>
-<p>Homework: Implement instantiation, instanceof, select.</p>
-<h3 id="week-13">Week 13</h3>
-<p>Type checker checks types of the program before interpreting it.</p>
-<p>Homework: Typechecker.</p>
-<h3 id="week-14">Week 14</h3>
-<p>Type checker with unify.</p>
-<p>Homework: Typecheck if0 and list.</p>
-<h3 id="week-15">Week 15</h3>
-<p>Polymorphism</p>
-<p>Homework: Parameterized over types and functions.</p>
-<h3 id="week-16">Week 16</h3>
-<p>Macro
-Programming Language research</p>
-<p>Homework: final project</p>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>Fall 2024: CS 6475 Advanced Compilers</title>
-      <link>https://leewei.co/cs6475/</link>
-      <pubDate>Thu, 05 Dec 2024 20:03:46 -0600</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6475/</guid>
-      <description>Week 1 Overview of this course.
-Readings:
-The death of optimizing compilers On Proebsting’s Law Impact of Economics on Compiler Optimization Why Do Peephole Optimizations Work? (option) Compiler Optimization Catalog Assignment:
-Find a missing optimization in LLVM using this. Prove it with Alive2. Week 2 Discussions:
-Is it really the dealth of optimizing compilers? No. On Proebsting&amp;rsquo;s Law. Probably cannot use -O0 as a 18 years old compiler. Impact of Economics on Compiler Optimization.</description>
-      <content:encoded><![CDATA[<h3 id="week-1">Week 1</h3>
-<p>Overview of this course.</p>
-<p>Readings:</p>
-<ul>
-<li><a href="https://cr.yp.to/talks/2015.04.16/slides-djb-20150416-a4.pdf">The death of optimizing compilers</a></li>
-<li><a href="https://gwern.net/doc/cs/algorithm/2001-scott.pdf">On Proebsting’s Law</a></li>
-<li><a href="https://dl.acm.org/doi/pdf/10.1145/376656.376751">Impact of Economics on Compiler Optimization</a></li>
-<li><a href="https://blog.regehr.org/archives/2485">Why Do Peephole Optimizations Work?</a></li>
-<li><a href="https://www.clear.rice.edu/comp512/Lectures/Papers/1971-allen-catalog.pdf">(option) Compiler Optimization Catalog</a></li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Find a missing optimization in LLVM using <a href="https://gcc.godbolt.org/">this</a>.</li>
-<li>Prove it with <a href="https://alive2.llvm.org/ce/">Alive2</a>.</li>
-</ul>
-<h3 id="week-2">Week 2</h3>
-<p>Discussions:</p>
-<ul>
-<li>Is it really the dealth of optimizing compilers? No.</li>
-<li>On Proebsting&rsquo;s Law. Probably cannot use <code>-O0</code> as a 18 years old compiler.</li>
-<li>Impact of Economics on Compiler Optimization. Look for where the money goes.</li>
-<li>Refinement is very important!</li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Pick a missing optimization in LLVM to implement.</li>
-<li>Build LLVM and Alive2 locally.</li>
-</ul>
-<h3 id="week-3">Week 3</h3>
-<p>Discussions:</p>
-<ul>
-<li>How LLVM is tested?
-<ul>
-<li>unittest: LLVM API tests</li>
-<li>tests: regression tests</li>
-<li>llvm-test-suite: benchmark tests</li>
-<li>libFuzzer</li>
-<li>test by users</li>
-</ul>
-</li>
-<li>AVX512 ternary logic. It&rsquo;s difficult to decode due to its required bit space.</li>
-<li>Superoptimization: To generate optimized code, superoptimizer searches for certain pattern, does refinement check and assess with its cost model.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://www.cs.princeton.edu/~appel/papers/ssafun.pdf">SSA is Functional Programming</a></li>
-<li><a href="https://www.cs.cmu.edu/~rjsimmon/15411-f15/lec/10-ssa.pdf">Lecture Notes on Static Single Assignment Form</a></li>
-<li><a href="https://lowlevelbits.org/system-under-test-llvm/">System Under Test: LLVM</a></li>
-<li><a href="https://blog.regehr.org/archives/1450">Testing LLVM</a></li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Implement a missing optimization in LLVM and add tests to it. <a href="https://github.com/regehr/llvm-project/pull/60">Github PR</a></li>
-</ul>
-<h3 id="week-4">Week 4</h3>
-<p>Discussions:</p>
-<ul>
-<li>Compiler without SSA gets harder to get in right, and it messes up the code base.</li>
-<li>Brainfuck language
-<ul>
-<li>Game of Life in BF</li>
-</ul>
-</li>
-<li>Speedup interpreter with <a href="https://eli.thegreenplace.net/2012/07/12/computed-goto-for-efficient-dispatch-tables">computed goto</a>.</li>
-<li>Need to be cautious when using <code>APInt</code>. There are use cases in LLVM that use 80, 320 bits.</li>
-<li>Intro for <a href="https://en.wikipedia.org/wiki/Partial_evaluation">Partial Evaluation</a> and its relation to staged computation.
-<ul>
-<li>Abstract interpreter, approximate computations, Halting problem, Tainted cell.</li>
-</ul>
-</li>
-<li>General optimization approach for BF.
-<ul>
-<li>Creating virtual instructions for BF is similar with x86-64 processors having virtual instructions that are not exposed to developers.</li>
-</ul>
-</li>
-<li>It&rsquo;s hard to pass alias information to compilers, like using <code>restrict</code> correctly in C.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://c9x.me/compile/bib/braun13cc.pdf">Simple and Efficient Construction of Static Single Assignment Form</a>: Great paper that solves real problems!</li>
-<li><a href="https://arxiv.org/pdf/2305.13241">Whose baseline is it anyway?</a></li>
-<li><a href="https://www.npopov.com/2023/10/22/How-to-reduce-LLVM-crashes.html">llvm-reduce</a></li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Implement a <a href="https://github.com/leewei05/bf">BF interpreter</a>.</li>
-</ul>
-<h3 id="week-5">Week 5</h3>
-<p>Discussions:</p>
-<ul>
-<li>Always optimize with a profiler (data). Recursive to a close form.</li>
-<li>C++ downcast optimization probably couldn&rsquo;t catch by the profiler.</li>
-<li>ABI doc tells developer how procedures communicate. Which register to store argument.</li>
-<li>If a compiler doesn&rsquo;t know a fact, sometimes we can rewrite code to teach compiler to optimize.</li>
-<li>How does compiler recognize certain pattern, such as popcount, to optimize? Hardcode and do some canonicalization before finding certain patterns.</li>
-<li>Approximate: tracking info accurately is hard. Instead, tools try to shrink the area of approximation.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://cs.au.dk/~amoeller/spa/spa.pdf">Static Program Analysis: Ch 1</a></li>
-<li><a href="https://www.agner.org/optimize/">Agner Fog</a></li>
-<li><a href="https://www.corsix.org/content/whirlwind-tour-aarch64-vector-instructions">ARM SIMD</a></li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Implement a profiler on top of the <a href="https://github.com/leewei05/bf">BF interpreter</a>.
-<ul>
-<li>Simple loops: no i/o, no pointer changes, either +1, -1</li>
-</ul>
-</li>
-<li>Implement a <a href="(https://github.com/leewei05/bf)">compiler</a> for BF that emits x86-64 assembly.</li>
-</ul>
-<h3 id="week-6">Week 6</h3>
-<p>Discussions:</p>
-<ul>
-<li>Is it okay to remove infinite loop?</li>
-<li>Debugging: Optimization fuel decrement one until fuel run out, binary search the commit.</li>
-<li>Scan memory tricks</li>
-<li>Fast program tries to handle aligned memory.</li>
-<li>Lattice and semilattice are abstract values that live in the compiler.
-<ul>
-<li>Design goal tight enough to not run forever. In other words, having enough information for the compiler to run fast.</li>
-</ul>
-</li>
-<li>Dataflow Analysis
-<ul>
-<li>Top is universal set(imprecise info). Start from the top, we will reach a point that has enough information.</li>
-<li>Bottom is empty set(precise info). Start from the bottom, we will reach a fixed point.</li>
-<li>Least fixed point is the point we get the most information.</li>
-</ul>
-</li>
-</ul>
-<p>Examples:</p>
-<p>Dead Code Elimination(Lattice with a height of 2):</p>
-<ul>
-<li>Top is maybe reachable.</li>
-<li>Bottom is provably unreachable.</li>
-</ul>
-<p>Constant Propagation(Lattice with a height of 3):</p>
-<ul>
-<li>Top is probably not constant.</li>
-<li>Integers</li>
-<li>Bottom is unreachable.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://cs.au.dk/~amoeller/spa/spa.pdf">Static Program Analysis: Ch 4</a></li>
-<li><a href="https://docs.oracle.com/javase/specs/jls/se23/html/jls-17.html#jls-17.4.9">Infinite Loop in Java</a></li>
-<li><a href="https://www.open-std.org/jtc1/sc22/wg14/www/docs/n1528.htm">Undefined Bahvior for infinite loops</a></li>
-</ul>
-<p>Assignment:</p>
-<ul>
-<li>Optimize simple and non-simple loops in BF, fast vector implementation.
-<ul>
-<li>Starts with simple cases: make a tape with bunch of 1s with a 0 in it, and print the pointer of the 0.</li>
-<li>Write a tiny BF program</li>
-</ul>
-</li>
-</ul>
-<h3 id="week-7">Week 7</h3>
-<p>Discussions:</p>
-<ul>
-<li>GCC IR gimple</li>
-<li>LLVM IR flat</li>
-<li>In practice, we use worklist algorithm a lot. Which node inside a worklist to choose first? A node that is SCC since it can affect other nodes.</li>
-<li>Transfer function table SPA</li>
-<li>How can we run better benchmarks?</li>
-<li>Setting up the conditions for the compilers to know more details.</li>
-<li>Be a better programmer by moving redundant and loop invariant operations outside of loop.</li>
-<li>Math is good for low-level programming.</li>
-</ul>
-<p>References for writing x86-64 vector instructions:</p>
-<ul>
-<li><a href="https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html#ig_expand=5738,440,778,5762,5872,4606,5744,5762,5872,4606">Intel Official Intrinsic manual</a></li>
-<li><a href="https://stackoverflow.com/questions/40032906/is-there-an-efficient-way-to-get-the-first-non-zero-element-in-an-simd-register">Peter Cordes on Stackoverflow</a></li>
-<li><a href="https://www.felixcloutier.com/x86/">Felix Cloutier&rsquo;s x86-64 manual</a></li>
-<li><a href="https://gcc.godbolt.org/z/vqd9K4rqT">One of my working examples</a></li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://gcc.gnu.org/onlinedocs/gccint/GIMPLE.html">GIMPLE</a></li>
-<li><a href="https://www.cse.wustl.edu/~jain/iucee/index.html">Computer Systems Performance Analysis</a></li>
-<li><a href="https://emeryberger.com/research/stabilizer/">Sabilizer</a></li>
-</ul>
-<p>Videos:</p>
-<ul>
-<li><a href="https://www.youtube.com/watch?v=vrkR7jKcFpw">Alive2 like tool for GCC</a></li>
-</ul>
-<h3 id="week-9">Week 9</h3>
-<p>Discussions:</p>
-<ul>
-<li>JIT compiler, how to encode instructions to JIT.</li>
-<li>Partial evaluation</li>
-<li>Dead store elimination</li>
-<li>calloc</li>
-<li>global, stack, heap(sticking point, people uninitialized on purpose)</li>
-<li>Common subexpression elimination -&gt; Available</li>
-<li>Rematerialzation</li>
-<li>Very busy -&gt; LICM</li>
-<li>Autotuning try a lot of things, PGO run a once and tell the compiler some information next the build.</li>
-</ul>
-<h3 id="week-11">Week 11</h3>
-<p>Discussions:</p>
-<ul>
-<li>Linker script: tells the linker where memory section maps on a dev board.</li>
-<li>Demanded Bits: you cannot prove that bits are not necessary.</li>
-<li>LLVM Known bits.</li>
-<li>Trace based JIT</li>
-<li>Precompiled headers</li>
-<li>Timeout is a real problem, AWS IAM Z3 solver.</li>
-<li>Flaky tests: sometimes fail and success.</li>
-<li>LLVM IR verifier</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://www.amazon.com/Move-Semantics-Complete-Guide-First/dp/3967309002/">C++ Move</a></li>
-<li><a href="https://github.com/llvm/llvm-project/blob/main/llvm/include/llvm/Support/KnownBits.h">LLVM KnownBits</a></li>
-</ul>
-<h3 id="week-12">Week 12</h3>
-<p>Discussions:</p>
-<ul>
-<li>Bugpoint was used in LLVM for reducing tests. It defaults use some instructions result in Undefined Behavior.</li>
-<li>Trusting trust attacks.</li>
-<li>Diverse Double compiling</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://users.cs.utah.edu/~regehr/papers/undef-pldi17.pdf">Taming Undefined Behavior in LLVM</a></li>
-<li><a href="https://dwheeler.com/trusting-trust/">Diverse Double compiling</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Reproducible_builds">Reproducible builds</a></li>
-<li><a href="https://www.cs.cmu.edu/~rdriley/487/papers/Thompson_1984_ReflectionsonTrustingTrust.pdf">Trusting trust</a></li>
-</ul>
-<h3 id="week-13">Week 13</h3>
-<p>Discussions:</p>
-<ul>
-<li>Undefined Behavior is also in the hardware chips.</li>
-<li>Register pair for multiplication.</li>
-<li><code>undef</code> breaks SSA.</li>
-<li>Trusting trust really worths reading it!</li>
-<li>Java type concurrency</li>
-<li>Type system is trying to help you not break the program.</li>
-<li>Union find</li>
-<li>HCI for expressing types</li>
-<li>bitblit</li>
-</ul>
-<p>How to implement fast inverse square root on GCC and Clang:</p>
-<ul>
-<li>union</li>
-<li>memcpy fast</li>
-<li>char *</li>
-<li>(C++)reinterpret cast</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="http://lucacardelli.name/papers/typesystems.pdf">Type Systems</a></li>
-<li><a href="http://mazsola.iit.uni-miskolc.hu/~drdani/docs_arm/36_Elsevier-ARM_Sy.pdf">ARM System</a></li>
-<li><a href="https://arxiv.org/pdf/2305.13241">Whose Baseline is it anyway?</a></li>
-<li><a href="https://devblogs.microsoft.com/oldnewthing/20180209-00/?p=97995">BitBlip</a></li>
-<li><a href="https://pdos.csail.mit.edu/~rsc/pike84bitblt.pdf">BitMap</a></li>
-</ul>
-<h3 id="week-14">Week 14</h3>
-<p>Discussions:</p>
-<ul>
-<li>SMT solvers: provide them constraints to solve. If there are solutions, it will return one solution(model).
-<ul>
-<li>Practice: z3 sudoku solver(Int, BitVector).</li>
-</ul>
-</li>
-<li>Use a solver for unbounded Loop is hard because we cannot unroll it.</li>
-<li>People compile language to Javascript -&gt; asm.js -&gt; WebAssembly(Stack machine)</li>
-<li>Baseline compiler</li>
-<li>Everyone needs to know at least one language in System Programming, Scripting, Parallel Programming, Math.</li>
-<li>Autovectorization for large legacy can improve significant performance.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://webkit.org/blog/3362/introducing-the-webkit-ftl-jit/">Webkit JIT</a></li>
-<li><a href="https://ericpony.github.io/z3py-tutorial/guide-examples.htm">Z3 Python tutorial</a></li>
-<li><a href="https://www.sciencedirect.com/science/article/pii/S1877050912003304">CUDA: Compiling and optimizing for a GPU platform</a></li>
-</ul>
-<h3 id="week-15">Week 15</h3>
-<p>Discussions:</p>
-<ul>
-<li>GPU compilers</li>
-<li>What CPU compilers optimizations don&rsquo;t work on GPU compilers? (GPU has limited registers for each thread)
-<ul>
-<li>Inline</li>
-<li>Loop unrolling</li>
-<li>LICM</li>
-<li>InstCombine</li>
-</ul>
-</li>
-<li>Divergence problem is critical. Divergence &gt; Latency</li>
-<li>Rematerialization</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://dl.acm.org/doi/epdf/10.1145/3528416.3530249">Compilation On The GPU? A Feasibility Study</a></li>
-</ul>
-<h3 id="week-16">Week 16</h3>
-<p>Discussions:</p>
-<ul>
-<li>Compilation on the GPU</li>
-<li>Go&rsquo;s generic rules compares with LLVM&rsquo;s large C++ code base.</li>
-<li>Go&rsquo;s generic rules should be checked by something like Z3.</li>
-<li>e-graph is good but it is probably not practical to adopt to existing compilers like LLVM or GCC. Applying rewrites might blow up memory usage.</li>
-<li>Quine is fun.</li>
-</ul>
-<p>Readings:</p>
-<ul>
-<li><a href="https://go.dev/src/cmd/compile/internal/ssa/_gen/generic.rules">Go generic rules</a></li>
-<li><a href="https://dl.acm.org/doi/epdf/10.1145/3434304">egg: Fast and Extensible Equality Saturation</a></li>
-</ul>
-]]></content:encoded>
-    </item>
-    <item>
-      <title>2024 Fall CS 研究所轉領域申請</title>
-      <link>https://leewei.co/mscs-2024/</link>
-      <pubDate>Thu, 21 Mar 2024 18:34:44 +0800</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/mscs-2024/</guid>
-      <description>申請結果 Admission
-Virginia Tech MS CS (2/20) Pennsylvania State University MS CSE (3/20) The University of Utah MS CS (3/26) Rejection
-Indiana University Bloomington MS CS (2/23) University of Illinois Urbana-Champaign MCS (4/1) University of Michigan MS CSE (4/4) University of Wisconsin-Madison PMP CS (4/6) Decision
-The University of Utah MS CS 背景 Education
-NTUST Electronic and Computer Engineering (2013 - 2017) GPA: 3.02/4.0 🫢 NTUST + NTUT 隨班附讀 3 學期 (2022/09 - 2024/01) GAP: 4.</description>
-      <content:encoded><![CDATA[<h4 id="申請結果">申請結果</h4>
-<p><strong>Admission</strong></p>
-<ul>
-<li>Virginia Tech MS CS (2/20)</li>
-<li>Pennsylvania State University MS CSE (3/20)</li>
-<li>The University of Utah MS CS (3/26)</li>
-</ul>
-<p><strong>Rejection</strong></p>
-<ul>
-<li>Indiana University Bloomington MS CS (2/23)</li>
-<li>University of Illinois Urbana-Champaign MCS (4/1)</li>
-<li>University of Michigan MS CSE (4/4)</li>
-<li>University of Wisconsin-Madison PMP CS (4/6)</li>
-</ul>
-<p><strong>Decision</strong></p>
-<ul>
-<li>The University of Utah MS CS</li>
-</ul>
-<h4 id="背景">背景</h4>
-<p><strong>Education</strong></p>
-<ul>
-<li>NTUST Electronic and Computer Engineering (2013 - 2017)</li>
-<li>GPA: 3.02/4.0 🫢</li>
-<li>NTUST + NTUT 隨班附讀 3 學期 (2022/09 - 2024/01)</li>
-<li>GAP: 4.0/4.0 (21 credits)</li>
-<li>CS related courses: 資料結構、離散數學、計算機網路概論、演算法、編譯器設計、作業系統、計算機結構</li>
-</ul>
-<p><strong>Test Scores</strong></p>
-<ul>
-<li>GRE: 320 (V: 152, Q: 168, AWA: 3.5) (2019/10)</li>
-<li>TOEFL 107 (R: 29, L: 30, S: 24, W: 24) (2023/06)</li>
-</ul>
-<p><strong>Award</strong></p>
-<ul>
-<li>N/A</li>
-</ul>
-<p><strong>Research Experience</strong></p>
-<ul>
-<li>N/A</li>
-</ul>
-<p><strong>Work Experience</strong></p>
-<ul>
-<li>Opennet, DevOps Engineer (2021/07 - 2022/08)</li>
-<li>17 Live, Site Reliability Engineer (2020/10 - 2021/07)</li>
-<li>iKala, Senior Customer Engineer (2018/03 - 2020/10)</li>
-</ul>
-<p><strong>Recommendation Letter</strong></p>
-<ul>
-<li>NTUST 隨班附讀 教授 * 3</li>
-<li>工作前主管 * 1</li>
-</ul>
-<h4 id="申請經驗">申請經驗</h4>
-<p><strong>推薦信</strong></p>
-<p><strong>TOEFL &amp; GRE</strong></p>
-<p>以上略，可以參考我大學長的<a href="https://medium.com/@tau_chang/2022-fall-%E5%9C%8B%E5%A4%96-cs-%E7%A0%94%E7%A9%B6%E6%89%80%E8%BD%89%E9%A0%98%E5%9F%9F%E7%94%B3%E8%AB%8B-a6cae9c8df0e">申請心得</a> 😎。</p>
-<p><strong>CV &amp; SoP</strong></p>
-<p>之前有上過創勝文教 Alex 開的學術寫作跟口說課程，個人覺得上課體驗很棒，也學到很多！所以後來 Statement of Purpose 我寫了一個初版之後有找創勝文教幫忙潤稿。個人覺得蠻不錯的，因為在幫忙潤稿之前，還有跟 Alex 一次線上 30 分鐘的討論。有一點我覺得特別重要：『 Statement of Purpose 是用來告訴對方為什麼這個 program 可以幫你補足你的 knowledge gap，並且幫助你達成你的未來目標。而非用來訴說你的成就的，那是 CV 的用途。』</p>
-<p><strong>申請學校選擇</strong></p>
-<p>雖然是工作一段時間之後才出來讀書，但還是想要在碩士階段接觸學術研究。聽人家都說寫論文、做研究很痛苦，不試試看怎麼會知道。所以我選的大部分 program 都是有論文選項的，少部分是不用寫論文的。</p>
-<p>對於學校 program 的優先順序：</p>
-<p>總花費便宜 or 有 TA/RA 機會(可以減免學費) &gt; 有 systems 領域的教授以及課程 &gt; 地點、天氣 &gt; 校名</p>
-<p>除非研究機會多 + systems 領域教授多 + 校名都非常好，才會不考慮花費，所以才有投 UMich (但也沒上 😂)。因為我很明確是想要跟著厲害的教授做研究的，所以我覺得是否有教授專精於 systems 領域大於學校的校名。我自知無法跟申請 top 50 學校的申請者競爭，畢竟我不是資工系畢業，經歷也不是特別漂亮，所以選校比較保守一些。但最後還是有選一些比較前面的學校，想說碰碰運氣。</p>
-<h4 id="轉領域心路歷程">轉領域心路歷程</h4>
-<p>其實 2019 年前我也有申請過國外研究所，但當時比較像是跟風。看到網路上一些留學分享，還有大神同事分享過一些留學經歷加上有些同事離職去留學，就萌生了出國唸書的想法。匆匆忙忙地考了 GRE, TOEFL，隨意準備申請文件還有推薦信。回頭看，當時沒有被任何一間學校錄取算是當頭棒喝。隨便的準備當然是會換來隨便的結果。後來 covid 也爆發了，或許沒有去留學也是個 silver lining。經過這次申請失敗的經驗，我開始更積極地對待我的專業、更努力學習。</p>
-<p>2020 年換去 17 工作，希望能累積更多實務上的經驗。2021 年剛好又有一個機會換去了另一間跨國公司。在這兩間公司累積了許多專業知識，但也讓我認知到我還有很多不足的地方。例如，資料庫、作業系統的底層架構。這些自我認知促使我開始尋找線上的學習資源，無意間發掘了 jserv 的 Linux 核心實作課程。2020 年春季有試著下班後跟著上了 8 週，但因為我計算機的基礎知識不足，所以學起來非常痛苦，後來就放棄了。一句話，我真的爛 😢。經過再一次的挫折，我告訴自己慢慢來比較快。2022 年 8 月存到一些錢讓我有勇氣裸辭提早準備申請，並且回到台科大跟大學生一起上課，以補足缺少的基礎知識。</p>
-<p>2022 年 9 月，畢業五年之後回歸校園。以前大學我都是坐在最後一排滑手機或是睡覺，但重回校園後，我都坐在前三排。一部分是真的想要認真學習，一部分也是想要讓教授多認識我，之後詢問推薦信才比較順利。2023 年 2 月，剛過完年，開始準備 TOEFL 考試。這次也沒有補習，但是比較認真的去練習閱讀、口說和寫作的技巧。考試當天，按下送出看到閱讀 29 聽力 30，想說應該穩了，說不定可以破 110。因為我口說自覺講得很順，寫作我之前認真跟 Amazing Talker 的老師認真檢討，而且練習時有寫過類似的題目。誰知道結果出來不如自己預期，但也夠應付申請了，就不再考了 🥴。</p>
-<p>考完 TOEFL 之後的暑假 7, 8 月開始著手 SoP 初版、選校選 program，還有詢問推薦信。這過程中我也開始回想並整理，我究竟喜歡 Computer Science 的什麼？為什麼想讀研究所？可能因為沒有工作，所以有特別多的時間可以胡思亂想。也因為有時間想，所以明確知道自己是喜歡研究底層系統知識的，尤其是編譯器、作業系統、計算機結構，主要是因為三個原因。第一，能夠了解很多以前用的應用程式的底層邏輯，對我來說是非常開心的。第二，因為覺得現在很多免費線上課程，很多人都可以自學網頁前後端，所以競爭激烈。往底層系統走，或許可以跟大多數人做出差異性。目前是還很少聽到有人轉領域是會直接轉來寫系統軟體的。第三，未來幾年或許 AI 還是會很夯，發展 AI 會有很多硬體 + 軟體的硬需求。大公司都會需要有編譯器、作業系統、計算機結構相關專業知識的人才來研發自家的 AI 平台、硬體、軟體等等。最後，假設學了這些東西還是找不到工作，還是有機會回來轉寫網頁前後端的，算是有留個備案。由下而上易，由上而下難 🧐。</p>
-<p>2023 年 12 月我就已經送出所有學校的申請，因為當時還有修兩門課，所以期末想要留更多時間認真讀書。回頭看這過程，我曾經也有想過如果我留在上一間公司，說不定我可以存到很多錢，買車買房之類的。但這樣的人生多無趣，錢再賺就行，夠用就好。這次準備過程看了很多 PTT, Dcard, Reddit, 一畝三分地心得文章。很常見看到有人說：『 CS 末班車開走了，工作不好找了。現在來 CP 值不高了。』雖然的確看起來就業市場不好，但沒試過怎麼知道？套一句我老爸常講的：Just try your best! 還有我老媽常說的：「一切都是最好的安排。」</p>
-<h4 id="感謝">感謝</h4>
-<p>感謝三位教授 Prof. C, Prof. Y, Prog. F 願意當我的推薦人。送推薦信也非常迅速，一下就送出了。也謝謝當初三位教授當時願意同意讓我隨班附讀。</p>
-<p>感謝前主管 Ted 願意當我的推薦人，一開始詢問的時候，很爽快就答應了，還說要多少封都沒問題！</p>
-<p>感謝申請時間被我詢問過的同學還有學長姐們！</p>
-<p>感謝朋友們的支持！聽到你們說支持我出國讀書，還願意之後來找我玩，真的超開心的！哭了！</p>
-<p>感謝創勝文教的 Alex，在我上課期間給了很多經驗分享，還有後來 SoP 的潤稿服務。</p>
-<p>感謝子濤大學長，我身邊幾乎很少有人有出國留學的經驗，感謝你願意給我很多建議還有經驗分享。祝大學長讀 PhD 順利！也感謝學長 Medium 的心得分享，我直接抄了學長的模板來改 😂。</p>
-<p>感謝家人一直以來的支持！</p>
-<p>感謝女友！</p>
-<p>感謝自己！</p>
-]]></content:encoded>
-    </item>
-  </channel>
-</rss>
+    
+</body>
+</html>
