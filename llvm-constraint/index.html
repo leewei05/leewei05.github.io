@@ -48,7 +48,7 @@
 <meta itemprop="description" content="Introduction Constraint Elimination is a transformation pass that extracts facts from LLVM IR and tries to replace certain uses with known facts. One common replacement is to replace conditional comparisons with constants (true or false) when known. The following is a simple example of how Constraint Elimination works.
 1int foo(int x, int y) { 2 if (x &gt; y) { // x &gt; y is a known fact in this block 3 if (x &lt;= y) { // replace x &lt;= y with false 4 return 2; 5 } 6 return 1; 7 } 8 9 return 0; 10} 11 12// after constraint elimination 13int foo(int x, int y) { 14 if (x &gt; y) { 15 if (false) { // block can be removed 16 return 2; 17 } 18 return 1; 19 } 20 21 return 0; 22} The logic behind Constraint Elimination relies on an analysis pass called the Constraint System."><meta itemprop="datePublished" content="2025-04-14T13:21:15-07:00" />
 <meta itemprop="dateModified" content="2025-04-14T13:21:15-07:00" />
-<meta itemprop="wordCount" content="2014">
+<meta itemprop="wordCount" content="2021">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -269,7 +269,7 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>  ret <span style="color:#f38ba8">void</span>
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>}</span></span></code></pre></div>
 <h3 id="measure-replacement-counts">Measure Replacement Counts</h3>
-<p>I count the total number of replacement counts for triggering Constraint Elimination. My approach is to print log whenever additional facts are added and replacement uses are triggered. This experiment was conducted on two projects, LLVM and Rust.</p>
+<p>To evaluate the impact of my patch, I measured the number of replacements triggered by the Constraint Elimination pass. My approach is to print log whenever additional facts are added and replacement uses are triggered. This experiment was conducted on two projects, LLVM and Rust.</p>
 <h4 id="building-llvm-with-ubsan-enabled">Building LLVM with UBSan enabled</h4>
 <p>With UBSan enabled, building LLVM will go through a series of bound checks, firing more Constraint Elimination. The first build has my constraint elimination patch, and I commented out my patch in the second build.</p>
 
