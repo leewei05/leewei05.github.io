@@ -36,245 +36,6 @@
       <content:encoded><![CDATA[]]></content:encoded>
     </item>
     <item>
-      <title>Spring 2025: CS 6950 Compiler Independent Study</title>
-      <link>https://leewei.co/cs6950/</link>
-      <pubDate>Sat, 19 Apr 2025 10:34:52 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
-      <guid>https://leewei.co/cs6950/</guid>
-      <description>Last semester, I started contributing to LLVM by adding a missing InstCombine optimization and fixing several Undefined Behavior tests. As I became more familiar with LLVM, I wanted to contribute more impactful patches. Therefore, I asked John to advise me on doing an independent study on compilers this semester.
-Planning Here are the initial project options:
-LLVM Constraint Elimination missing optimization: support eq/ne and bitwise AND/OR constraints. There are two open issues that I could work on: eq/ne, bitwise AND/OR LLVM backend AArch64 optimization MLIR Synthesizer I chose to work on Constraint Elimination because I was more familiar with the development process for LLVM middle-end.</description>
-      <content:encoded><![CDATA[<p>Last semester, I started contributing to LLVM by adding a missing InstCombine optimization and fixing several Undefined Behavior tests. As I became more familiar with LLVM, I wanted to contribute more impactful patches. Therefore, I asked John to advise me on doing an independent study on compilers this semester.</p>
-<h3 id="planning">Planning</h3>
-<p>Here are the initial project options:</p>
-<ul>
-<li>LLVM Constraint Elimination missing optimization: support <code>eq</code>/<code>ne</code> and bitwise <code>AND</code>/<code>OR</code> constraints.
-<ul>
-<li>There are two open issues that I could work on: <a href="https://github.com/llvm/llvm-project/issues/117961">eq/ne</a>, <a href="https://github.com/llvm/llvm-project/issues/118114">bitwise AND/OR</a></li>
-</ul>
-</li>
-<li>LLVM backend AArch64 optimization</li>
-<li>MLIR Synthesizer</li>
-</ul>
-<p>I chose to work on Constraint Elimination because I was more familiar with the development process for LLVM middle-end. The initial goal is to merge four PRs by the end of the semester.</p>
-<h4 id="timeline">Timeline</h4>
-<ul>
-<li>4 weeks(1/6 ~ 1/31): discuss project scope, read code and test tools</li>
-<li>11 weeks(2/3 ~ 4/16): implementation and testing</li>
-<li>1 week(4/16 ~ 4/23): write final report</li>
-</ul>
-<h3 id="constraint-elimination">Constraint Elimination</h3>
-<p>I wrote a blog post that introduces <a href="https://leewei05.github.io/llvm-constraint">Constraint Elimination</a>.</p>
-<h3 id="testing-and-fuzzing">Testing and Fuzzing</h3>
-<p>With so many patches committed to LLVM every day, it’s crucial to verify that my implementation does the right thing and doesn’t introduce new bugs. During this project, I learned several methods to help verify the correctness of my implementation.</p>
-<h4 id="alive2-for-mathematical-proof">Alive2 for mathematical proof</h4>
-<p><a href="https://github.com/AliveToolkit/alive2">Alive2</a> provides a fast and robust way to verify the correctness of LLVM transformations. Ever since it became available on <a href="https://alive2.llvm.org/ce/">Compiler Explorer</a>, it has become an essential tool for LLVM development. Having an <a href="https://llvm.org/docs/InstCombineContributorGuide.html#proofs">Alive2 proof link</a> is a requirement for submitting InstCombine PRs.</p>
-<p>Before implementation, it’s helpful to use <a href="https://alive2.llvm.org/ce/z/roTijm">Alive2</a> to verify the correctness of updates. This gives developers confidence in their implementation and provides reviewers with a quick way to understand the proposed transformation.</p>
-<h4 id="llvm-regression-tests">LLVM regression tests</h4>
-<p><a href="https://llvm.org/docs/TestingGuide.html#regression-tests">LLVM regression tests</a> are located in the <code>llvm/test</code> directory. A regression test is a small piece of LLVM IR code that demonstrates a transformation. Before changing any tests, it’s recommended to run the existing tests first to ensure there are no failures.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>$ <span style="color:#89dceb">pwd</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>/Users/lee/dev/llvm-project/build
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>$ ninja -j <span style="color:#fab387">8</span> check-llvm
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">[</span>841/842<span style="color:#89dceb;font-weight:bold">]</span> Running the LLVM regression tests
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Testing Time: 11154.24s
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Total Discovered Tests: <span style="color:#fab387">63868</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  Skipped          :   <span style="color:#fab387">359</span> <span style="color:#89dceb;font-weight:bold">(</span>0.56%<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>  Unsupported      : <span style="color:#fab387">30198</span> <span style="color:#89dceb;font-weight:bold">(</span>47.28%<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>  Passed           : <span style="color:#fab387">33238</span> <span style="color:#89dceb;font-weight:bold">(</span>52.04%<span style="color:#89dceb;font-weight:bold">)</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>  Expectedly Failed:    <span style="color:#fab387">73</span> <span style="color:#89dceb;font-weight:bold">(</span>0.11%<span style="color:#89dceb;font-weight:bold">)</span></span></span></code></pre></div>
-<p>We then add our LLVM IR snippet to either an existing or a new <code>.ll</code> test file.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// before
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span>define <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(i4 <span style="color:#89dceb;font-weight:bold">%</span>x, i4 <span style="color:#89dceb;font-weight:bold">%</span>y) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb">entry</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">=</span> and i4 <span style="color:#89dceb;font-weight:bold">%</span>y, <span style="color:#89dceb;font-weight:bold">%</span>x
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>c<span style="color:#fab387">.1</span><span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span>, <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>  br i1 <span style="color:#89dceb;font-weight:bold">%</span>c<span style="color:#fab387">.1</span>, label <span style="color:#89dceb;font-weight:bold">%</span>then, label <span style="color:#89dceb;font-weight:bold">%</span>end
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb">then</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  ; <span style="color:#89dceb">fact</span>: <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>x, <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.2</span> <span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>y, <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>  call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.1</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>  call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.2</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>  ret <span style="color:#f38ba8">void</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb">end</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>  ret <span style="color:#f38ba8">void</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>}</span></span></code></pre></div>
-<p>Then, we run the following command, where <code>update_test_checks.py</code> will apply transformations to our target file <code>and.ll</code>:</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>$ <span style="color:#89dceb">pwd</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>/Users/lee/dev/llvm-project/build
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>$ ../llvm/utils/update_test_checks.py --opt-binary<span style="color:#89dceb;font-weight:bold">=</span>./bin/opt ../llvm/test/Transforms/ConstraintElimination/and.ll</span></span></code></pre></div>
-<p>We verify the transformation in the LLVM IR using the <code>CHECK-</code> prefixes and confirm the result matches Alive2’s output.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// after
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span>define <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(i4 <span style="color:#89dceb;font-weight:bold">%</span>x, i4 <span style="color:#89dceb;font-weight:bold">%</span>y) {
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">LABEL</span>: <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:  <span style="color:#89dceb">entry</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    <span style="color:#89b4fa">[[TMP0:%.*]] = and i4 [[Y:%.*]], [[X:%.*]]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    <span style="color:#89b4fa">[[AND:%.*]] = icmp slt i4 [[TMP0]]</span>, <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    br i1 <span style="color:#89b4fa">[[AND]], label [[BB1:%.*]], label [[EXIT:%.*]]</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>; <span style="color:#89dceb">CHECK</span>:       <span style="color:#89dceb">then</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb">true</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb">true</span>)
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    ret <span style="color:#f38ba8">void</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>; <span style="color:#89dceb">CHECK</span>:       <span style="color:#89dceb">end</span>:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    ret <span style="color:#f38ba8">void</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>;
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>...
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>}</span></span></code></pre></div>
-<p>Our tests should cover both positive and negative cases—including simple and complex scenarios. Designing strong test cases ensures the implementation behaves as expected and avoids regressions. Also, we should run the entire LLVM regression tests after adding our tests.</p>
-<h4 id="yarpgen-for-fuzzing">YARPGen for fuzzing</h4>
-<p><a href="https://github.com/intel/yarpgen/tree/v1"><code>YARPGen</code></a> is a fuzzer that randomly generates valid C/C++ programs to test compilers. The setup is straightforward—change the clang path in <code>test_sets.txt</code> and run <code>./run_gen.py</code>. I tested both <code>yarpgen v1</code> and <code>yarpgen v2 (branch stable)</code> to see which one triggered my patch more often. Version 1 triggered it significantly more.</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>// Number of <span style="color:#89dceb">times</span> yarpgen triggered my patch
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>lee@Lee ~/d/test&gt; cat yarpgen_v1.log | grep <span style="color:#a6e3a1">&#34;additional&#34;</span> | wc -l
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#fab387">182</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>lee@Lee ~/d/test&gt; cat yarpgen_v2.log | grep <span style="color:#a6e3a1">&#34;additional&#34;</span> | wc -l
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#fab387">0</span></span></span></code></pre></div>
-<p>I ran two experiment:</p>
-<ol>
-<li>I ran <code>yarpgen v1</code> against my patch for several days on a 12-core machine. The goal was to ensure that no miscompilations occurred (i.e., zero compfail).</li>
-</ol>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>YARPGEN runs stat:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Time: 2025/03/13 08:44:06
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>duration: <span style="color:#fab387">4</span> d 18:27:25
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>testing speed: 3.72 seed/min
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>generator stat:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>cpu time: <span style="color:#fab387">0</span> d 5:10:16
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>        total : <span style="color:#fab387">25574</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>        ok : <span style="color:#fab387">25574</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>        runfail : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>clang_no_opt stat:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>        cpu time: <span style="color:#fab387">19</span> d 3:2:24
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>        total : <span style="color:#fab387">25572</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>        ok : <span style="color:#fab387">25552</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>        compfail_timeout : <span style="color:#fab387">20</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>        compfail : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>        runfail : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>        different_output : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>clang_opt stat:
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>        cpu time: <span style="color:#fab387">30</span> d 17:48:39
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>        total : <span style="color:#fab387">25562</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>        ok : <span style="color:#fab387">25485</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>        compfail_timeout : <span style="color:#fab387">77</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>        compfail : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>        runfail : <span style="color:#fab387">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>        different_output : <span style="color:#f5e0dc">0</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span><span style="color:#89dceb;font-weight:bold">=================================</span></span></span></code></pre></div>
-<ol start="2">
-<li>I purposely introduced a bug in my patch and reran <code>yarpgen v1</code>. It successfully found a miscompilation. However, the generated program was quite large, so I used <code>C-Reduce</code> to shrink it into a minimal test case.</li>
-</ol>
-<h4 id="c-reduce-to-minimize-program">C-Reduce to minimize program</h4>
-<p><a href="https://github.com/csmith-project/creduce">C-Reduce</a> reduces a large C/C++ file into a smaller test case while preserving the bug. It does this using an <strong>interestingness test (a shell script)</strong>. As long as the test returns 0, the reduced program is still interesting.</p>
-<p>For example, I considered the outputs below to be &ldquo;interesting&rdquo;:</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#6c7086;font-style:italic"># correct version</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#f5e0dc">$LLVM_HOME</span>/bin/clang++ -O3 <span style="color:#f5e0dc">$CXXFLAGS</span> driver.cpp func.cpp init.h <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> ./a.out
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#fab387">9133052109159997938</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#6c7086;font-style:italic"># miscompilation</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#f5e0dc">$LLVM_HOME</span>/bin/clang++ -O3 <span style="color:#f5e0dc">$CXXFLAGS</span> driver.cpp func.cpp init.h <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> ./a.out
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#fab387">7336395106169927387</span></span></span></code></pre></div>
-<p>I would like the miscompiled result to be different from the correct version, and that would be <code>interesting</code> for this test case. Therefore, I wrote this <code>test1.sh</code> to reduce the generated program. There are several details in this shell script.</p>
-<ol>
-<li>Enabling UBSan during compilation is essential, as we don’t want C-Reduce to minimize a program that exhibits undefined behavior. This requires compiling LLVM with <code>compiler-rt</code> enabled.</li>
-<li>Precompile <code>driver.cpp</code> and link it separately to reduce overall compile time during test case reduction.</li>
-<li>Set <code>ulimit</code> for both virtual memory and CPU time to prevent resource exhaustion.</li>
-</ol>
-<p>Here’s the <code>test1.sh</code> script I used with C-Reduce:</p>
-
-
-
-
-
-
-<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">#!/bin/bash
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb">set</span> -x
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb">ulimit</span> -t <span style="color:#fab387">800</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb">ulimit</span> -v <span style="color:#fab387">2000000</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#f5e0dc">LOGFILE</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;script.log&#34;</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb">exec</span> &gt; <span style="color:#a6e3a1">&#34;</span><span style="color:#f5e0dc">$LOGFILE</span><span style="color:#a6e3a1">&#34;</span> 2&gt;&amp;<span style="color:#fab387">1</span>  <span style="color:#6c7086;font-style:italic"># Redirect both stdout and stderr to the log file</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#6c7086;font-style:italic"># Compile both versions</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>/home/lee/dev/llvm-project/build/bin/clang++ -O3 -Xclang -disable-llvm-optzns <span style="color:#89b4fa">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89b4fa"></span>    -fsanitize<span style="color:#89dceb;font-weight:bold">=</span>undefined -fno-sanitize-recover<span style="color:#89dceb;font-weight:bold">=</span>undefined func.cpp driver.o -o no_opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Compilation of no_opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>/home/lee/dev/llvm-project/build/bin/clang++ -O3 <span style="color:#89b4fa">\
-</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89b4fa"></span>    -fsanitize<span style="color:#89dceb;font-weight:bold">=</span>undefined -fno-sanitize-recover<span style="color:#89dceb;font-weight:bold">=</span>undefined func.cpp driver.o -o opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Compilation of opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#6c7086;font-style:italic"># Run both versions</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>./no_opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Execution of no_opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>./opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Execution of opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#6c7086;font-style:italic"># Compare outputs</span>
-</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>! diff &lt;<span style="color:#89dceb;font-weight:bold">(</span>./no_opt<span style="color:#89dceb;font-weight:bold">)</span> &lt;<span style="color:#89dceb;font-weight:bold">(</span>./opt<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Outputs are the same, test case reduction is invalid!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
-<p>After C-Reduce, the program was small enough to inspect and reduce by hand. Here’s the final <a href="https://gcc.godbolt.org/z/EP9YMGosv">func.cpp</a>. The incorrect patch optimized any bitwise OR compared with 0, regardless of the predicate. Here’s the <a href="https://alive2.llvm.org/ce/z/SBJ5W8">Alive2 proof</a> comparing correct and incorrect versions.</p>
-<p>These testing and fuzzing tools gave me much more confidence in my implementation and helped prepare it for a Pull Request.</p>
-<h3 id="conclusion">Conclusion</h3>
-<p>Here&rsquo;s three PRs I submitted:</p>
-<ul>
-<li>(Closed) <a href="https://github.com/llvm/llvm-project/pull/126158">https://github.com/llvm/llvm-project/pull/126158</a></li>
-<li>(Merged) <a href="https://github.com/llvm/llvm-project/pull/127351">https://github.com/llvm/llvm-project/pull/127351</a></li>
-<li>(Under review) <a href="https://github.com/llvm/llvm-project/pull/132124">https://github.com/llvm/llvm-project/pull/132124</a></li>
-</ul>
-<p>Even though I didn’t manage to submit all four PRs, I learned a great deal from the development and testing process. My first PR wasn’t implemented in the right place, and I’ve since learned the value of reaching out to LLVM developers earlier.</p>
-<p>It was fun doing this project, and it made me learn to think like a compiler engineer. It isn&rsquo;t easy to work on compilers, especially an industrial-level compiler like LLVM, but it sure is rewarding when finally submitted a PR to LLVM. I would like to show my appreciation to Dr. John Regehr for advising me on this project. Thanks, John!</p>
-]]></content:encoded>
-    </item>
-    <item>
       <title>LLVM: Constraint Elimination Pass</title>
       <link>https://leewei.co/llvm-constraint/</link>
       <pubDate>Mon, 14 Apr 2025 13:21:15 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
@@ -613,6 +374,245 @@ LLVM Constraint Elimination missing optimization: support eq/ne and bitwise AND/
 <p>Currently, <code>ne</code> constraints are not supported in the constraint system. The reason is that <code>a != b</code> cannot be directly encoded as a single linear constraint — it represents a disjunction: <code>a &lt; b || a &gt; b</code>. However, the constraint system models all facts as conjunctions (logical ANDs) of linear inequalities. Without support for logical OR, it is not possible to store <code>ne</code> facts within the system. In contrast, <code>eq</code> facts like <code>a == b</code> can be represented as two inequalities: <code>a &lt;= b &amp;&amp; a &gt;= b</code>, both of which are individually expressible.</p>
 <h3 id="conclusion">Conclusion</h3>
 <p>I only worked on a certain part of the Constraint Elimination pass. There is still more to discover inside this pass, such as, adding facts for loop induction variables. Lastly, I want to express my gratitude to Dr. John Regehr for his valuable advice on this project. Thanks, John!</p>
+]]></content:encoded>
+    </item>
+    <item>
+      <title>Spring 2025: CS 6950 Compiler Independent Study</title>
+      <link>https://leewei.co/cs6950/</link>
+      <pubDate>Sun, 13 Apr 2025 10:34:52 -0700</pubDate><author>lee10202013@gmail.com (Lee Wei)</author>
+      <guid>https://leewei.co/cs6950/</guid>
+      <description>Last semester, I started contributing to LLVM by adding a missing InstCombine optimization and fixing several Undefined Behavior tests. As I became more familiar with LLVM, I wanted to contribute more impactful patches. Therefore, I asked John to advise me on doing an independent study on compilers this semester.
+Planning Here are the initial project options:
+LLVM Constraint Elimination missing optimization: support eq/ne and bitwise AND/OR constraints. There are two open issues that I could work on: eq/ne, bitwise AND/OR LLVM backend AArch64 optimization MLIR Synthesizer I chose to work on Constraint Elimination because I was more familiar with the development process for LLVM middle-end.</description>
+      <content:encoded><![CDATA[<p>Last semester, I started contributing to LLVM by adding a missing InstCombine optimization and fixing several Undefined Behavior tests. As I became more familiar with LLVM, I wanted to contribute more impactful patches. Therefore, I asked John to advise me on doing an independent study on compilers this semester.</p>
+<h3 id="planning">Planning</h3>
+<p>Here are the initial project options:</p>
+<ul>
+<li>LLVM Constraint Elimination missing optimization: support <code>eq</code>/<code>ne</code> and bitwise <code>AND</code>/<code>OR</code> constraints.
+<ul>
+<li>There are two open issues that I could work on: <a href="https://github.com/llvm/llvm-project/issues/117961">eq/ne</a>, <a href="https://github.com/llvm/llvm-project/issues/118114">bitwise AND/OR</a></li>
+</ul>
+</li>
+<li>LLVM backend AArch64 optimization</li>
+<li>MLIR Synthesizer</li>
+</ul>
+<p>I chose to work on Constraint Elimination because I was more familiar with the development process for LLVM middle-end. The initial goal is to merge four PRs by the end of the semester.</p>
+<h4 id="timeline">Timeline</h4>
+<ul>
+<li>4 weeks(1/6 ~ 1/31): discuss project scope, read code and test tools</li>
+<li>11 weeks(2/3 ~ 4/16): implementation and testing</li>
+<li>1 week(4/16 ~ 4/23): write final report</li>
+</ul>
+<h3 id="constraint-elimination">Constraint Elimination</h3>
+<p>I wrote a blog post that introduces <a href="https://leewei05.github.io/llvm-constraint">Constraint Elimination</a>.</p>
+<h3 id="testing-and-fuzzing">Testing and Fuzzing</h3>
+<p>With so many patches committed to LLVM every day, it’s crucial to verify that my implementation does the right thing and doesn’t introduce new bugs. During this project, I learned several methods to help verify the correctness of my implementation.</p>
+<h4 id="alive2-for-mathematical-proof">Alive2 for mathematical proof</h4>
+<p><a href="https://github.com/AliveToolkit/alive2">Alive2</a> provides a fast and robust way to verify the correctness of LLVM transformations. Ever since it became available on <a href="https://alive2.llvm.org/ce/">Compiler Explorer</a>, it has become an essential tool for LLVM development. Having an <a href="https://llvm.org/docs/InstCombineContributorGuide.html#proofs">Alive2 proof link</a> is a requirement for submitting InstCombine PRs.</p>
+<p>Before implementation, it’s helpful to use <a href="https://alive2.llvm.org/ce/z/roTijm">Alive2</a> to verify the correctness of updates. This gives developers confidence in their implementation and provides reviewers with a quick way to understand the proposed transformation.</p>
+<h4 id="llvm-regression-tests">LLVM regression tests</h4>
+<p><a href="https://llvm.org/docs/TestingGuide.html#regression-tests">LLVM regression tests</a> are located in the <code>llvm/test</code> directory. A regression test is a small piece of LLVM IR code that demonstrates a transformation. Before changing any tests, it’s recommended to run the existing tests first to ensure there are no failures.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span>$ <span style="color:#89dceb">pwd</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>/Users/lee/dev/llvm-project/build
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>$ ninja -j <span style="color:#fab387">8</span> check-llvm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb;font-weight:bold">[</span>841/842<span style="color:#89dceb;font-weight:bold">]</span> Running the LLVM regression tests
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>Testing Time: 11154.24s
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>Total Discovered Tests: <span style="color:#fab387">63868</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  Skipped          :   <span style="color:#fab387">359</span> <span style="color:#89dceb;font-weight:bold">(</span>0.56%<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>  Unsupported      : <span style="color:#fab387">30198</span> <span style="color:#89dceb;font-weight:bold">(</span>47.28%<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>  Passed           : <span style="color:#fab387">33238</span> <span style="color:#89dceb;font-weight:bold">(</span>52.04%<span style="color:#89dceb;font-weight:bold">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>  Expectedly Failed:    <span style="color:#fab387">73</span> <span style="color:#89dceb;font-weight:bold">(</span>0.11%<span style="color:#89dceb;font-weight:bold">)</span></span></span></code></pre></div>
+<p>We then add our LLVM IR snippet to either an existing or a new <code>.ll</code> test file.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// before
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span>define <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(i4 <span style="color:#89dceb;font-weight:bold">%</span>x, i4 <span style="color:#89dceb;font-weight:bold">%</span>y) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb">entry</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">=</span> and i4 <span style="color:#89dceb;font-weight:bold">%</span>y, <span style="color:#89dceb;font-weight:bold">%</span>x
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>c<span style="color:#fab387">.1</span><span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span>, <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>  br i1 <span style="color:#89dceb;font-weight:bold">%</span>c<span style="color:#fab387">.1</span>, label <span style="color:#89dceb;font-weight:bold">%</span>then, label <span style="color:#89dceb;font-weight:bold">%</span>end
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span><span style="color:#89dceb">then</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>  ; <span style="color:#89dceb">fact</span>: <span style="color:#89dceb;font-weight:bold">%</span>and<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">&lt;</span> <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.1</span> <span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>x, <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>  <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.2</span> <span style="color:#89dceb;font-weight:bold">=</span> icmp slt i4 <span style="color:#89dceb;font-weight:bold">%</span>y, <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>  call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>  call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb;font-weight:bold">%</span>t<span style="color:#fab387">.2</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>  ret <span style="color:#f38ba8">void</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#89dceb">end</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>  ret <span style="color:#f38ba8">void</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>}</span></span></code></pre></div>
+<p>Then, we run the following command, where <code>update_test_checks.py</code> will apply transformations to our target file <code>and.ll</code>:</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>$ <span style="color:#89dceb">pwd</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>/Users/lee/dev/llvm-project/build
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span>$ ../llvm/utils/update_test_checks.py --opt-binary<span style="color:#89dceb;font-weight:bold">=</span>./bin/opt ../llvm/test/Transforms/ConstraintElimination/and.ll</span></span></code></pre></div>
+<p>We verify the transformation in the LLVM IR using the <code>CHECK-</code> prefixes and confirm the result matches Alive2’s output.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-c++" data-lang="c++"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">// after
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span>define <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(i4 <span style="color:#89dceb;font-weight:bold">%</span>x, i4 <span style="color:#89dceb;font-weight:bold">%</span>y) {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">LABEL</span>: <span style="color:#f38ba8">@</span>test_decompose_bitwise_and(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:  <span style="color:#89dceb">entry</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    <span style="color:#89b4fa">[[TMP0:%.*]] = and i4 [[Y:%.*]], [[X:%.*]]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    <span style="color:#89b4fa">[[AND:%.*]] = icmp slt i4 [[TMP0]]</span>, <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    br i1 <span style="color:#89b4fa">[[AND]], label [[BB1:%.*]], label [[EXIT:%.*]]</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>; <span style="color:#89dceb">CHECK</span>:       <span style="color:#89dceb">then</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb">true</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    call <span style="color:#f38ba8">void</span> <span style="color:#f38ba8">@</span>use(i1 <span style="color:#89dceb">true</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    ret <span style="color:#f38ba8">void</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>; <span style="color:#89dceb">CHECK</span>:       <span style="color:#89dceb">end</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>; CHECK<span style="color:#89dceb;font-weight:bold">-</span><span style="color:#89dceb">NEXT</span>:    ret <span style="color:#f38ba8">void</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>;
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>...
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>}</span></span></code></pre></div>
+<p>Our tests should cover both positive and negative cases—including simple and complex scenarios. Designing strong test cases ensures the implementation behaves as expected and avoids regressions. Also, we should run the entire LLVM regression tests after adding our tests.</p>
+<h4 id="yarpgen-for-fuzzing">YARPGen for fuzzing</h4>
+<p><a href="https://github.com/intel/yarpgen/tree/v1"><code>YARPGen</code></a> is a fuzzer that randomly generates valid C/C++ programs to test compilers. The setup is straightforward—change the clang path in <code>test_sets.txt</code> and run <code>./run_gen.py</code>. I tested both <code>yarpgen v1</code> and <code>yarpgen v2 (branch stable)</code> to see which one triggered my patch more often. Version 1 triggered it significantly more.</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span>// Number of <span style="color:#89dceb">times</span> yarpgen triggered my patch
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span>lee@Lee ~/d/test&gt; cat yarpgen_v1.log | grep <span style="color:#a6e3a1">&#34;additional&#34;</span> | wc -l
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#fab387">182</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>lee@Lee ~/d/test&gt; cat yarpgen_v2.log | grep <span style="color:#a6e3a1">&#34;additional&#34;</span> | wc -l
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#fab387">0</span></span></span></code></pre></div>
+<p>I ran two experiment:</p>
+<ol>
+<li>I ran <code>yarpgen v1</code> against my patch for several days on a 12-core machine. The goal was to ensure that no miscompilations occurred (i.e., zero compfail).</li>
+</ol>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span>YARPGEN runs stat:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span>Time: 2025/03/13 08:44:06
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span>duration: <span style="color:#fab387">4</span> d 18:27:25
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>testing speed: 3.72 seed/min
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>generator stat:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span>cpu time: <span style="color:#fab387">0</span> d 5:10:16
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>        total : <span style="color:#fab387">25574</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span>        ok : <span style="color:#fab387">25574</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>        runfail : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span>clang_no_opt stat:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>        cpu time: <span style="color:#fab387">19</span> d 3:2:24
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>        total : <span style="color:#fab387">25572</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>        ok : <span style="color:#fab387">25552</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span>        compfail_timeout : <span style="color:#fab387">20</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>        compfail : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">22</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">23</span><span>        runfail : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">24</span><span>        different_output : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">25</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">26</span><span><span style="color:#6c7086;font-style:italic">##########################</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">27</span><span>clang_opt stat:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">28</span><span>        cpu time: <span style="color:#fab387">30</span> d 17:48:39
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">29</span><span>        total : <span style="color:#fab387">25562</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">30</span><span>        ok : <span style="color:#fab387">25485</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">31</span><span>        compfail_timeout : <span style="color:#fab387">77</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">32</span><span>        compfail : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">33</span><span>        runfail_timeout : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">34</span><span>        runfail : <span style="color:#fab387">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">35</span><span>        different_output : <span style="color:#f5e0dc">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">36</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">37</span><span><span style="color:#89dceb;font-weight:bold">=================================</span></span></span></code></pre></div>
+<ol start="2">
+<li>I purposely introduced a bug in my patch and reran <code>yarpgen v1</code>. It successfully found a miscompilation. However, the generated program was quite large, so I used <code>C-Reduce</code> to shrink it into a minimal test case.</li>
+</ol>
+<h4 id="c-reduce-to-minimize-program">C-Reduce to minimize program</h4>
+<p><a href="https://github.com/csmith-project/creduce">C-Reduce</a> reduces a large C/C++ file into a smaller test case while preserving the bug. It does this using an <strong>interestingness test (a shell script)</strong>. As long as the test returns 0, the reduced program is still interesting.</p>
+<p>For example, I considered the outputs below to be &ldquo;interesting&rdquo;:</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">1</span><span><span style="color:#6c7086;font-style:italic"># correct version</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">2</span><span><span style="color:#f5e0dc">$LLVM_HOME</span>/bin/clang++ -O3 <span style="color:#f5e0dc">$CXXFLAGS</span> driver.cpp func.cpp init.h <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> ./a.out
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">3</span><span><span style="color:#fab387">9133052109159997938</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">5</span><span><span style="color:#6c7086;font-style:italic"># miscompilation</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">6</span><span><span style="color:#f5e0dc">$LLVM_HOME</span>/bin/clang++ -O3 <span style="color:#f5e0dc">$CXXFLAGS</span> driver.cpp func.cpp init.h <span style="color:#89dceb;font-weight:bold">&amp;&amp;</span> ./a.out
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">7</span><span><span style="color:#fab387">7336395106169927387</span></span></span></code></pre></div>
+<p>I would like the miscompiled result to be different from the correct version, and that would be <code>interesting</code> for this test case. Therefore, I wrote this <code>test1.sh</code> to reduce the generated program. There are several details in this shell script.</p>
+<ol>
+<li>Enabling UBSan during compilation is essential, as we don’t want C-Reduce to minimize a program that exhibits undefined behavior. This requires compiling LLVM with <code>compiler-rt</code> enabled.</li>
+<li>Precompile <code>driver.cpp</code> and link it separately to reduce overall compile time during test case reduction.</li>
+<li>Set <code>ulimit</code> for both virtual memory and CPU time to prevent resource exhaustion.</li>
+</ol>
+<p>Here’s the <code>test1.sh</code> script I used with C-Reduce:</p>
+
+
+
+
+
+
+<div class="highlight"><pre tabindex="0" style="color:#cdd6f4;background-color:#1e1e2e;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 1</span><span><span style="color:#6c7086;font-style:italic">#!/bin/bash
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 2</span><span><span style="color:#6c7086;font-style:italic"></span><span style="color:#89dceb">set</span> -x
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 3</span><span><span style="color:#89dceb">ulimit</span> -t <span style="color:#fab387">800</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 4</span><span><span style="color:#89dceb">ulimit</span> -v <span style="color:#fab387">2000000</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 6</span><span><span style="color:#f5e0dc">LOGFILE</span><span style="color:#89dceb;font-weight:bold">=</span><span style="color:#a6e3a1">&#34;script.log&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 7</span><span><span style="color:#89dceb">exec</span> &gt; <span style="color:#a6e3a1">&#34;</span><span style="color:#f5e0dc">$LOGFILE</span><span style="color:#a6e3a1">&#34;</span> 2&gt;&amp;<span style="color:#fab387">1</span>  <span style="color:#6c7086;font-style:italic"># Redirect both stdout and stderr to the log file</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c"> 9</span><span><span style="color:#6c7086;font-style:italic"># Compile both versions</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">10</span><span>/home/lee/dev/llvm-project/build/bin/clang++ -O3 -Xclang -disable-llvm-optzns <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">11</span><span><span style="color:#89b4fa"></span>    -fsanitize<span style="color:#89dceb;font-weight:bold">=</span>undefined -fno-sanitize-recover<span style="color:#89dceb;font-weight:bold">=</span>undefined func.cpp driver.o -o no_opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Compilation of no_opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">13</span><span>/home/lee/dev/llvm-project/build/bin/clang++ -O3 <span style="color:#89b4fa">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">14</span><span><span style="color:#89b4fa"></span>    -fsanitize<span style="color:#89dceb;font-weight:bold">=</span>undefined -fno-sanitize-recover<span style="color:#89dceb;font-weight:bold">=</span>undefined func.cpp driver.o -o opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Compilation of opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">16</span><span><span style="color:#6c7086;font-style:italic"># Run both versions</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">17</span><span>./no_opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Execution of no_opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">18</span><span>./opt <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Execution of opt failed!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">19</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">20</span><span><span style="color:#6c7086;font-style:italic"># Compare outputs</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f849c">21</span><span>! diff &lt;<span style="color:#89dceb;font-weight:bold">(</span>./no_opt<span style="color:#89dceb;font-weight:bold">)</span> &lt;<span style="color:#89dceb;font-weight:bold">(</span>./opt<span style="color:#89dceb;font-weight:bold">)</span> <span style="color:#89dceb;font-weight:bold">||</span> <span style="color:#89dceb;font-weight:bold">{</span> <span style="color:#89dceb">echo</span> <span style="color:#a6e3a1">&#34;Outputs are the same, test case reduction is invalid!&#34;</span> &gt;&amp;2; <span style="color:#89dceb">exit</span> 1; <span style="color:#89dceb;font-weight:bold">}</span></span></span></code></pre></div>
+<p>After C-Reduce, the program was small enough to inspect and reduce by hand. Here’s the final <a href="https://gcc.godbolt.org/z/EP9YMGosv">func.cpp</a>. The incorrect patch optimized any bitwise OR compared with 0, regardless of the predicate. Here’s the <a href="https://alive2.llvm.org/ce/z/SBJ5W8">Alive2 proof</a> comparing correct and incorrect versions.</p>
+<p>These testing and fuzzing tools gave me much more confidence in my implementation and helped prepare it for a Pull Request.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>Here&rsquo;s three PRs I submitted:</p>
+<ul>
+<li>(Closed) <a href="https://github.com/llvm/llvm-project/pull/126158">https://github.com/llvm/llvm-project/pull/126158</a></li>
+<li>(Merged) <a href="https://github.com/llvm/llvm-project/pull/127351">https://github.com/llvm/llvm-project/pull/127351</a></li>
+<li>(Under review) <a href="https://github.com/llvm/llvm-project/pull/132124">https://github.com/llvm/llvm-project/pull/132124</a></li>
+</ul>
+<p>Even though I didn’t manage to submit all four PRs, I learned a great deal from the development and testing process. My first PR wasn’t implemented in the right place, and I’ve since learned the value of reaching out to LLVM developers earlier.</p>
+<p>It was fun doing this project, and it made me learn to think like a compiler engineer. It isn&rsquo;t easy to work on compilers, especially an industrial-level compiler like LLVM, but it sure is rewarding when finally submitted a PR to LLVM. I would like to show my appreciation to Dr. John Regehr for advising me on this project. Thanks, John!</p>
 ]]></content:encoded>
     </item>
     <item>
