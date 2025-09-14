@@ -424,6 +424,73 @@ Therefore, the time complexity of binary search is <code>O(log n)</code>.</p>
 <p><strong>Case 3</strong>: If <code>f(n) = Omega(n^c)</code> for some constant <code>c &gt; log_b(a)</code>, and if <code>a * f(n/b) &lt;= k * f(n)</code> for some constant <code>k &lt; 1</code> and sufficiently large <code>n</code> (the &ldquo;regularity condition&rdquo;), then <code>T(n) = O(f(n))</code>.</p>
 </li>
 </ul>
+<h3 id="week-2-data-structures-and-algorithmic-techniques">Week 2: Data Structures and Algorithmic Techniques</h3>
+<ul>
+<li><strong>Prefix Tree (Trie)</strong>: A tree-like data structure that stores a dynamic set of strings. Each node represents a common prefix of a set of strings.
+<ul>
+<li><strong>Time Complexity</strong>:
+<ul>
+<li><code>Insertion</code>: O(L), where L is the length of the string.</li>
+<li><code>Search</code>: O(L).</li>
+</ul>
+</li>
+<li><strong>Space Complexity</strong>: O(N*L), where N is the number of strings and L is their average length.</li>
+</ul>
+</li>
+<li><strong>Problem</strong>: Given a collection of N documents, find all documents that contain a given set of m words.
+<ul>
+<li><strong>Naive Solution</strong>: Iterate through all N documents and for each document, check if it contains the m words. Time complexity: O(N * M * W), where W is the number of words in a document. A simpler view is O(N*m) if we consider the check for m words to be proportional to m.</li>
+<li><strong>Inverted Index</strong>: A more efficient solution. For each word in the vocabulary, we store a list of documents in which it appears. To find documents containing a set of words, we take the intersection of the lists for each word.</li>
+</ul>
+</li>
+<li><strong>Dynamic Arrays</strong>: A data structure that can grow in size. In C++, this is implemented as <code>std::vector</code>.
+<ul>
+<li>It starts with a certain capacity. When the capacity is reached, a new, larger array (usually double the size) is allocated, and all elements are copied over.</li>
+<li><strong>Time Complexity</strong>:
+<ul>
+<li><code>Add</code> (to the end): O(1) on average (amortized), but O(n) in the worst case (when resizing).</li>
+<li><code>Delete-from-end</code>: O(1).</li>
+<li><code>Clear</code>: O(n).</li>
+<li><code>Return i-th element</code>: O(1).</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Amortized Analysis</strong>: A method for analyzing the average performance of an algorithm over a sequence of operations, rather than the worst-case performance of a single operation.
+<ul>
+<li>Even if some operations are very slow, the average time over a sequence of N operations can be efficient, e.g., O(N) total time, which is O(1) amortized time per operation.</li>
+</ul>
+</li>
+<li><strong>Divide and Conquer</strong>: An algorithmic paradigm that involves:
+<ol>
+<li><strong>Divide</strong>: Breaking the problem into smaller subproblems of the same type.</li>
+<li><strong>Conquer</strong>: Solving the subproblems recursively.</li>
+<li><strong>Combine</strong>: Combining the solutions to the subproblems to solve the original problem.</li>
+</ol>
+<ul>
+<li>The correctness of divide and conquer algorithms is often proven by induction.</li>
+</ul>
+</li>
+<li><strong>Merge Sort</strong>: A classic example of a divide and conquer algorithm for sorting.
+<ul>
+<li><strong>Algorithm</strong>:
+<ol>
+<li>Divide the array into two halves.</li>
+<li>Recursively sort each half.</li>
+<li>Merge the two sorted halves.</li>
+</ol>
+</li>
+<li><strong>Time Complexity</strong>: <code>T(n) = 2T(n/2) + O(n)</code>, which resolves to <code>O(n log n)</code>.</li>
+<li><strong>Proof by Induction</strong>:
+<ul>
+<li><strong>Base Case (n=1)</strong>: An array of size 1 is already sorted.</li>
+<li><strong>Inductive Hypothesis</strong>: Assume that merge sort correctly sorts any array of size <code>k &lt; n</code>.</li>
+<li><strong>Inductive Step (for an array of size n)</strong>: Merge sort recursively sorts two subarrays of size <code>n/2</code>. By the inductive hypothesis, these two subarrays are correctly sorted. The <code>merge</code> step then combines these two sorted subarrays into a single sorted array. Therefore, the entire array is sorted.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
