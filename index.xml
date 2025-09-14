@@ -424,7 +424,7 @@ Therefore, the time complexity of binary search is <code>O(log n)</code>.</p>
 <p><strong>Case 3</strong>: If <code>f(n) = Omega(n^c)</code> for some constant <code>c &gt; log_b(a)</code>, and if <code>a * f(n/b) &lt;= k * f(n)</code> for some constant <code>k &lt; 1</code> and sufficiently large <code>n</code> (the &ldquo;regularity condition&rdquo;), then <code>T(n) = O(f(n))</code>.</p>
 </li>
 </ul>
-<h3 id="week-2-data-structures-and-algorithmic-techniques">Week 2: Data Structures and Algorithmic Techniques</h3>
+<h3 id="week-2">Week 2</h3>
 <ul>
 <li><strong>Prefix Tree (Trie)</strong>: A tree-like data structure that stores a dynamic set of strings. Each node represents a common prefix of a set of strings.
 <ul>
