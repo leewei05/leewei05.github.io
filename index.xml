@@ -603,6 +603,86 @@ Therefore, the time complexity of binary search is <code>O(log n)</code>.</p>
 </ul>
 </li>
 </ul>
+<h3 id="week-4">Week 4</h3>
+<ul>
+<li>
+<p><strong>The Subset Sum Problem</strong></p>
+<ul>
+<li><strong>Problem</strong>: Given a set of <code>n</code> non-negative integers and a target value <code>S</code>, determine if there is a subset of the given set whose elements sum up to <code>S</code>.</li>
+<li><strong>Solution 1: Brute Force</strong>
+<ul>
+<li><strong>Algorithm</strong>: Generate all <code>2^n</code> possible subsets, calculate the sum of each, and check if any sum equals <code>S</code>.</li>
+<li><strong>Time Complexity</strong>: <code>O(n * 2^n)</code>. This is infeasible for large <code>n</code>.</li>
+</ul>
+</li>
+<li><strong>Solution 2: Divide and Conquer (Horowitz and Sahni)</strong>
+<ul>
+<li><strong>Idea</strong>: Split the problem into two smaller instances.</li>
+<li><strong>Algorithm</strong>:
+<ol>
+<li>Split the set of <code>n</code> integers into two halves, <code>A</code> and <code>B</code>, each of size <code>n/2</code>.</li>
+<li>Generate all <code>2^(n/2)</code> subset sums for <code>A</code> and store them in a sorted list, <code>sums_A</code>.</li>
+<li>Do the same for <code>B</code>, creating a sorted list <code>sums_B</code>.</li>
+<li>Iterate through <code>sums_A</code>. For each sum <code>s_A</code>, search for the value <code>S - s_A</code> in <code>sums_B</code> using binary search.</li>
+<li>If <code>S - s_A</code> is found at any point, a solution exists.</li>
+</ol>
+</li>
+<li><strong>Time Complexity</strong>: <code>O(n * 2^(n/2))</code>.
+<ul>
+<li>Generating the sums takes <code>O(2^(n/2))</code>.</li>
+<li>Sorting takes <code>O(2^(n/2) * log(2^(n/2))) = O(n * 2^(n/2))</code>.</li>
+<li>The final search takes <code>O(2^(n/2) * log(2^(n/2))) = O(n * 2^(n/2))</code> if we do a binary search for each element. A more optimized linear scan with two pointers on the sorted lists achieves this step in <code>O(2^(n/2))</code>. The dominant part is sorting.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Solution 3: Dynamic Programming</strong>
+<ul>
+<li><strong>Idea</strong>: Build a table to store solutions to subproblems.</li>
+<li><strong>Algorithm</strong>: Create a boolean table <code>dp[n+1][S+1]</code>, where <code>dp[i][j]</code> is <code>true</code> if a subset of the first <code>i</code> items can sum to <code>j</code>, and <code>false</code> otherwise.</li>
+<li><strong>Recurrence</strong>: <code>dp[i][j] = dp[i-1][j] || (j &gt;= set[i-1] &amp;&amp; dp[i-1][j - set[i-1]])</code>.</li>
+<li><strong>Time Complexity</strong>: <code>O(n * S)</code>. This is a pseudo-polynomial time complexity. It is very efficient if <code>S</code> is small, but can be worse than the divide-and-conquer approach if <code>S</code> is very large.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Shortest Path Algorithms</strong></p>
+<ul>
+<li>
+<p><strong>Context</strong>: Finding the shortest path between vertices in a graph. The choice of algorithm depends on the problem (single-source vs. all-pairs) and graph properties (negative weights).</p>
+</li>
+<li>
+<p><strong>Standard Algorithms (Dynamic Programming flavor)</strong>:</p>
+<ul>
+<li><strong>Dijkstra&rsquo;s Algorithm</strong>: Solves the single-source shortest path problem for graphs with non-negative edge weights.</li>
+<li><strong>Bellman-Ford Algorithm</strong>: Solves the single-source problem and can handle negative edge weights (and detect negative cycles).</li>
+<li><strong>Floyd-Warshall Algorithm</strong>: Solves the all-pairs shortest path problem.</li>
+</ul>
+</li>
+<li>
+<p><strong>Divide and Conquer Approach for All-Pairs Shortest Path (APSP)</strong></p>
+<ul>
+<li><strong>Idea</strong>: This approach is a recursive formulation that mirrors the structure of the Floyd-Warshall algorithm.</li>
+<li><strong>Algorithm</strong>:
+<ul>
+<li>Let <code>dist(i, j, k)</code> be the shortest path from <code>i</code> to <code>j</code> using only intermediate vertices from the set <code>{1, ..., k}</code>.</li>
+<li><strong>Base Case</strong>: <code>dist(i, j, 0)</code> is the weight of the direct edge between <code>i</code> and <code>j</code> (or infinity if no direct edge exists).</li>
+<li><strong>Recursive Step</strong>: To compute <code>dist(i, j, k)</code>, the shortest path either uses vertex <code>k</code> or it doesn&rsquo;t.
+<ul>
+<li>If it doesn&rsquo;t use <code>k</code>, the path is <code>dist(i, j, k-1)</code>.</li>
+<li>If it does use <code>k</code>, the path is <code>dist(i, k, k-1) + dist(k, j, k-1)</code>.</li>
+</ul>
+</li>
+<li><strong>Recurrence</strong>: <code>dist(i, j, k) = min(dist(i, j, k-1), dist(i, k, k-1) + dist(k, j, k-1))</code>.</li>
+</ul>
+</li>
+<li><strong>Time Complexity</strong>: <code>O(n^3)</code>, same as the iterative Floyd-Warshall. The &ldquo;divide and conquer&rdquo; aspect comes from breaking down the problem by the set of allowed intermediate vertices.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 ]]></content:encoded>
     </item>
     <item>
