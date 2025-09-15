@@ -52,7 +52,7 @@ Base Case (n=1): If the array has only one element, A[0], we compare it to the t
 Proof by Induction on the size of the array n:
 Base Case (n=1): If the array has only one element, A[0], we compare it to the target T."><meta itemprop="datePublished" content="2025-09-10T21:22:23-06:00" />
 <meta itemprop="dateModified" content="2025-09-10T21:22:23-06:00" />
-<meta itemprop="wordCount" content="1091">
+<meta itemprop="wordCount" content="1719">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -256,6 +256,118 @@ Therefore, the time complexity of binary search is <code>O(log n)</code>.</p>
 <li><strong>Base Case (n=1)</strong>: An array of size 1 is already sorted.</li>
 <li><strong>Inductive Hypothesis</strong>: Assume that merge sort correctly sorts any array of size <code>k &lt; n</code>.</li>
 <li><strong>Inductive Step (for an array of size n)</strong>: Merge sort recursively sorts two subarrays of size <code>n/2</code>. By the inductive hypothesis, these two subarrays are correctly sorted. The <code>merge</code> step then combines these two sorted subarrays into a single sorted array. Therefore, the entire array is sorted.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="week-3">Week 3</h3>
+<ul>
+<li><strong>Recursion Tree Method</strong>: A visual method for analyzing the time complexity of recurrence relations.
+<ul>
+<li><strong>How it works</strong>:
+<ol>
+<li>Draw a tree to represent the recursive calls. Each node represents the cost of a single subproblem.</li>
+<li>Sum the costs at each level of the tree to find the cost per level.</li>
+<li>Sum the costs of all levels to get the total cost of the algorithm.</li>
+</ol>
+</li>
+<li><strong>Example: Merge Sort</strong> <code>T(n) = 2T(n/2) + cn</code>
+<ul>
+<li>The tree has <code>log n</code> levels.</li>
+<li>Each level has a total cost of <code>cn</code>.</li>
+<li>Total cost = <code>cn * log n</code>, so the complexity is <code>O(n log n)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Integer Multiplication</strong>: Algorithms for multiplying large integers.
+<ul>
+<li><strong>Standard (Grade-School) Algorithm</strong>:
+<ul>
+<li>Time Complexity: <code>O(n^2)</code>.</li>
+</ul>
+</li>
+<li><strong>Karatsuba Algorithm</strong>: A more efficient divide-and-conquer algorithm.
+<ul>
+<li><strong>Idea</strong>: Reduces 4 subproblems to 3.</li>
+<li>Let <code>x</code> and <code>y</code> be two n-bit integers.</li>
+<li><code>x = a * 2^(n/2) + b</code></li>
+<li><code>y = c * 2^(n/2) + d</code></li>
+<li><code>x * y = (ac) * 2^n + (ad + bc) * 2^(n/2) + bd</code></li>
+<li>Karatsuba computes <code>ac</code>, <code>bd</code>, and <code>(a+b)(c+d)</code>. Then <code>ad + bc = (a+b)(c+d) - ac - bd</code>.</li>
+<li><strong>Recurrence</strong>: <code>T(n) = 3T(n/2) + O(n)</code>.</li>
+<li><strong>Time Complexity</strong>: <code>O(n^log2(3))</code>, which is approximately <code>O(n^1.585)</code>.</li>
+</ul>
+</li>
+<li><strong>Faster Algorithms</strong>: For very large numbers, even faster algorithms exist, such as the Toom-Cook and Schönhage-Strassen algorithms.</li>
+</ul>
+</li>
+<li><strong>Akra-Bazzi Theorem</strong>: A generalization of the Master Theorem for solving recurrences of the form:
+<code>T(x) = g(x) + \sum_{i=1}^{k} a_i T(b_i x)</code> for <code>x &gt;= x_0</code>.
+<ul>
+<li><strong>Conditions</strong>:
+<ul>
+<li><code>a_i &gt; 0</code> and <code>0 &lt; b_i &lt; 1</code> are constants.</li>
+<li><code>g(x)</code> is a non-negative function.</li>
+</ul>
+</li>
+<li><strong>Solution</strong>: Find <code>p</code> such that <code>\sum_{i=1}^{k} a_i * (b_i^p) = 1</code>. Then the solution is:
+<code>T(x) = Theta(x^p * (1 + \int_{1}^{x} (g(u) / u^(p+1)) du))</code></li>
+<li>This theorem is powerful for analyzing recurrences where the subproblems have different sizes.</li>
+</ul>
+</li>
+<li><strong>The Selection Problem (k-th Smallest Element)</strong>: The problem of finding the k-th smallest element in an unsorted list of n elements.
+<ul>
+<li><strong>Solution 1: Sorting</strong>
+<ul>
+<li>Sort the list and return the element at index k-1.</li>
+<li>Time Complexity: <code>O(n log n)</code>.</li>
+</ul>
+</li>
+<li><strong>Solution 2: Quickselect</strong>
+<ul>
+<li>A modification of the Quicksort algorithm.</li>
+<li><strong>Algorithm</strong>:
+<ol>
+<li>Choose a pivot element.</li>
+<li>Partition the array around the pivot.</li>
+<li>If the pivot is at index k-1, we found the element.</li>
+<li>If the pivot is at an index greater than k-1, recursively search in the left subarray.</li>
+<li>If the pivot is at an index smaller than k-1, recursively search in the right subarray.</li>
+</ol>
+</li>
+<li><strong>Time Complexity</strong>:
+<ul>
+<li>Average Case: <code>O(n)</code>.</li>
+<li>Worst Case: <code>O(n^2)</code> (if the pivot is always the smallest or largest element).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Median of Medians (Deterministic Selection Algorithm)</strong>: A linear-time algorithm for the selection problem. It&rsquo;s a way to choose a good pivot for Quickselect to avoid the worst-case scenario.
+<ul>
+<li><strong>Algorithm</strong>:
+<ol>
+<li><strong>Divide</strong>: Divide the <code>n</code> elements into <code>n/5</code> groups of 5 elements each.</li>
+<li><strong>Find Medians</strong>: Find the median of each of the <code>n/5</code> groups. This can be done in constant time for each group (e.g., by sorting each group of 5). This gives a list of <code>n/5</code> medians.</li>
+<li><strong>Find Median of Medians</strong>: Recursively call the algorithm to find the true median of the <code>n/5</code> medians found in the previous step. This median is the pivot.</li>
+<li><strong>Partition</strong>: Partition the original array around the pivot. Let the pivot&rsquo;s final position be <code>p</code>.</li>
+<li><strong>Recurse</strong>:
+<ul>
+<li>If <code>p == k-1</code>, the pivot is the k-th smallest element.</li>
+<li>If <code>p &gt; k-1</code>, recursively find the k-th smallest element in the subarray to the left of the pivot.</li>
+<li>If <code>p &lt; k-1</code>, recursively find the (k-p)-th smallest element in the subarray to the right of the pivot.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><strong>Time Complexity</strong>: <code>O(n)</code>.
+<ul>
+<li>The pivot (median of medians) is guaranteed to be &ldquo;good&rdquo;. At least 3/10 of the elements are smaller than the pivot, and at least 3/10 are larger.</li>
+<li>This leads to the recurrence: <code>T(n) &lt;= T(n/5) + T(7n/10) + O(n)</code>, which solves to <code>T(n) = O(n)</code>.</li>
 </ul>
 </li>
 </ul>
