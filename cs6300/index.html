@@ -44,7 +44,7 @@
 <meta itemprop="name" content="Fall 2025: CS 6300 Artificial Intelligence">
 <meta itemprop="description" content="Week 1 What is Artificial Intelligence? The science of making machines that act rationally. Rational: An agent acts rationally if it strives to maximally achieve its pre-defined goals. The focus is on the decisions made, not the thought process. Being rational means maximizing your expected utility. Agent is an entity that perceives its environment and acts upon it. Reflex agents: Choose actions based solely on the current percept. Planning agents: Make decisions by considering the future consequences of their actions."><meta itemprop="datePublished" content="2025-09-10T21:22:31-06:00" />
 <meta itemprop="dateModified" content="2025-09-10T21:22:31-06:00" />
-<meta itemprop="wordCount" content="2419">
+<meta itemprop="wordCount" content="2593">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -425,6 +425,14 @@
 <li><strong>Convergence</strong>: The value iteration algorithm is guaranteed to converge to the optimal value function because the Bellman operator is a contraction mapping. With each iteration, the error between the current value function and the optimal one is reduced by a factor of γ.</li>
 </ul>
 </li>
+</ul>
+<h3 id="week-5">Week 5</h3>
+<ul>
+<li><strong>Policy Evaluation</strong>: For a fixed policy π, we can compute the utility of each state, V<sup>π</sup>(s). This is done by solving a system of linear equations derived from the Bellman equation.</li>
+<li><strong>Policy Improvement</strong>: After evaluating the policy, we can improve it by making it &ldquo;greedy&rdquo; with respect to the current values. For each state, we choose the action that maximizes the expected utility.</li>
+<li><strong>Policy Iteration</strong>: This is an algorithm that alternates between policy evaluation and policy improvement, starting with a random policy. It is guaranteed to converge to the optimal policy, often much faster than Value Iteration.</li>
+<li><strong>Q-Values</strong>: A Q-value, Q(s, a), is the expected utility of taking action &lsquo;a&rsquo; in state &rsquo;s&rsquo; and then following the policy thereafter. It&rsquo;s often easier to select actions using Q-values than V-values, as you can simply pick the action with the highest Q-value.</li>
+<li><strong>Monte Carlo Methods</strong>: A model-free RL technique that learns from complete &ldquo;episodes&rdquo; or trials. It estimates the value of a state by averaging the returns (total rewards) observed after visiting that state.</li>
 </ul>
 
   </content>

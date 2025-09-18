@@ -12,7 +12,8 @@
 />
 <meta
   name="description"
-  content="Week 1 "
+  content="Week 1 Week 5 Stack Normalization during Privilege Level Changes When an interrupt or exception occurs, the processor needs to save the current execution context to the stack so that it can be restored later. The information saved on the stack differs depending on whether the transition is from user mode to kernel mode or from kernel mode to kernel mode.
+Ring 3 to Ring 0 Transition: When a privilege level change from Ring 3 to Ring 0 occurs, the processor pushes five key pieces of information onto the kernel stack:"
 />
 <meta
   name="keywords"
@@ -25,7 +26,8 @@
 
 
 <meta property="og:title" content="Fall 2025: CS 6465 Advanced Operating Systems" />
-<meta property="og:description" content="Week 1 " />
+<meta property="og:description" content="Week 1 Week 5 Stack Normalization during Privilege Level Changes When an interrupt or exception occurs, the processor needs to save the current execution context to the stack so that it can be restored later. The information saved on the stack differs depending on whether the transition is from user mode to kernel mode or from kernel mode to kernel mode.
+Ring 3 to Ring 0 Transition: When a privilege level change from Ring 3 to Ring 0 occurs, the processor pushes five key pieces of information onto the kernel stack:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://leewei.co/cs6465/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2025-09-10T21:22:45-06:00" />
@@ -36,15 +38,17 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Fall 2025: CS 6465 Advanced Operating Systems"/>
-<meta name="twitter:description" content="Week 1 "/>
+<meta name="twitter:description" content="Week 1 Week 5 Stack Normalization during Privilege Level Changes When an interrupt or exception occurs, the processor needs to save the current execution context to the stack so that it can be restored later. The information saved on the stack differs depending on whether the transition is from user mode to kernel mode or from kernel mode to kernel mode.
+Ring 3 to Ring 0 Transition: When a privilege level change from Ring 3 to Ring 0 occurs, the processor pushes five key pieces of information onto the kernel stack:"/>
 
 
 
 
 <meta itemprop="name" content="Fall 2025: CS 6465 Advanced Operating Systems">
-<meta itemprop="description" content="Week 1 "><meta itemprop="datePublished" content="2025-09-10T21:22:45-06:00" />
+<meta itemprop="description" content="Week 1 Week 5 Stack Normalization during Privilege Level Changes When an interrupt or exception occurs, the processor needs to save the current execution context to the stack so that it can be restored later. The information saved on the stack differs depending on whether the transition is from user mode to kernel mode or from kernel mode to kernel mode.
+Ring 3 to Ring 0 Transition: When a privilege level change from Ring 3 to Ring 0 occurs, the processor pushes five key pieces of information onto the kernel stack:"><meta itemprop="datePublished" content="2025-09-10T21:22:45-06:00" />
 <meta itemprop="dateModified" content="2025-09-10T21:22:45-06:00" />
-<meta itemprop="wordCount" content="2">
+<meta itemprop="wordCount" content="470">
 <meta itemprop="keywords" content="" />
 <meta name="referrer" content="no-referrer-when-downgrade" />
 
@@ -113,6 +117,52 @@
   
   <content>
     <h3 id="week-1">Week 1</h3>
+<h3 id="week-5">Week 5</h3>
+<h4 id="stack-normalization-during-privilege-level-changes">Stack Normalization during Privilege Level Changes</h4>
+<p>When an interrupt or exception occurs, the processor needs to save the current execution context to the stack so that it can be restored later. The information saved on the stack differs depending on whether the transition is from user mode to kernel mode or from kernel mode to kernel mode.</p>
+<ul>
+<li>
+<p><strong>Ring 3 to Ring 0 Transition:</strong> When a privilege level change from Ring 3 to Ring 0 occurs, the processor pushes five key pieces of information onto the kernel stack:</p>
+<ul>
+<li><code>RSP</code> (Stack Pointer)</li>
+<li><code>SS</code> (Stack Segment)</li>
+<li><code>RFLAGS</code> (Flags Register)</li>
+<li><code>RIP</code> (Instruction Pointer)</li>
+<li><code>CS</code> (Code Segment)</li>
+<li>An optional <code>Error Code</code> may also be pushed for certain exceptions.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ring 0 to Ring 0 Transition:</strong> For transitions that remain within the kernel (Ring 0), only three items are pushed to the stack, as a stack switch does not happen. An optional error code may also be pushed.</p>
+</li>
+</ul>
+<p>It&rsquo;s crucial to check which ring the interrupt came from to correctly manage the stack.</p>
+<h4 id="preventing-stack-overflow">Preventing Stack Overflow</h4>
+<p>Kernel stack overflows are critical security vulnerabilities. We discussed two primary mechanisms to prevent them:</p>
+<ul>
+<li><strong>Stack Canary:</strong> A &ldquo;canary&rdquo; value is placed on the stack before the return address. Before the function returns, this value is checked. If it has been modified, it indicates a buffer overflow has likely occurred, and the program can be terminated to prevent further damage.</li>
+<li><strong>Guard Page:</strong> A special page in memory is placed at the end of the stack. If the stack grows beyond its limit and accesses this guard page, a page fault is triggered. This allows the kernel to detect and handle the stack overflow gracefully.</li>
+</ul>
+<h4 id="advanced-interrupt-handling">Advanced Interrupt Handling</h4>
+<ul>
+<li>
+<p><strong>Interrupt Stack Table (IST):</strong> The IST is a mechanism that allows for a separate, pre-defined stack to be used for certain critical interrupts, such as a double fault. This is essential for handling situations where the current stack might be corrupt or invalid.</p>
+</li>
+<li>
+<p><strong>Double Fault:</strong> A double fault occurs when the processor encounters an exception while trying to invoke the handler for a prior exception. Without mechanisms like the IST, this would likely lead to a system crash.</p>
+</li>
+<li>
+<p><strong>Enabling and Disabling Interrupts:</strong></p>
+<ul>
+<li>Interrupts must be enabled for the processor to receive notifications from hardware.</li>
+<li>When an interrupt is received, the hardware sends an interrupt signal to the processor. After the interrupt has been handled, the operating system must send an &ldquo;End of Interrupt&rdquo; (EOI) signal to the interrupt controller.</li>
+<li>It is common practice to disable interrupts before acquiring a mutex. This is a critical technique to prevent deadlocks that could occur if an interrupt handler tried to acquire the same mutex.</li>
+</ul>
+</li>
+<li>
+<p><strong>AVX Registers:</strong> For performance reasons, Linux generally avoids using AVX registers in the kernel. This is because saving and restoring these large registers during context switches adds significant overhead.</p>
+</li>
+</ul>
 
   </content>
   
