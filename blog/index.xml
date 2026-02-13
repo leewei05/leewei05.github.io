@@ -6,15 +6,8 @@
     <description>Recent content in Posts on  :)</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Feb 2026 10:42:11 -0600</lastBuildDate>
+    <lastBuildDate>Mon, 14 Apr 2025 13:21:15 -0700</lastBuildDate>
     <atom:link href="https://leewei.co/blog/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>New Grad Compiler Engineer Interview Preparation</title>
-      <link>https://leewei.co/blog/compiler-interview-prep/</link>
-      <pubDate>Fri, 13 Feb 2026 10:42:11 -0600</pubDate>
-      <guid>https://leewei.co/blog/compiler-interview-prep/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;../../static/images/llvm_logo.png&#34; alt=&#34;llvm&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;There aren&amp;rsquo;t many interview preparation guides for compiler engineers, so I wrote this blog post&#xA;to share my personal experience. Hopefully, this helps those seeking entry-level compiler engineering roles or want to learn about compilers!&lt;/p&gt;&#xA;&lt;p&gt;TL;DR: Prepare for these three topics and apply for compiler engineer roles.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;C++&lt;/li&gt;&#xA;&lt;li&gt;LLVM&lt;/li&gt;&#xA;&lt;li&gt;Compilers&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;&lt;strong&gt;If I&amp;rsquo;m wrong, then you are right!&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;hr&gt;&#xA;&lt;h3 id=&#34;target-companies&#34;&gt;Target Companies&lt;/h3&gt;&#xA;&lt;p&gt;Here are some companies that were or are hiring compiler engineers. These are my target companies:&lt;/p&gt;</description>
-    </item>
     <item>
       <title>LLVM: Constraint Elimination Pass</title>
       <link>https://leewei.co/blog/llvm-constraint/</link>
